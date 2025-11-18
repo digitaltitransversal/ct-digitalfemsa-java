@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>io.digitalfemsa</groupId>
   <artifactId>ct-digitalfemsa-java</artifactId>
-  <version>1.1.0</version>
+  <version>1.1.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "io.digitalfemsa:ct-digitalfemsa-java:1.1.0"
+     implementation "io.digitalfemsa:ct-digitalfemsa-java:1.1.1"
   }
 ```
 
@@ -69,10 +69,27 @@ At first generate the JAR by executing:
 mvn clean package
 ```
 
-Then manually install the following JARs:
+  Then manually install the following JARs:
 
-- `target/ct-digitalfemsa-java-1.1.0.jar`
+- `target/ct-digitalfemsa-java-1.1.1.jar`
 - `target/lib/*.jar`
+
+## Update project version
+
+To update all version references in the repository, run:
+
+```shell
+make version-update NEW_VERSION=1.2.3
+```
+
+This command updates:
+
+- VERSION
+- pom.xml
+- config-java.json (artifactVersion and httpUserAgent)
+- src/main/java/io/digitalfemsa/Configuration.java
+- src/main/java/io/digitalfemsa/ApiClient.java
+- README.md (Maven, Gradle, and JAR name)
 
 ## Usage
 
