@@ -85,7 +85,7 @@ public class ApiClient extends JavaTimeFormatter {
 
   private JSONObject getDigitalFemsaUserAgent()  {
     JSONObject userAgent = new JSONObject();
-    userAgent.put("bindings_version", "1.1.0");
+    userAgent.put("bindings_version", "1.1.1");
     userAgent.put("lang", "java");
     userAgent.put("lang_version", System.getProperty("java.version"));
     userAgent.put("publisher", "digitalfemsa");
@@ -137,7 +137,7 @@ public class ApiClient extends JavaTimeFormatter {
     this.dateFormat = new RFC3339DateFormat();
 
     // Set default User-Agent.
-    setUserAgent("App/v2 JavaBindings/1.1.0");
+    setUserAgent("App/v2 JavaBindings/1.1.1");
 
     // Setup authentications (key: authentication name, value: authentication).
     authentications = new HashMap<>();
