@@ -83,7 +83,7 @@ public class ApiClient extends JavaTimeFormatter {
     userAgentFields.put("lang", "java");
     userAgentFields.put("lang_version", System.getProperty("java.version"));
     userAgentFields.put("uname", "\"" + System.getProperty("os.name") + " " + System.getProperty("os.version") + "\"");
-    userAgentFields.put("sdk_version", "1.1.1");
+    userAgentFields.put("sdk_version", "1.1.2");
 
     return userAgentFields.entrySet().stream()
         .filter(e -> e.getValue() != null && !e.getValue().isEmpty())
@@ -136,7 +136,7 @@ public class ApiClient extends JavaTimeFormatter {
     this.dateFormat = new RFC3339DateFormat();
 
     // Set default User-Agent.
-    setUserAgent("App/v2 JavaBindings/1.1.1");
+    setUserAgent("App/v2 JavaBindings/1.1.2");
 
     // Setup authentications (key: authentication name, value: authentication).
     authentications = new HashMap<>();
