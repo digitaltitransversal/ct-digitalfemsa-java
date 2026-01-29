@@ -26,7 +26,7 @@ jobs:
         gpg-passphrase: ${{ secrets.MAVEN_GPG_PASSPHRASE }} # env variable for GPG private key passphrase
 
     - name: Publish to Apache Maven Central
-      run: mvn clean deploy -Dmaven.test.skip
+      run: mvn -s settings.xml clean deploy -Dmaven.test.skip
       env:
         MAVEN_USERNAME: ${{ secrets.MVN_CENTRAL_USERNAME }}
         MAVEN_CENTRAL_TOKEN: ${{ secrets.MVN_CENTRAL_PASSWORD }}
