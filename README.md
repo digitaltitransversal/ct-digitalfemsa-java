@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>io.digitalfemsa</groupId>
   <artifactId>ct-digitalfemsa-java</artifactId>
-  <version>1.1.1</version>
+  <version>1.1.2</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "io.digitalfemsa:ct-digitalfemsa-java:1.1.1"
+     implementation "io.digitalfemsa:ct-digitalfemsa-java:1.1.2"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
   Then manually install the following JARs:
 
-- `target/ct-digitalfemsa-java-1.1.1.jar`
+- `target/ct-digitalfemsa-java-1.1.2.jar`
 - `target/lib/*.jar`
 
 ## Update project version

@@ -6,7 +6,7 @@
     "developerOrganization": "DigitalFemsa, Inc.",
     "developerOrganizationUrl": "https://www.digitalfemsa.io",
     "artifactUrl": "https://developers.digitalfemsa.com/",
-    "artifactVersion": "1.1.1",
+    "artifactVersion": "1.1.2",
     "modelPackage": "io.digitalfemsa.model",
     "licenseName": "MIT License",
     "invokerPackage": "io.digitalfemsa",
@@ -35,6 +35,6 @@
     "disallowAdditionalPropertiesIfNotPresent": true,
     "useOneOfDiscriminatorLookup": true,
     "serializationLibrary": "jackson",
-    "httpUserAgent": "App/v2 JavaBindings/1.1.1",
+    "httpUserAgent": "App/v2 JavaBindings/1.1.2",
     "openApiNullable" : false
 }
