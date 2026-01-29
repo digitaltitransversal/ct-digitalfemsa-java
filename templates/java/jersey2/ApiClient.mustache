@@ -10,7 +10,6 @@ import {{javaxPackage}}.ws.rs.core.GenericType;
 import {{javaxPackage}}.ws.rs.core.MediaType;
 import {{javaxPackage}}.ws.rs.core.Response;
 import {{javaxPackage}}.ws.rs.core.Response.Status;
-import org.json.JSONObject;
 
 {{#hasOAuthMethods}}
 import com.github.scribejava.core.model.OAuth2AccessToken;
@@ -92,15 +91,19 @@ public class ApiClient{{#jsr310}} extends JavaTimeFormatter{{/jsr310}} {
   protected String userAgent;
   private static final Logger log = Logger.getLogger(ApiClient.class.getName());
 
- JSONObject digitalfemsaUserAgent = getDigitalFemsaUserAgent();
+ String digitalfemsaUserAgent = getDigitalFemsaUserAgent();
 
-  private JSONObject getDigitalFemsaUserAgent()  {
-    JSONObject userAgent = new JSONObject();
-    userAgent.put("bindings_version", "{{artifactVersion}}");
-    userAgent.put("lang", "java");
-    userAgent.put("lang_version", System.getProperty("java.version"));
-    userAgent.put("publisher", "digitalfemsa");
-    return userAgent;
+  private String getDigitalFemsaUserAgent()  {
+    Map<String, String> userAgentFields = new LinkedHashMap<>();
+    userAgentFields.put("lang", "java");
+    userAgentFields.put("lang_version", System.getProperty("java.version"));
+    userAgentFields.put("uname", "\"" + System.getProperty("os.name") + " " + System.getProperty("os.version") + "\"");
+    userAgentFields.put("sdk_version", "{{artifactVersion}}");
+
+    return userAgentFields.entrySet().stream()
+        .filter(e -> e.getValue() != null && !e.getValue().isEmpty())
+        .map(e -> e.getKey() + "=" + e.getValue())
+        .collect(Collectors.joining("; "));
   }
 
   protected List<ServerConfiguration> servers = new ArrayList<>({{#servers}}{{#-first}}Arrays.asList(
@@ -1259,7 +1262,7 @@ public class ApiClient{{#jsr310}} extends JavaTimeFormatter{{/jsr310}} {
     // put all headers in one place
     Map<String, String> allHeaderParams = new HashMap<>(defaultHeaderMap);
     allHeaderParams.putAll(headerParams);
-    allHeaderParams.put("X-DigitalFemsa-Client-User-Agent", digitalfemsaUserAgent.toString());
+    allHeaderParams.put("Spin-Client-User-Agent", digitalfemsaUserAgent);
 
     if (authNames != null) {
       // update different parameters (e.g. headers) for authentication

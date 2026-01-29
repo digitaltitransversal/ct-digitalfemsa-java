@@ -10,7 +10,6 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import org.json.JSONObject;
 
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.ClientProperties;
@@ -36,8 +35,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import org.glassfish.jersey.logging.LoggingFeature;
-import java.util.AbstractMap.SimpleEntry;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Collection;
 import java.util.Collections;
@@ -45,13 +42,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import java.time.OffsetDateTime;
 
 import java.net.URLEncoder;
@@ -81,15 +76,19 @@ public class ApiClient extends JavaTimeFormatter {
   protected String userAgent;
   private static final Logger log = Logger.getLogger(ApiClient.class.getName());
 
- JSONObject digitalfemsaUserAgent = getDigitalFemsaUserAgent();
+ String digitalfemsaUserAgent = getDigitalFemsaUserAgent();
 
-  private JSONObject getDigitalFemsaUserAgent()  {
-    JSONObject userAgent = new JSONObject();
-    userAgent.put("bindings_version", "1.1.1");
-    userAgent.put("lang", "java");
-    userAgent.put("lang_version", System.getProperty("java.version"));
-    userAgent.put("publisher", "digitalfemsa");
-    return userAgent;
+  private String getDigitalFemsaUserAgent()  {
+    Map<String, String> userAgentFields = new LinkedHashMap<>();
+    userAgentFields.put("lang", "java");
+    userAgentFields.put("lang_version", System.getProperty("java.version"));
+    userAgentFields.put("uname", "\"" + System.getProperty("os.name") + " " + System.getProperty("os.version") + "\"");
+    userAgentFields.put("sdk_version", "1.1.1");
+
+    return userAgentFields.entrySet().stream()
+        .filter(e -> e.getValue() != null && !e.getValue().isEmpty())
+        .map(e -> e.getKey() + "=" + e.getValue())
+        .collect(Collectors.joining("; "));
   }
 
   protected List<ServerConfiguration> servers = new ArrayList<>(Arrays.asList(
@@ -1035,7 +1034,7 @@ public class ApiClient extends JavaTimeFormatter {
     // put all headers in one place
     Map<String, String> allHeaderParams = new HashMap<>(defaultHeaderMap);
     allHeaderParams.putAll(headerParams);
-    allHeaderParams.put("X-DigitalFemsa-Client-User-Agent", digitalfemsaUserAgent.toString());
+    allHeaderParams.put("Spin-Client-User-Agent", digitalfemsaUserAgent);
 
     if (authNames != null) {
       // update different parameters (e.g. headers) for authentication
