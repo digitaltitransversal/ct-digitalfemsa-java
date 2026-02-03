@@ -194,7 +194,13 @@
                         </goals>
                         <configuration>
                             <keyname>YMQoKv1D</keyname>
-                            <passphraseServerId/>
+                            <passphrase>${env.MAVEN_GPG_PASSPHRASE}</passphrase>
+                            <gpgArguments>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                                <arg>--batch</arg>
+                                <arg>--yes</arg>
+                            </gpgArguments>
                         </configuration>
                     </execution>
                 </executions>
