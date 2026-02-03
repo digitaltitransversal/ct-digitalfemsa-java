@@ -193,7 +193,8 @@
                             <goal>sign</goal>
                         </goals>
                         <configuration>
-                            <passphraseServerId>gpg.passphrase</passphraseServerId>
+                            <keyname>YMQoKv1D</keyname>
+                            <passphraseServerId/>
                         </configuration>
                     </execution>
                 </executions>
