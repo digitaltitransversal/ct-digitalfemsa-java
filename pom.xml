@@ -193,7 +193,6 @@
                             <goal>sign</goal>
                         </goals>
                         <configuration>
-                            <keyname>YMQoKv1D</keyname>
                             <passphrase>${env.MAVEN_GPG_PASSPHRASE}</passphrase>
                             <gpgArguments>
                                 <arg>--pinentry-mode</arg>
