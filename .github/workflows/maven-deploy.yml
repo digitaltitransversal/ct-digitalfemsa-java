@@ -25,6 +25,11 @@ jobs:
         gpg-private-key: ${{ secrets.MAVEN_SIGNING_KEY }}
         gpg-passphrase: ${{ secrets.MAVEN_SIGNING_KEY_PASSPHRASE }}
 
+    - name: GPG Debug
+      run: |
+        gpg --list-keys
+        gpg --list-secret-keys
+
     - name: Publish to Apache Maven Central
       run: mvn clean deploy -Dmaven.test.skip -P sign-artifacts
       env:
