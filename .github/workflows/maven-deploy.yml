@@ -23,7 +23,7 @@ jobs:
         server-username: ${{ secrets.MVN_CENTRAL_USERNAME }}
         server-password: ${{ secrets.MVN_CENTRAL_PASSWORD }}
         gpg-private-key: ${{ secrets.MAVEN_SIGNING_KEY }}
-        gpg-passphrase: MAVEN_GPG_PASSPHRASE # This is the name of the env var that will hold the passphrase
+        gpg-passphrase: ${{ secrets.MAVEN_SIGNING_KEY_PASSPHRASE }}
 
     - name: Publish to Apache Maven Central
       run: mvn clean deploy -Dmaven.test.skip -P sign-artifacts
