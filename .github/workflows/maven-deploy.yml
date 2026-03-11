@@ -9,21 +9,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Set up JDK 8
+    - name: Set up JDK 8 for Maven Central publish
       uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
         java-version: '8'
-    - name: Set up Apache Maven Central
-      uses: actions/setup-java@v4
-      with: # running setup-java again overwrites the settings.xml
-        distribution: 'temurin'
-        java-version: '8'
-        server-id: central # Value of the distributionManagement/repository/id field of the pom.xml
-        server-username: ${{ secrets.MVN_CENTRAL_USERNAME }}
-        server-password: ${{ secrets.MVN_CENTRAL_PASSWORD }}
+        cache: maven
+        server-id: central
+        server-username: MAVEN_USERNAME
+        server-password: MAVEN_PASSWORD
         gpg-private-key: ${{ secrets.MAVEN_SIGNING_KEY }}
-        gpg-passphrase: ${{ secrets.MAVEN_SIGNING_KEY_PASSPHRASE }}
+        gpg-passphrase: MAVEN_GPG_PASSPHRASE
+      env:
+        MAVEN_USERNAME: ${{ secrets.MVN_CENTRAL_USERNAME }}
+        MAVEN_PASSWORD: ${{ secrets.MVN_CENTRAL_PASSWORD }}
+        MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_SIGNING_KEY_PASSPHRASE }}
 
     - name: GPG Debug
       run: |
@@ -31,8 +31,8 @@ jobs:
         gpg --list-secret-keys
 
     - name: Publish to Apache Maven Central
-      run: mvn clean deploy -Dmaven.test.skip -P sign-artifacts
+      run: mvn -B -ntp clean deploy -Dmaven.test.skip -P sign-artifacts
       env:
         MAVEN_USERNAME: ${{ secrets.MVN_CENTRAL_USERNAME }}
-        MAVEN_CENTRAL_TOKEN: ${{ secrets.MVN_CENTRAL_PASSWORD }}
+        MAVEN_PASSWORD: ${{ secrets.MVN_CENTRAL_PASSWORD }}
         MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_SIGNING_KEY_PASSPHRASE }}
