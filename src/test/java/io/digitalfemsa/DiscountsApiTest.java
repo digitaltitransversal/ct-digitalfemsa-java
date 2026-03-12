@@ -13,22 +13,7 @@
 
 package io.digitalfemsa;
 
-import io.digitalfemsa.*;
-import io.digitalfemsa.auth.*;
-import io.digitalfemsa.model.DiscountLinesResponse;
-import io.digitalfemsa.model.Error;
-import io.digitalfemsa.model.GetOrderDiscountLinesResponse;
-import io.digitalfemsa.model.OrderDiscountLinesRequest;
-import io.digitalfemsa.model.UpdateOrderDiscountLinesRequest;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for DiscountsApi

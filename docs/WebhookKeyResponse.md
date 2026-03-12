@@ -2,19 +2,20 @@
 
 # WebhookKeyResponse
 
-webhook keys model
+Represents a webhook signing key configuration for the company.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | Unique identifier of the webhook key |  [optional] |
-|**active** | **Boolean** | Indicates if the webhook key is active |  [optional] |
-|**createdAt** | **Long** | Unix timestamp in seconds with the creation date of the webhook key |  [optional] |
-|**deactivatedAt** | **Long** | Unix timestamp in seconds with the deactivation date of the webhook key |  [optional] |
-|**publicKey** | **String** | Public key to be used in the webhook |  [optional] |
-|**livemode** | **Boolean** | Indicates if the webhook key is in live mode |  [optional] |
-|**_object** | **String** | Object name, value is webhook_key |  [optional] |
+|**id** | **String** | Unique identifier of the webhook key |  |
+|**_object** | **String** | Object name, value is webhook_key |  |
+|**active** | **Boolean** | Indicates if the webhook key is active |  |
+|**livemode** | **Boolean** | Indicates if the webhook key is in live mode |  |
+|**createdAt** | **Long** | Unix timestamp in seconds with the creation date of the webhook key |  |
+|**deactivatedAt** | **Long** | Unix timestamp in seconds when the webhook key was deactivated (if applicable). |  [optional] |
+|**deleted** | **Boolean** | Present only when the webhook key is deleted. |  [optional] |
+|**publicKey** | **String** | Public key to be used in the webhook. |  [optional] |
 
 
 

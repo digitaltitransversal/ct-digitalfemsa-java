@@ -1,22 +1,12 @@
 package io.digitalfemsa;
 
-import io.digitalfemsa.ApiException;
-import io.digitalfemsa.ApiClient;
-import io.digitalfemsa.ApiResponse;
-import io.digitalfemsa.Configuration;
-import io.digitalfemsa.Pair;
-
-import javax.ws.rs.core.GenericType;
-
-import io.digitalfemsa.model.Error;
 import io.digitalfemsa.model.Product;
 import io.digitalfemsa.model.ProductOrderResponse;
 import io.digitalfemsa.model.UpdateProduct;
 
+import javax.ws.rs.core.GenericType;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
@@ -51,9 +41,9 @@ public class ProductsApi {
 
   /**
    * Create Product
-   * Create a new product for an existing order.
+   * Creates a new product (line item) for an existing order. Use this endpoint to add an additional item to the order after it has been created.
    * @param id Identifier of the resource (required)
-   * @param product requested field for a product (required)
+   * @param product Fields required to create a new product (line item) for an existing order. This request adds a new item to the order. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return ProductOrderResponse
@@ -61,7 +51,7 @@ public class ProductsApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
@@ -73,9 +63,9 @@ public class ProductsApi {
 
   /**
    * Create Product
-   * Create a new product for an existing order.
+   * Creates a new product (line item) for an existing order. Use this endpoint to add an additional item to the order after it has been created.
    * @param id Identifier of the resource (required)
-   * @param product requested field for a product (required)
+   * @param product Fields required to create a new product (line item) for an existing order. This request adds a new item to the order. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return ApiResponse&lt;ProductOrderResponse&gt;
@@ -83,7 +73,7 @@ public class ProductsApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
@@ -111,7 +101,7 @@ public class ProductsApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<ProductOrderResponse> localVarReturnType = new GenericType<ProductOrderResponse>() {};
@@ -121,7 +111,7 @@ public class ProductsApi {
   }
   /**
    * Delete Product
-   * Delete product for an existing orden
+   * Deletes a product (line item) from an existing order. The API will validate whether the order can be modified before removing the item.
    * @param id Identifier of the resource (required)
    * @param lineItemId identifier (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -131,10 +121,10 @@ public class ProductsApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -144,7 +134,7 @@ public class ProductsApi {
 
   /**
    * Delete Product
-   * Delete product for an existing orden
+   * Deletes a product (line item) from an existing order. The API will validate whether the order can be modified before removing the item.
    * @param id Identifier of the resource (required)
    * @param lineItemId identifier (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -154,10 +144,10 @@ public class ProductsApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -184,7 +174,7 @@ public class ProductsApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<ProductOrderResponse> localVarReturnType = new GenericType<ProductOrderResponse>() {};
@@ -194,10 +184,10 @@ public class ProductsApi {
   }
   /**
    * Update Product
-   * Update an existing product for an existing orden
+   * Updates an existing product (line item) for an existing order. Use this endpoint to modify the details of a specific line item in the order.
    * @param id Identifier of the resource (required)
    * @param lineItemId identifier (required)
-   * @param updateProduct requested field for products (required)
+   * @param updateProduct Fields allowed to update an existing product (line item) in an order. All fields are optional; only the provided fields will be updated. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return ProductOrderResponse
@@ -205,10 +195,10 @@ public class ProductsApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -218,10 +208,10 @@ public class ProductsApi {
 
   /**
    * Update Product
-   * Update an existing product for an existing orden
+   * Updates an existing product (line item) for an existing order. Use this endpoint to modify the details of a specific line item in the order.
    * @param id Identifier of the resource (required)
    * @param lineItemId identifier (required)
-   * @param updateProduct requested field for products (required)
+   * @param updateProduct Fields allowed to update an existing product (line item) in an order. All fields are optional; only the provided fields will be updated. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return ApiResponse&lt;ProductOrderResponse&gt;
@@ -229,10 +219,10 @@ public class ProductsApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -262,7 +252,7 @@ public class ProductsApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<ProductOrderResponse> localVarReturnType = new GenericType<ProductOrderResponse>() {};

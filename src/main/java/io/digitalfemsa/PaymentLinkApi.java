@@ -1,22 +1,12 @@
 package io.digitalfemsa;
 
-import io.digitalfemsa.ApiException;
-import io.digitalfemsa.ApiClient;
-import io.digitalfemsa.ApiResponse;
-import io.digitalfemsa.Configuration;
-import io.digitalfemsa.Pair;
-
-import javax.ws.rs.core.GenericType;
-
 import io.digitalfemsa.model.Checkout;
 import io.digitalfemsa.model.CheckoutResponse;
 import io.digitalfemsa.model.CheckoutsResponse;
 import io.digitalfemsa.model.EmailCheckoutRequest;
-import io.digitalfemsa.model.Error;
-import io.digitalfemsa.model.SmsCheckoutRequest;
 
+import javax.ws.rs.core.GenericType;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,7 +43,7 @@ public class PaymentLinkApi {
 
   /**
    * Cancel Payment Link
-   * 
+   * Cancels an existing payment link. After cancellation, the link can no longer be used to generate new payments. This operation is idempotent: cancelling an already cancelled payment link returns the current resource representation.
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -62,7 +52,7 @@ public class PaymentLinkApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
@@ -76,7 +66,7 @@ public class PaymentLinkApi {
 
   /**
    * Cancel Payment Link
-   * 
+   * Cancels an existing payment link. After cancellation, the link can no longer be used to generate new payments. This operation is idempotent: cancelling an already cancelled payment link returns the current resource representation.
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -85,7 +75,7 @@ public class PaymentLinkApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
@@ -112,7 +102,7 @@ public class PaymentLinkApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<CheckoutResponse> localVarReturnType = new GenericType<CheckoutResponse>() {};
@@ -122,7 +112,7 @@ public class PaymentLinkApi {
   }
   /**
    * Create Unique Payment Link
-   * 
+   * Creates a new payment link. The request body defines the payment link type, allowed payment methods, and expiration settings.
    * @param checkout requested field for checkout (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -131,7 +121,7 @@ public class PaymentLinkApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
        <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
@@ -144,7 +134,7 @@ public class PaymentLinkApi {
 
   /**
    * Create Unique Payment Link
-   * 
+   * Creates a new payment link. The request body defines the payment link type, allowed payment methods, and expiration settings.
    * @param checkout requested field for checkout (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -153,7 +143,7 @@ public class PaymentLinkApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
        <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
@@ -175,7 +165,7 @@ public class PaymentLinkApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<CheckoutResponse> localVarReturnType = new GenericType<CheckoutResponse>() {};
@@ -195,7 +185,7 @@ public class PaymentLinkApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
@@ -219,7 +209,7 @@ public class PaymentLinkApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
@@ -249,7 +239,7 @@ public class PaymentLinkApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<CheckoutResponse> localVarReturnType = new GenericType<CheckoutResponse>() {};
@@ -259,7 +249,7 @@ public class PaymentLinkApi {
   }
   /**
    * Get a payment link by ID
-   * 
+   * Retrieves the details of a checkout by its ID.
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -268,11 +258,10 @@ public class PaymentLinkApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -282,7 +271,7 @@ public class PaymentLinkApi {
 
   /**
    * Get a payment link by ID
-   * 
+   * Retrieves the details of a checkout by its ID.
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -291,11 +280,10 @@ public class PaymentLinkApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -318,7 +306,7 @@ public class PaymentLinkApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<CheckoutResponse> localVarReturnType = new GenericType<CheckoutResponse>() {};
@@ -328,7 +316,7 @@ public class PaymentLinkApi {
   }
   /**
    * Get a list of payment links
-   * Returns a list of links generated by the merchant
+   * Returns a paginated list of payment links created by the merchant. Results can be navigated using the pagination parameters.
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @param limit The numbers of items to return, the maximum value is 250 (optional, default to 20)
@@ -340,7 +328,7 @@ public class PaymentLinkApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
        <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
@@ -353,7 +341,7 @@ public class PaymentLinkApi {
 
   /**
    * Get a list of payment links
-   * Returns a list of links generated by the merchant
+   * Returns a paginated list of payment links created by the merchant. Results can be navigated using the pagination parameters.
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @param limit The numbers of items to return, the maximum value is 250 (optional, default to 20)
@@ -365,7 +353,7 @@ public class PaymentLinkApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
        <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
@@ -390,85 +378,11 @@ public class PaymentLinkApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<CheckoutsResponse> localVarReturnType = new GenericType<CheckoutsResponse>() {};
     return apiClient.invokeAPI("PaymentLinkApi.getCheckouts", "/checkouts", "GET", localVarQueryParams, null,
-                               localVarHeaderParams, new LinkedHashMap<>(), new LinkedHashMap<>(), localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
-  }
-  /**
-   * Send an sms
-   * 
-   * @param id Identifier of the resource (required)
-   * @param smsCheckoutRequest requested field for sms checkout (required)
-   * @param acceptLanguage Use for knowing which language to use (optional, default to es)
-   * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
-   * @return CheckoutResponse
-   * @throws ApiException if fails to make API call
-   * @http.response.details
-     <table summary="Response Details" border="1">
-       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
-       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
-       <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
-       <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
-       <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
-     </table>
-   */
-  public CheckoutResponse smsCheckout(String id, SmsCheckoutRequest smsCheckoutRequest, String acceptLanguage, String xChildCompanyId) throws ApiException {
-    return smsCheckoutWithHttpInfo(id, smsCheckoutRequest, acceptLanguage, xChildCompanyId).getData();
-  }
-
-  /**
-   * Send an sms
-   * 
-   * @param id Identifier of the resource (required)
-   * @param smsCheckoutRequest requested field for sms checkout (required)
-   * @param acceptLanguage Use for knowing which language to use (optional, default to es)
-   * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
-   * @return ApiResponse&lt;CheckoutResponse&gt;
-   * @throws ApiException if fails to make API call
-   * @http.response.details
-     <table summary="Response Details" border="1">
-       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
-       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
-       <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
-       <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
-       <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
-     </table>
-   */
-  public ApiResponse<CheckoutResponse> smsCheckoutWithHttpInfo(String id, SmsCheckoutRequest smsCheckoutRequest, String acceptLanguage, String xChildCompanyId) throws ApiException {
-    // Check required parameters
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling smsCheckout");
-    }
-    if (smsCheckoutRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'smsCheckoutRequest' when calling smsCheckout");
-    }
-
-    // Path parameters
-    String localVarPath = "/checkouts/{id}/sms"
-            .replaceAll("\\{id}", apiClient.escapeString(id));
-
-    // Header parameters
-    Map<String, String> localVarHeaderParams = new LinkedHashMap<>();
-    if (acceptLanguage != null) {
-      localVarHeaderParams.put("Accept-Language", apiClient.parameterToString(acceptLanguage));
-    }
-    if (xChildCompanyId != null) {
-      localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
-    }
-
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
-    String localVarContentType = apiClient.selectHeaderContentType("application/json");
-    String[] localVarAuthNames = new String[] {"bearerAuth"};
-    GenericType<CheckoutResponse> localVarReturnType = new GenericType<CheckoutResponse>() {};
-    return apiClient.invokeAPI("PaymentLinkApi.smsCheckout", localVarPath, "POST", new ArrayList<>(), smsCheckoutRequest,
                                localVarHeaderParams, new LinkedHashMap<>(), new LinkedHashMap<>(), localVarAccept, localVarContentType,
                                localVarAuthNames, localVarReturnType, false);
   }

@@ -8,14 +8,22 @@ event model
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**createdAt** | **Long** |  |  [optional] |
-|**data** | **Map&lt;String, Object&gt;** |  |  [optional] |
-|**id** | **String** |  |  [optional] |
-|**livemode** | **Boolean** |  |  [optional] |
-|**_object** | **String** |  |  [optional] |
-|**type** | **String** |  |  [optional] |
-|**webhookLogs** | [**List&lt;WebhookLog&gt;**](WebhookLog.md) |  |  [optional] |
-|**webhookStatus** | **String** |  |  [optional] |
+|**createdAt** | **Long** |  |  |
+|**data** | **Map&lt;String, Object&gt;** |  |  |
+|**id** | **String** |  |  |
+|**livemode** | **Boolean** |  |  |
+|**_object** | [**ObjectEnum**](#ObjectEnum) |  |  |
+|**type** | **String** |  |  |
+|**webhookLogs** | [**List&lt;WebhookLog&gt;**](WebhookLog.md) |  |  |
+|**webhookStatus** | **String** |  |  |
+
+
+
+## Enum: ObjectEnum
+
+| Name | Value |
+|---- | -----|
+| EVENT | &quot;event&quot; |
 
 
 

@@ -7,7 +7,6 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**antifraudInfo** | **Map&lt;String, Object&gt;** |  |  [optional] |
 |**brand** | **String** | The brand of the item. |  [optional] |
 |**description** | **String** | Short description of the item |  [optional] |
 |**metadata** | **Map&lt;String, String&gt;** | It is a key/value hash that can hold custom fields. Maximum 100 elements and allows special characters. |  [optional] |

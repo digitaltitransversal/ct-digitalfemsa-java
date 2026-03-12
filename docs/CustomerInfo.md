@@ -7,6 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**customerId** | **String** |  |  [optional] |
 |**name** | **String** |  |  |
 |**email** | **String** |  |  |
 |**phone** | **String** |  |  |

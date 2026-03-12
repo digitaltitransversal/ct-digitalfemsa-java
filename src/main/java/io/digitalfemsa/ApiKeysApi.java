@@ -1,23 +1,14 @@
 package io.digitalfemsa;
 
-import io.digitalfemsa.ApiException;
-import io.digitalfemsa.ApiClient;
-import io.digitalfemsa.ApiResponse;
-import io.digitalfemsa.Configuration;
-import io.digitalfemsa.Pair;
-
-import javax.ws.rs.core.GenericType;
-
 import io.digitalfemsa.model.ApiKeyCreateResponse;
 import io.digitalfemsa.model.ApiKeyRequest;
 import io.digitalfemsa.model.ApiKeyResponse;
 import io.digitalfemsa.model.ApiKeyUpdateRequest;
 import io.digitalfemsa.model.DeleteApiKeysResponse;
-import io.digitalfemsa.model.Error;
 import io.digitalfemsa.model.GetApiKeysResponse;
 
+import javax.ws.rs.core.GenericType;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,8 +44,8 @@ public class ApiKeysApi {
   }
 
   /**
-   * Create Api Key
-   * Create a api key
+   * Create API key
+   * Creates a new API key.  The response includes an &#x60;authentication_token&#x60; that is shown only once (at creation time). Copy and store it securely. 
    * @param apiKeyRequest requested field for a api keys (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -63,7 +54,7 @@ public class ApiKeysApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  * Content-Type - The format of the response body <br>  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
@@ -74,8 +65,8 @@ public class ApiKeysApi {
   }
 
   /**
-   * Create Api Key
-   * Create a api key
+   * Create API key
+   * Creates a new API key.  The response includes an &#x60;authentication_token&#x60; that is shown only once (at creation time). Copy and store it securely. 
    * @param apiKeyRequest requested field for a api keys (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -84,7 +75,7 @@ public class ApiKeysApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  * Content-Type - The format of the response body <br>  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
@@ -105,7 +96,7 @@ public class ApiKeysApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<ApiKeyCreateResponse> localVarReturnType = new GenericType<ApiKeyCreateResponse>() {};
@@ -114,8 +105,8 @@ public class ApiKeysApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Delete Api Key
-   * Deletes a api key that corresponds to a api key ID
+   * Delete API key
+   * Deletes an API key by its ID. 
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @return DeleteApiKeysResponse
@@ -123,9 +114,10 @@ public class ApiKeysApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  * Content-Type - The format of the response body <br>  </td></tr>
+       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -134,8 +126,8 @@ public class ApiKeysApi {
   }
 
   /**
-   * Delete Api Key
-   * Deletes a api key that corresponds to a api key ID
+   * Delete API key
+   * Deletes an API key by its ID. 
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @return ApiResponse&lt;DeleteApiKeysResponse&gt;
@@ -143,9 +135,10 @@ public class ApiKeysApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  * Content-Type - The format of the response body <br>  </td></tr>
+       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -165,7 +158,7 @@ public class ApiKeysApi {
       localVarHeaderParams.put("Accept-Language", apiClient.parameterToString(acceptLanguage));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<DeleteApiKeysResponse> localVarReturnType = new GenericType<DeleteApiKeysResponse>() {};
@@ -174,8 +167,8 @@ public class ApiKeysApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Get Api Key
-   * Gets a api key that corresponds to a api key ID
+   * Get API key
+   * Retrieves the details of an API key by its ID. 
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -184,7 +177,7 @@ public class ApiKeysApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  * Content-Type - The format of the response body <br>  </td></tr>
+       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
@@ -195,8 +188,8 @@ public class ApiKeysApi {
   }
 
   /**
-   * Get Api Key
-   * Gets a api key that corresponds to a api key ID
+   * Get API key
+   * Retrieves the details of an API key by its ID. 
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -205,7 +198,7 @@ public class ApiKeysApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  * Content-Type - The format of the response body <br>  </td></tr>
+       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
@@ -230,7 +223,7 @@ public class ApiKeysApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<ApiKeyResponse> localVarReturnType = new GenericType<ApiKeyResponse>() {};
@@ -239,20 +232,20 @@ public class ApiKeysApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Get list of Api Keys
-   * Consume the list of api keys you have
+   * List API keys
+   * Retrieves a paginated list of API keys for the authenticated account.  Use the pagination parameters (&#x60;limit&#x60;, &#x60;next_page&#x60;, &#x60;previous_page&#x60;) to navigate through results. Use the &#x60;search&#x60; query parameter to perform a general search (for example by key &#x60;id&#x60; or description). 
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @param limit The numbers of items to return, the maximum value is 250 (optional, default to 20)
    * @param next next page (optional)
    * @param previous previous page (optional)
-   * @param search General search, e.g. by id, description, prefix (optional)
+   * @param search General search, e.g. by id or description (optional)
    * @return GetApiKeysResponse
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  * Content-Type - The format of the response body <br>  </td></tr>
+       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
@@ -262,20 +255,20 @@ public class ApiKeysApi {
   }
 
   /**
-   * Get list of Api Keys
-   * Consume the list of api keys you have
+   * List API keys
+   * Retrieves a paginated list of API keys for the authenticated account.  Use the pagination parameters (&#x60;limit&#x60;, &#x60;next_page&#x60;, &#x60;previous_page&#x60;) to navigate through results. Use the &#x60;search&#x60; query parameter to perform a general search (for example by key &#x60;id&#x60; or description). 
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @param limit The numbers of items to return, the maximum value is 250 (optional, default to 20)
    * @param next next page (optional)
    * @param previous previous page (optional)
-   * @param search General search, e.g. by id, description, prefix (optional)
+   * @param search General search, e.g. by id or description (optional)
    * @return ApiResponse&lt;GetApiKeysResponse&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  * Content-Type - The format of the response body <br>  </td></tr>
+       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
@@ -298,7 +291,7 @@ public class ApiKeysApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<GetApiKeysResponse> localVarReturnType = new GenericType<GetApiKeysResponse>() {};
@@ -307,47 +300,52 @@ public class ApiKeysApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Update Api Key
-   * Update an existing api key
+   * Update API key
+   * Updates an existing API key by its ID.  Use this endpoint to change the key&#39;s status (active/inactive) or update its description. 
    * @param id Identifier of the resource (required)
+   * @param apiKeyUpdateRequest  (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
-   * @param apiKeyUpdateRequest  (optional)
    * @return ApiKeyResponse
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
+       <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiKeyResponse updateApiKey(String id, String acceptLanguage, ApiKeyUpdateRequest apiKeyUpdateRequest) throws ApiException {
-    return updateApiKeyWithHttpInfo(id, acceptLanguage, apiKeyUpdateRequest).getData();
+  public ApiKeyResponse updateApiKey(String id, ApiKeyUpdateRequest apiKeyUpdateRequest, String acceptLanguage) throws ApiException {
+    return updateApiKeyWithHttpInfo(id, apiKeyUpdateRequest, acceptLanguage).getData();
   }
 
   /**
-   * Update Api Key
-   * Update an existing api key
+   * Update API key
+   * Updates an existing API key by its ID.  Use this endpoint to change the key&#39;s status (active/inactive) or update its description. 
    * @param id Identifier of the resource (required)
+   * @param apiKeyUpdateRequest  (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
-   * @param apiKeyUpdateRequest  (optional)
    * @return ApiResponse&lt;ApiKeyResponse&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
+       <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<ApiKeyResponse> updateApiKeyWithHttpInfo(String id, String acceptLanguage, ApiKeyUpdateRequest apiKeyUpdateRequest) throws ApiException {
+  public ApiResponse<ApiKeyResponse> updateApiKeyWithHttpInfo(String id, ApiKeyUpdateRequest apiKeyUpdateRequest, String acceptLanguage) throws ApiException {
     // Check required parameters
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling updateApiKey");
+    }
+    if (apiKeyUpdateRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'apiKeyUpdateRequest' when calling updateApiKey");
     }
 
     // Path parameters
@@ -360,7 +358,7 @@ public class ApiKeysApi {
       localVarHeaderParams.put("Accept-Language", apiClient.parameterToString(acceptLanguage));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/json", "application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<ApiKeyResponse> localVarReturnType = new GenericType<ApiKeyResponse>() {};

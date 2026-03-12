@@ -2,18 +2,18 @@
 
 # EventsResendResponse
 
-event model
+Webhook log model returned after resending an event webhook delivery.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**failedAttempts** | **Integer** |  |  [optional] |
-|**id** | **String** |  |  [optional] |
-|**lastAttemptedAt** | **Integer** |  |  [optional] |
-|**lastHttpResponseStatus** | **Integer** |  |  [optional] |
-|**responseData** | **Map&lt;String, Object&gt;** |  |  [optional] |
-|**url** | **URI** |  |  [optional] |
+|**failedAttempts** | **Integer** |  |  |
+|**id** | **String** |  |  |
+|**lastAttemptedAt** | **Integer** |  |  |
+|**lastHttpResponseStatus** | **Integer** |  |  |
+|**responseData** | **Map&lt;String, Object&gt;** |  |  |
+|**url** | **URI** |  |  |
 
 
 

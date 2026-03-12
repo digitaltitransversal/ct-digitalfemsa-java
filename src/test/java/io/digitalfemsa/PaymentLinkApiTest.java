@@ -13,23 +13,7 @@
 
 package io.digitalfemsa;
 
-import io.digitalfemsa.*;
-import io.digitalfemsa.auth.*;
-import io.digitalfemsa.model.Checkout;
-import io.digitalfemsa.model.CheckoutResponse;
-import io.digitalfemsa.model.CheckoutsResponse;
-import io.digitalfemsa.model.EmailCheckoutRequest;
-import io.digitalfemsa.model.Error;
-import io.digitalfemsa.model.SmsCheckoutRequest;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for PaymentLinkApi

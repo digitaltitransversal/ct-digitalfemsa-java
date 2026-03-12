@@ -1,22 +1,12 @@
 package io.digitalfemsa;
 
-import io.digitalfemsa.ApiException;
-import io.digitalfemsa.ApiClient;
-import io.digitalfemsa.ApiResponse;
-import io.digitalfemsa.Configuration;
-import io.digitalfemsa.Pair;
-
-import javax.ws.rs.core.GenericType;
-
 import io.digitalfemsa.model.CustomerShippingContacts;
 import io.digitalfemsa.model.CustomerShippingContactsResponse;
 import io.digitalfemsa.model.CustomerUpdateShippingContacts;
-import io.digitalfemsa.model.Error;
 
+import javax.ws.rs.core.GenericType;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
@@ -50,10 +40,10 @@ public class ShippingContactsApi {
   }
 
   /**
-   * Create a shipping contacts
-   * Create a shipping contacts for a customer.
+   * Create a shipping contact
+   * Creates a new shipping contact for a customer. The shipping contact is associated with the customer identified by &#x60;id&#x60;.
    * @param id Identifier of the resource (required)
-   * @param customerShippingContacts requested field for customer shippings contacts (required)
+   * @param customerShippingContacts Request body for creating or updating a customer shipping contact. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return CustomerShippingContactsResponse
@@ -73,10 +63,10 @@ public class ShippingContactsApi {
   }
 
   /**
-   * Create a shipping contacts
-   * Create a shipping contacts for a customer.
+   * Create a shipping contact
+   * Creates a new shipping contact for a customer. The shipping contact is associated with the customer identified by &#x60;id&#x60;.
    * @param id Identifier of the resource (required)
-   * @param customerShippingContacts requested field for customer shippings contacts (required)
+   * @param customerShippingContacts Request body for creating or updating a customer shipping contact. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return ApiResponse&lt;CustomerShippingContactsResponse&gt;
@@ -113,7 +103,7 @@ public class ShippingContactsApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<CustomerShippingContactsResponse> localVarReturnType = new GenericType<CustomerShippingContactsResponse>() {};
@@ -122,8 +112,8 @@ public class ShippingContactsApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Delete shipping contacts
-   * Delete shipping contact that corresponds to a customer ID.
+   * Delete shipping contact
+   * Deletes an existing shipping contact for a customer. The shipping contact identified by &#x60;shipping_contacts_id&#x60; belongs to the customer identified by &#x60;id&#x60;. The response includes the deleted resource with &#x60;deleted: true&#x60;.
    * @param id Identifier of the resource (required)
    * @param shippingContactsId identifier (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -145,8 +135,8 @@ public class ShippingContactsApi {
   }
 
   /**
-   * Delete shipping contacts
-   * Delete shipping contact that corresponds to a customer ID.
+   * Delete shipping contact
+   * Deletes an existing shipping contact for a customer. The shipping contact identified by &#x60;shipping_contacts_id&#x60; belongs to the customer identified by &#x60;id&#x60;. The response includes the deleted resource with &#x60;deleted: true&#x60;.
    * @param id Identifier of the resource (required)
    * @param shippingContactsId identifier (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -186,7 +176,7 @@ public class ShippingContactsApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<CustomerShippingContactsResponse> localVarReturnType = new GenericType<CustomerShippingContactsResponse>() {};
@@ -195,11 +185,11 @@ public class ShippingContactsApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Update shipping contacts
-   * Update shipping contact that corresponds to a customer ID.
+   * Update shipping contact
+   * Updates an existing shipping contact for a customer. The shipping contact identified by &#x60;shipping_contacts_id&#x60; belongs to the customer identified by &#x60;id&#x60;. Only the fields provided in the request body are updated.
    * @param id Identifier of the resource (required)
    * @param shippingContactsId identifier (required)
-   * @param customerUpdateShippingContacts requested field for customer update shippings contacts (required)
+   * @param customerUpdateShippingContacts Request body for updating a customer shipping contact. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return CustomerShippingContactsResponse
@@ -219,11 +209,11 @@ public class ShippingContactsApi {
   }
 
   /**
-   * Update shipping contacts
-   * Update shipping contact that corresponds to a customer ID.
+   * Update shipping contact
+   * Updates an existing shipping contact for a customer. The shipping contact identified by &#x60;shipping_contacts_id&#x60; belongs to the customer identified by &#x60;id&#x60;. Only the fields provided in the request body are updated.
    * @param id Identifier of the resource (required)
    * @param shippingContactsId identifier (required)
-   * @param customerUpdateShippingContacts requested field for customer update shippings contacts (required)
+   * @param customerUpdateShippingContacts Request body for updating a customer shipping contact. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return ApiResponse&lt;CustomerShippingContactsResponse&gt;
@@ -264,7 +254,7 @@ public class ShippingContactsApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<CustomerShippingContactsResponse> localVarReturnType = new GenericType<CustomerShippingContactsResponse>() {};

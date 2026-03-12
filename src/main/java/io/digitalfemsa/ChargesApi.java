@@ -1,22 +1,13 @@
 package io.digitalfemsa;
 
-import io.digitalfemsa.ApiException;
-import io.digitalfemsa.ApiClient;
-import io.digitalfemsa.ApiResponse;
-import io.digitalfemsa.Configuration;
-import io.digitalfemsa.Pair;
-
-import javax.ws.rs.core.GenericType;
-
 import io.digitalfemsa.model.ChargeOrderResponse;
 import io.digitalfemsa.model.ChargeRequest;
 import io.digitalfemsa.model.ChargeResponse;
 import io.digitalfemsa.model.ChargeUpdateRequest;
-import io.digitalfemsa.model.Error;
 import io.digitalfemsa.model.GetChargesResponse;
 
+import javax.ws.rs.core.GenericType;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,55 +43,57 @@ public class ChargesApi {
   }
 
   /**
-   * Get A List of Charges
-   * 
+   * List charges
+   * Retrieves a paginated list of charges for the authenticated account.  Use the pagination parameters (&#x60;limit&#x60;, &#x60;next_page&#x60;, &#x60;previous_page&#x60;) to navigate through results. Use &#x60;search&#x60; to filter charges (for example by id or reference). 
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @param limit The numbers of items to return, the maximum value is 250 (optional, default to 20)
-   * @param search General order search, e.g. by mail, reference etc. (optional)
    * @param next next page (optional)
    * @param previous previous page (optional)
+   * @param search General order search, e.g. by mail, reference etc. (optional)
    * @return GetChargesResponse
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 422 </td><td> whitelist validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
-  public GetChargesResponse getCharges(String acceptLanguage, String xChildCompanyId, Integer limit, String search, String next, String previous) throws ApiException {
-    return getChargesWithHttpInfo(acceptLanguage, xChildCompanyId, limit, search, next, previous).getData();
+  public GetChargesResponse getCharges(String acceptLanguage, String xChildCompanyId, Integer limit, String next, String previous, String search) throws ApiException {
+    return getChargesWithHttpInfo(acceptLanguage, xChildCompanyId, limit, next, previous, search).getData();
   }
 
   /**
-   * Get A List of Charges
-   * 
+   * List charges
+   * Retrieves a paginated list of charges for the authenticated account.  Use the pagination parameters (&#x60;limit&#x60;, &#x60;next_page&#x60;, &#x60;previous_page&#x60;) to navigate through results. Use &#x60;search&#x60; to filter charges (for example by id or reference). 
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @param limit The numbers of items to return, the maximum value is 250 (optional, default to 20)
-   * @param search General order search, e.g. by mail, reference etc. (optional)
    * @param next next page (optional)
    * @param previous previous page (optional)
+   * @param search General order search, e.g. by mail, reference etc. (optional)
    * @return ApiResponse&lt;GetChargesResponse&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 422 </td><td> whitelist validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<GetChargesResponse> getChargesWithHttpInfo(String acceptLanguage, String xChildCompanyId, Integer limit, String search, String next, String previous) throws ApiException {
+  public ApiResponse<GetChargesResponse> getChargesWithHttpInfo(String acceptLanguage, String xChildCompanyId, Integer limit, String next, String previous, String search) throws ApiException {
     // Query parameters
     List<Pair> localVarQueryParams = new ArrayList<>(
             apiClient.parameterToPairs("", "limit", limit)
     );
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "search", search));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "next", next));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "previous", previous));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "search", search));
 
     // Header parameters
     Map<String, String> localVarHeaderParams = new LinkedHashMap<>();
@@ -111,7 +104,7 @@ public class ChargesApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<GetChargesResponse> localVarReturnType = new GenericType<GetChargesResponse>() {};
@@ -120,8 +113,8 @@ public class ChargesApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Create charge
-   * Create charge for an existing orden
+   * Create a charge for an order
+   * Creates a new charge associated with an existing order.  Notes: - The charge is created for the order identified by the path parameter &#x60;id&#x60;. - Depending on the payment method, the charge may be created in a non-final status (for example, pending). - If the order does not meet the required conditions, the API may respond with **428 Precondition Required**. 
    * @param id Identifier of the resource (required)
    * @param chargeRequest requested field for a charge (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -131,9 +124,10 @@ public class ChargesApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 428 </td><td> Precondition Required </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
@@ -143,8 +137,8 @@ public class ChargesApi {
   }
 
   /**
-   * Create charge
-   * Create charge for an existing orden
+   * Create a charge for an order
+   * Creates a new charge associated with an existing order.  Notes: - The charge is created for the order identified by the path parameter &#x60;id&#x60;. - Depending on the payment method, the charge may be created in a non-final status (for example, pending). - If the order does not meet the required conditions, the API may respond with **428 Precondition Required**. 
    * @param id Identifier of the resource (required)
    * @param chargeRequest requested field for a charge (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -154,9 +148,10 @@ public class ChargesApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 428 </td><td> Precondition Required </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
@@ -183,7 +178,7 @@ public class ChargesApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<ChargeOrderResponse> localVarReturnType = new GenericType<ChargeOrderResponse>() {};
@@ -193,7 +188,7 @@ public class ChargesApi {
   }
   /**
    * Update a charge
-   * 
+   * Updates an existing charge. Only &#x60;reference_id&#x60; can be updated.
    * @param id Identifier of the resource (required)
    * @param chargeUpdateRequest requested field for update a charge (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -203,9 +198,10 @@ public class ChargesApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
-       <tr><td> 422 </td><td> whitelist validation error </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -215,7 +211,7 @@ public class ChargesApi {
 
   /**
    * Update a charge
-   * 
+   * Updates an existing charge. Only &#x60;reference_id&#x60; can be updated.
    * @param id Identifier of the resource (required)
    * @param chargeUpdateRequest requested field for update a charge (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -225,9 +221,10 @@ public class ChargesApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
-       <tr><td> 422 </td><td> whitelist validation error </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -253,7 +250,7 @@ public class ChargesApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<ChargeResponse> localVarReturnType = new GenericType<ChargeResponse>() {};

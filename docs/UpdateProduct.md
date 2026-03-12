@@ -7,7 +7,6 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**antifraudInfo** | **Map&lt;String, Object&gt;** |  |  [optional] |
 |**description** | **String** |  |  [optional] |
 |**sku** | **String** |  |  [optional] |
 |**name** | **String** |  |  [optional] |

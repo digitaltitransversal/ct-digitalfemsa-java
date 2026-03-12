@@ -13,23 +13,7 @@
 
 package io.digitalfemsa;
 
-import io.digitalfemsa.*;
-import io.digitalfemsa.auth.*;
-import io.digitalfemsa.model.CreateCustomerPaymentMethodsRequest;
-import io.digitalfemsa.model.CreateCustomerPaymentMethodsResponse;
-import io.digitalfemsa.model.Error;
-import io.digitalfemsa.model.GetPaymentMethodResponse;
-import io.digitalfemsa.model.UpdateCustomerPaymentMethodsResponse;
-import io.digitalfemsa.model.UpdatePaymentMethods;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for PaymentMethodsApi

@@ -11,7 +11,7 @@
 |**_object** | **String** | Object type, in this case is list |  |
 |**nextPageUrl** | **String** | URL of the next page. |  [optional] |
 |**previousPageUrl** | **String** | Url of the previous page. |  [optional] |
-|**data** | [**List&lt;TransactionResponse&gt;**](TransactionResponse.md) | Transactions |  [optional] |
+|**data** | [**List&lt;TransactionResponse&gt;**](TransactionResponse.md) | Transactions (ledger movements) |  [optional] |
 
 
 

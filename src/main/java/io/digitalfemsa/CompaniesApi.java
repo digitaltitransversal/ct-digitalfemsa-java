@@ -1,19 +1,10 @@
 package io.digitalfemsa;
 
-import io.digitalfemsa.ApiException;
-import io.digitalfemsa.ApiClient;
-import io.digitalfemsa.ApiResponse;
-import io.digitalfemsa.Configuration;
-import io.digitalfemsa.Pair;
-
-import javax.ws.rs.core.GenericType;
-
 import io.digitalfemsa.model.CompanyResponse;
-import io.digitalfemsa.model.Error;
 import io.digitalfemsa.model.GetCompaniesResponse;
 
+import javax.ws.rs.core.GenericType;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -103,7 +94,7 @@ public class CompaniesApi {
       localVarHeaderParams.put("Accept-Language", apiClient.parameterToString(acceptLanguage));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<GetCompaniesResponse> localVarReturnType = new GenericType<GetCompaniesResponse>() {};
@@ -163,7 +154,7 @@ public class CompaniesApi {
       localVarHeaderParams.put("Accept-Language", apiClient.parameterToString(acceptLanguage));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<CompanyResponse> localVarReturnType = new GenericType<CompanyResponse>() {};

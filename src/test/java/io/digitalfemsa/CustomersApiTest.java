@@ -13,26 +13,7 @@
 
 package io.digitalfemsa;
 
-import io.digitalfemsa.*;
-import io.digitalfemsa.auth.*;
-import io.digitalfemsa.model.CreateCustomerFiscalEntitiesResponse;
-import io.digitalfemsa.model.Customer;
-import io.digitalfemsa.model.CustomerFiscalEntitiesRequest;
-import io.digitalfemsa.model.CustomerResponse;
-import io.digitalfemsa.model.CustomerUpdateFiscalEntitiesRequest;
-import io.digitalfemsa.model.CustomersResponse;
-import io.digitalfemsa.model.Error;
-import io.digitalfemsa.model.UpdateCustomer;
-import io.digitalfemsa.model.UpdateCustomerFiscalEntitiesResponse;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for CustomersApi

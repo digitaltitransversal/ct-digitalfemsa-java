@@ -5,20 +5,20 @@ All URIs are relative to *https://api.digitalfemsa.io*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**createWebhookKey**](WebhookKeysApi.md#createWebhookKey) | **POST** /webhook_keys | Create Webhook Key |
-| [**deleteWebhookKey**](WebhookKeysApi.md#deleteWebhookKey) | **DELETE** /webhook_keys/{id} | Delete Webhook key |
-| [**getWebhookKey**](WebhookKeysApi.md#getWebhookKey) | **GET** /webhook_keys/{id} | Get Webhook Key |
+| [**deleteWebhookKey**](WebhookKeysApi.md#deleteWebhookKey) | **DELETE** /webhook_keys/{id} | Delete webhook key |
+| [**getWebhookKey**](WebhookKeysApi.md#getWebhookKey) | **GET** /webhook_keys/{id} | Get webhook key |
 | [**getWebhookKeys**](WebhookKeysApi.md#getWebhookKeys) | **GET** /webhook_keys | Get List of Webhook Keys |
-| [**updateWebhookKey**](WebhookKeysApi.md#updateWebhookKey) | **PUT** /webhook_keys/{id} | Update Webhook Key |
+| [**updateWebhookKey**](WebhookKeysApi.md#updateWebhookKey) | **PUT** /webhook_keys/{id} | Update webhook key |
 
 
 
 ## createWebhookKey
 
-> WebhookKeyCreateResponse createWebhookKey(acceptLanguage, webhookKeyRequest)
+> WebhookKeyCreateResponse createWebhookKey(acceptLanguage, xChildCompanyId, webhookKeyRequest)
 
 Create Webhook Key
 
-Create a webhook key
+Creates a new webhook signing key for the current company.
 
 ### Example
 
@@ -42,9 +42,10 @@ public class Example {
 
         WebhookKeysApi apiInstance = new WebhookKeysApi(defaultClient);
         String acceptLanguage = "es"; // String | Use for knowing which language to use
+        String xChildCompanyId = "6441b6376b60c3a638da80af"; // String | In the case of a holding company, the company id of the child company to which will process the request.
         WebhookKeyRequest webhookKeyRequest = new WebhookKeyRequest(); // WebhookKeyRequest | 
         try {
-            WebhookKeyCreateResponse result = apiInstance.createWebhookKey(acceptLanguage, webhookKeyRequest);
+            WebhookKeyCreateResponse result = apiInstance.createWebhookKey(acceptLanguage, xChildCompanyId, webhookKeyRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WebhookKeysApi#createWebhookKey");
@@ -63,6 +64,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
+| **xChildCompanyId** | **String**| In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 | **webhookKeyRequest** | [**WebhookKeyRequest**](WebhookKeyRequest.md)|  | [optional] |
 
 ### Return type
@@ -76,7 +78,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -90,7 +92,9 @@ public class Example {
 
 > WebhookKeyDeleteResponse deleteWebhookKey(id, acceptLanguage)
 
-Delete Webhook key
+Delete webhook key
+
+Deletes a webhook signing key.
 
 ### Example
 
@@ -148,12 +152,12 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  |
+| **200** | successful |  -  |
 | **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
 | **500** | internal server error |  -  |
@@ -163,7 +167,9 @@ public class Example {
 
 > WebhookKeyResponse getWebhookKey(id, acceptLanguage, xChildCompanyId)
 
-Get Webhook Key
+Get webhook key
+
+Retrieves the details of a webhook signing key by its ID.
 
 ### Example
 
@@ -223,12 +229,12 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  |
+| **200** | successful operation |  -  |
 | **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
 | **500** | internal server error |  -  |
@@ -240,7 +246,7 @@ public class Example {
 
 Get List of Webhook Keys
 
-Consume the list of webhook keys you have
+Consume the list of webhook keys you have, each environment supports 10 webhook keys (For production and testing)
 
 ### Example
 
@@ -306,12 +312,12 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  |
+| **200** | successful operation |  -  |
 | **401** | authentication error |  -  |
 | **500** | internal server error |  -  |
 
@@ -320,9 +326,9 @@ public class Example {
 
 > WebhookKeyResponse updateWebhookKey(id, acceptLanguage, webhookKeyUpdateRequest)
 
-Update Webhook Key
+Update webhook key
 
-updates an existing webhook key
+Activates or deactivates an existing webhook signing key.
 
 ### Example
 
@@ -381,14 +387,14 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Content-Type**: application/vnd.app-v2.2.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **404** | not found entity |  -  |
 | **401** | authentication error |  -  |
+| **404** | not found entity |  -  |
 | **500** | internal server error |  -  |
 

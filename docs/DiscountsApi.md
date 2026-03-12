@@ -7,7 +7,7 @@ All URIs are relative to *https://api.digitalfemsa.io*
 | [**ordersCreateDiscountLine**](DiscountsApi.md#ordersCreateDiscountLine) | **POST** /orders/{id}/discount_lines | Create Discount |
 | [**ordersDeleteDiscountLines**](DiscountsApi.md#ordersDeleteDiscountLines) | **DELETE** /orders/{id}/discount_lines/{discount_lines_id} | Delete Discount |
 | [**ordersGetDiscountLine**](DiscountsApi.md#ordersGetDiscountLine) | **GET** /orders/{id}/discount_lines/{discount_lines_id} | Get Discount |
-| [**ordersGetDiscountLines**](DiscountsApi.md#ordersGetDiscountLines) | **GET** /orders/{id}/discount_lines | Get a List of Discount |
+| [**ordersGetDiscountLines**](DiscountsApi.md#ordersGetDiscountLines) | **GET** /orders/{id}/discount_lines | Get a List of Discounts |
 | [**ordersUpdateDiscountLines**](DiscountsApi.md#ordersUpdateDiscountLines) | **PUT** /orders/{id}/discount_lines/{discount_lines_id} | Update Discount |
 
 
@@ -18,7 +18,7 @@ All URIs are relative to *https://api.digitalfemsa.io*
 
 Create Discount
 
-Create discount lines for an existing orden
+Create discount lines for an existing order
 
 ### Example
 
@@ -80,7 +80,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -97,7 +97,7 @@ public class Example {
 
 Delete Discount
 
-Delete an existing discount lines for an existing orden
+Delete an existing discount line for an existing order
 
 ### Example
 
@@ -159,7 +159,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -177,7 +177,7 @@ public class Example {
 
 Get Discount
 
-Get an existing discount lines for an existing orden
+Get an existing discount line for an existing order
 
 ### Example
 
@@ -239,7 +239,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -247,7 +247,6 @@ public class Example {
 | **200** | successful |  -  |
 | **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
-| **422** | parameter validation error |  -  |
 | **500** | internal server error |  -  |
 
 
@@ -255,9 +254,9 @@ public class Example {
 
 > GetOrderDiscountLinesResponse ordersGetDiscountLines(id, acceptLanguage, xChildCompanyId, limit, search, next, previous)
 
-Get a List of Discount
+Get a List of Discounts
 
-Get discount lines for an existing orden
+Get discount lines for an existing order
 
 ### Example
 
@@ -325,7 +324,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -341,7 +340,7 @@ public class Example {
 
 Update Discount
 
-Update an existing discount lines for an existing orden
+Update an existing discount line for an existing order
 
 ### Example
 
@@ -405,7 +404,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |

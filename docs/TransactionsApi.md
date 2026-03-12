@@ -5,7 +5,7 @@ All URIs are relative to *https://api.digitalfemsa.io*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**getTransaction**](TransactionsApi.md#getTransaction) | **GET** /transactions/{id} | Get transaction |
-| [**getTransactions**](TransactionsApi.md#getTransactions) | **GET** /transactions | Get List transactions |
+| [**getTransactions**](TransactionsApi.md#getTransactions) | **GET** /transactions | List transactions |
 
 
 
@@ -15,7 +15,7 @@ All URIs are relative to *https://api.digitalfemsa.io*
 
 Get transaction
 
-Get the details of a transaction
+Retrieves the details of a transaction by its ID.
 
 ### Example
 
@@ -75,24 +75,30 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  |
+| **200** | successful |  -  |
 | **401** | authentication error |  -  |
-| **404** | authentication error |  -  |
+| **404** | not found entity |  -  |
 | **500** | internal server error |  -  |
 
 
 ## getTransactions
 
-> GetTransactionsResponse getTransactions(acceptLanguage, xChildCompanyId, limit, next, previous, id, chargeId, type, currency)
+> GetTransactionsResponse getTransactions(acceptLanguage, xChildCompanyId, limit, next, previous, search, chargeId, type, currency)
 
-Get List transactions
+List transactions
 
-Get transaction details in the form of a list
+Returns a paginated list of transactions (ledger movements).
+
+A transaction is a movement that represents the financial impact of payment operations, including amounts, fees, and net values.
+Transactions can be linked to a charge and may be linked to a transfer (payout) when they are included in a payout.
+
+If you need payout-level information (destination, statement reference/description, payout status), use GET /transfers.
+
 
 ### Example
 
@@ -120,12 +126,12 @@ public class Example {
         Integer limit = 20; // Integer | The numbers of items to return, the maximum value is 250
         String next = "next_example"; // String | next page
         String previous = "previous_example"; // String | previous page
-        String id = "65412a893cd69a0001c25892"; // String | id of the object to be retrieved
+        String search = "search_example"; // String | General order search, e.g. by mail, reference etc.
         String chargeId = "65412a893cd69a0001c25892"; // String | id of the charge used for filtering
         String type = "capture"; // String | type of the object to be retrieved
         String currency = "MXN"; // String | currency of the object to be retrieved
         try {
-            GetTransactionsResponse result = apiInstance.getTransactions(acceptLanguage, xChildCompanyId, limit, next, previous, id, chargeId, type, currency);
+            GetTransactionsResponse result = apiInstance.getTransactions(acceptLanguage, xChildCompanyId, limit, next, previous, search, chargeId, type, currency);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TransactionsApi#getTransactions");
@@ -148,7 +154,7 @@ public class Example {
 | **limit** | **Integer**| The numbers of items to return, the maximum value is 250 | [optional] [default to 20] |
 | **next** | **String**| next page | [optional] |
 | **previous** | **String**| previous page | [optional] |
-| **id** | **String**| id of the object to be retrieved | [optional] |
+| **search** | **String**| General order search, e.g. by mail, reference etc. | [optional] |
 | **chargeId** | **String**| id of the charge used for filtering | [optional] |
 | **type** | **String**| type of the object to be retrieved | [optional] |
 | **currency** | **String**| currency of the object to be retrieved | [optional] |
@@ -164,12 +170,12 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  |
+| **200** | Successful operation |  -  |
 | **401** | authentication error |  -  |
 | **500** | internal server error |  -  |
 

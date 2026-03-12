@@ -2,17 +2,36 @@
 
 # LogsResponse
 
-logs model
+Log model representing a recorded request/response cycle for troubleshooting and auditing.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**hasMore** | **Boolean** | True, if there are more pages. |  [optional] [readonly] |
-|**_object** | **String** | The object type |  [optional] [readonly] |
-|**nextPageUrl** | **String** | URL of the next page. |  [optional] |
-|**previousPageUrl** | **String** | Url of the previous page. |  [optional] |
-|**data** | [**List&lt;LogsResponseData&gt;**](LogsResponseData.md) | set to page results. |  [optional] |
+|**id** | **String** |  |  |
+|**_object** | [**ObjectEnum**](#ObjectEnum) |  |  |
+|**createdAt** | **Long** |  |  |
+|**livemode** | **Boolean** |  |  |
+|**method** | **String** |  |  |
+|**url** | **String** |  |  |
+|**status** | **String** |  |  |
+|**version** | **String** |  |  |
+|**ipAddress** | **String** |  |  |
+|**related** | **String** |  |  |
+|**queryString** | **Map&lt;String, Object&gt;** |  |  [optional] |
+|**requestBody** | **Map&lt;String, Object&gt;** |  |  [optional] |
+|**responseBody** | **Map&lt;String, Object&gt;** |  |  [optional] |
+|**requestHeaders** | **Map&lt;String, String&gt;** |  |  [optional] |
+|**responseHeaders** | **Map&lt;String, String&gt;** |  |  [optional] |
+|**searchableTags** | **List&lt;String&gt;** |  |  [optional] |
+
+
+
+## Enum: ObjectEnum
+
+| Name | Value |
+|---- | -----|
+| LOG | &quot;log&quot; |
 
 
 

@@ -17,7 +17,7 @@ All URIs are relative to *https://api.digitalfemsa.io*
 
 Create Payment Method
 
-Create a payment method for a customer.
+Creates a new payment method for a customer. The payment method is associated with the customer identified by `id`. The accepted fields depend on the payment method `type`.
 
 ### Example
 
@@ -79,7 +79,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -97,7 +97,7 @@ public class Example {
 
 Delete Payment Method
 
-Delete an existing payment method
+Deletes a specific payment method of a customer. After deletion, the payment method can no longer be used for future payments.
 
 ### Example
 
@@ -159,7 +159,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -245,7 +245,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -262,7 +262,7 @@ public class Example {
 
 Update Payment Method
 
-Gets a payment Method that corresponds to a customer ID.
+Updates a specific payment method of a customer. Use this endpoint to modify the payment method identified by `payment_method_id` for the customer identified by `id`. The fields that can be updated depend on the payment method `type`.
 
 ### Example
 
@@ -287,7 +287,7 @@ public class Example {
         PaymentMethodsApi apiInstance = new PaymentMethodsApi(defaultClient);
         String id = "6307a60c41de27127515a575"; // String | Identifier of the resource
         String paymentMethodId = "src_2tQ974hSHcsdeSZHG"; // String | Identifier of the payment method
-        UpdatePaymentMethods updatePaymentMethods = new UpdatePaymentMethods(); // UpdatePaymentMethods | requested field for customer payment methods
+        UpdatePaymentMethods updatePaymentMethods = new UpdatePaymentMethods(); // UpdatePaymentMethods | Request body for updating a customer payment method.
         String acceptLanguage = "es"; // String | Use for knowing which language to use
         String xChildCompanyId = "6441b6376b60c3a638da80af"; // String | In the case of a holding company, the company id of the child company to which will process the request.
         try {
@@ -311,7 +311,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| Identifier of the resource | |
 | **paymentMethodId** | **String**| Identifier of the payment method | |
-| **updatePaymentMethods** | [**UpdatePaymentMethods**](UpdatePaymentMethods.md)| requested field for customer payment methods | |
+| **updatePaymentMethods** | [**UpdatePaymentMethods**](UpdatePaymentMethods.md)| Request body for updating a customer payment method. | |
 | **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
 | **xChildCompanyId** | **String**| In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 
@@ -326,7 +326,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |

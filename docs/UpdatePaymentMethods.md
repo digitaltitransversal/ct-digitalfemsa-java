@@ -7,7 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**name** | **String** |  |  [optional] |
+|**expiresAt** | [**UpdatePaymentMethodsExpiresAt**](UpdatePaymentMethodsExpiresAt.md) |  |  [optional] |
+|**amount** | [**UpdatePaymentMethodsAmount**](UpdatePaymentMethodsAmount.md) |  |  [optional] |
+|**type** | **String** |  |  [optional] |
 
 
 

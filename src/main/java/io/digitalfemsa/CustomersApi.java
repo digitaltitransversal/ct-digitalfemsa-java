@@ -1,25 +1,16 @@
 package io.digitalfemsa;
 
-import io.digitalfemsa.ApiException;
-import io.digitalfemsa.ApiClient;
-import io.digitalfemsa.ApiResponse;
-import io.digitalfemsa.Configuration;
-import io.digitalfemsa.Pair;
-
-import javax.ws.rs.core.GenericType;
-
 import io.digitalfemsa.model.CreateCustomerFiscalEntitiesResponse;
 import io.digitalfemsa.model.Customer;
 import io.digitalfemsa.model.CustomerFiscalEntitiesRequest;
 import io.digitalfemsa.model.CustomerResponse;
 import io.digitalfemsa.model.CustomerUpdateFiscalEntitiesRequest;
 import io.digitalfemsa.model.CustomersResponse;
-import io.digitalfemsa.model.Error;
 import io.digitalfemsa.model.UpdateCustomer;
 import io.digitalfemsa.model.UpdateCustomerFiscalEntitiesResponse;
 
+import javax.ws.rs.core.GenericType;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,8 +46,8 @@ public class CustomersApi {
   }
 
   /**
-   * Create customer
-   * The purpose of business is to create and keep a customer, you will learn what elements you need to create a customer. 
+   * Create a customer
+   * Creates a new customer for the authenticated company.  Use customers to store and reuse buyer information (for example name, email, phone, and addresses). The created customer can be referenced later when creating orders and other resources. 
    * @param customer requested field for customer (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -65,7 +56,7 @@ public class CustomersApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> Customer created successfully </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
        <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
@@ -77,8 +68,8 @@ public class CustomersApi {
   }
 
   /**
-   * Create customer
-   * The purpose of business is to create and keep a customer, you will learn what elements you need to create a customer. 
+   * Create a customer
+   * Creates a new customer for the authenticated company.  Use customers to store and reuse buyer information (for example name, email, phone, and addresses). The created customer can be referenced later when creating orders and other resources. 
    * @param customer requested field for customer (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -87,7 +78,7 @@ public class CustomersApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> Customer created successfully </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
        <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
@@ -109,7 +100,7 @@ public class CustomersApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<CustomerResponse> localVarReturnType = new GenericType<CustomerResponse>() {};
@@ -119,7 +110,7 @@ public class CustomersApi {
   }
   /**
    * Create Fiscal Entity
-   * Create Fiscal entity resource that corresponds to a customer ID.
+   * Create a fiscal entity resource for a given customer ID.
    * @param id Identifier of the resource (required)
    * @param customerFiscalEntitiesRequest requested field for customer fiscal entities (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -142,7 +133,7 @@ public class CustomersApi {
 
   /**
    * Create Fiscal Entity
-   * Create Fiscal entity resource that corresponds to a customer ID.
+   * Create a fiscal entity resource for a given customer ID.
    * @param id Identifier of the resource (required)
    * @param customerFiscalEntitiesRequest requested field for customer fiscal entities (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -181,7 +172,7 @@ public class CustomersApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<CreateCustomerFiscalEntitiesResponse> localVarReturnType = new GenericType<CreateCustomerFiscalEntitiesResponse>() {};
@@ -248,7 +239,7 @@ public class CustomersApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<CustomerResponse> localVarReturnType = new GenericType<CustomerResponse>() {};
@@ -313,7 +304,7 @@ public class CustomersApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<CustomerResponse> localVarReturnType = new GenericType<CustomerResponse>() {};
@@ -323,7 +314,7 @@ public class CustomersApi {
   }
   /**
    * Get a list of customers
-   * The purpose of business is to create and maintain a client, you will learn what elements you need to obtain a list of clients, which can be paged.
+   * Returns a paginated list of customers for the authenticated company.  Use the [search] parameter to filter results. 
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @param limit The numbers of items to return, the maximum value is 250 (optional, default to 20)
@@ -335,8 +326,10 @@ public class CustomersApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
+       <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -346,7 +339,7 @@ public class CustomersApi {
 
   /**
    * Get a list of customers
-   * The purpose of business is to create and maintain a client, you will learn what elements you need to obtain a list of clients, which can be paged.
+   * Returns a paginated list of customers for the authenticated company.  Use the [search] parameter to filter results. 
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @param limit The numbers of items to return, the maximum value is 250 (optional, default to 20)
@@ -358,8 +351,10 @@ public class CustomersApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
+       <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -381,7 +376,7 @@ public class CustomersApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<CustomersResponse> localVarReturnType = new GenericType<CustomersResponse>() {};
@@ -453,7 +448,7 @@ public class CustomersApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<CustomerResponse> localVarReturnType = new GenericType<CustomerResponse>() {};
@@ -462,7 +457,7 @@ public class CustomersApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Update  Fiscal Entity
+   * Update Fiscal Entity
    * Update Fiscal Entity resource that corresponds to a customer ID.
    * @param id Identifier of the resource (required)
    * @param fiscalEntitiesId identifier (required)
@@ -486,7 +481,7 @@ public class CustomersApi {
   }
 
   /**
-   * Update  Fiscal Entity
+   * Update Fiscal Entity
    * Update Fiscal Entity resource that corresponds to a customer ID.
    * @param id Identifier of the resource (required)
    * @param fiscalEntitiesId identifier (required)
@@ -531,7 +526,7 @@ public class CustomersApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<UpdateCustomerFiscalEntitiesResponse> localVarReturnType = new GenericType<UpdateCustomerFiscalEntitiesResponse>() {};

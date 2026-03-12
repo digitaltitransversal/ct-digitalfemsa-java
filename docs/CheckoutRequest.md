@@ -2,7 +2,7 @@
 
 # CheckoutRequest
 
-[Checkout](https://developers.femsa.com/v2.1.0/reference/payment-link) details 
+[Checkout](https://developers.digitalfemsa.io/docs/checkout-redireccionado) details 
 
 ## Properties
 

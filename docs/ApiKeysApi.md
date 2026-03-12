@@ -4,11 +4,11 @@ All URIs are relative to *https://api.digitalfemsa.io*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createApiKey**](ApiKeysApi.md#createApiKey) | **POST** /api_keys | Create Api Key |
-| [**deleteApiKey**](ApiKeysApi.md#deleteApiKey) | **DELETE** /api_keys/{id} | Delete Api Key |
-| [**getApiKey**](ApiKeysApi.md#getApiKey) | **GET** /api_keys/{id} | Get Api Key |
-| [**getApiKeys**](ApiKeysApi.md#getApiKeys) | **GET** /api_keys | Get list of Api Keys |
-| [**updateApiKey**](ApiKeysApi.md#updateApiKey) | **PUT** /api_keys/{id} | Update Api Key |
+| [**createApiKey**](ApiKeysApi.md#createApiKey) | **POST** /api_keys | Create API key |
+| [**deleteApiKey**](ApiKeysApi.md#deleteApiKey) | **DELETE** /api_keys/{id} | Delete API key |
+| [**getApiKey**](ApiKeysApi.md#getApiKey) | **GET** /api_keys/{id} | Get API key |
+| [**getApiKeys**](ApiKeysApi.md#getApiKeys) | **GET** /api_keys | List API keys |
+| [**updateApiKey**](ApiKeysApi.md#updateApiKey) | **PUT** /api_keys/{id} | Update API key |
 
 
 
@@ -16,9 +16,13 @@ All URIs are relative to *https://api.digitalfemsa.io*
 
 > ApiKeyCreateResponse createApiKey(apiKeyRequest, acceptLanguage, xChildCompanyId)
 
-Create Api Key
+Create API key
 
-Create a api key
+Creates a new API key.
+
+The response includes an `authentication_token` that is shown only once (at creation time).
+Copy and store it securely.
+
 
 ### Example
 
@@ -78,12 +82,12 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful operation |  * Content-Type - The format of the response body <br>  |
+| **200** | successful operation |  -  |
 | **401** | authentication error |  -  |
 | **422** | parameter validation error |  -  |
 | **500** | internal server error |  -  |
@@ -93,9 +97,10 @@ public class Example {
 
 > DeleteApiKeysResponse deleteApiKey(id, acceptLanguage)
 
-Delete Api Key
+Delete API key
 
-Deletes a api key that corresponds to a api key ID
+Deletes an API key by its ID.
+
 
 ### Example
 
@@ -153,14 +158,15 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  * Content-Type - The format of the response body <br>  |
+| **200** | successful |  -  |
 | **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
+| **422** | parameter validation error |  -  |
 | **500** | internal server error |  -  |
 
 
@@ -168,9 +174,10 @@ public class Example {
 
 > ApiKeyResponse getApiKey(id, acceptLanguage, xChildCompanyId)
 
-Get Api Key
+Get API key
 
-Gets a api key that corresponds to a api key ID
+Retrieves the details of an API key by its ID.
+
 
 ### Example
 
@@ -230,12 +237,12 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  * Content-Type - The format of the response body <br>  |
+| **200** | successful |  -  |
 | **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
 | **500** | internal server error |  -  |
@@ -245,9 +252,13 @@ public class Example {
 
 > GetApiKeysResponse getApiKeys(acceptLanguage, xChildCompanyId, limit, next, previous, search)
 
-Get list of Api Keys
+List API keys
 
-Consume the list of api keys you have
+Retrieves a paginated list of API keys for the authenticated account.
+
+Use the pagination parameters (`limit`, `next_page`, `previous_page`) to navigate through results.
+Use the `search` query parameter to perform a general search (for example by key `id` or description).
+
 
 ### Example
 
@@ -275,7 +286,7 @@ public class Example {
         Integer limit = 20; // Integer | The numbers of items to return, the maximum value is 250
         String next = "next_example"; // String | next page
         String previous = "previous_example"; // String | previous page
-        String search = "search_example"; // String | General search, e.g. by id, description, prefix
+        String search = "search_example"; // String | General search, e.g. by id or description
         try {
             GetApiKeysResponse result = apiInstance.getApiKeys(acceptLanguage, xChildCompanyId, limit, next, previous, search);
             System.out.println(result);
@@ -300,7 +311,7 @@ public class Example {
 | **limit** | **Integer**| The numbers of items to return, the maximum value is 250 | [optional] [default to 20] |
 | **next** | **String**| next page | [optional] |
 | **previous** | **String**| previous page | [optional] |
-| **search** | **String**| General search, e.g. by id, description, prefix | [optional] |
+| **search** | **String**| General search, e.g. by id or description | [optional] |
 
 ### Return type
 
@@ -313,23 +324,26 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  * Content-Type - The format of the response body <br>  |
+| **200** | successful |  -  |
 | **401** | authentication error |  -  |
 | **500** | internal server error |  -  |
 
 
 ## updateApiKey
 
-> ApiKeyResponse updateApiKey(id, acceptLanguage, apiKeyUpdateRequest)
+> ApiKeyResponse updateApiKey(id, apiKeyUpdateRequest, acceptLanguage)
 
-Update Api Key
+Update API key
 
-Update an existing api key
+Updates an existing API key by its ID.
+
+Use this endpoint to change the key's status (active/inactive) or update its description.
+
 
 ### Example
 
@@ -353,10 +367,10 @@ public class Example {
 
         ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
         String id = "6307a60c41de27127515a575"; // String | Identifier of the resource
-        String acceptLanguage = "es"; // String | Use for knowing which language to use
         ApiKeyUpdateRequest apiKeyUpdateRequest = new ApiKeyUpdateRequest(); // ApiKeyUpdateRequest | 
+        String acceptLanguage = "es"; // String | Use for knowing which language to use
         try {
-            ApiKeyResponse result = apiInstance.updateApiKey(id, acceptLanguage, apiKeyUpdateRequest);
+            ApiKeyResponse result = apiInstance.updateApiKey(id, apiKeyUpdateRequest, acceptLanguage);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ApiKeysApi#updateApiKey");
@@ -375,8 +389,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| Identifier of the resource | |
+| **apiKeyUpdateRequest** | [**ApiKeyUpdateRequest**](ApiKeyUpdateRequest.md)|  | |
 | **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
-| **apiKeyUpdateRequest** | [**ApiKeyUpdateRequest**](ApiKeyUpdateRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -389,13 +403,14 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/json, application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **404** | not found entity |  -  |
 | **401** | authentication error |  -  |
+| **404** | not found entity |  -  |
+| **422** | parameter validation error |  -  |
 | **500** | internal server error |  -  |
 

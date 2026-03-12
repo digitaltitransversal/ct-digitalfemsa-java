@@ -1,22 +1,13 @@
 package io.digitalfemsa;
 
-import io.digitalfemsa.ApiException;
-import io.digitalfemsa.ApiClient;
-import io.digitalfemsa.ApiResponse;
-import io.digitalfemsa.Configuration;
-import io.digitalfemsa.Pair;
-
-import javax.ws.rs.core.GenericType;
-
 import io.digitalfemsa.model.CreateCustomerPaymentMethodsRequest;
 import io.digitalfemsa.model.CreateCustomerPaymentMethodsResponse;
-import io.digitalfemsa.model.Error;
 import io.digitalfemsa.model.GetPaymentMethodResponse;
 import io.digitalfemsa.model.UpdateCustomerPaymentMethodsResponse;
 import io.digitalfemsa.model.UpdatePaymentMethods;
 
+import javax.ws.rs.core.GenericType;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,7 +44,7 @@ public class PaymentMethodsApi {
 
   /**
    * Create Payment Method
-   * Create a payment method for a customer.
+   * Creates a new payment method for a customer. The payment method is associated with the customer identified by &#x60;id&#x60;. The accepted fields depend on the payment method &#x60;type&#x60;.
    * @param id Identifier of the resource (required)
    * @param createCustomerPaymentMethodsRequest requested field for customer payment methods (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -76,7 +67,7 @@ public class PaymentMethodsApi {
 
   /**
    * Create Payment Method
-   * Create a payment method for a customer.
+   * Creates a new payment method for a customer. The payment method is associated with the customer identified by &#x60;id&#x60;. The accepted fields depend on the payment method &#x60;type&#x60;.
    * @param id Identifier of the resource (required)
    * @param createCustomerPaymentMethodsRequest requested field for customer payment methods (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -115,7 +106,7 @@ public class PaymentMethodsApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<CreateCustomerPaymentMethodsResponse> localVarReturnType = new GenericType<CreateCustomerPaymentMethodsResponse>() {};
@@ -125,7 +116,7 @@ public class PaymentMethodsApi {
   }
   /**
    * Delete Payment Method
-   * Delete an existing payment method
+   * Deletes a specific payment method of a customer. After deletion, the payment method can no longer be used for future payments.
    * @param id Identifier of the resource (required)
    * @param paymentMethodId Identifier of the payment method (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -148,7 +139,7 @@ public class PaymentMethodsApi {
 
   /**
    * Delete Payment Method
-   * Delete an existing payment method
+   * Deletes a specific payment method of a customer. After deletion, the payment method can no longer be used for future payments.
    * @param id Identifier of the resource (required)
    * @param paymentMethodId Identifier of the payment method (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -188,7 +179,7 @@ public class PaymentMethodsApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<UpdateCustomerPaymentMethodsResponse> localVarReturnType = new GenericType<UpdateCustomerPaymentMethodsResponse>() {};
@@ -269,7 +260,7 @@ public class PaymentMethodsApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<GetPaymentMethodResponse> localVarReturnType = new GenericType<GetPaymentMethodResponse>() {};
@@ -279,10 +270,10 @@ public class PaymentMethodsApi {
   }
   /**
    * Update Payment Method
-   * Gets a payment Method that corresponds to a customer ID.
+   * Updates a specific payment method of a customer. Use this endpoint to modify the payment method identified by &#x60;payment_method_id&#x60; for the customer identified by &#x60;id&#x60;. The fields that can be updated depend on the payment method &#x60;type&#x60;.
    * @param id Identifier of the resource (required)
    * @param paymentMethodId Identifier of the payment method (required)
-   * @param updatePaymentMethods requested field for customer payment methods (required)
+   * @param updatePaymentMethods Request body for updating a customer payment method. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return UpdateCustomerPaymentMethodsResponse
@@ -303,10 +294,10 @@ public class PaymentMethodsApi {
 
   /**
    * Update Payment Method
-   * Gets a payment Method that corresponds to a customer ID.
+   * Updates a specific payment method of a customer. Use this endpoint to modify the payment method identified by &#x60;payment_method_id&#x60; for the customer identified by &#x60;id&#x60;. The fields that can be updated depend on the payment method &#x60;type&#x60;.
    * @param id Identifier of the resource (required)
    * @param paymentMethodId Identifier of the payment method (required)
-   * @param updatePaymentMethods requested field for customer payment methods (required)
+   * @param updatePaymentMethods Request body for updating a customer payment method. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return ApiResponse&lt;UpdateCustomerPaymentMethodsResponse&gt;
@@ -347,7 +338,7 @@ public class PaymentMethodsApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<UpdateCustomerPaymentMethodsResponse> localVarReturnType = new GenericType<UpdateCustomerPaymentMethodsResponse>() {};

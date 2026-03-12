@@ -4,13 +4,13 @@ All URIs are relative to *https://api.digitalfemsa.io*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createCustomer**](CustomersApi.md#createCustomer) | **POST** /customers | Create customer |
+| [**createCustomer**](CustomersApi.md#createCustomer) | **POST** /customers | Create a customer |
 | [**createCustomerFiscalEntities**](CustomersApi.md#createCustomerFiscalEntities) | **POST** /customers/{id}/fiscal_entities | Create Fiscal Entity |
 | [**deleteCustomerById**](CustomersApi.md#deleteCustomerById) | **DELETE** /customers/{id} | Delete Customer |
 | [**getCustomerById**](CustomersApi.md#getCustomerById) | **GET** /customers/{id} | Get Customer |
 | [**getCustomers**](CustomersApi.md#getCustomers) | **GET** /customers | Get a list of customers |
 | [**updateCustomer**](CustomersApi.md#updateCustomer) | **PUT** /customers/{id} | Update customer |
-| [**updateCustomerFiscalEntities**](CustomersApi.md#updateCustomerFiscalEntities) | **PUT** /customers/{id}/fiscal_entities/{fiscal_entities_id} | Update  Fiscal Entity |
+| [**updateCustomerFiscalEntities**](CustomersApi.md#updateCustomerFiscalEntities) | **PUT** /customers/{id}/fiscal_entities/{fiscal_entities_id} | Update Fiscal Entity |
 
 
 
@@ -18,9 +18,12 @@ All URIs are relative to *https://api.digitalfemsa.io*
 
 > CustomerResponse createCustomer(customer, acceptLanguage, xChildCompanyId)
 
-Create customer
+Create a customer
 
-The purpose of business is to create and keep a customer, you will learn what elements you need to create a customer.
+Creates a new customer for the authenticated company.
+
+Use customers to store and reuse buyer information (for example name, email, phone, and addresses).
+The created customer can be referenced later when creating orders and other resources.
 
 
 ### Example
@@ -81,12 +84,12 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful operation |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  |
+| **200** | Customer created successfully |  -  |
 | **401** | authentication error |  -  |
 | **402** | payment required error |  -  |
 | **422** | parameter validation error |  -  |
@@ -99,7 +102,7 @@ public class Example {
 
 Create Fiscal Entity
 
-Create Fiscal entity resource that corresponds to a customer ID.
+Create a fiscal entity resource for a given customer ID.
 
 ### Example
 
@@ -161,7 +164,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -239,7 +242,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -317,7 +320,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -334,7 +337,10 @@ public class Example {
 
 Get a list of customers
 
-The purpose of business is to create and maintain a client, you will learn what elements you need to obtain a list of clients, which can be paged.
+Returns a paginated list of customers for the authenticated company.
+
+Use the [search] parameter to filter results.
+
 
 ### Example
 
@@ -400,13 +406,15 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful operation |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  |
+| **200** | successful operation |  -  |
 | **401** | authentication error |  -  |
+| **402** | payment required error |  -  |
+| **422** | parameter validation error |  -  |
 | **500** | internal server error |  -  |
 
 
@@ -478,7 +486,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -494,7 +502,7 @@ public class Example {
 
 > UpdateCustomerFiscalEntitiesResponse updateCustomerFiscalEntities(id, fiscalEntitiesId, customerUpdateFiscalEntitiesRequest, acceptLanguage, xChildCompanyId)
 
-Update  Fiscal Entity
+Update Fiscal Entity
 
 Update Fiscal Entity resource that corresponds to a customer ID.
 
@@ -560,7 +568,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.app-v2.1.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
