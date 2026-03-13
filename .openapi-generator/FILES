@@ -40,7 +40,9 @@ docs/CreateCustomerPaymentMethodsRequest.md
 docs/CreateCustomerPaymentMethodsResponse.md
 docs/Customer.md
 docs/CustomerAddress.md
+docs/CustomerFiscalEntitiesDataResponse.md
 docs/CustomerFiscalEntitiesRequest.md
+docs/CustomerFiscalEntitiesResponse.md
 docs/CustomerInfo.md
 docs/CustomerInfoJustCustomerIdResponse.md
 docs/CustomerPaymentMethodRequest.md
@@ -49,8 +51,10 @@ docs/CustomerPaymentMethodsRequest.md
 docs/CustomerPaymentMethodsResponse.md
 docs/CustomerPaymentSourcesInner.md
 docs/CustomerResponse.md
+docs/CustomerResponseShippingContacts.md
 docs/CustomerShippingContacts.md
 docs/CustomerShippingContactsAddress.md
+docs/CustomerShippingContactsDataResponse.md
 docs/CustomerShippingContactsResponse.md
 docs/CustomerShippingContactsResponseAddress.md
 docs/CustomerUpdateFiscalEntitiesRequest.md
@@ -84,6 +88,7 @@ docs/GetWebhooksResponse.md
 docs/LogResponse.md
 docs/LogsApi.md
 docs/LogsResponse.md
+docs/LogsResponseData.md
 docs/OrderCaptureRequest.md
 docs/OrderCustomerInfoResponse.md
 docs/OrderDiscountLinesRequest.md
@@ -219,7 +224,9 @@ src/main/java/io/digitalfemsa/model/CreateCustomerPaymentMethodsRequest.java
 src/main/java/io/digitalfemsa/model/CreateCustomerPaymentMethodsResponse.java
 src/main/java/io/digitalfemsa/model/Customer.java
 src/main/java/io/digitalfemsa/model/CustomerAddress.java
+src/main/java/io/digitalfemsa/model/CustomerFiscalEntitiesDataResponse.java
 src/main/java/io/digitalfemsa/model/CustomerFiscalEntitiesRequest.java
+src/main/java/io/digitalfemsa/model/CustomerFiscalEntitiesResponse.java
 src/main/java/io/digitalfemsa/model/CustomerInfo.java
 src/main/java/io/digitalfemsa/model/CustomerInfoJustCustomerIdResponse.java
 src/main/java/io/digitalfemsa/model/CustomerPaymentMethodRequest.java
@@ -228,8 +235,10 @@ src/main/java/io/digitalfemsa/model/CustomerPaymentMethodsRequest.java
 src/main/java/io/digitalfemsa/model/CustomerPaymentMethodsResponse.java
 src/main/java/io/digitalfemsa/model/CustomerPaymentSourcesInner.java
 src/main/java/io/digitalfemsa/model/CustomerResponse.java
+src/main/java/io/digitalfemsa/model/CustomerResponseShippingContacts.java
 src/main/java/io/digitalfemsa/model/CustomerShippingContacts.java
 src/main/java/io/digitalfemsa/model/CustomerShippingContactsAddress.java
+src/main/java/io/digitalfemsa/model/CustomerShippingContactsDataResponse.java
 src/main/java/io/digitalfemsa/model/CustomerShippingContactsResponse.java
 src/main/java/io/digitalfemsa/model/CustomerShippingContactsResponseAddress.java
 src/main/java/io/digitalfemsa/model/CustomerUpdateFiscalEntitiesRequest.java
@@ -259,6 +268,7 @@ src/main/java/io/digitalfemsa/model/GetWebhookKeysResponse.java
 src/main/java/io/digitalfemsa/model/GetWebhooksResponse.java
 src/main/java/io/digitalfemsa/model/LogResponse.java
 src/main/java/io/digitalfemsa/model/LogsResponse.java
+src/main/java/io/digitalfemsa/model/LogsResponseData.java
 src/main/java/io/digitalfemsa/model/OrderCaptureRequest.java
 src/main/java/io/digitalfemsa/model/OrderCustomerInfoResponse.java
 src/main/java/io/digitalfemsa/model/OrderDiscountLinesRequest.java

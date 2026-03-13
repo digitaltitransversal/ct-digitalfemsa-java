@@ -43,7 +43,9 @@ import java.util.Objects;
   CustomerResponse.JSON_PROPERTY_DEFAULT_FISCAL_ENTITY_ID,
   CustomerResponse.JSON_PROPERTY_DEFAULT_SHIPPING_CONTACT_ID,
   CustomerResponse.JSON_PROPERTY_METADATA,
-  CustomerResponse.JSON_PROPERTY_PAYMENT_SOURCES
+  CustomerResponse.JSON_PROPERTY_PAYMENT_SOURCES,
+  CustomerResponse.JSON_PROPERTY_FISCAL_ENTITIES,
+  CustomerResponse.JSON_PROPERTY_SHIPPING_CONTACTS
 })
 @JsonTypeName("customer_response")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
@@ -125,6 +127,12 @@ public class CustomerResponse {
 
   public static final String JSON_PROPERTY_PAYMENT_SOURCES = "payment_sources";
   private CustomerPaymentMethodsResponse paymentSources;
+
+  public static final String JSON_PROPERTY_FISCAL_ENTITIES = "fiscal_entities";
+  private CustomerFiscalEntitiesResponse fiscalEntities;
+
+  public static final String JSON_PROPERTY_SHIPPING_CONTACTS = "shipping_contacts";
+  private CustomerResponseShippingContacts shippingContacts;
 
   public CustomerResponse() { 
   }
@@ -520,6 +528,56 @@ public class CustomerResponse {
   }
 
 
+  public CustomerResponse fiscalEntities(CustomerFiscalEntitiesResponse fiscalEntities) {
+    this.fiscalEntities = fiscalEntities;
+    return this;
+  }
+
+   /**
+   * Get fiscalEntities
+   * @return fiscalEntities
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_FISCAL_ENTITIES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public CustomerFiscalEntitiesResponse getFiscalEntities() {
+    return fiscalEntities;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_FISCAL_ENTITIES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFiscalEntities(CustomerFiscalEntitiesResponse fiscalEntities) {
+    this.fiscalEntities = fiscalEntities;
+  }
+
+
+  public CustomerResponse shippingContacts(CustomerResponseShippingContacts shippingContacts) {
+    this.shippingContacts = shippingContacts;
+    return this;
+  }
+
+   /**
+   * Get shippingContacts
+   * @return shippingContacts
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_SHIPPING_CONTACTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public CustomerResponseShippingContacts getShippingContacts() {
+    return shippingContacts;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SHIPPING_CONTACTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setShippingContacts(CustomerResponseShippingContacts shippingContacts) {
+    this.shippingContacts = shippingContacts;
+  }
+
+
   /**
    * Return true if this customer_response object is equal to o.
    */
@@ -546,12 +604,14 @@ public class CustomerResponse {
         Objects.equals(this.defaultFiscalEntityId, customerResponse.defaultFiscalEntityId) &&
         Objects.equals(this.defaultShippingContactId, customerResponse.defaultShippingContactId) &&
         Objects.equals(this.metadata, customerResponse.metadata) &&
-        Objects.equals(this.paymentSources, customerResponse.paymentSources);
+        Objects.equals(this.paymentSources, customerResponse.paymentSources) &&
+        Objects.equals(this.fiscalEntities, customerResponse.fiscalEntities) &&
+        Objects.equals(this.shippingContacts, customerResponse.shippingContacts);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, createdAt, livemode, name, email, phone, corporate, customReference, referrer, verticalInfo, defaultFiscalEntityId, defaultShippingContactId, metadata, paymentSources);
+    return Objects.hash(id, _object, createdAt, livemode, name, email, phone, corporate, customReference, referrer, verticalInfo, defaultFiscalEntityId, defaultShippingContactId, metadata, paymentSources, fiscalEntities, shippingContacts);
   }
 
   @Override
@@ -573,6 +633,8 @@ public class CustomerResponse {
     sb.append("    defaultShippingContactId: ").append(toIndentedString(defaultShippingContactId)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    paymentSources: ").append(toIndentedString(paymentSources)).append("\n");
+    sb.append("    fiscalEntities: ").append(toIndentedString(fiscalEntities)).append("\n");
+    sb.append("    shippingContacts: ").append(toIndentedString(shippingContacts)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -275,7 +275,7 @@ paths:
             application/vnd.app-v2.2.0+json:
               schema:
                 $ref: '#/components/schemas/delete_api_keys_response'
-          description: successful
+          description: successful operation
         "401":
           content:
             application/vnd.app-v2.2.0+json:
@@ -394,7 +394,7 @@ paths:
             application/vnd.app-v2.2.0+json:
               schema:
                 $ref: '#/components/schemas/api_key_response'
-          description: successful
+          description: successful operation
         "401":
           content:
             application/vnd.app-v2.2.0+json:
@@ -489,11 +489,10 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/api_key_update_request'
-        required: true
       responses:
         "200":
           content:
-            application/json:
+            application/vnd.app-v2.2.0+json:
               schema:
                 $ref: '#/components/schemas/api_key_response'
           description: successful operation
@@ -566,7 +565,6 @@ paths:
       - Api Keys
       x-content-type: application/json
       x-accepts:
-      - application/json
       - application/vnd.app-v2.2.0+json
   /balance:
     get:
@@ -1518,7 +1516,7 @@ paths:
             application/vnd.app-v2.2.0+json:
               schema:
                 $ref: '#/components/schemas/customer_response'
-          description: Customer created successfully
+          description: successful operation
         "401":
           content:
             application/vnd.app-v2.2.0+json:
@@ -3184,7 +3182,7 @@ paths:
             application/vnd.app-v2.2.0+json:
               schema:
                 $ref: '#/components/schemas/logs_response'
-          description: successful
+          description: successful operation
         "401":
           content:
             application/vnd.app-v2.2.0+json:
@@ -3447,8 +3445,25 @@ paths:
       - application/vnd.app-v2.2.0+json
     post:
       description: |
-        Creates a new order. Optionally, you can include `charges` to create payment charges for the order during creation.
-        If checkout parameters are provided and a checkout is created/linked, the response may include a `checkout` object.
+        Creates a new order (products + amounts + customer data).
+
+        Minimum required fields:
+        - `currency`
+        - `line_items`
+        - `customer_info`
+
+        About `customer_info`:
+        - You can reference an existing customer using `customer_info.customer_id`, or
+        - You can provide customer details at minimum `customer_info.name` and `customer_info.email` to create the order with customer context.
+
+        How to create the order:
+        - Create an order only (no payment): send only the order data.
+        - Create an order and create the first payment charge: include `charges`.
+        - Create an order with a checkout configuration (for a hosted payment flow): include `checkout`.
+
+        Important rules:
+        - You cannot send `charges` and `checkout` in the same request (they are mutually exclusive).
+        - If you send `shipping_contact_id` and/or `fiscal_entity_id`, you must also send `customer_info.customer_id` so the API can validate those IDs against that customer.
       operationId: createOrder
       parameters:
       - description: Use for knowing which language to use
@@ -8646,8 +8661,34 @@ components:
         - amount: 40000
           payment_method:
             type: cash
-            expires_at: 1677196303
           reference_id: test-reference-id-001
+    order_with_partial_charges:
+      description: "Allows paying an order in multiple cash partial payments (installments)\
+        \ until the total amount is covered (e.g., $1000 MXN in 10 partialities of\
+        \ $100)."
+      summary: Create an order with partial charges
+      value:
+        currency: MXN
+        customer_info:
+          name: DevTest
+          email: test@femsa.com
+          phone: "5522997233"
+        line_items:
+        - name: Box of Cohiba S1s
+          description: string
+          sku: string
+          unit_price: 100000
+          quantity: 1
+          tags:
+          - string
+          brand: string
+        charges:
+        - amount: 100000
+          payment_method:
+            type: partial_cash
+            partialities: 10
+            total_amount: 100000
+            min_amount: 10000
     order_with_checkout:
       summary: Create an order with checkout
       value:
@@ -8656,149 +8697,20 @@ components:
           name: DevTest
           email: test@femsa.com
           phone: "5522997233"
-          corporate: false
         line_items:
         - name: Box of Cohiba S1s
           unit_price: 20000
           quantity: 1
         checkout:
           type: HostedPayment
-          name: ord-devtest-001
           allowed_payment_methods:
           - cash
           success_url: https://example.com/success
           failure_url: https://example.com/failure
-          starts_at: 1767892421
-          expires_at: 1768111199
-          can_not_expire: false
-          is_redirect_on_failure: true
           redirection_time: 15
-        channel:
-          checkout_request_id: 51fb2fac-fcab-44ee-802c-dcebae1e2928
-          checkout_request_type: HostedPayment
-          checkout_request_name: ord-devtest-001
-        discount_lines:
-        - amount: 500
-          code: "123"
-          type: loyalty
-        shipping_contact:
-          phone: "525511223344"
-          receiver: Marvin Fuller
-          between_streets: Ackerman Crescent
-          address:
-            street1: Nuevo Leon 254
-            street2: Departamento 404
-            postal_code: "06100"
-            city: Ciudad de Mexico
-            state: Ciudad de Mexico
-            country: mx
-            residential: true
-        shipping_lines:
-        - amount: 100
-          carrier: FEDEX
-          tracking_number: TRACK123
-          method: TRAING
-          metadata:
-            key: value
-        tax_lines:
-        - amount: 100
-          description: testing
-          metadata:
-            additionalProp1: {}
-            additionalProp2: {}
-            additionalProp3: {}
-        metadata:
-          additionalProp1: string
-          additionalProp2: string
-          additionalProp3: string
-    order_with_partial_charges:
-      description: "It allows you to pay for an order in several payments, example:\
-        \ pay $1000 MXN in 10 payments of $100"
-      summary: Create an order with partial charges
-      value:
-        charges:
-        - amount: 100000
-          payment_method:
-            type: partial_cash
-            min_amount: 10000
-            partialities: 10
-            total_amount: 100000
-            term: weekly
-        currency: MXN
-        customer_info:
-          name: DevTest
-          email: test@Femsa.com
-          phone: "5522997233"
-          corporate: false
-          object: customer_info
-        fiscal_entity:
-          tax_id: "1234567890"
-          name: Femsa Inc
-          email: test@gmail.com
-          phone: "525511223344"
-          metadata:
-            test: true
-            company_id: "123"
-          address:
-            street1: Nuevo Leon 254
-            street2: Departamento 404
-            postal_code: "06100"
-            city: Ciudad de Mexico
-            state: Ciudad de Mexico
-            country: MX
-            external_number: "123"
-        line_items:
-        - antifraud_info:
-            additionalProp1: {}
-            additionalProp2: {}
-            additionalProp3: {}
-          description: string
-          sku: string
-          name: Box of Cohiba S1s
-          unit_price: 100000
-          quantity: 1
-          tags:
-          - string
-          brand: string
-          metadata:
-            additionalProp1: string
-            additionalProp2: string
-            additionalProp3: string
-        metadata:
-          test: true
-          company_id: "123"
-        pre_authorize: false
-        shipping_contact:
-          phone: "525511223344"
-          receiver: Marvin Fuller
-          between_streets: Ackerman Crescent
-          metadata:
-            test: true
-            company_id: "123"
-          address:
-            street1: Nuevo Leon 254
-            street2: Departamento 404
-            postal_code: "06100"
-            city: Ciudad de Mexico
-            state: Ciudad de Mexico
-            country: MX
-            residential: true
-          parent_id: string
-          default: true
-          deleted: true
     split_payment_with_cash:
       summary: Create an order with split payment (3 cash charges)
       value:
-        charges:
-        - amount: 10000
-          payment_method:
-            type: cash
-        - amount: 10000
-          payment_method:
-            type: cash
-        - amount: 10000
-          payment_method:
-            type: cash
         currency: MXN
         customer_info:
           name: DevTest
@@ -8812,6 +8724,16 @@ components:
           unit_price: 10000
           quantity: 3
           brand: string
+        charges:
+        - amount: 10000
+          payment_method:
+            type: cash
+        - amount: 10000
+          payment_method:
+            type: cash
+        - amount: 10000
+          payment_method:
+            type: cash
   parameters:
     accept_language:
       description: Use for knowing which language to use
@@ -9104,35 +9026,15 @@ components:
           examples:
             order_with_charges:
               $ref: '#/components/examples/order_with_charges'
-            order_with_checkout:
-              $ref: '#/components/examples/order_with_checkout'
             order_with_partial_charges:
               $ref: '#/components/examples/order_with_partial_charges'
+            order_with_checkout:
+              $ref: '#/components/examples/order_with_checkout'
             split_payment_with_3_cash_charges:
               $ref: '#/components/examples/split_payment_with_cash'
           schema:
             $ref: '#/components/schemas/order_request'
-      description: |
-        Fields used to create an Order.
-
-        Required:
-        - `currency`
-        - `line_items`
-        - `customer_info`
-
-        Customer information is required to successfully create an order in this API, since downstream flows (such as creating charges, checkout configuration, and validating referenced customer sub-documents) require customer context.
-
-        Provide `customer_info` in one of the following ways:
-        - Reference an existing customer using [customer_info.customer_id] OR
-        - Provide customer details (at minimum `customer_info.name` and `customer_info.email`) to create the order with customer context.
-
-        You can create the order in one of these ways:
-        - Include `charges` to create the order and attempt charging it immediately (only one charge object is allowed).
-        - Include `checkout` to create the order with embedded checkout configuration.
-
-        Important validation rules:
-        - `charges` and `checkout` are mutually exclusive in the same request.
-        - If you provide `shipping_contact_id` or `fiscal_entity_id`, you must also provide [customer_info.customer_id] so the API can validate the referenced customer sub-documents.
+      description: requested field for order
       required: true
     order_update:
       content:
@@ -9387,18 +9289,6 @@ components:
       type: object
     api_key_response:
       description: API keys model
-      example:
-        role: private
-        deleted: false
-        livemode: false
-        updated_at: 1684167923
-        prefix: key_rp
-        deactivated_at: 0
-        active: true
-        description: online store
-        created_at: 1684167881
-        id: 64625cc9f3e02c00163f5e4d
-        object: api_key
       properties:
         id:
           description: Unique identifier of the API key
@@ -9853,6 +9743,10 @@ components:
           type: object
         payment_sources:
           $ref: '#/components/schemas/customer_payment_methods_response'
+        fiscal_entities:
+          $ref: '#/components/schemas/customer_fiscal_entities_response'
+        shipping_contacts:
+          $ref: '#/components/schemas/customer_response_shipping_contacts'
       required:
       - created_at
       - id
@@ -9992,109 +9886,48 @@ components:
       description: Log model representing a recorded request/response cycle for troubleshooting
         and auditing.
       properties:
-        id:
-          example: 696139685c96a70001d67e1a
-          type: string
-        object:
-          enum:
-          - log
-          example: log
-          type: string
-        created_at:
-          example: 1767979368
-          format: int64
-          type: integer
-        livemode:
-          example: true
+        has_more:
+          description: "True, if there are more pages."
+          readOnly: true
           type: boolean
-        method:
-          example: GET
+        object:
+          description: The object type
+          readOnly: true
           type: string
-        url:
-          example: /events
-          type: string
-        status:
-          example: "200"
-          type: string
-        version:
-          example: 2.1.0
-          type: string
-        ip_address:
-          example: 54.86.50.139
-          format: ipv4
-          type: string
-        related:
-          example: Event
-          type: string
-        query_string:
-          additionalProperties: true
-          example:
-            limit: "20"
+        next_page_url:
+          description: URL of the next page.
           nullable: true
-          type: object
-        request_body:
-          additionalProperties: true
-          example: {}
+          type: string
+        previous_page_url:
+          description: Url of the previous page.
           nullable: true
-          type: object
-        response_body:
-          additionalProperties: true
-          nullable: true
-          type: object
-        request_headers:
-          additionalProperties:
-            type: string
-          nullable: true
-          type: object
-        response_headers:
-          additionalProperties:
-            type: string
-          nullable: true
-          type: object
-        searchable_tags:
+          type: string
+        data:
+          description: set to page results.
           items:
-            type: string
+            $ref: '#/components/schemas/logs_response_data'
+          nullable: true
           type: array
-      required:
-      - created_at
-      - id
-      - ip_address
-      - livemode
-      - method
-      - object
-      - related
-      - status
-      - url
-      - version
       title: log_response
       type: object
     log_response:
       description: Log model representing a recorded request/response cycle for troubleshooting
         and auditing.
       properties:
-        id:
-          example: 6307a60c41de27127515a575
-          type: string
-        object:
-          enum:
-          - log
-          example: log
-          type: string
         created_at:
           example: 1661445644
           format: int64
           type: integer
-        updated_at:
-          example: 2022-08-25T16:40:44.887Z
-          format: date-time
+        id:
+          example: 6307a60c41de27127515a575
           type: string
-        livemode:
-          example: true
-          type: boolean
         ip_address:
           example: 54.235.131.48
           format: ipv4
           type: string
+        livemode:
+          example: true
+          type: boolean
         loggable_id:
           example: ord_87632467832
           nullable: true
@@ -10106,50 +9939,73 @@ components:
         method:
           example: POST
           type: string
-        url:
-          example: /filter_resource
-          type: string
-        related:
-          example: FilterResource
-          type: string
-        version:
-          example: 2.2.0
-          type: string
-        user_account_id:
-          example: 5a0b7001edbb6e1725b0b2c6
-          nullable: true
-          type: string
         oauth_token_id:
           nullable: true
-          type: string
-          example: null
-        status:
-          example: "200"
           type: string
         query_string:
           additionalProperties: true
           example:
             amount: 3000
             payable: true
-          nullable: true
+          type: object
+        related:
+          example: FilterResource
+          type: string
+        request_body:
+          example:
+            filters:
+              amount:
+                amount_from: 0
+                amount_to: 0
+              created_at:
+                date_from: 1653627600
+                date_to: 1661489999
+              filterName: Payments
+              search_term: null
+              sort_by: created_at
+              sort_direction: desc
+              status: []
+              type: []
+            id: 78e65162-0f37-4942-847c-9bf7081d54c2
+            page: "0"
+            report_type: charges
+            testMode: false
           type: object
         request_headers:
           additionalProperties:
             type: string
-          nullable: true
+          example:
+            Accept-Encoding: "gzip, deflate, br"
+            Accept-Language: "es-419, es; q=0.9, en; q=0.8"
+            Activitypermission: orders:read
+            Apiversion: 2.1.0
+          type: object
+        response_body:
           type: object
         response_headers:
           additionalProperties:
             type: string
-          nullable: true
-          type: object
-        request_body:
-          additionalProperties: true
-          nullable: true
-          type: object
-        response_body:
-          additionalProperties: true
-          nullable: true
+          example:
+            Access-Control-Allow-Headers: "Content-Type, Depth, User-Agent, X-File-Size,\
+              \ X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control, X-Prototype-Version,\
+              \ Authorization, Accept, Date, Version, X-Forwarded-For, Host, Connection,\
+              \ X-Forwarded-Proto, X-Forwarded-Port, X-Amzn-Trace-Id, Accept-Encoding,\
+              \ Accept-Language, Referer, Origin, Activitypermission, Apiversion,\
+              \ Entityid, Livemode, Sec-Ch-Ua, Sec-Ch-Ua-Mobile, Sec-Ch-Ua-Platform,\
+              \ Sec-Fetch-Dest, Sec-Fetch-Mode, Sec-Fetch-Site, X-Datadog-Parent-Id,\
+              \ X-Datadog-Sampling-Priority, X-Datadog-Trace-Id, X-Forwarded-Host,\
+              \ X-Forwarded-Server, X-Real-Ip"
+            Access-Control-Allow-Methods: "POST, GET, PUT, OPTIONS"
+            Access-Control-Allow-Origin: '*'
+            Access-Control-Max-Age: "1728000"
+            Content-Type: application/json; charset=utf-8
+            Referrer-Policy: strict-origin-when-cross-origin
+            Strict-Transport-Security: max-age=31536000; includeSubDomains
+            X-Content-Type-Options: nosniff
+            X-Download-Options: noopen
+            X-Frame-Options: SAMEORIGIN
+            X-Permitted-Cross-Domain-Policies: none
+            X-XSS-Protection: 1; mode=block
           type: object
         searchable_tags:
           example:
@@ -10158,11 +10014,25 @@ components:
           items:
             type: string
           type: array
+        status:
+          example: "200"
+          type: string
+        updated_at:
+          example: 2022-08-25T16:40:44.887Z
+          type: string
+        url:
+          example: /filter_resource
+          type: string
+        user_account_id:
+          example: 5a0b7001edbb6e1725b0b2c6
+          type: string
+        version:
+          example: 2.1.0
+          type: string
       required:
       - created_at
       - id
       - livemode
-      - object
       title: log_response
       type: object
     orders_response:
@@ -12600,6 +12470,70 @@ components:
         title: customerPaymentMethods
         type: object
       title: customer_payment_methods_response
+    customer_fiscal_entities_data_response:
+      allOf:
+      - $ref: '#/components/schemas/customer_fiscal_entities_request'
+      - properties:
+          id:
+            example: ship_cont_2tKZsTYcsryyu7Ah8
+            type: string
+          object:
+            example: shipping_contact
+            type: string
+          created_at:
+            example: 1675715413
+            format: int64
+            type: integer
+          parent_id:
+            example: cus_2tKcHxhTz7xU5SymF
+            type: string
+          default:
+            type: boolean
+        required:
+        - created_at
+        - id
+        - object
+        type: object
+      title: customer_fiscal_entities_data_response
+    customer_fiscal_entities_response:
+      allOf:
+      - $ref: '#/components/schemas/pagination'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/customer_fiscal_entities_data_response'
+            type: array
+        type: object
+      title: customer_fiscal_entities_response
+    customer_shipping_contacts_data_response:
+      allOf:
+      - $ref: '#/components/schemas/customer_shipping_contacts'
+      - properties:
+          id:
+            example: ship_cont_2tKZsTYcsryyu7Ah8
+            type: string
+          object:
+            example: shipping_contact
+            type: string
+          created_at:
+            example: 1675715413
+            format: int64
+            type: integer
+        required:
+        - created_at
+        - id
+        - object
+        type: object
+      title: customer_shipping_contacts_data_response
+    customer_response_shipping_contacts:
+      allOf:
+      - $ref: '#/components/schemas/pagination'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/customer_shipping_contacts_data_response'
+            type: array
+        type: object
     WebhookLog:
       properties:
         failed_attempts:
@@ -12639,6 +12573,125 @@ components:
       - last_http_response_status
       - url
       title: WebhookLog
+      type: object
+    logs_response_data:
+      properties:
+        created_at:
+          example: 1661445644
+          format: int64
+          type: integer
+        id:
+          example: 6307a60c41de27127515a575
+          type: string
+        ip_address:
+          example: 54.235.131.48
+          format: ipv4
+          type: string
+        livemode:
+          example: true
+          type: boolean
+        loggable_id:
+          example: ord_87632467832
+          nullable: true
+          type: string
+        loggable_type:
+          example: order
+          nullable: true
+          type: string
+        method:
+          example: POST
+          type: string
+        oauth_token_id:
+          nullable: true
+          type: string
+        query_string:
+          additionalProperties: true
+          example:
+            amount: 3000
+            payable: true
+          type: object
+        related:
+          example: FilterResource
+          type: string
+        request_body:
+          example:
+            filters:
+              amount:
+                amount_from: 0
+                amount_to: 0
+              created_at:
+                date_from: 1653627600
+                date_to: 1661489999
+              filterName: Payments
+              search_term: null
+              sort_by: created_at
+              sort_direction: desc
+              status: []
+              type: []
+            id: 78e65162-0f37-4942-847c-9bf7081d54c2
+            page: "0"
+            report_type: charges
+            testMode: false
+          type: object
+        request_headers:
+          additionalProperties:
+            type: string
+          example:
+            Accept-Encoding: "gzip, deflate, br"
+            Accept-Language: "es-419, es; q=0.9, en; q=0.8"
+            Activitypermission: orders:read
+            Apiversion: 2.1.0
+          type: object
+        response_body:
+          type: object
+        response_headers:
+          additionalProperties:
+            type: string
+          example:
+            Access-Control-Allow-Headers: "Content-Type, Depth, User-Agent, X-File-Size,\
+              \ X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control, X-Prototype-Version,\
+              \ Authorization, Accept, Date, Version, X-Forwarded-For, Host, Connection,\
+              \ X-Forwarded-Proto, X-Forwarded-Port, X-Amzn-Trace-Id, Accept-Encoding,\
+              \ Accept-Language, Referer, Origin, Activitypermission, Apiversion,\
+              \ Entityid, Livemode, Sec-Ch-Ua, Sec-Ch-Ua-Mobile, Sec-Ch-Ua-Platform,\
+              \ Sec-Fetch-Dest, Sec-Fetch-Mode, Sec-Fetch-Site, X-Datadog-Parent-Id,\
+              \ X-Datadog-Sampling-Priority, X-Datadog-Trace-Id, X-Forwarded-Host,\
+              \ X-Forwarded-Server, X-Real-Ip"
+            Access-Control-Allow-Methods: "POST, GET, PUT, OPTIONS"
+            Access-Control-Allow-Origin: '*'
+            Access-Control-Max-Age: "1728000"
+            Content-Type: application/json; charset=utf-8
+            Referrer-Policy: strict-origin-when-cross-origin
+            Strict-Transport-Security: max-age=31536000; includeSubDomains
+            X-Content-Type-Options: nosniff
+            X-Download-Options: noopen
+            X-Frame-Options: SAMEORIGIN
+            X-Permitted-Cross-Domain-Policies: none
+            X-XSS-Protection: 1; mode=block
+          type: object
+        searchable_tags:
+          example:
+          - 6307a60c41de27127515a575
+          - 6307a60c41de27127515a571
+          items:
+            type: string
+          type: array
+        status:
+          example: "200"
+          type: string
+        updated_at:
+          example: 2022-08-25T16:40:44.887Z
+          type: string
+        url:
+          example: /filter_resource
+          type: string
+        user_account_id:
+          example: 5a0b7001edbb6e1725b0b2c6
+          type: string
+        version:
+          example: 2.1.0
+          type: string
+      title: logs_response_data
       type: object
     order_response_customer_info:
       allOf:

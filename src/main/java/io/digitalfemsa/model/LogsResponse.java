@@ -18,12 +18,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 
@@ -31,555 +28,153 @@ import java.util.Objects;
  * Log model representing a recorded request/response cycle for troubleshooting and auditing.
  */
 @JsonPropertyOrder({
-  LogsResponse.JSON_PROPERTY_ID,
+  LogsResponse.JSON_PROPERTY_HAS_MORE,
   LogsResponse.JSON_PROPERTY_OBJECT,
-  LogsResponse.JSON_PROPERTY_CREATED_AT,
-  LogsResponse.JSON_PROPERTY_LIVEMODE,
-  LogsResponse.JSON_PROPERTY_METHOD,
-  LogsResponse.JSON_PROPERTY_URL,
-  LogsResponse.JSON_PROPERTY_STATUS,
-  LogsResponse.JSON_PROPERTY_VERSION,
-  LogsResponse.JSON_PROPERTY_IP_ADDRESS,
-  LogsResponse.JSON_PROPERTY_RELATED,
-  LogsResponse.JSON_PROPERTY_QUERY_STRING,
-  LogsResponse.JSON_PROPERTY_REQUEST_BODY,
-  LogsResponse.JSON_PROPERTY_RESPONSE_BODY,
-  LogsResponse.JSON_PROPERTY_REQUEST_HEADERS,
-  LogsResponse.JSON_PROPERTY_RESPONSE_HEADERS,
-  LogsResponse.JSON_PROPERTY_SEARCHABLE_TAGS
+  LogsResponse.JSON_PROPERTY_NEXT_PAGE_URL,
+  LogsResponse.JSON_PROPERTY_PREVIOUS_PAGE_URL,
+  LogsResponse.JSON_PROPERTY_DATA
 })
 @JsonTypeName("logs_response")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class LogsResponse {
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
-
-  /**
-   * Gets or Sets _object
-   */
-  public enum ObjectEnum {
-    LOG("log");
-
-    private String value;
-
-    ObjectEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ObjectEnum fromValue(String value) {
-      for (ObjectEnum b : ObjectEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  public static final String JSON_PROPERTY_HAS_MORE = "has_more";
+  private Boolean hasMore;
 
   public static final String JSON_PROPERTY_OBJECT = "object";
-  private ObjectEnum _object;
+  private String _object;
 
-  public static final String JSON_PROPERTY_CREATED_AT = "created_at";
-  private Long createdAt;
+  public static final String JSON_PROPERTY_NEXT_PAGE_URL = "next_page_url";
+  private String nextPageUrl;
 
-  public static final String JSON_PROPERTY_LIVEMODE = "livemode";
-  private Boolean livemode;
+  public static final String JSON_PROPERTY_PREVIOUS_PAGE_URL = "previous_page_url";
+  private String previousPageUrl;
 
-  public static final String JSON_PROPERTY_METHOD = "method";
-  private String method;
-
-  public static final String JSON_PROPERTY_URL = "url";
-  private String url;
-
-  public static final String JSON_PROPERTY_STATUS = "status";
-  private String status;
-
-  public static final String JSON_PROPERTY_VERSION = "version";
-  private String version;
-
-  public static final String JSON_PROPERTY_IP_ADDRESS = "ip_address";
-  private String ipAddress;
-
-  public static final String JSON_PROPERTY_RELATED = "related";
-  private String related;
-
-  public static final String JSON_PROPERTY_QUERY_STRING = "query_string";
-  private Map<String, Object> queryString;
-
-  public static final String JSON_PROPERTY_REQUEST_BODY = "request_body";
-  private Map<String, Object> requestBody;
-
-  public static final String JSON_PROPERTY_RESPONSE_BODY = "response_body";
-  private Map<String, Object> responseBody;
-
-  public static final String JSON_PROPERTY_REQUEST_HEADERS = "request_headers";
-  private Map<String, String> requestHeaders;
-
-  public static final String JSON_PROPERTY_RESPONSE_HEADERS = "response_headers";
-  private Map<String, String> responseHeaders;
-
-  public static final String JSON_PROPERTY_SEARCHABLE_TAGS = "searchable_tags";
-  private List<String> searchableTags = new ArrayList<>();
+  public static final String JSON_PROPERTY_DATA = "data";
+  private List<LogsResponseData> data;
 
   public LogsResponse() { 
   }
 
-  public LogsResponse id(String id) {
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public LogsResponse _object(ObjectEnum _object) {
+  @JsonCreator
+  public LogsResponse(
+    @JsonProperty(JSON_PROPERTY_HAS_MORE) Boolean hasMore, 
+    @JsonProperty(JSON_PROPERTY_OBJECT) String _object
+  ) {
+    this();
+    this.hasMore = hasMore;
     this._object = _object;
-    return this;
   }
 
    /**
-   * Get _object
+   * True, if there are more pages.
+   * @return hasMore
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_HAS_MORE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getHasMore() {
+    return hasMore;
+  }
+
+
+
+
+   /**
+   * The object type
    * @return _object
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_OBJECT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public ObjectEnum getObject() {
+  public String getObject() {
     return _object;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_OBJECT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setObject(ObjectEnum _object) {
-    this._object = _object;
-  }
 
 
-  public LogsResponse createdAt(Long createdAt) {
-    this.createdAt = createdAt;
+  public LogsResponse nextPageUrl(String nextPageUrl) {
+    this.nextPageUrl = nextPageUrl;
     return this;
   }
 
    /**
-   * Get createdAt
-   * @return createdAt
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_CREATED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Long getCreatedAt() {
-    return createdAt;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCreatedAt(Long createdAt) {
-    this.createdAt = createdAt;
-  }
-
-
-  public LogsResponse livemode(Boolean livemode) {
-    this.livemode = livemode;
-    return this;
-  }
-
-   /**
-   * Get livemode
-   * @return livemode
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_LIVEMODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Boolean getLivemode() {
-    return livemode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LIVEMODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setLivemode(Boolean livemode) {
-    this.livemode = livemode;
-  }
-
-
-  public LogsResponse method(String method) {
-    this.method = method;
-    return this;
-  }
-
-   /**
-   * Get method
-   * @return method
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_METHOD)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getMethod() {
-    return method;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_METHOD)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setMethod(String method) {
-    this.method = method;
-  }
-
-
-  public LogsResponse url(String url) {
-    this.url = url;
-    return this;
-  }
-
-   /**
-   * Get url
-   * @return url
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_URL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getUrl() {
-    return url;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_URL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setUrl(String url) {
-    this.url = url;
-  }
-
-
-  public LogsResponse status(String status) {
-    this.status = status;
-    return this;
-  }
-
-   /**
-   * Get status
-   * @return status
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getStatus() {
-    return status;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-
-  public LogsResponse version(String version) {
-    this.version = version;
-    return this;
-  }
-
-   /**
-   * Get version
-   * @return version
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getVersion() {
-    return version;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setVersion(String version) {
-    this.version = version;
-  }
-
-
-  public LogsResponse ipAddress(String ipAddress) {
-    this.ipAddress = ipAddress;
-    return this;
-  }
-
-   /**
-   * Get ipAddress
-   * @return ipAddress
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_IP_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getIpAddress() {
-    return ipAddress;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IP_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setIpAddress(String ipAddress) {
-    this.ipAddress = ipAddress;
-  }
-
-
-  public LogsResponse related(String related) {
-    this.related = related;
-    return this;
-  }
-
-   /**
-   * Get related
-   * @return related
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_RELATED)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getRelated() {
-    return related;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RELATED)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRelated(String related) {
-    this.related = related;
-  }
-
-
-  public LogsResponse queryString(Map<String, Object> queryString) {
-    this.queryString = queryString;
-    return this;
-  }
-
-  public LogsResponse putQueryStringItem(String key, Object queryStringItem) {
-    if (this.queryString == null) {
-      this.queryString = new HashMap<>();
-    }
-    this.queryString.put(key, queryStringItem);
-    return this;
-  }
-
-   /**
-   * Get queryString
-   * @return queryString
+   * URL of the next page.
+   * @return nextPageUrl
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_QUERY_STRING)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonProperty(JSON_PROPERTY_NEXT_PAGE_URL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Map<String, Object> getQueryString() {
-    return queryString;
+  public String getNextPageUrl() {
+    return nextPageUrl;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_QUERY_STRING)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-  public void setQueryString(Map<String, Object> queryString) {
-    this.queryString = queryString;
+  @JsonProperty(JSON_PROPERTY_NEXT_PAGE_URL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNextPageUrl(String nextPageUrl) {
+    this.nextPageUrl = nextPageUrl;
   }
 
 
-  public LogsResponse requestBody(Map<String, Object> requestBody) {
-    this.requestBody = requestBody;
-    return this;
-  }
-
-  public LogsResponse putRequestBodyItem(String key, Object requestBodyItem) {
-    if (this.requestBody == null) {
-      this.requestBody = new HashMap<>();
-    }
-    this.requestBody.put(key, requestBodyItem);
+  public LogsResponse previousPageUrl(String previousPageUrl) {
+    this.previousPageUrl = previousPageUrl;
     return this;
   }
 
    /**
-   * Get requestBody
-   * @return requestBody
+   * Url of the previous page.
+   * @return previousPageUrl
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_REQUEST_BODY)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonProperty(JSON_PROPERTY_PREVIOUS_PAGE_URL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Map<String, Object> getRequestBody() {
-    return requestBody;
+  public String getPreviousPageUrl() {
+    return previousPageUrl;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REQUEST_BODY)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequestBody(Map<String, Object> requestBody) {
-    this.requestBody = requestBody;
+  @JsonProperty(JSON_PROPERTY_PREVIOUS_PAGE_URL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPreviousPageUrl(String previousPageUrl) {
+    this.previousPageUrl = previousPageUrl;
   }
 
 
-  public LogsResponse responseBody(Map<String, Object> responseBody) {
-    this.responseBody = responseBody;
+  public LogsResponse data(List<LogsResponseData> data) {
+    this.data = data;
     return this;
   }
 
-  public LogsResponse putResponseBodyItem(String key, Object responseBodyItem) {
-    if (this.responseBody == null) {
-      this.responseBody = new HashMap<>();
+  public LogsResponse addDataItem(LogsResponseData dataItem) {
+    if (this.data == null) {
+      this.data = new ArrayList<>();
     }
-    this.responseBody.put(key, responseBodyItem);
+    this.data.add(dataItem);
     return this;
   }
 
    /**
-   * Get responseBody
-   * @return responseBody
+   * set to page results.
+   * @return data
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_RESPONSE_BODY)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Map<String, Object> getResponseBody() {
-    return responseBody;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RESPONSE_BODY)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResponseBody(Map<String, Object> responseBody) {
-    this.responseBody = responseBody;
-  }
-
-
-  public LogsResponse requestHeaders(Map<String, String> requestHeaders) {
-    this.requestHeaders = requestHeaders;
-    return this;
-  }
-
-  public LogsResponse putRequestHeadersItem(String key, String requestHeadersItem) {
-    if (this.requestHeaders == null) {
-      this.requestHeaders = new HashMap<>();
-    }
-    this.requestHeaders.put(key, requestHeadersItem);
-    return this;
-  }
-
-   /**
-   * Get requestHeaders
-   * @return requestHeaders
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_REQUEST_HEADERS)
+  @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Map<String, String> getRequestHeaders() {
-    return requestHeaders;
+  public List<LogsResponseData> getData() {
+    return data;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REQUEST_HEADERS)
+  @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequestHeaders(Map<String, String> requestHeaders) {
-    this.requestHeaders = requestHeaders;
-  }
-
-
-  public LogsResponse responseHeaders(Map<String, String> responseHeaders) {
-    this.responseHeaders = responseHeaders;
-    return this;
-  }
-
-  public LogsResponse putResponseHeadersItem(String key, String responseHeadersItem) {
-    if (this.responseHeaders == null) {
-      this.responseHeaders = new HashMap<>();
-    }
-    this.responseHeaders.put(key, responseHeadersItem);
-    return this;
-  }
-
-   /**
-   * Get responseHeaders
-   * @return responseHeaders
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_RESPONSE_HEADERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Map<String, String> getResponseHeaders() {
-    return responseHeaders;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RESPONSE_HEADERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResponseHeaders(Map<String, String> responseHeaders) {
-    this.responseHeaders = responseHeaders;
-  }
-
-
-  public LogsResponse searchableTags(List<String> searchableTags) {
-    this.searchableTags = searchableTags;
-    return this;
-  }
-
-  public LogsResponse addSearchableTagsItem(String searchableTagsItem) {
-    if (this.searchableTags == null) {
-      this.searchableTags = new ArrayList<>();
-    }
-    this.searchableTags.add(searchableTagsItem);
-    return this;
-  }
-
-   /**
-   * Get searchableTags
-   * @return searchableTags
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SEARCHABLE_TAGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<String> getSearchableTags() {
-    return searchableTags;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SEARCHABLE_TAGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSearchableTags(List<String> searchableTags) {
-    this.searchableTags = searchableTags;
+  public void setData(List<LogsResponseData> data) {
+    this.data = data;
   }
 
 
@@ -595,49 +190,27 @@ public class LogsResponse {
       return false;
     }
     LogsResponse logsResponse = (LogsResponse) o;
-    return Objects.equals(this.id, logsResponse.id) &&
+    return Objects.equals(this.hasMore, logsResponse.hasMore) &&
         Objects.equals(this._object, logsResponse._object) &&
-        Objects.equals(this.createdAt, logsResponse.createdAt) &&
-        Objects.equals(this.livemode, logsResponse.livemode) &&
-        Objects.equals(this.method, logsResponse.method) &&
-        Objects.equals(this.url, logsResponse.url) &&
-        Objects.equals(this.status, logsResponse.status) &&
-        Objects.equals(this.version, logsResponse.version) &&
-        Objects.equals(this.ipAddress, logsResponse.ipAddress) &&
-        Objects.equals(this.related, logsResponse.related) &&
-        Objects.equals(this.queryString, logsResponse.queryString) &&
-        Objects.equals(this.requestBody, logsResponse.requestBody) &&
-        Objects.equals(this.responseBody, logsResponse.responseBody) &&
-        Objects.equals(this.requestHeaders, logsResponse.requestHeaders) &&
-        Objects.equals(this.responseHeaders, logsResponse.responseHeaders) &&
-        Objects.equals(this.searchableTags, logsResponse.searchableTags);
+        Objects.equals(this.nextPageUrl, logsResponse.nextPageUrl) &&
+        Objects.equals(this.previousPageUrl, logsResponse.previousPageUrl) &&
+        Objects.equals(this.data, logsResponse.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, createdAt, livemode, method, url, status, version, ipAddress, related, queryString, requestBody, responseBody, requestHeaders, responseHeaders, searchableTags);
+    return Objects.hash(hasMore, _object, nextPageUrl, previousPageUrl, data);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class LogsResponse {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    hasMore: ").append(toIndentedString(hasMore)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
-    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
-    sb.append("    livemode: ").append(toIndentedString(livemode)).append("\n");
-    sb.append("    method: ").append(toIndentedString(method)).append("\n");
-    sb.append("    url: ").append(toIndentedString(url)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    version: ").append(toIndentedString(version)).append("\n");
-    sb.append("    ipAddress: ").append(toIndentedString(ipAddress)).append("\n");
-    sb.append("    related: ").append(toIndentedString(related)).append("\n");
-    sb.append("    queryString: ").append(toIndentedString(queryString)).append("\n");
-    sb.append("    requestBody: ").append(toIndentedString(requestBody)).append("\n");
-    sb.append("    responseBody: ").append(toIndentedString(responseBody)).append("\n");
-    sb.append("    requestHeaders: ").append(toIndentedString(requestHeaders)).append("\n");
-    sb.append("    responseHeaders: ").append(toIndentedString(responseHeaders)).append("\n");
-    sb.append("    searchableTags: ").append(toIndentedString(searchableTags)).append("\n");
+    sb.append("    nextPageUrl: ").append(toIndentedString(nextPageUrl)).append("\n");
+    sb.append("    previousPageUrl: ").append(toIndentedString(previousPageUrl)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }

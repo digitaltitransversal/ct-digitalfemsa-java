@@ -1,17 +1,16 @@
 
 
-# LogResponse
+# LogsResponseData
 
-Log model representing a recorded request/response cycle for troubleshooting and auditing.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**createdAt** | **Long** |  |  |
-|**id** | **String** |  |  |
+|**createdAt** | **Long** |  |  [optional] |
+|**id** | **String** |  |  [optional] |
 |**ipAddress** | **String** |  |  [optional] |
-|**livemode** | **Boolean** |  |  |
+|**livemode** | **Boolean** |  |  [optional] |
 |**loggableId** | **String** |  |  [optional] |
 |**loggableType** | **String** |  |  [optional] |
 |**method** | **String** |  |  [optional] |

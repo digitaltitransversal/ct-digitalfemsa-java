@@ -163,7 +163,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  -  |
+| **200** | successful operation |  -  |
 | **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
 | **422** | parameter validation error |  -  |
@@ -242,7 +242,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  -  |
+| **200** | successful operation |  -  |
 | **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
 | **500** | internal server error |  -  |
@@ -336,7 +336,7 @@ public class Example {
 
 ## updateApiKey
 
-> ApiKeyResponse updateApiKey(id, apiKeyUpdateRequest, acceptLanguage)
+> ApiKeyResponse updateApiKey(id, acceptLanguage, apiKeyUpdateRequest)
 
 Update API key
 
@@ -367,10 +367,10 @@ public class Example {
 
         ApiKeysApi apiInstance = new ApiKeysApi(defaultClient);
         String id = "6307a60c41de27127515a575"; // String | Identifier of the resource
-        ApiKeyUpdateRequest apiKeyUpdateRequest = new ApiKeyUpdateRequest(); // ApiKeyUpdateRequest | 
         String acceptLanguage = "es"; // String | Use for knowing which language to use
+        ApiKeyUpdateRequest apiKeyUpdateRequest = new ApiKeyUpdateRequest(); // ApiKeyUpdateRequest | 
         try {
-            ApiKeyResponse result = apiInstance.updateApiKey(id, apiKeyUpdateRequest, acceptLanguage);
+            ApiKeyResponse result = apiInstance.updateApiKey(id, acceptLanguage, apiKeyUpdateRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ApiKeysApi#updateApiKey");
@@ -389,8 +389,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| Identifier of the resource | |
-| **apiKeyUpdateRequest** | [**ApiKeyUpdateRequest**](ApiKeyUpdateRequest.md)|  | |
 | **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
+| **apiKeyUpdateRequest** | [**ApiKeyUpdateRequest**](ApiKeyUpdateRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -403,7 +403,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json, application/vnd.app-v2.2.0+json
+- **Accept**: application/vnd.app-v2.2.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |

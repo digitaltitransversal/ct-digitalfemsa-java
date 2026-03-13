@@ -23,6 +23,8 @@ customer response
 |**defaultShippingContactId** | **String** |  |  [optional] |
 |**metadata** | **Map&lt;String, Object&gt;** | Customer metadata (maps to contextual_data in backend) |  [optional] |
 |**paymentSources** | [**CustomerPaymentMethodsResponse**](CustomerPaymentMethodsResponse.md) |  |  [optional] |
+|**fiscalEntities** | [**CustomerFiscalEntitiesResponse**](CustomerFiscalEntitiesResponse.md) |  |  [optional] |
+|**shippingContacts** | [**CustomerResponseShippingContacts**](CustomerResponseShippingContacts.md) |  |  [optional] |
 
 
 

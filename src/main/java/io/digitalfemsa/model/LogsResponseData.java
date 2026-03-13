@@ -26,33 +26,33 @@ import java.util.Objects;
 
 
 /**
- * Log model representing a recorded request/response cycle for troubleshooting and auditing.
+ * LogsResponseData
  */
 @JsonPropertyOrder({
-  LogResponse.JSON_PROPERTY_CREATED_AT,
-  LogResponse.JSON_PROPERTY_ID,
-  LogResponse.JSON_PROPERTY_IP_ADDRESS,
-  LogResponse.JSON_PROPERTY_LIVEMODE,
-  LogResponse.JSON_PROPERTY_LOGGABLE_ID,
-  LogResponse.JSON_PROPERTY_LOGGABLE_TYPE,
-  LogResponse.JSON_PROPERTY_METHOD,
-  LogResponse.JSON_PROPERTY_OAUTH_TOKEN_ID,
-  LogResponse.JSON_PROPERTY_QUERY_STRING,
-  LogResponse.JSON_PROPERTY_RELATED,
-  LogResponse.JSON_PROPERTY_REQUEST_BODY,
-  LogResponse.JSON_PROPERTY_REQUEST_HEADERS,
-  LogResponse.JSON_PROPERTY_RESPONSE_BODY,
-  LogResponse.JSON_PROPERTY_RESPONSE_HEADERS,
-  LogResponse.JSON_PROPERTY_SEARCHABLE_TAGS,
-  LogResponse.JSON_PROPERTY_STATUS,
-  LogResponse.JSON_PROPERTY_UPDATED_AT,
-  LogResponse.JSON_PROPERTY_URL,
-  LogResponse.JSON_PROPERTY_USER_ACCOUNT_ID,
-  LogResponse.JSON_PROPERTY_VERSION
+  LogsResponseData.JSON_PROPERTY_CREATED_AT,
+  LogsResponseData.JSON_PROPERTY_ID,
+  LogsResponseData.JSON_PROPERTY_IP_ADDRESS,
+  LogsResponseData.JSON_PROPERTY_LIVEMODE,
+  LogsResponseData.JSON_PROPERTY_LOGGABLE_ID,
+  LogsResponseData.JSON_PROPERTY_LOGGABLE_TYPE,
+  LogsResponseData.JSON_PROPERTY_METHOD,
+  LogsResponseData.JSON_PROPERTY_OAUTH_TOKEN_ID,
+  LogsResponseData.JSON_PROPERTY_QUERY_STRING,
+  LogsResponseData.JSON_PROPERTY_RELATED,
+  LogsResponseData.JSON_PROPERTY_REQUEST_BODY,
+  LogsResponseData.JSON_PROPERTY_REQUEST_HEADERS,
+  LogsResponseData.JSON_PROPERTY_RESPONSE_BODY,
+  LogsResponseData.JSON_PROPERTY_RESPONSE_HEADERS,
+  LogsResponseData.JSON_PROPERTY_SEARCHABLE_TAGS,
+  LogsResponseData.JSON_PROPERTY_STATUS,
+  LogsResponseData.JSON_PROPERTY_UPDATED_AT,
+  LogsResponseData.JSON_PROPERTY_URL,
+  LogsResponseData.JSON_PROPERTY_USER_ACCOUNT_ID,
+  LogsResponseData.JSON_PROPERTY_VERSION
 })
-@JsonTypeName("log_response")
+@JsonTypeName("logs_response_data")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
-public class LogResponse {
+public class LogsResponseData {
   public static final String JSON_PROPERTY_CREATED_AT = "created_at";
   private Long createdAt;
 
@@ -113,10 +113,10 @@ public class LogResponse {
   public static final String JSON_PROPERTY_VERSION = "version";
   private String version;
 
-  public LogResponse() { 
+  public LogsResponseData() { 
   }
 
-  public LogResponse createdAt(Long createdAt) {
+  public LogsResponseData createdAt(Long createdAt) {
     this.createdAt = createdAt;
     return this;
   }
@@ -125,9 +125,9 @@ public class LogResponse {
    * Get createdAt
    * @return createdAt
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_CREATED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Long getCreatedAt() {
     return createdAt;
@@ -135,13 +135,13 @@ public class LogResponse {
 
 
   @JsonProperty(JSON_PROPERTY_CREATED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreatedAt(Long createdAt) {
     this.createdAt = createdAt;
   }
 
 
-  public LogResponse id(String id) {
+  public LogsResponseData id(String id) {
     this.id = id;
     return this;
   }
@@ -150,9 +150,9 @@ public class LogResponse {
    * Get id
    * @return id
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getId() {
     return id;
@@ -160,13 +160,13 @@ public class LogResponse {
 
 
   @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
 
 
-  public LogResponse ipAddress(String ipAddress) {
+  public LogsResponseData ipAddress(String ipAddress) {
     this.ipAddress = ipAddress;
     return this;
   }
@@ -191,7 +191,7 @@ public class LogResponse {
   }
 
 
-  public LogResponse livemode(Boolean livemode) {
+  public LogsResponseData livemode(Boolean livemode) {
     this.livemode = livemode;
     return this;
   }
@@ -200,9 +200,9 @@ public class LogResponse {
    * Get livemode
    * @return livemode
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_LIVEMODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Boolean getLivemode() {
     return livemode;
@@ -210,13 +210,13 @@ public class LogResponse {
 
 
   @JsonProperty(JSON_PROPERTY_LIVEMODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLivemode(Boolean livemode) {
     this.livemode = livemode;
   }
 
 
-  public LogResponse loggableId(String loggableId) {
+  public LogsResponseData loggableId(String loggableId) {
     this.loggableId = loggableId;
     return this;
   }
@@ -241,7 +241,7 @@ public class LogResponse {
   }
 
 
-  public LogResponse loggableType(String loggableType) {
+  public LogsResponseData loggableType(String loggableType) {
     this.loggableType = loggableType;
     return this;
   }
@@ -266,7 +266,7 @@ public class LogResponse {
   }
 
 
-  public LogResponse method(String method) {
+  public LogsResponseData method(String method) {
     this.method = method;
     return this;
   }
@@ -291,7 +291,7 @@ public class LogResponse {
   }
 
 
-  public LogResponse oauthTokenId(String oauthTokenId) {
+  public LogsResponseData oauthTokenId(String oauthTokenId) {
     this.oauthTokenId = oauthTokenId;
     return this;
   }
@@ -316,12 +316,12 @@ public class LogResponse {
   }
 
 
-  public LogResponse queryString(Map<String, Object> queryString) {
+  public LogsResponseData queryString(Map<String, Object> queryString) {
     this.queryString = queryString;
     return this;
   }
 
-  public LogResponse putQueryStringItem(String key, Object queryStringItem) {
+  public LogsResponseData putQueryStringItem(String key, Object queryStringItem) {
     if (this.queryString == null) {
       this.queryString = new HashMap<>();
     }
@@ -349,7 +349,7 @@ public class LogResponse {
   }
 
 
-  public LogResponse related(String related) {
+  public LogsResponseData related(String related) {
     this.related = related;
     return this;
   }
@@ -374,7 +374,7 @@ public class LogResponse {
   }
 
 
-  public LogResponse requestBody(Object requestBody) {
+  public LogsResponseData requestBody(Object requestBody) {
     this.requestBody = requestBody;
     return this;
   }
@@ -399,12 +399,12 @@ public class LogResponse {
   }
 
 
-  public LogResponse requestHeaders(Map<String, String> requestHeaders) {
+  public LogsResponseData requestHeaders(Map<String, String> requestHeaders) {
     this.requestHeaders = requestHeaders;
     return this;
   }
 
-  public LogResponse putRequestHeadersItem(String key, String requestHeadersItem) {
+  public LogsResponseData putRequestHeadersItem(String key, String requestHeadersItem) {
     if (this.requestHeaders == null) {
       this.requestHeaders = new HashMap<>();
     }
@@ -432,7 +432,7 @@ public class LogResponse {
   }
 
 
-  public LogResponse responseBody(Object responseBody) {
+  public LogsResponseData responseBody(Object responseBody) {
     this.responseBody = responseBody;
     return this;
   }
@@ -457,12 +457,12 @@ public class LogResponse {
   }
 
 
-  public LogResponse responseHeaders(Map<String, String> responseHeaders) {
+  public LogsResponseData responseHeaders(Map<String, String> responseHeaders) {
     this.responseHeaders = responseHeaders;
     return this;
   }
 
-  public LogResponse putResponseHeadersItem(String key, String responseHeadersItem) {
+  public LogsResponseData putResponseHeadersItem(String key, String responseHeadersItem) {
     if (this.responseHeaders == null) {
       this.responseHeaders = new HashMap<>();
     }
@@ -490,12 +490,12 @@ public class LogResponse {
   }
 
 
-  public LogResponse searchableTags(List<String> searchableTags) {
+  public LogsResponseData searchableTags(List<String> searchableTags) {
     this.searchableTags = searchableTags;
     return this;
   }
 
-  public LogResponse addSearchableTagsItem(String searchableTagsItem) {
+  public LogsResponseData addSearchableTagsItem(String searchableTagsItem) {
     if (this.searchableTags == null) {
       this.searchableTags = new ArrayList<>();
     }
@@ -523,7 +523,7 @@ public class LogResponse {
   }
 
 
-  public LogResponse status(String status) {
+  public LogsResponseData status(String status) {
     this.status = status;
     return this;
   }
@@ -548,7 +548,7 @@ public class LogResponse {
   }
 
 
-  public LogResponse updatedAt(String updatedAt) {
+  public LogsResponseData updatedAt(String updatedAt) {
     this.updatedAt = updatedAt;
     return this;
   }
@@ -573,7 +573,7 @@ public class LogResponse {
   }
 
 
-  public LogResponse url(String url) {
+  public LogsResponseData url(String url) {
     this.url = url;
     return this;
   }
@@ -598,7 +598,7 @@ public class LogResponse {
   }
 
 
-  public LogResponse userAccountId(String userAccountId) {
+  public LogsResponseData userAccountId(String userAccountId) {
     this.userAccountId = userAccountId;
     return this;
   }
@@ -623,7 +623,7 @@ public class LogResponse {
   }
 
 
-  public LogResponse version(String version) {
+  public LogsResponseData version(String version) {
     this.version = version;
     return this;
   }
@@ -649,7 +649,7 @@ public class LogResponse {
 
 
   /**
-   * Return true if this log_response object is equal to o.
+   * Return true if this logs_response_data object is equal to o.
    */
   @Override
   public boolean equals(Object o) {
@@ -659,27 +659,27 @@ public class LogResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    LogResponse logResponse = (LogResponse) o;
-    return Objects.equals(this.createdAt, logResponse.createdAt) &&
-        Objects.equals(this.id, logResponse.id) &&
-        Objects.equals(this.ipAddress, logResponse.ipAddress) &&
-        Objects.equals(this.livemode, logResponse.livemode) &&
-        Objects.equals(this.loggableId, logResponse.loggableId) &&
-        Objects.equals(this.loggableType, logResponse.loggableType) &&
-        Objects.equals(this.method, logResponse.method) &&
-        Objects.equals(this.oauthTokenId, logResponse.oauthTokenId) &&
-        Objects.equals(this.queryString, logResponse.queryString) &&
-        Objects.equals(this.related, logResponse.related) &&
-        Objects.equals(this.requestBody, logResponse.requestBody) &&
-        Objects.equals(this.requestHeaders, logResponse.requestHeaders) &&
-        Objects.equals(this.responseBody, logResponse.responseBody) &&
-        Objects.equals(this.responseHeaders, logResponse.responseHeaders) &&
-        Objects.equals(this.searchableTags, logResponse.searchableTags) &&
-        Objects.equals(this.status, logResponse.status) &&
-        Objects.equals(this.updatedAt, logResponse.updatedAt) &&
-        Objects.equals(this.url, logResponse.url) &&
-        Objects.equals(this.userAccountId, logResponse.userAccountId) &&
-        Objects.equals(this.version, logResponse.version);
+    LogsResponseData logsResponseData = (LogsResponseData) o;
+    return Objects.equals(this.createdAt, logsResponseData.createdAt) &&
+        Objects.equals(this.id, logsResponseData.id) &&
+        Objects.equals(this.ipAddress, logsResponseData.ipAddress) &&
+        Objects.equals(this.livemode, logsResponseData.livemode) &&
+        Objects.equals(this.loggableId, logsResponseData.loggableId) &&
+        Objects.equals(this.loggableType, logsResponseData.loggableType) &&
+        Objects.equals(this.method, logsResponseData.method) &&
+        Objects.equals(this.oauthTokenId, logsResponseData.oauthTokenId) &&
+        Objects.equals(this.queryString, logsResponseData.queryString) &&
+        Objects.equals(this.related, logsResponseData.related) &&
+        Objects.equals(this.requestBody, logsResponseData.requestBody) &&
+        Objects.equals(this.requestHeaders, logsResponseData.requestHeaders) &&
+        Objects.equals(this.responseBody, logsResponseData.responseBody) &&
+        Objects.equals(this.responseHeaders, logsResponseData.responseHeaders) &&
+        Objects.equals(this.searchableTags, logsResponseData.searchableTags) &&
+        Objects.equals(this.status, logsResponseData.status) &&
+        Objects.equals(this.updatedAt, logsResponseData.updatedAt) &&
+        Objects.equals(this.url, logsResponseData.url) &&
+        Objects.equals(this.userAccountId, logsResponseData.userAccountId) &&
+        Objects.equals(this.version, logsResponseData.version);
   }
 
   @Override
@@ -690,7 +690,7 @@ public class LogResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class LogResponse {\n");
+    sb.append("class LogsResponseData {\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    ipAddress: ").append(toIndentedString(ipAddress)).append("\n");
