@@ -94,7 +94,7 @@ public class TransfersApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<TransferResponse> localVarReturnType = new GenericType<TransferResponse>() {};
@@ -162,7 +162,7 @@ public class TransfersApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<GetTransfersResponse> localVarReturnType = new GenericType<GetTransfersResponse>() {};

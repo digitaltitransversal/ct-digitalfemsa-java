@@ -89,7 +89,7 @@ public class WebhookKeysApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<WebhookKeyCreateResponse> localVarReturnType = new GenericType<WebhookKeyCreateResponse>() {};
@@ -149,7 +149,7 @@ public class WebhookKeysApi {
       localVarHeaderParams.put("Accept-Language", apiClient.parameterToString(acceptLanguage));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<WebhookKeyDeleteResponse> localVarReturnType = new GenericType<WebhookKeyDeleteResponse>() {};
@@ -214,7 +214,7 @@ public class WebhookKeysApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<WebhookKeyResponse> localVarReturnType = new GenericType<WebhookKeyResponse>() {};
@@ -282,7 +282,7 @@ public class WebhookKeysApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<GetWebhookKeysResponse> localVarReturnType = new GenericType<GetWebhookKeysResponse>() {};
@@ -302,8 +302,8 @@ public class WebhookKeysApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -323,8 +323,8 @@ public class WebhookKeysApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -344,8 +344,8 @@ public class WebhookKeysApi {
       localVarHeaderParams.put("Accept-Language", apiClient.parameterToString(acceptLanguage));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
-    String localVarContentType = apiClient.selectHeaderContentType("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<WebhookKeyResponse> localVarReturnType = new GenericType<WebhookKeyResponse>() {};
     return apiClient.invokeAPI("WebhookKeysApi.updateWebhookKey", localVarPath, "PUT", new ArrayList<>(), webhookKeyUpdateRequest,

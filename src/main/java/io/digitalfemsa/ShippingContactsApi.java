@@ -103,7 +103,7 @@ public class ShippingContactsApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<CustomerShippingContactsResponse> localVarReturnType = new GenericType<CustomerShippingContactsResponse>() {};
@@ -176,7 +176,7 @@ public class ShippingContactsApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<CustomerShippingContactsResponse> localVarReturnType = new GenericType<CustomerShippingContactsResponse>() {};
@@ -254,7 +254,7 @@ public class ShippingContactsApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<CustomerShippingContactsResponse> localVarReturnType = new GenericType<CustomerShippingContactsResponse>() {};

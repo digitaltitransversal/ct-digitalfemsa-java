@@ -104,7 +104,7 @@ public class OrdersApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<OrderResponse> localVarReturnType = new GenericType<OrderResponse>() {};
@@ -179,7 +179,7 @@ public class OrdersApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<OrderResponse> localVarReturnType = new GenericType<OrderResponse>() {};
@@ -248,7 +248,7 @@ public class OrdersApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<OrderResponse> localVarReturnType = new GenericType<OrderResponse>() {};
@@ -311,7 +311,7 @@ public class OrdersApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<OrderResponse> localVarReturnType = new GenericType<OrderResponse>() {};
@@ -376,7 +376,7 @@ public class OrdersApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<OrderResponse> localVarReturnType = new GenericType<OrderResponse>() {};
@@ -444,7 +444,7 @@ public class OrdersApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<GetOrdersResponse> localVarReturnType = new GenericType<GetOrdersResponse>() {};
@@ -518,7 +518,7 @@ public class OrdersApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<OrderResponse> localVarReturnType = new GenericType<OrderResponse>() {};
@@ -585,7 +585,7 @@ public class OrdersApi {
       localVarHeaderParams.put("Accept-Language", apiClient.parameterToString(acceptLanguage));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<OrderResponse> localVarReturnType = new GenericType<OrderResponse>() {};

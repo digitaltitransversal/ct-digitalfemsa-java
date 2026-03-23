@@ -96,7 +96,7 @@ public class LogsApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<LogResponse> localVarReturnType = new GenericType<LogResponse>() {};
@@ -164,7 +164,7 @@ public class LogsApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<LogsResponse> localVarReturnType = new GenericType<LogsResponse>() {};

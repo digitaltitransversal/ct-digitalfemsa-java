@@ -42,11 +42,10 @@ public class WebhooksApi {
   }
 
   /**
-   * Create webhook
-   * Creates a webhook and subscribes it to events so your system can receive notifications when those events occur.
+   * Create Webhook
+   * What we do at Femsa translates into events. For example, an event of interest to us occurs at the time a payment is successfully processed. At that moment we will be interested in doing several things: Send an email to the buyer, generate an invoice, start the process of shipping the product, etc.
    * @param webhookRequest Webhook creation/update request payload. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
-   * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return WebhookResponse
    * @throws ApiException if fails to make API call
    * @http.response.details
@@ -57,16 +56,15 @@ public class WebhooksApi {
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
-  public WebhookResponse createWebhook(WebhookRequest webhookRequest, String acceptLanguage, String xChildCompanyId) throws ApiException {
-    return createWebhookWithHttpInfo(webhookRequest, acceptLanguage, xChildCompanyId).getData();
+  public WebhookResponse createWebhook(WebhookRequest webhookRequest, String acceptLanguage) throws ApiException {
+    return createWebhookWithHttpInfo(webhookRequest, acceptLanguage).getData();
   }
 
   /**
-   * Create webhook
-   * Creates a webhook and subscribes it to events so your system can receive notifications when those events occur.
+   * Create Webhook
+   * What we do at Femsa translates into events. For example, an event of interest to us occurs at the time a payment is successfully processed. At that moment we will be interested in doing several things: Send an email to the buyer, generate an invoice, start the process of shipping the product, etc.
    * @param webhookRequest Webhook creation/update request payload. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
-   * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return ApiResponse&lt;WebhookResponse&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
@@ -77,7 +75,7 @@ public class WebhooksApi {
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<WebhookResponse> createWebhookWithHttpInfo(WebhookRequest webhookRequest, String acceptLanguage, String xChildCompanyId) throws ApiException {
+  public ApiResponse<WebhookResponse> createWebhookWithHttpInfo(WebhookRequest webhookRequest, String acceptLanguage) throws ApiException {
     // Check required parameters
     if (webhookRequest == null) {
       throw new ApiException(400, "Missing the required parameter 'webhookRequest' when calling createWebhook");
@@ -88,11 +86,8 @@ public class WebhooksApi {
     if (acceptLanguage != null) {
       localVarHeaderParams.put("Accept-Language", apiClient.parameterToString(acceptLanguage));
     }
-    if (xChildCompanyId != null) {
-      localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
-    }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<WebhookResponse> localVarReturnType = new GenericType<WebhookResponse>() {};
@@ -152,7 +147,7 @@ public class WebhooksApi {
       localVarHeaderParams.put("Accept-Language", apiClient.parameterToString(acceptLanguage));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<WebhookResponse> localVarReturnType = new GenericType<WebhookResponse>() {};
@@ -217,7 +212,7 @@ public class WebhooksApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<WebhookResponse> localVarReturnType = new GenericType<WebhookResponse>() {};
@@ -226,9 +221,8 @@ public class WebhooksApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Get webhooks
+   * Get List of Webhooks
    * Consume the list of webhooks you have, each environment supports 10 webhooks (For production and testing)
-   * @param webhookRequest Webhook creation/update request payload. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @param limit The numbers of items to return, the maximum value is 250 (optional, default to 20)
@@ -241,19 +235,18 @@ public class WebhooksApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
-  public GetWebhooksResponse getWebhooks(WebhookRequest webhookRequest, String acceptLanguage, String xChildCompanyId, Integer limit, String search, String url, String next, String previous) throws ApiException {
-    return getWebhooksWithHttpInfo(webhookRequest, acceptLanguage, xChildCompanyId, limit, search, url, next, previous).getData();
+  public GetWebhooksResponse getWebhooks(String acceptLanguage, String xChildCompanyId, Integer limit, String search, String url, String next, String previous) throws ApiException {
+    return getWebhooksWithHttpInfo(acceptLanguage, xChildCompanyId, limit, search, url, next, previous).getData();
   }
 
   /**
-   * Get webhooks
+   * Get List of Webhooks
    * Consume the list of webhooks you have, each environment supports 10 webhooks (For production and testing)
-   * @param webhookRequest Webhook creation/update request payload. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @param limit The numbers of items to return, the maximum value is 250 (optional, default to 20)
@@ -266,17 +259,12 @@ public class WebhooksApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<GetWebhooksResponse> getWebhooksWithHttpInfo(WebhookRequest webhookRequest, String acceptLanguage, String xChildCompanyId, Integer limit, String search, String url, String next, String previous) throws ApiException {
-    // Check required parameters
-    if (webhookRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'webhookRequest' when calling getWebhooks");
-    }
-
+  public ApiResponse<GetWebhooksResponse> getWebhooksWithHttpInfo(String acceptLanguage, String xChildCompanyId, Integer limit, String search, String url, String next, String previous) throws ApiException {
     // Query parameters
     List<Pair> localVarQueryParams = new ArrayList<>(
             apiClient.parameterToPairs("", "limit", limit)
@@ -295,11 +283,11 @@ public class WebhooksApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
-    String localVarContentType = apiClient.selectHeaderContentType("application/json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<GetWebhooksResponse> localVarReturnType = new GenericType<GetWebhooksResponse>() {};
-    return apiClient.invokeAPI("WebhooksApi.getWebhooks", "/webhooks", "GET", localVarQueryParams, webhookRequest,
+    return apiClient.invokeAPI("WebhooksApi.getWebhooks", "/webhooks", "GET", localVarQueryParams, null,
                                localVarHeaderParams, new LinkedHashMap<>(), new LinkedHashMap<>(), localVarAccept, localVarContentType,
                                localVarAuthNames, localVarReturnType, false);
   }
@@ -355,7 +343,7 @@ public class WebhooksApi {
       localVarHeaderParams.put("Accept-Language", apiClient.parameterToString(acceptLanguage));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType();
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<WebhookResponse> localVarReturnType = new GenericType<WebhookResponse>() {};
@@ -425,7 +413,7 @@ public class WebhooksApi {
       localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.2.0+json");
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<WebhookResponse> localVarReturnType = new GenericType<WebhookResponse>() {};

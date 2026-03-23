@@ -2,7 +2,7 @@
 
 # CustomerUpdateShippingContacts
 
-[Shipping Contacts](https://developers.femsa.com/v2.2.0/reference/createcustomershippingcontacts) details for updating a customer shipping contact. Only the fields provided in the request body are updated.
+[Shipping Contacts](https://developers.femsa.com/v2.1.0/reference/createcustomershippingcontacts) details for updating a customer shipping contact. Only the fields provided in the request body are updated.
 
 ## Properties
 

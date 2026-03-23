@@ -4,10 +4,10 @@ All URIs are relative to *https://api.digitalfemsa.io*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createWebhook**](WebhooksApi.md#createWebhook) | **POST** /webhooks | Create webhook |
+| [**createWebhook**](WebhooksApi.md#createWebhook) | **POST** /webhooks | Create Webhook |
 | [**deleteWebhook**](WebhooksApi.md#deleteWebhook) | **DELETE** /webhooks/{id} | Delete webhook |
 | [**getWebhook**](WebhooksApi.md#getWebhook) | **GET** /webhooks/{id} | Get webhook |
-| [**getWebhooks**](WebhooksApi.md#getWebhooks) | **GET** /webhooks | Get webhooks |
+| [**getWebhooks**](WebhooksApi.md#getWebhooks) | **GET** /webhooks | Get List of Webhooks |
 | [**testWebhook**](WebhooksApi.md#testWebhook) | **POST** /webhooks/{id}/test | Test webhook |
 | [**updateWebhook**](WebhooksApi.md#updateWebhook) | **PUT** /webhooks/{id} | Update webhook |
 
@@ -15,11 +15,11 @@ All URIs are relative to *https://api.digitalfemsa.io*
 
 ## createWebhook
 
-> WebhookResponse createWebhook(webhookRequest, acceptLanguage, xChildCompanyId)
+> WebhookResponse createWebhook(webhookRequest, acceptLanguage)
 
-Create webhook
+Create Webhook
 
-Creates a webhook and subscribes it to events so your system can receive notifications when those events occur.
+What we do at Femsa translates into events. For example, an event of interest to us occurs at the time a payment is successfully processed. At that moment we will be interested in doing several things: Send an email to the buyer, generate an invoice, start the process of shipping the product, etc.
 
 ### Example
 
@@ -44,9 +44,8 @@ public class Example {
         WebhooksApi apiInstance = new WebhooksApi(defaultClient);
         WebhookRequest webhookRequest = new WebhookRequest(); // WebhookRequest | Webhook creation/update request payload.
         String acceptLanguage = "es"; // String | Use for knowing which language to use
-        String xChildCompanyId = "6441b6376b60c3a638da80af"; // String | In the case of a holding company, the company id of the child company to which will process the request.
         try {
-            WebhookResponse result = apiInstance.createWebhook(webhookRequest, acceptLanguage, xChildCompanyId);
+            WebhookResponse result = apiInstance.createWebhook(webhookRequest, acceptLanguage);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WebhooksApi#createWebhook");
@@ -66,7 +65,6 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **webhookRequest** | [**WebhookRequest**](WebhookRequest.md)| Webhook creation/update request payload. | |
 | **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
-| **xChildCompanyId** | **String**| In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 
 ### Return type
 
@@ -79,7 +77,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.app-v2.2.0+json
+- **Accept**: application/vnd.app-v2.1.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -153,7 +151,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.app-v2.2.0+json
+- **Accept**: application/vnd.app-v2.1.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -230,7 +228,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.app-v2.2.0+json
+- **Accept**: application/vnd.app-v2.1.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -243,9 +241,9 @@ public class Example {
 
 ## getWebhooks
 
-> GetWebhooksResponse getWebhooks(webhookRequest, acceptLanguage, xChildCompanyId, limit, search, url, next, previous)
+> GetWebhooksResponse getWebhooks(acceptLanguage, xChildCompanyId, limit, search, url, next, previous)
 
-Get webhooks
+Get List of Webhooks
 
 Consume the list of webhooks you have, each environment supports 10 webhooks (For production and testing)
 
@@ -270,7 +268,6 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WebhooksApi apiInstance = new WebhooksApi(defaultClient);
-        WebhookRequest webhookRequest = new WebhookRequest(); // WebhookRequest | Webhook creation/update request payload.
         String acceptLanguage = "es"; // String | Use for knowing which language to use
         String xChildCompanyId = "6441b6376b60c3a638da80af"; // String | In the case of a holding company, the company id of the child company to which will process the request.
         Integer limit = 20; // Integer | The numbers of items to return, the maximum value is 250
@@ -279,7 +276,7 @@ public class Example {
         String next = "next_example"; // String | next page
         String previous = "previous_example"; // String | previous page
         try {
-            GetWebhooksResponse result = apiInstance.getWebhooks(webhookRequest, acceptLanguage, xChildCompanyId, limit, search, url, next, previous);
+            GetWebhooksResponse result = apiInstance.getWebhooks(acceptLanguage, xChildCompanyId, limit, search, url, next, previous);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WebhooksApi#getWebhooks");
@@ -297,7 +294,6 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **webhookRequest** | [**WebhookRequest**](WebhookRequest.md)| Webhook creation/update request payload. | |
 | **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
 | **xChildCompanyId** | **String**| In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 | **limit** | **Integer**| The numbers of items to return, the maximum value is 250 | [optional] [default to 20] |
@@ -316,13 +312,13 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/vnd.app-v2.2.0+json
+- **Content-Type**: Not defined
+- **Accept**: application/vnd.app-v2.1.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  -  |
+| **200** | successful |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  |
 | **401** | authentication error |  -  |
 | **500** | internal server error |  -  |
 
@@ -391,7 +387,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/vnd.app-v2.2.0+json
+- **Accept**: application/vnd.app-v2.1.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -470,7 +466,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/vnd.app-v2.2.0+json
+- **Accept**: application/vnd.app-v2.1.0+json
 
 ### HTTP response details
 | Status code | Description | Response headers |

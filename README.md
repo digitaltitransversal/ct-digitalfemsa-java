@@ -2,7 +2,7 @@
 
 Femsa API
 
-- API version: 2.2.0
+- API version: 2.1.0
 
 Femsa sdk
 
@@ -240,10 +240,10 @@ Class | Method | HTTP request | Description
 *WebhookKeysApi* | [**getWebhookKey**](docs/WebhookKeysApi.md#getWebhookKey) | **GET** /webhook_keys/{id} | Get webhook key
 *WebhookKeysApi* | [**getWebhookKeys**](docs/WebhookKeysApi.md#getWebhookKeys) | **GET** /webhook_keys | Get List of Webhook Keys
 *WebhookKeysApi* | [**updateWebhookKey**](docs/WebhookKeysApi.md#updateWebhookKey) | **PUT** /webhook_keys/{id} | Update webhook key
-*WebhooksApi* | [**createWebhook**](docs/WebhooksApi.md#createWebhook) | **POST** /webhooks | Create webhook
+*WebhooksApi* | [**createWebhook**](docs/WebhooksApi.md#createWebhook) | **POST** /webhooks | Create Webhook
 *WebhooksApi* | [**deleteWebhook**](docs/WebhooksApi.md#deleteWebhook) | **DELETE** /webhooks/{id} | Delete webhook
 *WebhooksApi* | [**getWebhook**](docs/WebhooksApi.md#getWebhook) | **GET** /webhooks/{id} | Get webhook
-*WebhooksApi* | [**getWebhooks**](docs/WebhooksApi.md#getWebhooks) | **GET** /webhooks | Get webhooks
+*WebhooksApi* | [**getWebhooks**](docs/WebhooksApi.md#getWebhooks) | **GET** /webhooks | Get List of Webhooks
 *WebhooksApi* | [**testWebhook**](docs/WebhooksApi.md#testWebhook) | **POST** /webhooks/{id}/test | Test webhook
 *WebhooksApi* | [**updateWebhook**](docs/WebhooksApi.md#updateWebhook) | **PUT** /webhooks/{id} | Update webhook
 

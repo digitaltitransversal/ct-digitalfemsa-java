@@ -9,7 +9,7 @@ info:
     name: MIT-LICENSE
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: Femsa API
-  version: 2.2.0
+  version: 2.1.0
 servers:
 - description: Femsa main server
   url: https://api.digitalfemsa.io
@@ -93,13 +93,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/get_api_keys_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -113,7 +113,7 @@ paths:
           description: authentication error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -134,7 +134,7 @@ paths:
       tags:
       - Api Keys
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     post:
       description: |
         Creates a new API key.
@@ -177,13 +177,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/api_key_create_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -197,7 +197,7 @@ paths:
           description: authentication error
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -212,7 +212,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -234,7 +234,7 @@ paths:
       - Api Keys
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /api_keys/{id}:
     delete:
       description: |
@@ -272,13 +272,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/delete_api_keys_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -292,7 +292,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -308,7 +308,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -323,7 +323,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -344,7 +344,7 @@ paths:
       tags:
       - Api Keys
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     get:
       description: |
         Retrieves the details of an API key by its ID.
@@ -391,13 +391,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/api_key_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -411,7 +411,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -427,7 +427,7 @@ paths:
           description: not found entity
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -448,7 +448,7 @@ paths:
       tags:
       - Api Keys
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     put:
       description: |
         Updates an existing API key by its ID.
@@ -492,13 +492,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/api_key_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -512,7 +512,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -528,7 +528,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -543,7 +543,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -565,7 +565,7 @@ paths:
       - Api Keys
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /balance:
     get:
       description: |
@@ -596,13 +596,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/balance_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -616,7 +616,7 @@ paths:
           description: authentication error
         "402":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The order could not be processed.
@@ -630,7 +630,7 @@ paths:
           description: payment required error
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -645,7 +645,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -666,7 +666,7 @@ paths:
       tags:
       - Balances
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /charges:
     get:
       description: |
@@ -744,13 +744,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/get_charges_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -764,7 +764,7 @@ paths:
           description: authentication error
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: The "custom_field" parameter is not allowed
@@ -778,7 +778,7 @@ paths:
           description: whitelist validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -799,7 +799,7 @@ paths:
       tags:
       - Charges
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /charges/{id}:
     put:
       description: Updates an existing charge. Only `reference_id` can be updated.
@@ -848,13 +848,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/charge_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -868,7 +868,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -884,7 +884,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -899,7 +899,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -921,7 +921,7 @@ paths:
       - Charges
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /orders/{id}/charges:
     post:
       description: |
@@ -976,13 +976,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/charge_order_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -996,7 +996,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -1012,7 +1012,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -1027,7 +1027,7 @@ paths:
           description: parameter validation error
         "428":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: The order cannot be modified because it has already
@@ -1044,7 +1044,7 @@ paths:
           description: Precondition Required
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -1066,7 +1066,7 @@ paths:
       - Charges
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /companies:
     get:
       description: Consume the list of child companies.  This is used for holding
@@ -1131,7 +1131,7 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/get_companies_response'
           description: successful
@@ -1166,7 +1166,7 @@ paths:
               style: simple
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -1180,7 +1180,7 @@ paths:
           description: authentication error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -1201,7 +1201,7 @@ paths:
       tags:
       - Companies
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /companies/{id}:
     get:
       operationId: getCompany
@@ -1237,7 +1237,7 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/company_response'
           description: successful
@@ -1272,7 +1272,7 @@ paths:
               style: simple
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -1286,7 +1286,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -1302,7 +1302,7 @@ paths:
           description: not found entity
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -1323,7 +1323,7 @@ paths:
       tags:
       - Companies
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /customers:
     get:
       description: |
@@ -1400,13 +1400,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/customers_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -1420,7 +1420,7 @@ paths:
           description: authentication error
         "402":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The order could not be processed.
@@ -1434,7 +1434,7 @@ paths:
           description: payment required error
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -1449,7 +1449,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -1470,7 +1470,7 @@ paths:
       tags:
       - Customers
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     post:
       description: |
         Creates a new customer for the authenticated company.
@@ -1513,13 +1513,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/customer_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -1533,7 +1533,7 @@ paths:
           description: authentication error
         "402":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The order could not be processed.
@@ -1547,7 +1547,7 @@ paths:
           description: payment required error
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -1562,7 +1562,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -1584,7 +1584,7 @@ paths:
       - Customers
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /customers/{id}:
     delete:
       description: Deleted a customer resource that corresponds to a customer ID.
@@ -1631,13 +1631,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/customer_response'
           description: successful operation
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -1652,7 +1652,7 @@ paths:
           description: parameter validation error
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -1666,7 +1666,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -1682,7 +1682,7 @@ paths:
           description: not found entity
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -1703,7 +1703,7 @@ paths:
       tags:
       - Customers
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     get:
       description: Gets a customer resource that corresponds to a customer ID.
       operationId: getCustomerById
@@ -1749,13 +1749,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/customer_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -1769,7 +1769,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -1785,7 +1785,7 @@ paths:
           description: not found entity
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -1806,7 +1806,7 @@ paths:
       tags:
       - Customers
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     put:
       description: You can update customer-related data
       operationId: updateCustomer
@@ -1854,13 +1854,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/customer_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -1874,7 +1874,7 @@ paths:
           description: authentication error
         "402":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The order could not be processed.
@@ -1888,7 +1888,7 @@ paths:
           description: payment required error
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -1903,7 +1903,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -1925,7 +1925,7 @@ paths:
       - Customers
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /customers/{id}/fiscal_entities:
     post:
       description: Create a fiscal entity resource for a given customer ID.
@@ -1974,13 +1974,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/create_customer_fiscal_entities_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -1994,7 +1994,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -2010,7 +2010,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -2025,7 +2025,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -2047,7 +2047,7 @@ paths:
       - Customers
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /customers/{id}/fiscal_entities/{fiscal_entities_id}:
     put:
       description: Update Fiscal Entity resource that corresponds to a customer ID.
@@ -2105,13 +2105,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/update_customer_fiscal_entities_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -2125,7 +2125,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -2141,7 +2141,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -2156,7 +2156,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -2178,7 +2178,7 @@ paths:
       - Customers
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /orders/{id}/discount_lines:
     get:
       description: Get discount lines for an existing order
@@ -2261,13 +2261,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/get_order_discount_lines_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -2281,7 +2281,7 @@ paths:
           description: authentication error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -2302,7 +2302,7 @@ paths:
       tags:
       - Discounts
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     post:
       description: Create discount lines for an existing order
       operationId: ordersCreateDiscountLine
@@ -2350,13 +2350,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/discount_lines_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -2370,7 +2370,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -2386,7 +2386,7 @@ paths:
           description: not found entity
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -2408,7 +2408,7 @@ paths:
       - Discounts
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /orders/{id}/discount_lines/{discount_lines_id}:
     delete:
       description: Delete an existing discount line for an existing order
@@ -2464,13 +2464,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/discount_lines_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -2484,7 +2484,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -2500,7 +2500,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -2515,7 +2515,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -2536,7 +2536,7 @@ paths:
       tags:
       - Discounts
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     get:
       description: Get an existing discount line for an existing order
       operationId: ordersGetDiscountLine
@@ -2591,13 +2591,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/discount_lines_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -2611,7 +2611,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -2627,7 +2627,7 @@ paths:
           description: not found entity
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -2648,7 +2648,7 @@ paths:
       tags:
       - Discounts
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     put:
       description: Update an existing discount line for an existing order
       operationId: ordersUpdateDiscountLines
@@ -2705,13 +2705,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/discount_lines_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -2725,7 +2725,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -2741,7 +2741,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -2756,7 +2756,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -2778,7 +2778,7 @@ paths:
       - Discounts
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /events:
     get:
       operationId: getEvents
@@ -2851,13 +2851,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/get_events_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -2871,7 +2871,7 @@ paths:
           description: authentication error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -2892,7 +2892,7 @@ paths:
       tags:
       - Events
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /events/{id}:
     get:
       description: |
@@ -2941,13 +2941,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/event_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -2961,7 +2961,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -2977,7 +2977,7 @@ paths:
           description: not found entity
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -2998,7 +2998,7 @@ paths:
       tags:
       - Events
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /events/{event_id}/webhook_logs/{webhook_log_id}/resend:
     post:
       description: |
@@ -3046,13 +3046,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/events_resend_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -3066,7 +3066,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -3082,7 +3082,7 @@ paths:
           description: not found entity
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -3103,7 +3103,7 @@ paths:
       tags:
       - Events
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /logs:
     get:
       description: |
@@ -3179,13 +3179,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/logs_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -3199,7 +3199,7 @@ paths:
           description: authentication error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -3220,7 +3220,7 @@ paths:
       tags:
       - Logs
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /logs/{id}:
     get:
       description: |
@@ -3268,13 +3268,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/log_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -3288,7 +3288,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -3304,7 +3304,7 @@ paths:
           description: not found entity
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -3325,7 +3325,7 @@ paths:
       tags:
       - Logs
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /orders:
     get:
       description: |
@@ -3401,13 +3401,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/get_orders_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -3421,7 +3421,7 @@ paths:
           description: authentication error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -3442,7 +3442,7 @@ paths:
       tags:
       - Orders
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     post:
       description: |
         Creates a new order (products + amounts + customer data).
@@ -3500,7 +3500,7 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               examples:
                 cash:
                   $ref: '#/components/examples/order_cash'
@@ -3509,7 +3509,7 @@ paths:
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -3523,7 +3523,7 @@ paths:
           description: authentication error
         "402":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The order could not be processed.
@@ -3537,7 +3537,7 @@ paths:
           description: payment required error
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -3552,7 +3552,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -3574,7 +3574,7 @@ paths:
       - Orders
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /orders/{id}:
     get:
       description: "Returns the full details of an Order by its ID. The response follows\
@@ -3624,13 +3624,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/order_response'
           description: Successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -3644,7 +3644,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -3660,7 +3660,7 @@ paths:
           description: not found entity
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -3681,7 +3681,7 @@ paths:
       tags:
       - Orders
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     put:
       description: |
         Updates an existing order by its ID.
@@ -3724,13 +3724,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/order_response'
           description: Successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -3744,7 +3744,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -3760,7 +3760,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -3775,7 +3775,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -3797,7 +3797,7 @@ paths:
       - Orders
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /orders/{id}/cancel:
     post:
       description: "Cancels an existing order. This operation marks the order as cancelled\
@@ -3847,13 +3847,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/order_response'
           description: Successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -3867,7 +3867,7 @@ paths:
           description: authentication error
         "402":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The order could not be processed.
@@ -3881,7 +3881,7 @@ paths:
           description: payment required error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -3897,7 +3897,7 @@ paths:
           description: not found entity
         "428":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: The order cannot be modified because it has already
@@ -3914,7 +3914,7 @@ paths:
           description: Precondition Required
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -3935,7 +3935,7 @@ paths:
       tags:
       - Orders
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /orders/{id}/capture:
     post:
       description: Captures (finalizes) an order that has been previously authorized.
@@ -3991,13 +3991,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/order_response'
           description: Successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -4011,7 +4011,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -4027,7 +4027,7 @@ paths:
           description: not found entity
         "428":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: The order cannot be modified because it has already
@@ -4044,7 +4044,7 @@ paths:
           description: Precondition Required
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -4064,7 +4064,7 @@ paths:
       - Orders
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /orders/{id}/line_items:
     post:
       description: Creates a new product (line item) for an existing order. Use this
@@ -4114,13 +4114,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/product_order_response'
           description: Successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -4134,7 +4134,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -4150,7 +4150,7 @@ paths:
           description: not found entity
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -4172,7 +4172,7 @@ paths:
       - Products
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /orders/{id}/line_items/{line_item_id}:
     delete:
       description: Deletes a product (line item) from an existing order. The API will
@@ -4229,13 +4229,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/product_order_response'
           description: Successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -4249,7 +4249,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -4265,7 +4265,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -4280,7 +4280,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -4301,7 +4301,7 @@ paths:
       tags:
       - Products
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     put:
       description: Updates an existing product (line item) for an existing order.
         Use this endpoint to modify the details of a specific line item in the order.
@@ -4359,13 +4359,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/product_order_response'
           description: Successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -4379,7 +4379,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -4395,7 +4395,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -4410,7 +4410,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -4432,7 +4432,7 @@ paths:
       - Products
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /orders/{id}/refunds:
     post:
       description: "Creates a refund for an order. This operation is used to refund\
@@ -4485,13 +4485,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/order_response'
           description: Successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -4505,7 +4505,7 @@ paths:
           description: authentication error
         "402":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The order could not be processed.
@@ -4519,7 +4519,7 @@ paths:
           description: payment required error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -4535,7 +4535,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -4550,7 +4550,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -4572,7 +4572,7 @@ paths:
       - Orders
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /orders/{id}/refunds/{refund_id}:
     delete:
       description: "Cancels a refund previously created for an order. This operation\
@@ -4631,13 +4631,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/order_response'
           description: Successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -4651,7 +4651,7 @@ paths:
           description: authentication error
         "402":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The order could not be processed.
@@ -4665,7 +4665,7 @@ paths:
           description: payment required error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -4681,7 +4681,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -4696,7 +4696,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -4717,7 +4717,7 @@ paths:
       tags:
       - Orders
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /checkouts:
     get:
       description: Returns a paginated list of payment links created by the merchant.
@@ -4792,13 +4792,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/checkouts_response'
           description: Successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -4812,7 +4812,7 @@ paths:
           description: authentication error
         "402":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The order could not be processed.
@@ -4826,7 +4826,7 @@ paths:
           description: payment required error
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -4841,7 +4841,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -4862,7 +4862,7 @@ paths:
       tags:
       - Payment Link
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     post:
       description: "Creates a new payment link. The request body defines the payment\
         \ link type, allowed payment methods, and expiration settings."
@@ -4902,13 +4902,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/checkout_response'
           description: Successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -4922,7 +4922,7 @@ paths:
           description: authentication error
         "402":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The order could not be processed.
@@ -4936,7 +4936,7 @@ paths:
           description: payment required error
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -4951,7 +4951,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -4973,7 +4973,7 @@ paths:
       - Payment Link
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /checkouts/{id}:
     get:
       description: Retrieves the details of a checkout by its ID.
@@ -5020,13 +5020,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/checkout_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -5040,7 +5040,7 @@ paths:
           description: authentication error
         "402":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The order could not be processed.
@@ -5054,7 +5054,7 @@ paths:
           description: payment required error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -5070,7 +5070,7 @@ paths:
           description: not found entity
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -5091,7 +5091,7 @@ paths:
       tags:
       - Payment Link
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /checkouts/{id}/cancel:
     put:
       description: "Cancels an existing payment link. After cancellation, the link\
@@ -5141,13 +5141,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/checkout_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -5161,7 +5161,7 @@ paths:
           description: authentication error
         "402":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The order could not be processed.
@@ -5175,7 +5175,7 @@ paths:
           description: payment required error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -5191,7 +5191,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -5206,7 +5206,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -5227,7 +5227,7 @@ paths:
       tags:
       - Payment Link
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /checkouts/{id}/email:
     post:
       operationId: emailCheckout
@@ -5275,13 +5275,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/checkout_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -5295,7 +5295,7 @@ paths:
           description: authentication error
         "402":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The order could not be processed.
@@ -5309,7 +5309,7 @@ paths:
           description: payment required error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -5325,7 +5325,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -5340,7 +5340,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -5362,7 +5362,7 @@ paths:
       - Payment Link
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /customers/{id}/payment_sources:
     get:
       description: Get a list of Payment Methods
@@ -5445,13 +5445,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/get_payment_method_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -5465,7 +5465,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -5481,7 +5481,7 @@ paths:
           description: not found entity
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -5502,7 +5502,7 @@ paths:
       tags:
       - Payment Methods
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     post:
       description: Creates a new payment method for a customer. The payment method
         is associated with the customer identified by `id`. The accepted fields depend
@@ -5552,13 +5552,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/create_customer_payment_methods_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -5572,7 +5572,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -5588,7 +5588,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -5603,7 +5603,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -5625,7 +5625,7 @@ paths:
       - Payment Methods
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /customers/{id}/payment_sources/{payment_method_id}:
     delete:
       description: "Deletes a specific payment method of a customer. After deletion,\
@@ -5682,13 +5682,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/update_customer_payment_methods_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -5702,7 +5702,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -5718,7 +5718,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -5733,7 +5733,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -5754,7 +5754,7 @@ paths:
       tags:
       - Payment Methods
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     put:
       description: Updates a specific payment method of a customer. Use this endpoint
         to modify the payment method identified by `payment_method_id` for the customer
@@ -5814,13 +5814,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/update_customer_payment_methods_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -5834,7 +5834,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -5850,7 +5850,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -5865,7 +5865,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -5887,7 +5887,7 @@ paths:
       - Payment Methods
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /orders/{id}/shipping_lines:
     post:
       description: Creates a new shipping line for an existing order. The shipping
@@ -5938,7 +5938,7 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               examples:
                 successful:
                   $ref: '#/components/examples/shipping'
@@ -5947,7 +5947,7 @@ paths:
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -5961,7 +5961,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -5977,7 +5977,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -5992,7 +5992,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -6014,7 +6014,7 @@ paths:
       - Shippings
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /orders/{id}/shipping_lines/{shipping_id}:
     delete:
       description: Deletes an existing shipping line from an order. The shipping line
@@ -6071,13 +6071,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/shipping_order_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -6091,7 +6091,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -6107,7 +6107,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -6122,7 +6122,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -6143,7 +6143,7 @@ paths:
       tags:
       - Shippings
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     put:
       description: Updates an existing shipping line for an order. The shipping line
         identified by `shipping_id` belongs to the order identified by `id`. Only
@@ -6202,13 +6202,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/shipping_order_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -6222,7 +6222,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -6238,7 +6238,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -6253,7 +6253,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -6275,7 +6275,7 @@ paths:
       - Shippings
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /customers/{id}/shipping_contacts:
     post:
       description: Creates a new shipping contact for a customer. The shipping contact
@@ -6325,13 +6325,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/customer_shipping_contacts_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -6345,7 +6345,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -6361,7 +6361,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -6376,7 +6376,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -6398,7 +6398,7 @@ paths:
       - Shipping Contacts
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /customers/{id}/shipping_contacts/{shipping_contacts_id}:
     delete:
       description: "Deletes an existing shipping contact for a customer. The shipping\
@@ -6456,13 +6456,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/customer_shipping_contacts_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -6476,7 +6476,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -6492,7 +6492,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -6507,7 +6507,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -6528,7 +6528,7 @@ paths:
       tags:
       - Shipping Contacts
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     put:
       description: Updates an existing shipping contact for a customer. The shipping
         contact identified by `shipping_contacts_id` belongs to the customer identified
@@ -6587,13 +6587,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/customer_shipping_contacts_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -6607,7 +6607,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -6623,7 +6623,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -6638,7 +6638,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -6660,7 +6660,7 @@ paths:
       - Shipping Contacts
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /orders/{id}/tax_lines:
     post:
       description: Creates a new tax line for an existing order. The tax line is added
@@ -6710,13 +6710,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/update_order_tax_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -6730,7 +6730,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -6746,7 +6746,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -6761,7 +6761,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -6783,7 +6783,7 @@ paths:
       - Taxes
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /orders/{id}/tax_lines/{tax_id}:
     delete:
       description: "Deletes an existing tax line from an order. The tax line identified\
@@ -6841,13 +6841,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/update_order_tax_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -6861,7 +6861,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -6877,7 +6877,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -6892,7 +6892,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -6913,7 +6913,7 @@ paths:
       tags:
       - Taxes
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     put:
       description: Updates an existing tax line for an order. The tax line identified
         by `tax_id` belongs to the order identified by `id`. Only the fields provided
@@ -6972,13 +6972,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/update_order_tax_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -6992,7 +6992,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -7008,7 +7008,7 @@ paths:
           description: not found entity
         "422":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The name does not exist.
@@ -7023,7 +7023,7 @@ paths:
           description: parameter validation error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -7045,7 +7045,7 @@ paths:
       - Taxes
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /transactions:
     get:
       description: |
@@ -7152,13 +7152,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/get_transactions_response'
           description: Successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -7172,7 +7172,7 @@ paths:
           description: authentication error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -7193,7 +7193,7 @@ paths:
       tags:
       - Transactions
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /transactions/{id}:
     get:
       description: Retrieves the details of a transaction by its ID.
@@ -7240,13 +7240,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/transaction_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -7260,7 +7260,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -7276,7 +7276,7 @@ paths:
           description: not found entity
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -7297,7 +7297,7 @@ paths:
       tags:
       - Transactions
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /transfers:
     get:
       description: |
@@ -7377,13 +7377,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/get_transfers_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -7397,7 +7397,7 @@ paths:
           description: authentication error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -7418,7 +7418,7 @@ paths:
       tags:
       - Transfers
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /transfers/{id}:
     get:
       description: Retrieves the details of a transfer by its ID.
@@ -7465,13 +7465,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/transfer_response'
           description: Successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -7485,7 +7485,7 @@ paths:
           description: authentication error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -7506,7 +7506,7 @@ paths:
       tags:
       - Transfers
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /webhook_keys:
     get:
       description: "Consume the list of webhook keys you have, each environment supports\
@@ -7581,13 +7581,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/get_webhook_keys_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -7601,7 +7601,7 @@ paths:
           description: authentication error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -7622,7 +7622,7 @@ paths:
       tags:
       - Webhook keys
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     post:
       description: Creates a new webhook signing key for the current company.
       operationId: createWebhookKey
@@ -7664,13 +7664,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/webhook-key_create_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -7684,7 +7684,7 @@ paths:
           description: authentication error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -7706,7 +7706,7 @@ paths:
       - Webhook keys
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /webhook_keys/{id}:
     delete:
       description: Deletes a webhook signing key.
@@ -7743,13 +7743,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/webhook-key_delete_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -7763,7 +7763,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -7779,7 +7779,7 @@ paths:
           description: not found entity
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -7800,7 +7800,7 @@ paths:
       tags:
       - Webhook keys
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     get:
       description: Retrieves the details of a webhook signing key by its ID.
       operationId: getWebhookKey
@@ -7846,13 +7846,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/webhook-key_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -7866,7 +7866,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -7882,7 +7882,7 @@ paths:
           description: not found entity
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -7903,7 +7903,7 @@ paths:
       tags:
       - Webhook keys
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     put:
       description: Activates or deactivates an existing webhook signing key.
       operationId: updateWebhookKey
@@ -7938,33 +7938,19 @@ paths:
         style: simple
       requestBody:
         content:
-          application/vnd.app-v2.2.0+json:
+          application/json:
             schema:
               $ref: '#/components/schemas/webhook_key_update_request'
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/webhook-key_response'
           description: successful operation
-        "401":
-          content:
-            application/vnd.app-v2.2.0+json:
-              example:
-                details:
-                - message: Please include your access key in your request.
-                  param: null
-                  code: femsa.errors.authentication.missing_key
-                log_id: 507f1f77bcf86cd799439011
-                object: error
-                type: authentication_error
-              schema:
-                $ref: '#/components/schemas/error'
-          description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -7978,9 +7964,23 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: not found entity
+        "401":
+          content:
+            application/vnd.app-v2.1.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  param: null
+                  code: femsa.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -8000,9 +8000,9 @@ paths:
       summary: Update webhook key
       tags:
       - Webhook keys
-      x-content-type: application/vnd.app-v2.2.0+json
+      x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /webhooks:
     get:
       description: "Consume the list of webhooks you have, each environment supports\
@@ -8083,18 +8083,45 @@ paths:
         schema:
           type: string
         style: form
-      requestBody:
-        $ref: '#/components/requestBodies/webhook'
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/get_webhooks_response'
           description: successful
+          headers:
+            Date:
+              description: The date and time that the response was sent
+              explode: false
+              schema:
+                example: "Fri, 03 Feb 2023 16:57:48 GMT"
+                type: string
+              style: simple
+            Content-Type:
+              description: The format of the response body
+              explode: false
+              schema:
+                example: application/json; charset=utf-8
+                type: string
+              style: simple
+            Content-Length:
+              description: The length of the response body in bytes
+              explode: false
+              schema:
+                example: "2737"
+                type: string
+              style: simple
+            Connection:
+              description: The type of connection used to transfer the response
+              explode: false
+              schema:
+                example: keep-alive
+                type: string
+              style: simple
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -8108,7 +8135,7 @@ paths:
           description: authentication error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -8125,15 +8152,17 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Get webhooks
+      summary: Get List of Webhooks
       tags:
       - Webhooks
-      x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     post:
-      description: Creates a webhook and subscribes it to events so your system can
-        receive notifications when those events occur.
+      description: "What we do at Femsa translates into events. For example, an event\
+        \ of interest to us occurs at the time a payment is successfully processed.\
+        \ At that moment we will be interested in doing several things: Send an email\
+        \ to the buyer, generate an invoice, start the process of shipping the product,\
+        \ etc."
       operationId: createWebhook
       parameters:
       - description: Use for knowing which language to use
@@ -8155,28 +8184,18 @@ paths:
           - en
           type: string
         style: simple
-      - description: "In the case of a holding company, the company id of the child\
-          \ company to which will process the request."
-        example: 6441b6376b60c3a638da80af
-        explode: false
-        in: header
-        name: X-Child-Company-Id
-        required: false
-        schema:
-          type: string
-        style: simple
       requestBody:
         $ref: '#/components/requestBodies/webhook'
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/webhook_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -8190,7 +8209,7 @@ paths:
           description: authentication error
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -8207,12 +8226,12 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Create webhook
+      summary: Create Webhook
       tags:
       - Webhooks
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /webhooks/{id}:
     delete:
       description: Deletes a webhook.
@@ -8249,13 +8268,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/webhook_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -8269,7 +8288,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -8285,7 +8304,7 @@ paths:
           description: not found entity
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -8306,7 +8325,7 @@ paths:
       tags:
       - Webhooks
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     get:
       description: Retrieves the details of a webhook by its ID.
       operationId: getWebhook
@@ -8352,13 +8371,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/webhook_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -8372,7 +8391,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -8388,7 +8407,7 @@ paths:
           description: not found entity
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -8409,7 +8428,7 @@ paths:
       tags:
       - Webhooks
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
     put:
       description: Updates an existing webhook.
       operationId: updateWebhook
@@ -8457,13 +8476,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/webhook_response'
           description: successful operation
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -8477,7 +8496,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -8493,7 +8512,7 @@ paths:
           description: not found entity
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -8515,7 +8534,7 @@ paths:
       - Webhooks
       x-content-type: application/json
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
   /webhooks/{id}/test:
     post:
       description: Sends a test event to the specified webhook to verify it can receive
@@ -8553,13 +8572,13 @@ paths:
       responses:
         "200":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/webhook_response'
           description: successful
         "401":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: Please include your access key in your request.
@@ -8573,7 +8592,7 @@ paths:
           description: authentication error
         "404":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - message: The resource was not found.
@@ -8589,7 +8608,7 @@ paths:
           description: not found entity
         "500":
           content:
-            application/vnd.app-v2.2.0+json:
+            application/vnd.app-v2.1.0+json:
               example:
                 details:
                 - debug_message: There was a runtime error and Femsa engineers have
@@ -8610,7 +8629,7 @@ paths:
       tags:
       - Webhooks
       x-accepts:
-      - application/vnd.app-v2.2.0+json
+      - application/vnd.app-v2.1.0+json
 components:
   examples:
     order_cash:
@@ -9151,7 +9170,7 @@ components:
   responses:
     "401":
       content:
-        application/vnd.app-v2.2.0+json:
+        application/vnd.app-v2.1.0+json:
           example:
             details:
             - message: Please include your access key in your request.
@@ -9165,7 +9184,7 @@ components:
       description: authentication error
     "500":
       content:
-        application/vnd.app-v2.2.0+json:
+        application/vnd.app-v2.1.0+json:
           example:
             details:
             - debug_message: There was a runtime error and Femsa engineers have been
@@ -9181,7 +9200,7 @@ components:
       description: internal server error
     "422":
       content:
-        application/vnd.app-v2.2.0+json:
+        application/vnd.app-v2.1.0+json:
           example:
             details:
             - message: The name does not exist.
@@ -9196,7 +9215,7 @@ components:
       description: parameter validation error
     "404":
       content:
-        application/vnd.app-v2.2.0+json:
+        application/vnd.app-v2.1.0+json:
           example:
             details:
             - message: The resource was not found.
@@ -9212,7 +9231,7 @@ components:
       description: not found entity
     "402":
       content:
-        application/vnd.app-v2.2.0+json:
+        application/vnd.app-v2.1.0+json:
           example:
             details:
             - message: The order could not be processed.
@@ -9226,7 +9245,7 @@ components:
       description: payment required error
     "422_whitelist":
       content:
-        application/vnd.app-v2.2.0+json:
+        application/vnd.app-v2.1.0+json:
           example:
             details:
             - debug_message: The "custom_field" parameter is not allowed
@@ -9240,7 +9259,7 @@ components:
       description: whitelist validation error
     "428":
       content:
-        application/vnd.app-v2.2.0+json:
+        application/vnd.app-v2.1.0+json:
           example:
             details:
             - debug_message: The order cannot be modified because it has already a
@@ -11474,7 +11493,7 @@ components:
       type: object
     customer_update_shipping_contacts:
       description: |-
-        [Shipping Contacts](https://developers.femsa.com/v2.2.0/reference/createcustomershippingcontacts)
+        [Shipping Contacts](https://developers.femsa.com/v2.1.0/reference/createcustomershippingcontacts)
         details for updating a customer shipping contact. Only the fields provided in the request body are updated.
       properties:
         phone:
