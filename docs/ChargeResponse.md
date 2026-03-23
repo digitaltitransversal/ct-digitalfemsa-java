@@ -7,33 +7,25 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  |
-|**livemode** | **Boolean** |  |  |
-|**createdAt** | **Long** |  |  |
-|**currency** | **String** |  |  |
+|**amount** | **Long** |  |  [optional] |
+|**channel** | [**ChargeResponseChannel**](ChargeResponseChannel.md) |  |  [optional] |
+|**createdAt** | **Long** |  |  [optional] |
+|**currency** | **String** |  |  [optional] |
+|**customerId** | **String** |  |  [optional] |
+|**description** | **String** |  |  [optional] |
+|**deviceFingerprint** | **String** |  |  [optional] |
 |**failureCode** | **String** |  |  [optional] |
 |**failureMessage** | **String** |  |  [optional] |
-|**channel** | [**ChargeResponseChannel**](ChargeResponseChannel.md) |  |  [optional] |
-|**paymentMethod** | [**ChargeResponsePaymentMethod**](ChargeResponsePaymentMethod.md) |  |  |
-|**_object** | [**ObjectEnum**](#ObjectEnum) |  |  |
-|**deviceFingerprint** | **String** |  |  [optional] |
-|**description** | **String** |  |  [optional] |
-|**isRefundable** | **Boolean** |  |  [optional] |
-|**referenceId** | **String** |  |  [optional] |
-|**status** | **String** |  |  |
-|**amount** | **Long** |  |  |
-|**paidAt** | **Long** |  |  [optional] |
-|**customerId** | **String** |  |  [optional] |
+|**id** | **String** |  |  [optional] |
+|**livemode** | **Boolean** |  |  [optional] |
+|**_object** | **String** |  |  [optional] |
 |**orderId** | **String** |  |  [optional] |
+|**paidAt** | **Long** |  |  [optional] |
+|**paymentMethod** | [**ChargeResponsePaymentMethod**](ChargeResponsePaymentMethod.md) |  |  [optional] |
+|**referenceId** | **String** | Reference ID of the charge |  [optional] |
 |**refunds** | [**ChargeResponseRefunds**](ChargeResponseRefunds.md) |  |  [optional] |
-
-
-
-## Enum: ObjectEnum
-
-| Name | Value |
-|---- | -----|
-| CHARGE | &quot;charge&quot; |
+|**status** | **String** |  |  [optional] |
+|**isRefundable** | **Boolean** |  |  [optional] |
 
 
 

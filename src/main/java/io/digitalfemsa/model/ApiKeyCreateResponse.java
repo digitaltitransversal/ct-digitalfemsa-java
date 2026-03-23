@@ -13,12 +13,10 @@
 
 package io.digitalfemsa.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.util.Objects;
 
@@ -27,110 +25,24 @@ import java.util.Objects;
  * ApiKeyCreateResponse
  */
 @JsonPropertyOrder({
-  ApiKeyCreateResponse.JSON_PROPERTY_ID,
-  ApiKeyCreateResponse.JSON_PROPERTY_OBJECT,
   ApiKeyCreateResponse.JSON_PROPERTY_ACTIVE,
-  ApiKeyCreateResponse.JSON_PROPERTY_LIVEMODE,
-  ApiKeyCreateResponse.JSON_PROPERTY_ROLE,
-  ApiKeyCreateResponse.JSON_PROPERTY_DESCRIPTION,
-  ApiKeyCreateResponse.JSON_PROPERTY_PREFIX,
   ApiKeyCreateResponse.JSON_PROPERTY_CREATED_AT,
   ApiKeyCreateResponse.JSON_PROPERTY_UPDATED_AT,
   ApiKeyCreateResponse.JSON_PROPERTY_DEACTIVATED_AT,
+  ApiKeyCreateResponse.JSON_PROPERTY_DESCRIPTION,
+  ApiKeyCreateResponse.JSON_PROPERTY_ID,
+  ApiKeyCreateResponse.JSON_PROPERTY_LIVEMODE,
   ApiKeyCreateResponse.JSON_PROPERTY_DELETED,
+  ApiKeyCreateResponse.JSON_PROPERTY_OBJECT,
+  ApiKeyCreateResponse.JSON_PROPERTY_PREFIX,
+  ApiKeyCreateResponse.JSON_PROPERTY_ROLE,
   ApiKeyCreateResponse.JSON_PROPERTY_AUTHENTICATION_TOKEN
 })
 @JsonTypeName("api_key_create_response")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class ApiKeyCreateResponse {
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
-
-  /**
-   * Object name, value is &#39;api_key&#39;
-   */
-  public enum ObjectEnum {
-    API_KEY("api_key");
-
-    private String value;
-
-    ObjectEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ObjectEnum fromValue(String value) {
-      for (ObjectEnum b : ObjectEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_OBJECT = "object";
-  private ObjectEnum _object;
-
   public static final String JSON_PROPERTY_ACTIVE = "active";
   private Boolean active;
-
-  public static final String JSON_PROPERTY_LIVEMODE = "livemode";
-  private Boolean livemode;
-
-  /**
-   * Indicates if the API key is private or public
-   */
-  public enum RoleEnum {
-    PRIVATE("private"),
-    
-    PUBLIC("public");
-
-    private String value;
-
-    RoleEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static RoleEnum fromValue(String value) {
-      for (RoleEnum b : RoleEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_ROLE = "role";
-  private RoleEnum role;
-
-  public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  private String description;
-
-  public static final String JSON_PROPERTY_PREFIX = "prefix";
-  private String prefix;
 
   public static final String JSON_PROPERTY_CREATED_AT = "created_at";
   private Long createdAt;
@@ -141,8 +53,26 @@ public class ApiKeyCreateResponse {
   public static final String JSON_PROPERTY_DEACTIVATED_AT = "deactivated_at";
   private Long deactivatedAt;
 
+  public static final String JSON_PROPERTY_DESCRIPTION = "description";
+  private String description;
+
+  public static final String JSON_PROPERTY_ID = "id";
+  private String id;
+
+  public static final String JSON_PROPERTY_LIVEMODE = "livemode";
+  private Boolean livemode;
+
   public static final String JSON_PROPERTY_DELETED = "deleted";
   private Boolean deleted;
+
+  public static final String JSON_PROPERTY_OBJECT = "object";
+  private String _object;
+
+  public static final String JSON_PROPERTY_PREFIX = "prefix";
+  private String prefix;
+
+  public static final String JSON_PROPERTY_ROLE = "role";
+  private String role;
 
   public static final String JSON_PROPERTY_AUTHENTICATION_TOKEN = "authentication_token";
   private String authenticationToken;
@@ -150,68 +80,18 @@ public class ApiKeyCreateResponse {
   public ApiKeyCreateResponse() { 
   }
 
-  public ApiKeyCreateResponse id(String id) {
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Unique identifier of the API key
-   * @return id
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public ApiKeyCreateResponse _object(ObjectEnum _object) {
-    this._object = _object;
-    return this;
-  }
-
-   /**
-   * Object name, value is &#39;api_key&#39;
-   * @return _object
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_OBJECT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public ObjectEnum getObject() {
-    return _object;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OBJECT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setObject(ObjectEnum _object) {
-    this._object = _object;
-  }
-
-
   public ApiKeyCreateResponse active(Boolean active) {
     this.active = active;
     return this;
   }
 
    /**
-   * Indicates if the API key is active
+   * Indicates if the api key is active
    * @return active
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_ACTIVE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Boolean getActive() {
     return active;
@@ -219,109 +99,9 @@ public class ApiKeyCreateResponse {
 
 
   @JsonProperty(JSON_PROPERTY_ACTIVE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setActive(Boolean active) {
     this.active = active;
-  }
-
-
-  public ApiKeyCreateResponse livemode(Boolean livemode) {
-    this.livemode = livemode;
-    return this;
-  }
-
-   /**
-   * Indicates if the API key is in production
-   * @return livemode
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_LIVEMODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Boolean getLivemode() {
-    return livemode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LIVEMODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setLivemode(Boolean livemode) {
-    this.livemode = livemode;
-  }
-
-
-  public ApiKeyCreateResponse role(RoleEnum role) {
-    this.role = role;
-    return this;
-  }
-
-   /**
-   * Indicates if the API key is private or public
-   * @return role
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ROLE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public RoleEnum getRole() {
-    return role;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ROLE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRole(RoleEnum role) {
-    this.role = role;
-  }
-
-
-  public ApiKeyCreateResponse description(String description) {
-    this.description = description;
-    return this;
-  }
-
-   /**
-   * A name or brief explanation of what this API key is used for
-   * @return description
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getDescription() {
-    return description;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-
-  public ApiKeyCreateResponse prefix(String prefix) {
-    this.prefix = prefix;
-    return this;
-  }
-
-   /**
-   * The first few characters of the authentication_token
-   * @return prefix
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_PREFIX)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getPrefix() {
-    return prefix;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PREFIX)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPrefix(String prefix) {
-    this.prefix = prefix;
   }
 
 
@@ -331,12 +111,12 @@ public class ApiKeyCreateResponse {
   }
 
    /**
-   * Unix timestamp in seconds of when the API key was created
+   * Unix timestamp in seconds of when the api key was created
    * @return createdAt
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_CREATED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Long getCreatedAt() {
     return createdAt;
@@ -344,7 +124,7 @@ public class ApiKeyCreateResponse {
 
 
   @JsonProperty(JSON_PROPERTY_CREATED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreatedAt(Long createdAt) {
     this.createdAt = createdAt;
   }
@@ -356,12 +136,12 @@ public class ApiKeyCreateResponse {
   }
 
    /**
-   * Unix timestamp in seconds of when the API key was last updated
+   * Unix timestamp in seconds of when the api key was last updated
    * @return updatedAt
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_UPDATED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Long getUpdatedAt() {
     return updatedAt;
@@ -369,7 +149,7 @@ public class ApiKeyCreateResponse {
 
 
   @JsonProperty(JSON_PROPERTY_UPDATED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUpdatedAt(Long updatedAt) {
     this.updatedAt = updatedAt;
   }
@@ -381,7 +161,7 @@ public class ApiKeyCreateResponse {
   }
 
    /**
-   * Unix timestamp in seconds of when the API key was deactivated
+   * Unix timestamp in seconds of when the api key was deleted
    * @return deactivatedAt
   **/
   @javax.annotation.Nullable
@@ -400,13 +180,88 @@ public class ApiKeyCreateResponse {
   }
 
 
+  public ApiKeyCreateResponse description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * A name or brief explanation of what this api key is used for
+   * @return description
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDescription() {
+    return description;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+
+  public ApiKeyCreateResponse id(String id) {
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Unique identifier of the api key
+   * @return id
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setId(String id) {
+    this.id = id;
+  }
+
+
+  public ApiKeyCreateResponse livemode(Boolean livemode) {
+    this.livemode = livemode;
+    return this;
+  }
+
+   /**
+   * Indicates if the api key is in production
+   * @return livemode
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_LIVEMODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getLivemode() {
+    return livemode;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_LIVEMODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLivemode(Boolean livemode) {
+    this.livemode = livemode;
+  }
+
+
   public ApiKeyCreateResponse deleted(Boolean deleted) {
     this.deleted = deleted;
     return this;
   }
 
    /**
-   * Indicates if the API key was deleted
+   * Indicates if the api key was deleted
    * @return deleted
   **/
   @javax.annotation.Nullable
@@ -422,6 +277,81 @@ public class ApiKeyCreateResponse {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDeleted(Boolean deleted) {
     this.deleted = deleted;
+  }
+
+
+  public ApiKeyCreateResponse _object(String _object) {
+    this._object = _object;
+    return this;
+  }
+
+   /**
+   * Object name, value is &#39;api_key&#39;
+   * @return _object
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_OBJECT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getObject() {
+    return _object;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_OBJECT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setObject(String _object) {
+    this._object = _object;
+  }
+
+
+  public ApiKeyCreateResponse prefix(String prefix) {
+    this.prefix = prefix;
+    return this;
+  }
+
+   /**
+   * The first few characters of the authentication_token
+   * @return prefix
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_PREFIX)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getPrefix() {
+    return prefix;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_PREFIX)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPrefix(String prefix) {
+    this.prefix = prefix;
+  }
+
+
+  public ApiKeyCreateResponse role(String role) {
+    this.role = role;
+    return this;
+  }
+
+   /**
+   * Indicates if the api key is private or public
+   * @return role
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_ROLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getRole() {
+    return role;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ROLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRole(String role) {
+    this.role = role;
   }
 
 
@@ -462,40 +392,40 @@ public class ApiKeyCreateResponse {
       return false;
     }
     ApiKeyCreateResponse apiKeyCreateResponse = (ApiKeyCreateResponse) o;
-    return Objects.equals(this.id, apiKeyCreateResponse.id) &&
-        Objects.equals(this._object, apiKeyCreateResponse._object) &&
-        Objects.equals(this.active, apiKeyCreateResponse.active) &&
-        Objects.equals(this.livemode, apiKeyCreateResponse.livemode) &&
-        Objects.equals(this.role, apiKeyCreateResponse.role) &&
-        Objects.equals(this.description, apiKeyCreateResponse.description) &&
-        Objects.equals(this.prefix, apiKeyCreateResponse.prefix) &&
+    return Objects.equals(this.active, apiKeyCreateResponse.active) &&
         Objects.equals(this.createdAt, apiKeyCreateResponse.createdAt) &&
         Objects.equals(this.updatedAt, apiKeyCreateResponse.updatedAt) &&
         Objects.equals(this.deactivatedAt, apiKeyCreateResponse.deactivatedAt) &&
+        Objects.equals(this.description, apiKeyCreateResponse.description) &&
+        Objects.equals(this.id, apiKeyCreateResponse.id) &&
+        Objects.equals(this.livemode, apiKeyCreateResponse.livemode) &&
         Objects.equals(this.deleted, apiKeyCreateResponse.deleted) &&
+        Objects.equals(this._object, apiKeyCreateResponse._object) &&
+        Objects.equals(this.prefix, apiKeyCreateResponse.prefix) &&
+        Objects.equals(this.role, apiKeyCreateResponse.role) &&
         Objects.equals(this.authenticationToken, apiKeyCreateResponse.authenticationToken);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, active, livemode, role, description, prefix, createdAt, updatedAt, deactivatedAt, deleted, authenticationToken);
+    return Objects.hash(active, createdAt, updatedAt, deactivatedAt, description, id, livemode, deleted, _object, prefix, role, authenticationToken);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ApiKeyCreateResponse {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    active: ").append(toIndentedString(active)).append("\n");
-    sb.append("    livemode: ").append(toIndentedString(livemode)).append("\n");
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    prefix: ").append(toIndentedString(prefix)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    deactivatedAt: ").append(toIndentedString(deactivatedAt)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    livemode: ").append(toIndentedString(livemode)).append("\n");
     sb.append("    deleted: ").append(toIndentedString(deleted)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    prefix: ").append(toIndentedString(prefix)).append("\n");
+    sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    authenticationToken: ").append(toIndentedString(authenticationToken)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -36,7 +36,7 @@ import java.util.Objects;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class OrderRefundRequest {
   public static final String JSON_PROPERTY_AMOUNT = "amount";
-  private Long amount;
+  private Integer amount;
 
   public static final String JSON_PROPERTY_CHARGE_ID = "charge_id";
   private String chargeId;
@@ -91,28 +91,27 @@ public class OrderRefundRequest {
   public OrderRefundRequest() { 
   }
 
-  public OrderRefundRequest amount(Long amount) {
+  public OrderRefundRequest amount(Integer amount) {
     this.amount = amount;
     return this;
   }
 
    /**
    * Amount to refund. If not provided, the API refunds the refundable amount of the selected charge.
-   * minimum: 1
    * @return amount
   **/
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_AMOUNT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public Long getAmount() {
+  public Integer getAmount() {
     return amount;
   }
 
 
   @JsonProperty(JSON_PROPERTY_AMOUNT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAmount(Long amount) {
+  public void setAmount(Integer amount) {
     this.amount = amount;
   }
 

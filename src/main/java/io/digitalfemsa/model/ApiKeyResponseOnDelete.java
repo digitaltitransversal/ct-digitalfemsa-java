@@ -13,12 +13,10 @@
 
 package io.digitalfemsa.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.util.Objects;
 
@@ -58,82 +56,14 @@ public class ApiKeyResponseOnDelete {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
 
-  /**
-   * Object name, value is &#39;api_key&#39;
-   */
-  public enum ObjectEnum {
-    API_KEY("api_key");
-
-    private String value;
-
-    ObjectEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ObjectEnum fromValue(String value) {
-      for (ObjectEnum b : ObjectEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_OBJECT = "object";
-  private ObjectEnum _object;
+  private String _object;
 
   public static final String JSON_PROPERTY_DELETED = "deleted";
   private Boolean deleted;
 
-  /**
-   * Indicates if the api key is private or public
-   */
-  public enum RoleEnum {
-    PRIVATE("private"),
-    
-    PUBLIC("public");
-
-    private String value;
-
-    RoleEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static RoleEnum fromValue(String value) {
-      for (RoleEnum b : RoleEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_ROLE = "role";
-  private RoleEnum role;
+  private String role;
 
   public ApiKeyResponseOnDelete() { 
   }
@@ -147,9 +77,9 @@ public class ApiKeyResponseOnDelete {
    * Indicates if the api key is active
    * @return active
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_ACTIVE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Boolean getActive() {
     return active;
@@ -157,7 +87,7 @@ public class ApiKeyResponseOnDelete {
 
 
   @JsonProperty(JSON_PROPERTY_ACTIVE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setActive(Boolean active) {
     this.active = active;
   }
@@ -172,9 +102,9 @@ public class ApiKeyResponseOnDelete {
    * Unix timestamp in seconds of when the api key was created
    * @return createdAt
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_CREATED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Long getCreatedAt() {
     return createdAt;
@@ -182,7 +112,7 @@ public class ApiKeyResponseOnDelete {
 
 
   @JsonProperty(JSON_PROPERTY_CREATED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreatedAt(Long createdAt) {
     this.createdAt = createdAt;
   }
@@ -197,9 +127,9 @@ public class ApiKeyResponseOnDelete {
    * A name or brief explanation of what this api key is used for
    * @return description
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getDescription() {
     return description;
@@ -207,7 +137,7 @@ public class ApiKeyResponseOnDelete {
 
 
   @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDescription(String description) {
     this.description = description;
   }
@@ -222,9 +152,9 @@ public class ApiKeyResponseOnDelete {
    * Indicates if the api key is in production
    * @return livemode
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_LIVEMODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Boolean getLivemode() {
     return livemode;
@@ -232,7 +162,7 @@ public class ApiKeyResponseOnDelete {
 
 
   @JsonProperty(JSON_PROPERTY_LIVEMODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLivemode(Boolean livemode) {
     this.livemode = livemode;
   }
@@ -247,9 +177,9 @@ public class ApiKeyResponseOnDelete {
    * The first few characters of the authentication_token
    * @return prefix
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_PREFIX)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getPrefix() {
     return prefix;
@@ -257,7 +187,7 @@ public class ApiKeyResponseOnDelete {
 
 
   @JsonProperty(JSON_PROPERTY_PREFIX)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPrefix(String prefix) {
     this.prefix = prefix;
   }
@@ -272,9 +202,9 @@ public class ApiKeyResponseOnDelete {
    * Unique identifier of the api key
    * @return id
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getId() {
     return id;
@@ -282,13 +212,13 @@ public class ApiKeyResponseOnDelete {
 
 
   @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
 
 
-  public ApiKeyResponseOnDelete _object(ObjectEnum _object) {
+  public ApiKeyResponseOnDelete _object(String _object) {
     this._object = _object;
     return this;
   }
@@ -297,18 +227,18 @@ public class ApiKeyResponseOnDelete {
    * Object name, value is &#39;api_key&#39;
    * @return _object
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_OBJECT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public ObjectEnum getObject() {
+  public String getObject() {
     return _object;
   }
 
 
   @JsonProperty(JSON_PROPERTY_OBJECT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setObject(ObjectEnum _object) {
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setObject(String _object) {
     this._object = _object;
   }
 
@@ -322,9 +252,9 @@ public class ApiKeyResponseOnDelete {
    * Indicates if the api key was deleted
    * @return deleted
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_DELETED)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Boolean getDeleted() {
     return deleted;
@@ -332,13 +262,13 @@ public class ApiKeyResponseOnDelete {
 
 
   @JsonProperty(JSON_PROPERTY_DELETED)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDeleted(Boolean deleted) {
     this.deleted = deleted;
   }
 
 
-  public ApiKeyResponseOnDelete role(RoleEnum role) {
+  public ApiKeyResponseOnDelete role(String role) {
     this.role = role;
     return this;
   }
@@ -347,18 +277,18 @@ public class ApiKeyResponseOnDelete {
    * Indicates if the api key is private or public
    * @return role
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_ROLE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public RoleEnum getRole() {
+  public String getRole() {
     return role;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ROLE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRole(RoleEnum role) {
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRole(String role) {
     this.role = role;
   }
 

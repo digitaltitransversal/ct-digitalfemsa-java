@@ -28,15 +28,15 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({
   BalanceResponse.JSON_PROPERTY_AVAILABLE,
-  BalanceResponse.JSON_PROPERTY_PENDING,
-  BalanceResponse.JSON_PROPERTY_RETENTION_AMOUNT,
-  BalanceResponse.JSON_PROPERTY_RETAINED,
-  BalanceResponse.JSON_PROPERTY_TEMPORARILY_RETAINED,
-  BalanceResponse.JSON_PROPERTY_TARGET_RETENTION_AMOUNT,
-  BalanceResponse.JSON_PROPERTY_TARGET_TEMPORARY_RETENTION_AMOUNT,
-  BalanceResponse.JSON_PROPERTY_TARGET_COLLATERAL_AMOUNT,
+  BalanceResponse.JSON_PROPERTY_CASHOUT_RETENTION_AMOUNT,
+  BalanceResponse.JSON_PROPERTY_CONEKTA_RETENTION,
   BalanceResponse.JSON_PROPERTY_GATEWAY,
-  BalanceResponse.JSON_PROPERTY_CASHOUT_RETENTION_DEBITED
+  BalanceResponse.JSON_PROPERTY_PENDING,
+  BalanceResponse.JSON_PROPERTY_RETAINED,
+  BalanceResponse.JSON_PROPERTY_RETENTION_AMOUNT,
+  BalanceResponse.JSON_PROPERTY_TARGET_COLLATERAL_AMOUNT,
+  BalanceResponse.JSON_PROPERTY_TARGET_RETENTION_AMOUNT,
+  BalanceResponse.JSON_PROPERTY_TEMPORARILY_RETAINED
 })
 @JsonTypeName("balance_response")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
@@ -44,32 +44,32 @@ public class BalanceResponse {
   public static final String JSON_PROPERTY_AVAILABLE = "available";
   private List<BalanceCommonField> available = new ArrayList<>();
 
-  public static final String JSON_PROPERTY_PENDING = "pending";
-  private List<BalanceCommonField> pending = new ArrayList<>();
+  public static final String JSON_PROPERTY_CASHOUT_RETENTION_AMOUNT = "cashout_retention_amount";
+  private List<BalanceCommonField> cashoutRetentionAmount = new ArrayList<>();
 
-  public static final String JSON_PROPERTY_RETENTION_AMOUNT = "retention_amount";
-  private List<BalanceCommonField> retentionAmount = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_RETAINED = "retained";
-  private List<BalanceCommonField> retained = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_TEMPORARILY_RETAINED = "temporarily_retained";
-  private List<BalanceCommonField> temporarilyRetained = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_TARGET_RETENTION_AMOUNT = "target_retention_amount";
-  private List<BalanceCommonField> targetRetentionAmount = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_TARGET_TEMPORARY_RETENTION_AMOUNT = "target_temporary_retention_amount";
-  private List<BalanceCommonField> targetTemporaryRetentionAmount = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_TARGET_COLLATERAL_AMOUNT = "target_collateral_amount";
-  private List<BalanceCommonField> targetCollateralAmount = new ArrayList<>();
+  public static final String JSON_PROPERTY_CONEKTA_RETENTION = "conekta_retention";
+  private List<BalanceCommonField> conektaRetention = new ArrayList<>();
 
   public static final String JSON_PROPERTY_GATEWAY = "gateway";
   private List<BalanceCommonField> gateway = new ArrayList<>();
 
-  public static final String JSON_PROPERTY_CASHOUT_RETENTION_DEBITED = "cashout_retention_debited";
-  private List<BalanceCommonField> cashoutRetentionDebited = new ArrayList<>();
+  public static final String JSON_PROPERTY_PENDING = "pending";
+  private List<BalanceCommonField> pending = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_RETAINED = "retained";
+  private List<BalanceCommonField> retained = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_RETENTION_AMOUNT = "retention_amount";
+  private List<BalanceCommonField> retentionAmount = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_TARGET_COLLATERAL_AMOUNT = "target_collateral_amount";
+  private Object targetCollateralAmount;
+
+  public static final String JSON_PROPERTY_TARGET_RETENTION_AMOUNT = "target_retention_amount";
+  private List<BalanceCommonField> targetRetentionAmount = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_TEMPORARILY_RETAINED = "temporarily_retained";
+  private List<BalanceCommonField> temporarilyRetained = new ArrayList<>();
 
   public BalanceResponse() { 
   }
@@ -91,9 +91,9 @@ public class BalanceResponse {
    * Amounts currently available, grouped by currency.
    * @return available
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_AVAILABLE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public List<BalanceCommonField> getAvailable() {
     return available;
@@ -101,240 +101,75 @@ public class BalanceResponse {
 
 
   @JsonProperty(JSON_PROPERTY_AVAILABLE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAvailable(List<BalanceCommonField> available) {
     this.available = available;
   }
 
 
-  public BalanceResponse pending(List<BalanceCommonField> pending) {
-    this.pending = pending;
+  public BalanceResponse cashoutRetentionAmount(List<BalanceCommonField> cashoutRetentionAmount) {
+    this.cashoutRetentionAmount = cashoutRetentionAmount;
     return this;
   }
 
-  public BalanceResponse addPendingItem(BalanceCommonField pendingItem) {
-    if (this.pending == null) {
-      this.pending = new ArrayList<>();
+  public BalanceResponse addCashoutRetentionAmountItem(BalanceCommonField cashoutRetentionAmountItem) {
+    if (this.cashoutRetentionAmount == null) {
+      this.cashoutRetentionAmount = new ArrayList<>();
     }
-    this.pending.add(pendingItem);
+    this.cashoutRetentionAmount.add(cashoutRetentionAmountItem);
     return this;
   }
 
    /**
-   * Amounts pending settlement, grouped by currency.
-   * @return pending
+   * The balance&#39;s cashout retention amount
+   * @return cashoutRetentionAmount
   **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_PENDING)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_CASHOUT_RETENTION_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<BalanceCommonField> getPending() {
-    return pending;
+  public List<BalanceCommonField> getCashoutRetentionAmount() {
+    return cashoutRetentionAmount;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PENDING)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPending(List<BalanceCommonField> pending) {
-    this.pending = pending;
+  @JsonProperty(JSON_PROPERTY_CASHOUT_RETENTION_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCashoutRetentionAmount(List<BalanceCommonField> cashoutRetentionAmount) {
+    this.cashoutRetentionAmount = cashoutRetentionAmount;
   }
 
 
-  public BalanceResponse retentionAmount(List<BalanceCommonField> retentionAmount) {
-    this.retentionAmount = retentionAmount;
+  public BalanceResponse conektaRetention(List<BalanceCommonField> conektaRetention) {
+    this.conektaRetention = conektaRetention;
     return this;
   }
 
-  public BalanceResponse addRetentionAmountItem(BalanceCommonField retentionAmountItem) {
-    if (this.retentionAmount == null) {
-      this.retentionAmount = new ArrayList<>();
+  public BalanceResponse addConektaRetentionItem(BalanceCommonField conektaRetentionItem) {
+    if (this.conektaRetention == null) {
+      this.conektaRetention = new ArrayList<>();
     }
-    this.retentionAmount.add(retentionAmountItem);
+    this.conektaRetention.add(conektaRetentionItem);
     return this;
   }
 
    /**
-   * Retention amount applied, grouped by currency.
-   * @return retentionAmount
+   * The balance&#39;s Femsa retention
+   * @return conektaRetention
   **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_RETENTION_AMOUNT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_CONEKTA_RETENTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<BalanceCommonField> getRetentionAmount() {
-    return retentionAmount;
+  public List<BalanceCommonField> getConektaRetention() {
+    return conektaRetention;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RETENTION_AMOUNT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRetentionAmount(List<BalanceCommonField> retentionAmount) {
-    this.retentionAmount = retentionAmount;
-  }
-
-
-  public BalanceResponse retained(List<BalanceCommonField> retained) {
-    this.retained = retained;
-    return this;
-  }
-
-  public BalanceResponse addRetainedItem(BalanceCommonField retainedItem) {
-    if (this.retained == null) {
-      this.retained = new ArrayList<>();
-    }
-    this.retained.add(retainedItem);
-    return this;
-  }
-
-   /**
-   * Amounts currently retained, grouped by currency.
-   * @return retained
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_RETAINED)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public List<BalanceCommonField> getRetained() {
-    return retained;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RETAINED)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRetained(List<BalanceCommonField> retained) {
-    this.retained = retained;
-  }
-
-
-  public BalanceResponse temporarilyRetained(List<BalanceCommonField> temporarilyRetained) {
-    this.temporarilyRetained = temporarilyRetained;
-    return this;
-  }
-
-  public BalanceResponse addTemporarilyRetainedItem(BalanceCommonField temporarilyRetainedItem) {
-    if (this.temporarilyRetained == null) {
-      this.temporarilyRetained = new ArrayList<>();
-    }
-    this.temporarilyRetained.add(temporarilyRetainedItem);
-    return this;
-  }
-
-   /**
-   * Amounts temporarily retained, grouped by currency.
-   * @return temporarilyRetained
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TEMPORARILY_RETAINED)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public List<BalanceCommonField> getTemporarilyRetained() {
-    return temporarilyRetained;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TEMPORARILY_RETAINED)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTemporarilyRetained(List<BalanceCommonField> temporarilyRetained) {
-    this.temporarilyRetained = temporarilyRetained;
-  }
-
-
-  public BalanceResponse targetRetentionAmount(List<BalanceCommonField> targetRetentionAmount) {
-    this.targetRetentionAmount = targetRetentionAmount;
-    return this;
-  }
-
-  public BalanceResponse addTargetRetentionAmountItem(BalanceCommonField targetRetentionAmountItem) {
-    if (this.targetRetentionAmount == null) {
-      this.targetRetentionAmount = new ArrayList<>();
-    }
-    this.targetRetentionAmount.add(targetRetentionAmountItem);
-    return this;
-  }
-
-   /**
-   * Target retention amount, grouped by currency.
-   * @return targetRetentionAmount
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TARGET_RETENTION_AMOUNT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public List<BalanceCommonField> getTargetRetentionAmount() {
-    return targetRetentionAmount;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TARGET_RETENTION_AMOUNT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTargetRetentionAmount(List<BalanceCommonField> targetRetentionAmount) {
-    this.targetRetentionAmount = targetRetentionAmount;
-  }
-
-
-  public BalanceResponse targetTemporaryRetentionAmount(List<BalanceCommonField> targetTemporaryRetentionAmount) {
-    this.targetTemporaryRetentionAmount = targetTemporaryRetentionAmount;
-    return this;
-  }
-
-  public BalanceResponse addTargetTemporaryRetentionAmountItem(BalanceCommonField targetTemporaryRetentionAmountItem) {
-    if (this.targetTemporaryRetentionAmount == null) {
-      this.targetTemporaryRetentionAmount = new ArrayList<>();
-    }
-    this.targetTemporaryRetentionAmount.add(targetTemporaryRetentionAmountItem);
-    return this;
-  }
-
-   /**
-   * Target temporary retention amount, grouped by currency.
-   * @return targetTemporaryRetentionAmount
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TARGET_TEMPORARY_RETENTION_AMOUNT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public List<BalanceCommonField> getTargetTemporaryRetentionAmount() {
-    return targetTemporaryRetentionAmount;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TARGET_TEMPORARY_RETENTION_AMOUNT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTargetTemporaryRetentionAmount(List<BalanceCommonField> targetTemporaryRetentionAmount) {
-    this.targetTemporaryRetentionAmount = targetTemporaryRetentionAmount;
-  }
-
-
-  public BalanceResponse targetCollateralAmount(List<BalanceCommonField> targetCollateralAmount) {
-    this.targetCollateralAmount = targetCollateralAmount;
-    return this;
-  }
-
-  public BalanceResponse addTargetCollateralAmountItem(BalanceCommonField targetCollateralAmountItem) {
-    if (this.targetCollateralAmount == null) {
-      this.targetCollateralAmount = new ArrayList<>();
-    }
-    this.targetCollateralAmount.add(targetCollateralAmountItem);
-    return this;
-  }
-
-   /**
-   * Target collateral amount, grouped by currency.
-   * @return targetCollateralAmount
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TARGET_COLLATERAL_AMOUNT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public List<BalanceCommonField> getTargetCollateralAmount() {
-    return targetCollateralAmount;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TARGET_COLLATERAL_AMOUNT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTargetCollateralAmount(List<BalanceCommonField> targetCollateralAmount) {
-    this.targetCollateralAmount = targetCollateralAmount;
+  @JsonProperty(JSON_PROPERTY_CONEKTA_RETENTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setConektaRetention(List<BalanceCommonField> conektaRetention) {
+    this.conektaRetention = conektaRetention;
   }
 
 
@@ -355,9 +190,9 @@ public class BalanceResponse {
    * Gateway balance amounts, grouped by currency.
    * @return gateway
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_GATEWAY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public List<BalanceCommonField> getGateway() {
     return gateway;
@@ -365,42 +200,199 @@ public class BalanceResponse {
 
 
   @JsonProperty(JSON_PROPERTY_GATEWAY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGateway(List<BalanceCommonField> gateway) {
     this.gateway = gateway;
   }
 
 
-  public BalanceResponse cashoutRetentionDebited(List<BalanceCommonField> cashoutRetentionDebited) {
-    this.cashoutRetentionDebited = cashoutRetentionDebited;
+  public BalanceResponse pending(List<BalanceCommonField> pending) {
+    this.pending = pending;
     return this;
   }
 
-  public BalanceResponse addCashoutRetentionDebitedItem(BalanceCommonField cashoutRetentionDebitedItem) {
-    if (this.cashoutRetentionDebited == null) {
-      this.cashoutRetentionDebited = new ArrayList<>();
+  public BalanceResponse addPendingItem(BalanceCommonField pendingItem) {
+    if (this.pending == null) {
+      this.pending = new ArrayList<>();
     }
-    this.cashoutRetentionDebited.add(cashoutRetentionDebitedItem);
+    this.pending.add(pendingItem);
     return this;
   }
 
    /**
-   * Cashout retention debited amounts, grouped by currency.
-   * @return cashoutRetentionDebited
+   * Amounts pending settlement, grouped by currency.
+   * @return pending
   **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_CASHOUT_RETENTION_DEBITED)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_PENDING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<BalanceCommonField> getCashoutRetentionDebited() {
-    return cashoutRetentionDebited;
+  public List<BalanceCommonField> getPending() {
+    return pending;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CASHOUT_RETENTION_DEBITED)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCashoutRetentionDebited(List<BalanceCommonField> cashoutRetentionDebited) {
-    this.cashoutRetentionDebited = cashoutRetentionDebited;
+  @JsonProperty(JSON_PROPERTY_PENDING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPending(List<BalanceCommonField> pending) {
+    this.pending = pending;
+  }
+
+
+  public BalanceResponse retained(List<BalanceCommonField> retained) {
+    this.retained = retained;
+    return this;
+  }
+
+  public BalanceResponse addRetainedItem(BalanceCommonField retainedItem) {
+    if (this.retained == null) {
+      this.retained = new ArrayList<>();
+    }
+    this.retained.add(retainedItem);
+    return this;
+  }
+
+   /**
+   * Amounts currently retained, grouped by currency.
+   * @return retained
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_RETAINED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<BalanceCommonField> getRetained() {
+    return retained;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_RETAINED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRetained(List<BalanceCommonField> retained) {
+    this.retained = retained;
+  }
+
+
+  public BalanceResponse retentionAmount(List<BalanceCommonField> retentionAmount) {
+    this.retentionAmount = retentionAmount;
+    return this;
+  }
+
+  public BalanceResponse addRetentionAmountItem(BalanceCommonField retentionAmountItem) {
+    if (this.retentionAmount == null) {
+      this.retentionAmount = new ArrayList<>();
+    }
+    this.retentionAmount.add(retentionAmountItem);
+    return this;
+  }
+
+   /**
+   * Retention amount applied, grouped by currency.
+   * @return retentionAmount
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_RETENTION_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<BalanceCommonField> getRetentionAmount() {
+    return retentionAmount;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_RETENTION_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRetentionAmount(List<BalanceCommonField> retentionAmount) {
+    this.retentionAmount = retentionAmount;
+  }
+
+
+  public BalanceResponse targetCollateralAmount(Object targetCollateralAmount) {
+    this.targetCollateralAmount = targetCollateralAmount;
+    return this;
+  }
+
+   /**
+   * Target collateral amount, grouped by currency.
+   * @return targetCollateralAmount
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_TARGET_COLLATERAL_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Object getTargetCollateralAmount() {
+    return targetCollateralAmount;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TARGET_COLLATERAL_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTargetCollateralAmount(Object targetCollateralAmount) {
+    this.targetCollateralAmount = targetCollateralAmount;
+  }
+
+
+  public BalanceResponse targetRetentionAmount(List<BalanceCommonField> targetRetentionAmount) {
+    this.targetRetentionAmount = targetRetentionAmount;
+    return this;
+  }
+
+  public BalanceResponse addTargetRetentionAmountItem(BalanceCommonField targetRetentionAmountItem) {
+    if (this.targetRetentionAmount == null) {
+      this.targetRetentionAmount = new ArrayList<>();
+    }
+    this.targetRetentionAmount.add(targetRetentionAmountItem);
+    return this;
+  }
+
+   /**
+   * Target retention amount, grouped by currency.
+   * @return targetRetentionAmount
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_TARGET_RETENTION_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<BalanceCommonField> getTargetRetentionAmount() {
+    return targetRetentionAmount;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TARGET_RETENTION_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTargetRetentionAmount(List<BalanceCommonField> targetRetentionAmount) {
+    this.targetRetentionAmount = targetRetentionAmount;
+  }
+
+
+  public BalanceResponse temporarilyRetained(List<BalanceCommonField> temporarilyRetained) {
+    this.temporarilyRetained = temporarilyRetained;
+    return this;
+  }
+
+  public BalanceResponse addTemporarilyRetainedItem(BalanceCommonField temporarilyRetainedItem) {
+    if (this.temporarilyRetained == null) {
+      this.temporarilyRetained = new ArrayList<>();
+    }
+    this.temporarilyRetained.add(temporarilyRetainedItem);
+    return this;
+  }
+
+   /**
+   * Amounts temporarily retained
+   * @return temporarilyRetained
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_TEMPORARILY_RETAINED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<BalanceCommonField> getTemporarilyRetained() {
+    return temporarilyRetained;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TEMPORARILY_RETAINED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTemporarilyRetained(List<BalanceCommonField> temporarilyRetained) {
+    this.temporarilyRetained = temporarilyRetained;
   }
 
 
@@ -417,20 +409,20 @@ public class BalanceResponse {
     }
     BalanceResponse balanceResponse = (BalanceResponse) o;
     return Objects.equals(this.available, balanceResponse.available) &&
-        Objects.equals(this.pending, balanceResponse.pending) &&
-        Objects.equals(this.retentionAmount, balanceResponse.retentionAmount) &&
-        Objects.equals(this.retained, balanceResponse.retained) &&
-        Objects.equals(this.temporarilyRetained, balanceResponse.temporarilyRetained) &&
-        Objects.equals(this.targetRetentionAmount, balanceResponse.targetRetentionAmount) &&
-        Objects.equals(this.targetTemporaryRetentionAmount, balanceResponse.targetTemporaryRetentionAmount) &&
-        Objects.equals(this.targetCollateralAmount, balanceResponse.targetCollateralAmount) &&
+        Objects.equals(this.cashoutRetentionAmount, balanceResponse.cashoutRetentionAmount) &&
+        Objects.equals(this.conektaRetention, balanceResponse.conektaRetention) &&
         Objects.equals(this.gateway, balanceResponse.gateway) &&
-        Objects.equals(this.cashoutRetentionDebited, balanceResponse.cashoutRetentionDebited);
+        Objects.equals(this.pending, balanceResponse.pending) &&
+        Objects.equals(this.retained, balanceResponse.retained) &&
+        Objects.equals(this.retentionAmount, balanceResponse.retentionAmount) &&
+        Objects.equals(this.targetCollateralAmount, balanceResponse.targetCollateralAmount) &&
+        Objects.equals(this.targetRetentionAmount, balanceResponse.targetRetentionAmount) &&
+        Objects.equals(this.temporarilyRetained, balanceResponse.temporarilyRetained);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(available, pending, retentionAmount, retained, temporarilyRetained, targetRetentionAmount, targetTemporaryRetentionAmount, targetCollateralAmount, gateway, cashoutRetentionDebited);
+    return Objects.hash(available, cashoutRetentionAmount, conektaRetention, gateway, pending, retained, retentionAmount, targetCollateralAmount, targetRetentionAmount, temporarilyRetained);
   }
 
   @Override
@@ -438,15 +430,15 @@ public class BalanceResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class BalanceResponse {\n");
     sb.append("    available: ").append(toIndentedString(available)).append("\n");
-    sb.append("    pending: ").append(toIndentedString(pending)).append("\n");
-    sb.append("    retentionAmount: ").append(toIndentedString(retentionAmount)).append("\n");
-    sb.append("    retained: ").append(toIndentedString(retained)).append("\n");
-    sb.append("    temporarilyRetained: ").append(toIndentedString(temporarilyRetained)).append("\n");
-    sb.append("    targetRetentionAmount: ").append(toIndentedString(targetRetentionAmount)).append("\n");
-    sb.append("    targetTemporaryRetentionAmount: ").append(toIndentedString(targetTemporaryRetentionAmount)).append("\n");
-    sb.append("    targetCollateralAmount: ").append(toIndentedString(targetCollateralAmount)).append("\n");
+    sb.append("    cashoutRetentionAmount: ").append(toIndentedString(cashoutRetentionAmount)).append("\n");
+    sb.append("    conektaRetention: ").append(toIndentedString(conektaRetention)).append("\n");
     sb.append("    gateway: ").append(toIndentedString(gateway)).append("\n");
-    sb.append("    cashoutRetentionDebited: ").append(toIndentedString(cashoutRetentionDebited)).append("\n");
+    sb.append("    pending: ").append(toIndentedString(pending)).append("\n");
+    sb.append("    retained: ").append(toIndentedString(retained)).append("\n");
+    sb.append("    retentionAmount: ").append(toIndentedString(retentionAmount)).append("\n");
+    sb.append("    targetCollateralAmount: ").append(toIndentedString(targetCollateralAmount)).append("\n");
+    sb.append("    targetRetentionAmount: ").append(toIndentedString(targetRetentionAmount)).append("\n");
+    sb.append("    temporarilyRetained: ").append(toIndentedString(temporarilyRetained)).append("\n");
     sb.append("}");
     return sb.toString();
   }

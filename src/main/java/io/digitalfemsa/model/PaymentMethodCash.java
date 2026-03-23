@@ -13,12 +13,10 @@
 
 package io.digitalfemsa.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.util.Objects;
 
@@ -44,41 +42,8 @@ public class PaymentMethodCash {
   public static final String JSON_PROPERTY_TYPE = "type";
   private String type;
 
-  /**
-   * Gets or Sets _object
-   */
-  public enum ObjectEnum {
-    CASH_PAYMENT("cash_payment");
-
-    private String value;
-
-    ObjectEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ObjectEnum fromValue(String value) {
-      for (ObjectEnum b : ObjectEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_OBJECT = "object";
-  private ObjectEnum _object;
+  private String _object;
 
   public static final String JSON_PROPERTY_AUTH_CODE = "auth_code";
   private String authCode;
@@ -113,7 +78,7 @@ public class PaymentMethodCash {
   }
 
    /**
-   * Cash payment type
+   * Get type
    * @return type
   **/
   @javax.annotation.Nullable
@@ -132,7 +97,7 @@ public class PaymentMethodCash {
   }
 
 
-  public PaymentMethodCash _object(ObjectEnum _object) {
+  public PaymentMethodCash _object(String _object) {
     this._object = _object;
     return this;
   }
@@ -145,14 +110,14 @@ public class PaymentMethodCash {
   @JsonProperty(JSON_PROPERTY_OBJECT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public ObjectEnum getObject() {
+  public String getObject() {
     return _object;
   }
 
 
   @JsonProperty(JSON_PROPERTY_OBJECT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setObject(ObjectEnum _object) {
+  public void setObject(String _object) {
     this._object = _object;
   }
 

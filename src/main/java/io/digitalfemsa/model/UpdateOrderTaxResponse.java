@@ -32,8 +32,7 @@ import java.util.Objects;
   UpdateOrderTaxResponse.JSON_PROPERTY_METADATA,
   UpdateOrderTaxResponse.JSON_PROPERTY_ID,
   UpdateOrderTaxResponse.JSON_PROPERTY_OBJECT,
-  UpdateOrderTaxResponse.JSON_PROPERTY_PARENT_ID,
-  UpdateOrderTaxResponse.JSON_PROPERTY_DELETED
+  UpdateOrderTaxResponse.JSON_PROPERTY_PARENT_ID
 })
 @JsonTypeName("update_order_tax_response")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
@@ -55,9 +54,6 @@ public class UpdateOrderTaxResponse {
 
   public static final String JSON_PROPERTY_PARENT_ID = "parent_id";
   private String parentId;
-
-  public static final String JSON_PROPERTY_DELETED = "deleted";
-  private Boolean deleted;
 
   public UpdateOrderTaxResponse() { 
   }
@@ -221,31 +217,6 @@ public class UpdateOrderTaxResponse {
   }
 
 
-  public UpdateOrderTaxResponse deleted(Boolean deleted) {
-    this.deleted = deleted;
-    return this;
-  }
-
-   /**
-   * Present only when the tax line was deleted.
-   * @return deleted
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DELETED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Boolean getDeleted() {
-    return deleted;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DELETED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeleted(Boolean deleted) {
-    this.deleted = deleted;
-  }
-
-
   /**
    * Return true if this update_order_tax_response object is equal to o.
    */
@@ -263,13 +234,12 @@ public class UpdateOrderTaxResponse {
         Objects.equals(this.metadata, updateOrderTaxResponse.metadata) &&
         Objects.equals(this.id, updateOrderTaxResponse.id) &&
         Objects.equals(this._object, updateOrderTaxResponse._object) &&
-        Objects.equals(this.parentId, updateOrderTaxResponse.parentId) &&
-        Objects.equals(this.deleted, updateOrderTaxResponse.deleted);
+        Objects.equals(this.parentId, updateOrderTaxResponse.parentId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, description, metadata, id, _object, parentId, deleted);
+    return Objects.hash(amount, description, metadata, id, _object, parentId);
   }
 
   @Override
@@ -282,7 +252,6 @@ public class UpdateOrderTaxResponse {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
-    sb.append("    deleted: ").append(toIndentedString(deleted)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -8,7 +8,7 @@ Request body to update a charge. Only `reference_id` can be updated.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**referenceId** | **String** | Custom reference ID. |  [optional] |
+|**referenceId** | **String** | custom reference id |  [optional] |
 
 
 

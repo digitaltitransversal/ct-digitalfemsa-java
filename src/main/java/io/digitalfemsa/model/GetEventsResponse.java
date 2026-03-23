@@ -171,9 +171,9 @@ public class GetEventsResponse {
    * Get data
    * @return data
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public List<EventResponse> getData() {
     return data;
@@ -181,7 +181,7 @@ public class GetEventsResponse {
 
 
   @JsonProperty(JSON_PROPERTY_DATA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setData(List<EventResponse> data) {
     this.data = data;
   }

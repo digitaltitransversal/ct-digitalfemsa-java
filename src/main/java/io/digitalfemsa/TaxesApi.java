@@ -189,7 +189,7 @@ public class TaxesApi {
    * Updates an existing tax line for an order. The tax line identified by &#x60;tax_id&#x60; belongs to the order identified by &#x60;id&#x60;. Only the fields provided in the request body are updated.
    * @param id Identifier of the resource (required)
    * @param taxId identifier (required)
-   * @param updateOrderTaxRequest Request body for creating a tax line. (required)
+   * @param updateOrderTaxRequest Request body for updating a tax line. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return UpdateOrderTaxResponse
@@ -213,7 +213,7 @@ public class TaxesApi {
    * Updates an existing tax line for an order. The tax line identified by &#x60;tax_id&#x60; belongs to the order identified by &#x60;id&#x60;. Only the fields provided in the request body are updated.
    * @param id Identifier of the resource (required)
    * @param taxId identifier (required)
-   * @param updateOrderTaxRequest Request body for creating a tax line. (required)
+   * @param updateOrderTaxRequest Request body for updating a tax line. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return ApiResponse&lt;UpdateOrderTaxResponse&gt;

@@ -25,90 +25,36 @@ import java.util.Objects;
  * Represents a webhook signing key after it has been deleted.
  */
 @JsonPropertyOrder({
-  WebhookKeyDeleteResponse.JSON_PROPERTY_ID,
-  WebhookKeyDeleteResponse.JSON_PROPERTY_OBJECT,
   WebhookKeyDeleteResponse.JSON_PROPERTY_ACTIVE,
-  WebhookKeyDeleteResponse.JSON_PROPERTY_LIVEMODE,
   WebhookKeyDeleteResponse.JSON_PROPERTY_CREATED_AT,
-  WebhookKeyDeleteResponse.JSON_PROPERTY_DEACTIVATED_AT,
-  WebhookKeyDeleteResponse.JSON_PROPERTY_DELETED
+  WebhookKeyDeleteResponse.JSON_PROPERTY_DELETED,
+  WebhookKeyDeleteResponse.JSON_PROPERTY_ID,
+  WebhookKeyDeleteResponse.JSON_PROPERTY_LIVEMODE,
+  WebhookKeyDeleteResponse.JSON_PROPERTY_OBJECT
 })
 @JsonTypeName("webhook-key_delete_response")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class WebhookKeyDeleteResponse {
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
-
-  public static final String JSON_PROPERTY_OBJECT = "object";
-  private String _object;
-
   public static final String JSON_PROPERTY_ACTIVE = "active";
   private Boolean active;
-
-  public static final String JSON_PROPERTY_LIVEMODE = "livemode";
-  private Boolean livemode;
 
   public static final String JSON_PROPERTY_CREATED_AT = "created_at";
   private Long createdAt;
 
-  public static final String JSON_PROPERTY_DEACTIVATED_AT = "deactivated_at";
-  private Long deactivatedAt;
-
   public static final String JSON_PROPERTY_DELETED = "deleted";
   private Boolean deleted;
 
+  public static final String JSON_PROPERTY_ID = "id";
+  private String id;
+
+  public static final String JSON_PROPERTY_LIVEMODE = "livemode";
+  private Boolean livemode;
+
+  public static final String JSON_PROPERTY_OBJECT = "object";
+  private String _object;
+
   public WebhookKeyDeleteResponse() { 
   }
-
-  public WebhookKeyDeleteResponse id(String id) {
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Unique identifier of the webhook key
-   * @return id
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public WebhookKeyDeleteResponse _object(String _object) {
-    this._object = _object;
-    return this;
-  }
-
-   /**
-   * Object name, value is webhook_key
-   * @return _object
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_OBJECT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getObject() {
-    return _object;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OBJECT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
 
   public WebhookKeyDeleteResponse active(Boolean active) {
     this.active = active;
@@ -119,9 +65,9 @@ public class WebhookKeyDeleteResponse {
    * Indicates if the webhook key is active
    * @return active
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_ACTIVE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Boolean getActive() {
     return active;
@@ -129,34 +75,9 @@ public class WebhookKeyDeleteResponse {
 
 
   @JsonProperty(JSON_PROPERTY_ACTIVE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setActive(Boolean active) {
     this.active = active;
-  }
-
-
-  public WebhookKeyDeleteResponse livemode(Boolean livemode) {
-    this.livemode = livemode;
-    return this;
-  }
-
-   /**
-   * Indicates if the webhook key is in live mode
-   * @return livemode
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_LIVEMODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Boolean getLivemode() {
-    return livemode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LIVEMODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setLivemode(Boolean livemode) {
-    this.livemode = livemode;
   }
 
 
@@ -169,9 +90,9 @@ public class WebhookKeyDeleteResponse {
    * Unix timestamp in seconds with the creation date of the webhook key
    * @return createdAt
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_CREATED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Long getCreatedAt() {
     return createdAt;
@@ -179,34 +100,9 @@ public class WebhookKeyDeleteResponse {
 
 
   @JsonProperty(JSON_PROPERTY_CREATED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreatedAt(Long createdAt) {
     this.createdAt = createdAt;
-  }
-
-
-  public WebhookKeyDeleteResponse deactivatedAt(Long deactivatedAt) {
-    this.deactivatedAt = deactivatedAt;
-    return this;
-  }
-
-   /**
-   * Unix timestamp in seconds when the webhook key was deactivated (if applicable).
-   * @return deactivatedAt
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DEACTIVATED_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Long getDeactivatedAt() {
-    return deactivatedAt;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEACTIVATED_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeactivatedAt(Long deactivatedAt) {
-    this.deactivatedAt = deactivatedAt;
   }
 
 
@@ -219,9 +115,9 @@ public class WebhookKeyDeleteResponse {
    * Indicates if the webhook key is deleted
    * @return deleted
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_DELETED)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Boolean getDeleted() {
     return deleted;
@@ -229,9 +125,84 @@ public class WebhookKeyDeleteResponse {
 
 
   @JsonProperty(JSON_PROPERTY_DELETED)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDeleted(Boolean deleted) {
     this.deleted = deleted;
+  }
+
+
+  public WebhookKeyDeleteResponse id(String id) {
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Unique identifier of the webhook key
+   * @return id
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setId(String id) {
+    this.id = id;
+  }
+
+
+  public WebhookKeyDeleteResponse livemode(Boolean livemode) {
+    this.livemode = livemode;
+    return this;
+  }
+
+   /**
+   * Indicates if the webhook key is in live mode
+   * @return livemode
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_LIVEMODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getLivemode() {
+    return livemode;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_LIVEMODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLivemode(Boolean livemode) {
+    this.livemode = livemode;
+  }
+
+
+  public WebhookKeyDeleteResponse _object(String _object) {
+    this._object = _object;
+    return this;
+  }
+
+   /**
+   * Object name, value is webhook_key
+   * @return _object
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_OBJECT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getObject() {
+    return _object;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_OBJECT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setObject(String _object) {
+    this._object = _object;
   }
 
 
@@ -247,31 +218,29 @@ public class WebhookKeyDeleteResponse {
       return false;
     }
     WebhookKeyDeleteResponse webhookKeyDeleteResponse = (WebhookKeyDeleteResponse) o;
-    return Objects.equals(this.id, webhookKeyDeleteResponse.id) &&
-        Objects.equals(this._object, webhookKeyDeleteResponse._object) &&
-        Objects.equals(this.active, webhookKeyDeleteResponse.active) &&
-        Objects.equals(this.livemode, webhookKeyDeleteResponse.livemode) &&
+    return Objects.equals(this.active, webhookKeyDeleteResponse.active) &&
         Objects.equals(this.createdAt, webhookKeyDeleteResponse.createdAt) &&
-        Objects.equals(this.deactivatedAt, webhookKeyDeleteResponse.deactivatedAt) &&
-        Objects.equals(this.deleted, webhookKeyDeleteResponse.deleted);
+        Objects.equals(this.deleted, webhookKeyDeleteResponse.deleted) &&
+        Objects.equals(this.id, webhookKeyDeleteResponse.id) &&
+        Objects.equals(this.livemode, webhookKeyDeleteResponse.livemode) &&
+        Objects.equals(this._object, webhookKeyDeleteResponse._object);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, active, livemode, createdAt, deactivatedAt, deleted);
+    return Objects.hash(active, createdAt, deleted, id, livemode, _object);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class WebhookKeyDeleteResponse {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    active: ").append(toIndentedString(active)).append("\n");
-    sb.append("    livemode: ").append(toIndentedString(livemode)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
-    sb.append("    deactivatedAt: ").append(toIndentedString(deactivatedAt)).append("\n");
     sb.append("    deleted: ").append(toIndentedString(deleted)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    livemode: ").append(toIndentedString(livemode)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("}");
     return sb.toString();
   }

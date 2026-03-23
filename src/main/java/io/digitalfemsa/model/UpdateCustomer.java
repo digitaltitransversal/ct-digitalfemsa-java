@@ -34,7 +34,6 @@ import java.util.Objects;
   UpdateCustomer.JSON_PROPERTY_PHONE,
   UpdateCustomer.JSON_PROPERTY_CORPORATE,
   UpdateCustomer.JSON_PROPERTY_CUSTOM_REFERENCE,
-  UpdateCustomer.JSON_PROPERTY_REFERRER,
   UpdateCustomer.JSON_PROPERTY_METADATA,
   UpdateCustomer.JSON_PROPERTY_PAYMENT_SOURCES,
   UpdateCustomer.JSON_PROPERTY_DEFAULT_PAYMENT_SOURCE_ID,
@@ -54,19 +53,16 @@ public class UpdateCustomer {
   private String phone;
 
   public static final String JSON_PROPERTY_CORPORATE = "corporate";
-  private Boolean corporate = false;
+  private Boolean corporate;
 
   public static final String JSON_PROPERTY_CUSTOM_REFERENCE = "custom_reference";
   private String customReference;
-
-  public static final String JSON_PROPERTY_REFERRER = "referrer";
-  private String referrer;
 
   public static final String JSON_PROPERTY_METADATA = "metadata";
   private Map<String, Object> metadata = new HashMap<>();
 
   public static final String JSON_PROPERTY_PAYMENT_SOURCES = "payment_sources";
-  private List<CustomerPaymentMethodsRequest> paymentSources;
+  private List<CustomerPaymentMethodsRequest> paymentSources = new ArrayList<>();
 
   public static final String JSON_PROPERTY_DEFAULT_PAYMENT_SOURCE_ID = "default_payment_source_id";
   private String defaultPaymentSourceId;
@@ -161,7 +157,7 @@ public class UpdateCustomer {
   }
 
    /**
-   * Indicates whether the customer email is corporate.
+   * True if the customer represents a company.
    * @return corporate
   **/
   @javax.annotation.Nullable
@@ -202,31 +198,6 @@ public class UpdateCustomer {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCustomReference(String customReference) {
     this.customReference = customReference;
-  }
-
-
-  public UpdateCustomer referrer(String referrer) {
-    this.referrer = referrer;
-    return this;
-  }
-
-   /**
-   * Referrer value (if applicable).
-   * @return referrer
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_REFERRER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getReferrer() {
-    return referrer;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REFERRER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReferrer(String referrer) {
-    this.referrer = referrer;
   }
 
 
@@ -277,7 +248,7 @@ public class UpdateCustomer {
   }
 
    /**
-   * Contains details of the payment methods that the customer has active or has used in Femsa
+   * Customer payment sources to create/attach (offline recurrent references).
    * @return paymentSources
   **/
   @javax.annotation.Nullable
@@ -388,7 +359,6 @@ public class UpdateCustomer {
         Objects.equals(this.phone, updateCustomer.phone) &&
         Objects.equals(this.corporate, updateCustomer.corporate) &&
         Objects.equals(this.customReference, updateCustomer.customReference) &&
-        Objects.equals(this.referrer, updateCustomer.referrer) &&
         Objects.equals(this.metadata, updateCustomer.metadata) &&
         Objects.equals(this.paymentSources, updateCustomer.paymentSources) &&
         Objects.equals(this.defaultPaymentSourceId, updateCustomer.defaultPaymentSourceId) &&
@@ -398,7 +368,7 @@ public class UpdateCustomer {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, email, phone, corporate, customReference, referrer, metadata, paymentSources, defaultPaymentSourceId, defaultFiscalEntityId, defaultShippingContactId);
+    return Objects.hash(name, email, phone, corporate, customReference, metadata, paymentSources, defaultPaymentSourceId, defaultFiscalEntityId, defaultShippingContactId);
   }
 
   @Override
@@ -410,7 +380,6 @@ public class UpdateCustomer {
     sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     sb.append("    corporate: ").append(toIndentedString(corporate)).append("\n");
     sb.append("    customReference: ").append(toIndentedString(customReference)).append("\n");
-    sb.append("    referrer: ").append(toIndentedString(referrer)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    paymentSources: ").append(toIndentedString(paymentSources)).append("\n");
     sb.append("    defaultPaymentSourceId: ").append(toIndentedString(defaultPaymentSourceId)).append("\n");

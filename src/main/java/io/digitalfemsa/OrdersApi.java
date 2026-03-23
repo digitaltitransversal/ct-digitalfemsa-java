@@ -113,150 +113,6 @@ public class OrdersApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Cancel Refund
-   * Cancels a refund previously created for an order. This operation is only available when the refund is still cancellable according to its current status and the payment method rules. If the refund cannot be cancelled, the API returns an error response.
-   * @param id Identifier of the resource (required)
-   * @param refundId refund identifier (required)
-   * @param acceptLanguage Use for knowing which language to use (optional, default to es)
-   * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
-   * @return OrderResponse
-   * @throws ApiException if fails to make API call
-   * @http.response.details
-     <table summary="Response Details" border="1">
-       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
-       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
-       <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
-       <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
-       <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
-     </table>
-   */
-  public OrderResponse cancelOrderRefund(String id, String refundId, String acceptLanguage, String xChildCompanyId) throws ApiException {
-    return cancelOrderRefundWithHttpInfo(id, refundId, acceptLanguage, xChildCompanyId).getData();
-  }
-
-  /**
-   * Cancel Refund
-   * Cancels a refund previously created for an order. This operation is only available when the refund is still cancellable according to its current status and the payment method rules. If the refund cannot be cancelled, the API returns an error response.
-   * @param id Identifier of the resource (required)
-   * @param refundId refund identifier (required)
-   * @param acceptLanguage Use for knowing which language to use (optional, default to es)
-   * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
-   * @return ApiResponse&lt;OrderResponse&gt;
-   * @throws ApiException if fails to make API call
-   * @http.response.details
-     <table summary="Response Details" border="1">
-       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
-       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
-       <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
-       <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
-       <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
-     </table>
-   */
-  public ApiResponse<OrderResponse> cancelOrderRefundWithHttpInfo(String id, String refundId, String acceptLanguage, String xChildCompanyId) throws ApiException {
-    // Check required parameters
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling cancelOrderRefund");
-    }
-    if (refundId == null) {
-      throw new ApiException(400, "Missing the required parameter 'refundId' when calling cancelOrderRefund");
-    }
-
-    // Path parameters
-    String localVarPath = "/orders/{id}/refunds/{refund_id}"
-            .replaceAll("\\{id}", apiClient.escapeString(id))
-            .replaceAll("\\{refund_id}", apiClient.escapeString(refundId));
-
-    // Header parameters
-    Map<String, String> localVarHeaderParams = new LinkedHashMap<>();
-    if (acceptLanguage != null) {
-      localVarHeaderParams.put("Accept-Language", apiClient.parameterToString(acceptLanguage));
-    }
-    if (xChildCompanyId != null) {
-      localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
-    }
-
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
-    String localVarContentType = apiClient.selectHeaderContentType();
-    String[] localVarAuthNames = new String[] {"bearerAuth"};
-    GenericType<OrderResponse> localVarReturnType = new GenericType<OrderResponse>() {};
-    return apiClient.invokeAPI("OrdersApi.cancelOrderRefund", localVarPath, "DELETE", new ArrayList<>(), null,
-                               localVarHeaderParams, new LinkedHashMap<>(), new LinkedHashMap<>(), localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
-  }
-  /**
-   * Capture Order
-   * Captures (finalizes) an order that has been previously authorized. Use this endpoint to capture a specific amount. The captured amount must be greater than 0 and must comply with the order and charge constraints enforced by the API.
-   * @param id Identifier of the resource (required)
-   * @param acceptLanguage Use for knowing which language to use (optional, default to es)
-   * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
-   * @param orderCaptureRequest Requested fields for capturing an order (optional)
-   * @return OrderResponse
-   * @throws ApiException if fails to make API call
-   * @http.response.details
-     <table summary="Response Details" border="1">
-       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
-       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
-       <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
-       <tr><td> 428 </td><td> Precondition Required </td><td>  -  </td></tr>
-       <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
-     </table>
-   */
-  public OrderResponse captureOrder(String id, String acceptLanguage, String xChildCompanyId, OrderCaptureRequest orderCaptureRequest) throws ApiException {
-    return captureOrderWithHttpInfo(id, acceptLanguage, xChildCompanyId, orderCaptureRequest).getData();
-  }
-
-  /**
-   * Capture Order
-   * Captures (finalizes) an order that has been previously authorized. Use this endpoint to capture a specific amount. The captured amount must be greater than 0 and must comply with the order and charge constraints enforced by the API.
-   * @param id Identifier of the resource (required)
-   * @param acceptLanguage Use for knowing which language to use (optional, default to es)
-   * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
-   * @param orderCaptureRequest Requested fields for capturing an order (optional)
-   * @return ApiResponse&lt;OrderResponse&gt;
-   * @throws ApiException if fails to make API call
-   * @http.response.details
-     <table summary="Response Details" border="1">
-       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
-       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
-       <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
-       <tr><td> 428 </td><td> Precondition Required </td><td>  -  </td></tr>
-       <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
-     </table>
-   */
-  public ApiResponse<OrderResponse> captureOrderWithHttpInfo(String id, String acceptLanguage, String xChildCompanyId, OrderCaptureRequest orderCaptureRequest) throws ApiException {
-    // Check required parameters
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling captureOrder");
-    }
-
-    // Path parameters
-    String localVarPath = "/orders/{id}/capture"
-            .replaceAll("\\{id}", apiClient.escapeString(id));
-
-    // Header parameters
-    Map<String, String> localVarHeaderParams = new LinkedHashMap<>();
-    if (acceptLanguage != null) {
-      localVarHeaderParams.put("Accept-Language", apiClient.parameterToString(acceptLanguage));
-    }
-    if (xChildCompanyId != null) {
-      localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
-    }
-
-    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
-    String localVarContentType = apiClient.selectHeaderContentType("application/json");
-    String[] localVarAuthNames = new String[] {"bearerAuth"};
-    GenericType<OrderResponse> localVarReturnType = new GenericType<OrderResponse>() {};
-    return apiClient.invokeAPI("OrdersApi.captureOrder", localVarPath, "POST", new ArrayList<>(), orderCaptureRequest,
-                               localVarHeaderParams, new LinkedHashMap<>(), new LinkedHashMap<>(), localVarAccept, localVarContentType,
-                               localVarAuthNames, localVarReturnType, false);
-  }
-  /**
    * Create order
    * Creates a new order (products + amounts + customer data).  Minimum required fields: - &#x60;currency&#x60; - &#x60;line_items&#x60; - &#x60;customer_info&#x60;  About &#x60;customer_info&#x60;: - You can reference an existing customer using &#x60;customer_info.customer_id&#x60;, or - You can provide customer details at minimum &#x60;customer_info.name&#x60; and &#x60;customer_info.email&#x60; to create the order with customer context.  How to create the order: - Create an order only (no payment): send only the order data. - Create an order and create the first payment charge: include &#x60;charges&#x60;. - Create an order with a checkout configuration (for a hosted payment flow): include &#x60;checkout&#x60;.  Important rules: - You cannot send &#x60;charges&#x60; and &#x60;checkout&#x60; in the same request (they are mutually exclusive). - If you send &#x60;shipping_contact_id&#x60; and/or &#x60;fiscal_entity_id&#x60;, you must also send &#x60;customer_info.customer_id&#x60; so the API can validate those IDs against that customer. 
    * @param orderRequest requested field for order (required)
@@ -330,7 +186,7 @@ public class OrdersApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
@@ -351,7 +207,7 @@ public class OrdersApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
@@ -453,6 +309,81 @@ public class OrdersApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
+   * Cancel Refund
+   * Cancels a refund previously created for an order. This operation is only available when the refund is still cancellable according to its current status and the payment method rules. If the refund cannot be cancelled, the API returns an error response.
+   * @param id Identifier of the resource (required)
+   * @param refundId refund identifier (required)
+   * @param acceptLanguage Use for knowing which language to use (optional, default to es)
+   * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
+   * @return OrderResponse
+   * @throws ApiException if fails to make API call
+   * @http.response.details
+     <table summary="Response Details" border="1">
+       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
+       <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
+       <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
+       <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
+     </table>
+   */
+  public OrderResponse orderCancelRefund(String id, String refundId, String acceptLanguage, String xChildCompanyId) throws ApiException {
+    return orderCancelRefundWithHttpInfo(id, refundId, acceptLanguage, xChildCompanyId).getData();
+  }
+
+  /**
+   * Cancel Refund
+   * Cancels a refund previously created for an order. This operation is only available when the refund is still cancellable according to its current status and the payment method rules. If the refund cannot be cancelled, the API returns an error response.
+   * @param id Identifier of the resource (required)
+   * @param refundId refund identifier (required)
+   * @param acceptLanguage Use for knowing which language to use (optional, default to es)
+   * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
+   * @return ApiResponse&lt;OrderResponse&gt;
+   * @throws ApiException if fails to make API call
+   * @http.response.details
+     <table summary="Response Details" border="1">
+       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
+       <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
+       <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
+       <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
+     </table>
+   */
+  public ApiResponse<OrderResponse> orderCancelRefundWithHttpInfo(String id, String refundId, String acceptLanguage, String xChildCompanyId) throws ApiException {
+    // Check required parameters
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling orderCancelRefund");
+    }
+    if (refundId == null) {
+      throw new ApiException(400, "Missing the required parameter 'refundId' when calling orderCancelRefund");
+    }
+
+    // Path parameters
+    String localVarPath = "/orders/{id}/refunds/{refund_id}"
+            .replaceAll("\\{id}", apiClient.escapeString(id))
+            .replaceAll("\\{refund_id}", apiClient.escapeString(refundId));
+
+    // Header parameters
+    Map<String, String> localVarHeaderParams = new LinkedHashMap<>();
+    if (acceptLanguage != null) {
+      localVarHeaderParams.put("Accept-Language", apiClient.parameterToString(acceptLanguage));
+    }
+    if (xChildCompanyId != null) {
+      localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
+    }
+
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarContentType = apiClient.selectHeaderContentType();
+    String[] localVarAuthNames = new String[] {"bearerAuth"};
+    GenericType<OrderResponse> localVarReturnType = new GenericType<OrderResponse>() {};
+    return apiClient.invokeAPI("OrdersApi.orderCancelRefund", localVarPath, "DELETE", new ArrayList<>(), null,
+                               localVarHeaderParams, new LinkedHashMap<>(), new LinkedHashMap<>(), localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
+  }
+  /**
    * Refund Order
    * Creates a refund for an order. This operation is used to refund a previously paid order (fully or partially, depending on the request body). The API will validate the order and its related charges before processing the refund. If the refund cannot be created due to business rules or state, an error response is returned.
    * @param id Identifier of the resource (required)
@@ -464,7 +395,7 @@ public class OrdersApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
@@ -488,7 +419,7 @@ public class OrdersApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
@@ -527,6 +458,75 @@ public class OrdersApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
+   * Capture Order
+   * Captures (finalizes) an order that has been previously authorized. Use this endpoint to capture a specific amount. The captured amount must be greater than 0 and must comply with the order and charge constraints enforced by the API.
+   * @param id Identifier of the resource (required)
+   * @param acceptLanguage Use for knowing which language to use (optional, default to es)
+   * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
+   * @param orderCaptureRequest Requested fields for capturing an order (optional)
+   * @return OrderResponse
+   * @throws ApiException if fails to make API call
+   * @http.response.details
+     <table summary="Response Details" border="1">
+       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
+       <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 428 </td><td> Precondition Required </td><td>  -  </td></tr>
+       <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
+     </table>
+   */
+  public OrderResponse ordersCreateCapture(String id, String acceptLanguage, String xChildCompanyId, OrderCaptureRequest orderCaptureRequest) throws ApiException {
+    return ordersCreateCaptureWithHttpInfo(id, acceptLanguage, xChildCompanyId, orderCaptureRequest).getData();
+  }
+
+  /**
+   * Capture Order
+   * Captures (finalizes) an order that has been previously authorized. Use this endpoint to capture a specific amount. The captured amount must be greater than 0 and must comply with the order and charge constraints enforced by the API.
+   * @param id Identifier of the resource (required)
+   * @param acceptLanguage Use for knowing which language to use (optional, default to es)
+   * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
+   * @param orderCaptureRequest Requested fields for capturing an order (optional)
+   * @return ApiResponse&lt;OrderResponse&gt;
+   * @throws ApiException if fails to make API call
+   * @http.response.details
+     <table summary="Response Details" border="1">
+       <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
+       <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 428 </td><td> Precondition Required </td><td>  -  </td></tr>
+       <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
+     </table>
+   */
+  public ApiResponse<OrderResponse> ordersCreateCaptureWithHttpInfo(String id, String acceptLanguage, String xChildCompanyId, OrderCaptureRequest orderCaptureRequest) throws ApiException {
+    // Check required parameters
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling ordersCreateCapture");
+    }
+
+    // Path parameters
+    String localVarPath = "/orders/{id}/capture"
+            .replaceAll("\\{id}", apiClient.escapeString(id));
+
+    // Header parameters
+    Map<String, String> localVarHeaderParams = new LinkedHashMap<>();
+    if (acceptLanguage != null) {
+      localVarHeaderParams.put("Accept-Language", apiClient.parameterToString(acceptLanguage));
+    }
+    if (xChildCompanyId != null) {
+      localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
+    }
+
+    String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
+    String localVarContentType = apiClient.selectHeaderContentType("application/json");
+    String[] localVarAuthNames = new String[] {"bearerAuth"};
+    GenericType<OrderResponse> localVarReturnType = new GenericType<OrderResponse>() {};
+    return apiClient.invokeAPI("OrdersApi.ordersCreateCapture", localVarPath, "POST", new ArrayList<>(), orderCaptureRequest,
+                               localVarHeaderParams, new LinkedHashMap<>(), new LinkedHashMap<>(), localVarAccept, localVarContentType,
+                               localVarAuthNames, localVarReturnType, false);
+  }
+  /**
    * Update order
    * Updates an existing order by its ID.  Orders are the central resource in the API. Updating an order may also update related order sub-resources when they are included in the request payload, according to server-side validations.  Only fields supported by the API can be modified. 
    * @param id Identifier of the resource (required)
@@ -537,7 +537,7 @@ public class OrdersApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
@@ -559,7 +559,7 @@ public class OrdersApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>

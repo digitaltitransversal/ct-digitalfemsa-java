@@ -29,14 +29,14 @@ import java.util.Objects;
  * ProductDataResponse
  */
 @JsonPropertyOrder({
-  ProductDataResponse.JSON_PROPERTY_BRAND,
-  ProductDataResponse.JSON_PROPERTY_DESCRIPTION,
-  ProductDataResponse.JSON_PROPERTY_METADATA,
   ProductDataResponse.JSON_PROPERTY_NAME,
+  ProductDataResponse.JSON_PROPERTY_UNIT_PRICE,
   ProductDataResponse.JSON_PROPERTY_QUANTITY,
   ProductDataResponse.JSON_PROPERTY_SKU,
+  ProductDataResponse.JSON_PROPERTY_BRAND,
+  ProductDataResponse.JSON_PROPERTY_DESCRIPTION,
   ProductDataResponse.JSON_PROPERTY_TAGS,
-  ProductDataResponse.JSON_PROPERTY_UNIT_PRICE,
+  ProductDataResponse.JSON_PROPERTY_METADATA,
   ProductDataResponse.JSON_PROPERTY_ID,
   ProductDataResponse.JSON_PROPERTY_OBJECT,
   ProductDataResponse.JSON_PROPERTY_PARENT_ID
@@ -44,17 +44,11 @@ import java.util.Objects;
 @JsonTypeName("product_data_response")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class ProductDataResponse {
-  public static final String JSON_PROPERTY_BRAND = "brand";
-  private String brand;
-
-  public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  private String description;
-
-  public static final String JSON_PROPERTY_METADATA = "metadata";
-  private Map<String, String> metadata = new HashMap<>();
-
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
+
+  public static final String JSON_PROPERTY_UNIT_PRICE = "unit_price";
+  private Integer unitPrice;
 
   public static final String JSON_PROPERTY_QUANTITY = "quantity";
   private Integer quantity;
@@ -62,11 +56,17 @@ public class ProductDataResponse {
   public static final String JSON_PROPERTY_SKU = "sku";
   private String sku;
 
+  public static final String JSON_PROPERTY_BRAND = "brand";
+  private String brand;
+
+  public static final String JSON_PROPERTY_DESCRIPTION = "description";
+  private String description;
+
   public static final String JSON_PROPERTY_TAGS = "tags";
   private List<String> tags = new ArrayList<>();
 
-  public static final String JSON_PROPERTY_UNIT_PRICE = "unit_price";
-  private Integer unitPrice;
+  public static final String JSON_PROPERTY_METADATA = "metadata";
+  private Map<String, Object> metadata = new HashMap<>();
 
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
@@ -79,89 +79,6 @@ public class ProductDataResponse {
 
   public ProductDataResponse() { 
   }
-
-  public ProductDataResponse brand(String brand) {
-    this.brand = brand;
-    return this;
-  }
-
-   /**
-   * The brand of the item.
-   * @return brand
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_BRAND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getBrand() {
-    return brand;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BRAND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBrand(String brand) {
-    this.brand = brand;
-  }
-
-
-  public ProductDataResponse description(String description) {
-    this.description = description;
-    return this;
-  }
-
-   /**
-   * Short description of the item
-   * @return description
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getDescription() {
-    return description;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-
-  public ProductDataResponse metadata(Map<String, String> metadata) {
-    this.metadata = metadata;
-    return this;
-  }
-
-  public ProductDataResponse putMetadataItem(String key, String metadataItem) {
-    if (this.metadata == null) {
-      this.metadata = new HashMap<>();
-    }
-    this.metadata.put(key, metadataItem);
-    return this;
-  }
-
-   /**
-   * It is a key/value hash that can hold custom fields. Maximum 100 elements and allows special characters.
-   * @return metadata
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_METADATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Map<String, String> getMetadata() {
-    return metadata;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_METADATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMetadata(Map<String, String> metadata) {
-    this.metadata = metadata;
-  }
-
 
   public ProductDataResponse name(String name) {
     this.name = name;
@@ -185,6 +102,32 @@ public class ProductDataResponse {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(String name) {
     this.name = name;
+  }
+
+
+  public ProductDataResponse unitPrice(Integer unitPrice) {
+    this.unitPrice = unitPrice;
+    return this;
+  }
+
+   /**
+   * The price of the item in cents.
+   * minimum: 0
+   * @return unitPrice
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_UNIT_PRICE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Integer getUnitPrice() {
+    return unitPrice;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_UNIT_PRICE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setUnitPrice(Integer unitPrice) {
+    this.unitPrice = unitPrice;
   }
 
 
@@ -239,6 +182,56 @@ public class ProductDataResponse {
   }
 
 
+  public ProductDataResponse brand(String brand) {
+    this.brand = brand;
+    return this;
+  }
+
+   /**
+   * The brand of the item.
+   * @return brand
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_BRAND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getBrand() {
+    return brand;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_BRAND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBrand(String brand) {
+    this.brand = brand;
+  }
+
+
+  public ProductDataResponse description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * Short description of the item
+   * @return description
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDescription() {
+    return description;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+
   public ProductDataResponse tags(List<String> tags) {
     this.tags = tags;
     return this;
@@ -272,29 +265,36 @@ public class ProductDataResponse {
   }
 
 
-  public ProductDataResponse unitPrice(Integer unitPrice) {
-    this.unitPrice = unitPrice;
+  public ProductDataResponse metadata(Map<String, Object> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  public ProductDataResponse putMetadataItem(String key, Object metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
     return this;
   }
 
    /**
-   * The price of the item in cents.
-   * minimum: 0
-   * @return unitPrice
+   * Arbitrary key-value data for your internal use. Keys should be strings; values can be any JSON value. 
+   * @return metadata
   **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_UNIT_PRICE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_METADATA)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Integer getUnitPrice() {
-    return unitPrice;
+  public Map<String, Object> getMetadata() {
+    return metadata;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UNIT_PRICE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setUnitPrice(Integer unitPrice) {
-    this.unitPrice = unitPrice;
+  @JsonProperty(JSON_PROPERTY_METADATA)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMetadata(Map<String, Object> metadata) {
+    this.metadata = metadata;
   }
 
 
@@ -385,14 +385,14 @@ public class ProductDataResponse {
       return false;
     }
     ProductDataResponse productDataResponse = (ProductDataResponse) o;
-    return Objects.equals(this.brand, productDataResponse.brand) &&
-        Objects.equals(this.description, productDataResponse.description) &&
-        Objects.equals(this.metadata, productDataResponse.metadata) &&
-        Objects.equals(this.name, productDataResponse.name) &&
+    return Objects.equals(this.name, productDataResponse.name) &&
+        Objects.equals(this.unitPrice, productDataResponse.unitPrice) &&
         Objects.equals(this.quantity, productDataResponse.quantity) &&
         Objects.equals(this.sku, productDataResponse.sku) &&
+        Objects.equals(this.brand, productDataResponse.brand) &&
+        Objects.equals(this.description, productDataResponse.description) &&
         Objects.equals(this.tags, productDataResponse.tags) &&
-        Objects.equals(this.unitPrice, productDataResponse.unitPrice) &&
+        Objects.equals(this.metadata, productDataResponse.metadata) &&
         Objects.equals(this.id, productDataResponse.id) &&
         Objects.equals(this._object, productDataResponse._object) &&
         Objects.equals(this.parentId, productDataResponse.parentId);
@@ -400,21 +400,21 @@ public class ProductDataResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(brand, description, metadata, name, quantity, sku, tags, unitPrice, id, _object, parentId);
+    return Objects.hash(name, unitPrice, quantity, sku, brand, description, tags, metadata, id, _object, parentId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProductDataResponse {\n");
-    sb.append("    brand: ").append(toIndentedString(brand)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    unitPrice: ").append(toIndentedString(unitPrice)).append("\n");
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
     sb.append("    sku: ").append(toIndentedString(sku)).append("\n");
+    sb.append("    brand: ").append(toIndentedString(brand)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
-    sb.append("    unitPrice: ").append(toIndentedString(unitPrice)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");

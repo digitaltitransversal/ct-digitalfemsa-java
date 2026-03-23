@@ -29,53 +29,41 @@ import java.util.Objects;
  * Order update payload. Only supported fields can be modified.
  */
 @JsonPropertyOrder({
-  OrderUpdateRequest.JSON_PROPERTY_STATUS,
   OrderUpdateRequest.JSON_PROPERTY_CURRENCY,
   OrderUpdateRequest.JSON_PROPERTY_CUSTOMER_INFO,
   OrderUpdateRequest.JSON_PROPERTY_LINE_ITEMS,
-  OrderUpdateRequest.JSON_PROPERTY_SHIPPING_LINES,
-  OrderUpdateRequest.JSON_PROPERTY_TAX_LINES,
-  OrderUpdateRequest.JSON_PROPERTY_DISCOUNT_LINES,
-  OrderUpdateRequest.JSON_PROPERTY_METADATA,
-  OrderUpdateRequest.JSON_PROPERTY_RETURN_URL,
   OrderUpdateRequest.JSON_PROPERTY_CHARGES,
+  OrderUpdateRequest.JSON_PROPERTY_DISCOUNT_LINES,
+  OrderUpdateRequest.JSON_PROPERTY_TAX_LINES,
   OrderUpdateRequest.JSON_PROPERTY_SHIPPING_CONTACT_ID,
   OrderUpdateRequest.JSON_PROPERTY_SHIPPING_CONTACT,
+  OrderUpdateRequest.JSON_PROPERTY_SHIPPING_LINES,
   OrderUpdateRequest.JSON_PROPERTY_FISCAL_ENTITY_ID,
-  OrderUpdateRequest.JSON_PROPERTY_FISCAL_ENTITY
+  OrderUpdateRequest.JSON_PROPERTY_FISCAL_ENTITY,
+  OrderUpdateRequest.JSON_PROPERTY_RETURN_URL,
+  OrderUpdateRequest.JSON_PROPERTY_METADATA,
+  OrderUpdateRequest.JSON_PROPERTY_STATUS
 })
 @JsonTypeName("order_update_request")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class OrderUpdateRequest {
-  public static final String JSON_PROPERTY_STATUS = "status";
-  private String status;
-
   public static final String JSON_PROPERTY_CURRENCY = "currency";
   private String currency;
 
   public static final String JSON_PROPERTY_CUSTOMER_INFO = "customer_info";
-  private CustomerInfo customerInfo;
+  private OrderUpdateRequestCustomerInfo customerInfo;
 
   public static final String JSON_PROPERTY_LINE_ITEMS = "line_items";
   private List<Product> lineItems = new ArrayList<>();
 
-  public static final String JSON_PROPERTY_SHIPPING_LINES = "shipping_lines";
-  private List<ShippingRequest> shippingLines = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_TAX_LINES = "tax_lines";
-  private List<OrderTaxRequest> taxLines = new ArrayList<>();
+  public static final String JSON_PROPERTY_CHARGES = "charges";
+  private List<ChargeRequest> charges = new ArrayList<>();
 
   public static final String JSON_PROPERTY_DISCOUNT_LINES = "discount_lines";
   private List<OrderDiscountLinesRequest> discountLines = new ArrayList<>();
 
-  public static final String JSON_PROPERTY_METADATA = "metadata";
-  private Map<String, Object> metadata = new HashMap<>();
-
-  public static final String JSON_PROPERTY_RETURN_URL = "return_url";
-  private String returnUrl;
-
-  public static final String JSON_PROPERTY_CHARGES = "charges";
-  private List<ChargeRequest> charges = new ArrayList<>();
+  public static final String JSON_PROPERTY_TAX_LINES = "tax_lines";
+  private List<OrderTaxRequest> taxLines = new ArrayList<>();
 
   public static final String JSON_PROPERTY_SHIPPING_CONTACT_ID = "shipping_contact_id";
   private String shippingContactId;
@@ -83,39 +71,26 @@ public class OrderUpdateRequest {
   public static final String JSON_PROPERTY_SHIPPING_CONTACT = "shipping_contact";
   private CustomerShippingContacts shippingContact;
 
+  public static final String JSON_PROPERTY_SHIPPING_LINES = "shipping_lines";
+  private List<ShippingRequest> shippingLines = new ArrayList<>();
+
   public static final String JSON_PROPERTY_FISCAL_ENTITY_ID = "fiscal_entity_id";
   private String fiscalEntityId;
 
   public static final String JSON_PROPERTY_FISCAL_ENTITY = "fiscal_entity";
   private OrderUpdateFiscalEntityRequest fiscalEntity;
 
+  public static final String JSON_PROPERTY_RETURN_URL = "return_url";
+  private String returnUrl;
+
+  public static final String JSON_PROPERTY_METADATA = "metadata";
+  private Map<String, Object> metadata = new HashMap<>();
+
+  public static final String JSON_PROPERTY_STATUS = "status";
+  private String status;
+
   public OrderUpdateRequest() { 
   }
-
-  public OrderUpdateRequest status(String status) {
-    this.status = status;
-    return this;
-  }
-
-   /**
-   * Order status update. Allowed values depend on server-side validations.
-   * @return status
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getStatus() {
-    return status;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
 
   public OrderUpdateRequest currency(String currency) {
     this.currency = currency;
@@ -123,7 +98,7 @@ public class OrderUpdateRequest {
   }
 
    /**
-   * Currency used for the order. Uses ISO 4217 (3-letter code). Allowed values depend on server-side validations.
+   * Currency code in ISO 4217 (3-letter uppercase).
    * @return currency
   **/
   @javax.annotation.Nullable
@@ -142,7 +117,7 @@ public class OrderUpdateRequest {
   }
 
 
-  public OrderUpdateRequest customerInfo(CustomerInfo customerInfo) {
+  public OrderUpdateRequest customerInfo(OrderUpdateRequestCustomerInfo customerInfo) {
     this.customerInfo = customerInfo;
     return this;
   }
@@ -155,14 +130,14 @@ public class OrderUpdateRequest {
   @JsonProperty(JSON_PROPERTY_CUSTOMER_INFO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public CustomerInfo getCustomerInfo() {
+  public OrderUpdateRequestCustomerInfo getCustomerInfo() {
     return customerInfo;
   }
 
 
   @JsonProperty(JSON_PROPERTY_CUSTOMER_INFO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCustomerInfo(CustomerInfo customerInfo) {
+  public void setCustomerInfo(OrderUpdateRequestCustomerInfo customerInfo) {
     this.customerInfo = customerInfo;
   }
 
@@ -181,7 +156,7 @@ public class OrderUpdateRequest {
   }
 
    /**
-   * List of products sold in the order.
+   * List of [products](https://developers.femsa.com/v2.1.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
    * @return lineItems
   **/
   @javax.annotation.Nullable
@@ -200,36 +175,69 @@ public class OrderUpdateRequest {
   }
 
 
-  public OrderUpdateRequest shippingLines(List<ShippingRequest> shippingLines) {
-    this.shippingLines = shippingLines;
+  public OrderUpdateRequest charges(List<ChargeRequest> charges) {
+    this.charges = charges;
     return this;
   }
 
-  public OrderUpdateRequest addShippingLinesItem(ShippingRequest shippingLinesItem) {
-    if (this.shippingLines == null) {
-      this.shippingLines = new ArrayList<>();
+  public OrderUpdateRequest addChargesItem(ChargeRequest chargesItem) {
+    if (this.charges == null) {
+      this.charges = new ArrayList<>();
     }
-    this.shippingLines.add(shippingLinesItem);
+    this.charges.add(chargesItem);
     return this;
   }
 
    /**
-   * List of shipping costs applied to the order.
-   * @return shippingLines
+   * Get charges
+   * @return charges
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SHIPPING_LINES)
+  @JsonProperty(JSON_PROPERTY_CHARGES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<ShippingRequest> getShippingLines() {
-    return shippingLines;
+  public List<ChargeRequest> getCharges() {
+    return charges;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SHIPPING_LINES)
+  @JsonProperty(JSON_PROPERTY_CHARGES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setShippingLines(List<ShippingRequest> shippingLines) {
-    this.shippingLines = shippingLines;
+  public void setCharges(List<ChargeRequest> charges) {
+    this.charges = charges;
+  }
+
+
+  public OrderUpdateRequest discountLines(List<OrderDiscountLinesRequest> discountLines) {
+    this.discountLines = discountLines;
+    return this;
+  }
+
+  public OrderUpdateRequest addDiscountLinesItem(OrderDiscountLinesRequest discountLinesItem) {
+    if (this.discountLines == null) {
+      this.discountLines = new ArrayList<>();
+    }
+    this.discountLines.add(discountLinesItem);
+    return this;
+  }
+
+   /**
+   * List of [discounts](https://developers.femsa.com/v2.1.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount.
+   * @return discountLines
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DISCOUNT_LINES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<OrderDiscountLinesRequest> getDiscountLines() {
+    return discountLines;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DISCOUNT_LINES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDiscountLines(List<OrderDiscountLinesRequest> discountLines) {
+    this.discountLines = discountLines;
   }
 
 
@@ -266,137 +274,13 @@ public class OrderUpdateRequest {
   }
 
 
-  public OrderUpdateRequest discountLines(List<OrderDiscountLinesRequest> discountLines) {
-    this.discountLines = discountLines;
-    return this;
-  }
-
-  public OrderUpdateRequest addDiscountLinesItem(OrderDiscountLinesRequest discountLinesItem) {
-    if (this.discountLines == null) {
-      this.discountLines = new ArrayList<>();
-    }
-    this.discountLines.add(discountLinesItem);
-    return this;
-  }
-
-   /**
-   * List of discounts applied to the order.
-   * @return discountLines
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DISCOUNT_LINES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<OrderDiscountLinesRequest> getDiscountLines() {
-    return discountLines;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DISCOUNT_LINES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDiscountLines(List<OrderDiscountLinesRequest> discountLines) {
-    this.discountLines = discountLines;
-  }
-
-
-  public OrderUpdateRequest metadata(Map<String, Object> metadata) {
-    this.metadata = metadata;
-    return this;
-  }
-
-  public OrderUpdateRequest putMetadataItem(String key, Object metadataItem) {
-    if (this.metadata == null) {
-      this.metadata = new HashMap<>();
-    }
-    this.metadata.put(key, metadataItem);
-    return this;
-  }
-
-   /**
-   * Additional information attached to the order.
-   * @return metadata
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_METADATA)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Map<String, Object> getMetadata() {
-    return metadata;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_METADATA)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMetadata(Map<String, Object> metadata) {
-    this.metadata = metadata;
-  }
-
-
-  public OrderUpdateRequest returnUrl(String returnUrl) {
-    this.returnUrl = returnUrl;
-    return this;
-  }
-
-   /**
-   * URL to redirect the customer after completing the flow (when applicable).
-   * @return returnUrl
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_RETURN_URL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getReturnUrl() {
-    return returnUrl;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RETURN_URL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReturnUrl(String returnUrl) {
-    this.returnUrl = returnUrl;
-  }
-
-
-  public OrderUpdateRequest charges(List<ChargeRequest> charges) {
-    this.charges = charges;
-    return this;
-  }
-
-  public OrderUpdateRequest addChargesItem(ChargeRequest chargesItem) {
-    if (this.charges == null) {
-      this.charges = new ArrayList<>();
-    }
-    this.charges.add(chargesItem);
-    return this;
-  }
-
-   /**
-   * Add new charges to the order. Subject to server-side validations (for example, maximum charges rules). 
-   * @return charges
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CHARGES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<ChargeRequest> getCharges() {
-    return charges;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHARGES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCharges(List<ChargeRequest> charges) {
-    this.charges = charges;
-  }
-
-
   public OrderUpdateRequest shippingContactId(String shippingContactId) {
     this.shippingContactId = shippingContactId;
     return this;
   }
 
    /**
-   * References an existing customer shipping contact.
+   * Existing shipping contact id from the customer to link to this order.
    * @return shippingContactId
   **/
   @javax.annotation.Nullable
@@ -440,13 +324,46 @@ public class OrderUpdateRequest {
   }
 
 
+  public OrderUpdateRequest shippingLines(List<ShippingRequest> shippingLines) {
+    this.shippingLines = shippingLines;
+    return this;
+  }
+
+  public OrderUpdateRequest addShippingLinesItem(ShippingRequest shippingLinesItem) {
+    if (this.shippingLines == null) {
+      this.shippingLines = new ArrayList<>();
+    }
+    this.shippingLines.add(shippingLinesItem);
+    return this;
+  }
+
+   /**
+   * List of [shipping costs](https://developers.femsa.com/v2.1.0/reference/orderscreateshipping). If the online store offers digital products.
+   * @return shippingLines
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_SHIPPING_LINES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<ShippingRequest> getShippingLines() {
+    return shippingLines;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SHIPPING_LINES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setShippingLines(List<ShippingRequest> shippingLines) {
+    this.shippingLines = shippingLines;
+  }
+
+
   public OrderUpdateRequest fiscalEntityId(String fiscalEntityId) {
     this.fiscalEntityId = fiscalEntityId;
     return this;
   }
 
    /**
-   * References an existing customer fiscal entity.
+   * Existing fiscal entity id from the customer to link to this order.
    * @return fiscalEntityId
   **/
   @javax.annotation.Nullable
@@ -490,6 +407,89 @@ public class OrderUpdateRequest {
   }
 
 
+  public OrderUpdateRequest returnUrl(String returnUrl) {
+    this.returnUrl = returnUrl;
+    return this;
+  }
+
+   /**
+   * URL where the customer should be redirected after completing a payment flow (if applicable).
+   * @return returnUrl
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_RETURN_URL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getReturnUrl() {
+    return returnUrl;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_RETURN_URL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReturnUrl(String returnUrl) {
+    this.returnUrl = returnUrl;
+  }
+
+
+  public OrderUpdateRequest metadata(Map<String, Object> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  public OrderUpdateRequest putMetadataItem(String key, Object metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+   /**
+   * Arbitrary key-value data that you can attach to the order for your internal use. It is not used for payment processing. Keys should be strings; values can be any JSON value. 
+   * @return metadata
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_METADATA)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Map<String, Object> getMetadata() {
+    return metadata;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_METADATA)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMetadata(Map<String, Object> metadata) {
+    this.metadata = metadata;
+  }
+
+
+  public OrderUpdateRequest status(String status) {
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * Order status update (only allowed transitions will be accepted).
+   * @return status
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getStatus() {
+    return status;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
+
   /**
    * Return true if this order_update_request object is equal to o.
    */
@@ -502,45 +502,45 @@ public class OrderUpdateRequest {
       return false;
     }
     OrderUpdateRequest orderUpdateRequest = (OrderUpdateRequest) o;
-    return Objects.equals(this.status, orderUpdateRequest.status) &&
-        Objects.equals(this.currency, orderUpdateRequest.currency) &&
+    return Objects.equals(this.currency, orderUpdateRequest.currency) &&
         Objects.equals(this.customerInfo, orderUpdateRequest.customerInfo) &&
         Objects.equals(this.lineItems, orderUpdateRequest.lineItems) &&
-        Objects.equals(this.shippingLines, orderUpdateRequest.shippingLines) &&
-        Objects.equals(this.taxLines, orderUpdateRequest.taxLines) &&
-        Objects.equals(this.discountLines, orderUpdateRequest.discountLines) &&
-        Objects.equals(this.metadata, orderUpdateRequest.metadata) &&
-        Objects.equals(this.returnUrl, orderUpdateRequest.returnUrl) &&
         Objects.equals(this.charges, orderUpdateRequest.charges) &&
+        Objects.equals(this.discountLines, orderUpdateRequest.discountLines) &&
+        Objects.equals(this.taxLines, orderUpdateRequest.taxLines) &&
         Objects.equals(this.shippingContactId, orderUpdateRequest.shippingContactId) &&
         Objects.equals(this.shippingContact, orderUpdateRequest.shippingContact) &&
+        Objects.equals(this.shippingLines, orderUpdateRequest.shippingLines) &&
         Objects.equals(this.fiscalEntityId, orderUpdateRequest.fiscalEntityId) &&
-        Objects.equals(this.fiscalEntity, orderUpdateRequest.fiscalEntity);
+        Objects.equals(this.fiscalEntity, orderUpdateRequest.fiscalEntity) &&
+        Objects.equals(this.returnUrl, orderUpdateRequest.returnUrl) &&
+        Objects.equals(this.metadata, orderUpdateRequest.metadata) &&
+        Objects.equals(this.status, orderUpdateRequest.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, currency, customerInfo, lineItems, shippingLines, taxLines, discountLines, metadata, returnUrl, charges, shippingContactId, shippingContact, fiscalEntityId, fiscalEntity);
+    return Objects.hash(currency, customerInfo, lineItems, charges, discountLines, taxLines, shippingContactId, shippingContact, shippingLines, fiscalEntityId, fiscalEntity, returnUrl, metadata, status);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class OrderUpdateRequest {\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    customerInfo: ").append(toIndentedString(customerInfo)).append("\n");
     sb.append("    lineItems: ").append(toIndentedString(lineItems)).append("\n");
-    sb.append("    shippingLines: ").append(toIndentedString(shippingLines)).append("\n");
-    sb.append("    taxLines: ").append(toIndentedString(taxLines)).append("\n");
-    sb.append("    discountLines: ").append(toIndentedString(discountLines)).append("\n");
-    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
-    sb.append("    returnUrl: ").append(toIndentedString(returnUrl)).append("\n");
     sb.append("    charges: ").append(toIndentedString(charges)).append("\n");
+    sb.append("    discountLines: ").append(toIndentedString(discountLines)).append("\n");
+    sb.append("    taxLines: ").append(toIndentedString(taxLines)).append("\n");
     sb.append("    shippingContactId: ").append(toIndentedString(shippingContactId)).append("\n");
     sb.append("    shippingContact: ").append(toIndentedString(shippingContact)).append("\n");
+    sb.append("    shippingLines: ").append(toIndentedString(shippingLines)).append("\n");
     sb.append("    fiscalEntityId: ").append(toIndentedString(fiscalEntityId)).append("\n");
     sb.append("    fiscalEntity: ").append(toIndentedString(fiscalEntity)).append("\n");
+    sb.append("    returnUrl: ").append(toIndentedString(returnUrl)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }

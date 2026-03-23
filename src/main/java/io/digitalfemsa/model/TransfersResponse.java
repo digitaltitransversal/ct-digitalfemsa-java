@@ -18,8 +18,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 
@@ -27,37 +25,20 @@ import java.util.Objects;
  * A transfer represents the action of sending an amount to a business bank account including the status, amount and destination used to make the transfer.
  */
 @JsonPropertyOrder({
-  TransfersResponse.JSON_PROPERTY_ID,
-  TransfersResponse.JSON_PROPERTY_OBJECT,
   TransfersResponse.JSON_PROPERTY_AMOUNT,
   TransfersResponse.JSON_PROPERTY_CREATED_AT,
   TransfersResponse.JSON_PROPERTY_CURRENCY,
+  TransfersResponse.JSON_PROPERTY_ID,
   TransfersResponse.JSON_PROPERTY_LIVEMODE,
-  TransfersResponse.JSON_PROPERTY_STATUS,
-  TransfersResponse.JSON_PROPERTY_STATEMENT_REFERENCE,
+  TransfersResponse.JSON_PROPERTY_METHOD,
+  TransfersResponse.JSON_PROPERTY_OBJECT,
   TransfersResponse.JSON_PROPERTY_STATEMENT_DESCRIPTION,
-  TransfersResponse.JSON_PROPERTY_DESTINATION,
-  TransfersResponse.JSON_PROPERTY_FEE,
-  TransfersResponse.JSON_PROPERTY_CAPTURE_AMOUNT,
-  TransfersResponse.JSON_PROPERTY_CAPTURE_FEE,
-  TransfersResponse.JSON_PROPERTY_CAPTURE_NET,
-  TransfersResponse.JSON_PROPERTY_REFUND_AMOUNT,
-  TransfersResponse.JSON_PROPERTY_REFUND_FEE,
-  TransfersResponse.JSON_PROPERTY_REFUND_NET,
-  TransfersResponse.JSON_PROPERTY_PAYOUT_AMOUNT,
-  TransfersResponse.JSON_PROPERTY_PAYOUT_FEE,
-  TransfersResponse.JSON_PROPERTY_PAYOUT_NET,
-  TransfersResponse.JSON_PROPERTY_TRANSACTIONS
+  TransfersResponse.JSON_PROPERTY_STATEMENT_REFERENCE,
+  TransfersResponse.JSON_PROPERTY_STATUS
 })
 @JsonTypeName("transfers_response")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class TransfersResponse {
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
-
-  public static final String JSON_PROPERTY_OBJECT = "object";
-  private String _object;
-
   public static final String JSON_PROPERTY_AMOUNT = "amount";
   private Long amount;
 
@@ -67,106 +48,29 @@ public class TransfersResponse {
   public static final String JSON_PROPERTY_CURRENCY = "currency";
   private String currency;
 
+  public static final String JSON_PROPERTY_ID = "id";
+  private String id;
+
   public static final String JSON_PROPERTY_LIVEMODE = "livemode";
   private Boolean livemode;
 
-  public static final String JSON_PROPERTY_STATUS = "status";
-  private String status;
+  public static final String JSON_PROPERTY_METHOD = "method";
+  private TransferMethodResponse method;
 
-  public static final String JSON_PROPERTY_STATEMENT_REFERENCE = "statement_reference";
-  private String statementReference;
+  public static final String JSON_PROPERTY_OBJECT = "object";
+  private String _object;
 
   public static final String JSON_PROPERTY_STATEMENT_DESCRIPTION = "statement_description";
   private String statementDescription;
 
-  public static final String JSON_PROPERTY_DESTINATION = "destination";
-  private TransfersResponseDestination destination;
+  public static final String JSON_PROPERTY_STATEMENT_REFERENCE = "statement_reference";
+  private String statementReference;
 
-  public static final String JSON_PROPERTY_FEE = "fee";
-  private Long fee;
-
-  public static final String JSON_PROPERTY_CAPTURE_AMOUNT = "capture_amount";
-  private Long captureAmount;
-
-  public static final String JSON_PROPERTY_CAPTURE_FEE = "capture_fee";
-  private Long captureFee;
-
-  public static final String JSON_PROPERTY_CAPTURE_NET = "capture_net";
-  private Long captureNet;
-
-  public static final String JSON_PROPERTY_REFUND_AMOUNT = "refund_amount";
-  private Long refundAmount;
-
-  public static final String JSON_PROPERTY_REFUND_FEE = "refund_fee";
-  private Long refundFee;
-
-  public static final String JSON_PROPERTY_REFUND_NET = "refund_net";
-  private Long refundNet;
-
-  public static final String JSON_PROPERTY_PAYOUT_AMOUNT = "payout_amount";
-  private Long payoutAmount;
-
-  public static final String JSON_PROPERTY_PAYOUT_FEE = "payout_fee";
-  private Long payoutFee;
-
-  public static final String JSON_PROPERTY_PAYOUT_NET = "payout_net";
-  private Long payoutNet;
-
-  public static final String JSON_PROPERTY_TRANSACTIONS = "transactions";
-  private List<Object> transactions;
+  public static final String JSON_PROPERTY_STATUS = "status";
+  private String status;
 
   public TransfersResponse() { 
   }
-
-  public TransfersResponse id(String id) {
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Unique identifier of the transfer.
-   * @return id
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public TransfersResponse _object(String _object) {
-    this._object = _object;
-    return this;
-  }
-
-   /**
-   * Object name, which is transfer.
-   * @return _object
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_OBJECT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getObject() {
-    return _object;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OBJECT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
 
   public TransfersResponse amount(Long amount) {
     this.amount = amount;
@@ -177,9 +81,9 @@ public class TransfersResponse {
    * Amount in cents of the transfer.
    * @return amount
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_AMOUNT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Long getAmount() {
     return amount;
@@ -187,7 +91,7 @@ public class TransfersResponse {
 
 
   @JsonProperty(JSON_PROPERTY_AMOUNT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAmount(Long amount) {
     this.amount = amount;
   }
@@ -199,12 +103,12 @@ public class TransfersResponse {
   }
 
    /**
-   * Date and time of creation of the transfer in Unix format.
+   * Date and time of creation of the transfer.
    * @return createdAt
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_CREATED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Long getCreatedAt() {
     return createdAt;
@@ -212,7 +116,7 @@ public class TransfersResponse {
 
 
   @JsonProperty(JSON_PROPERTY_CREATED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreatedAt(Long createdAt) {
     this.createdAt = createdAt;
   }
@@ -224,12 +128,12 @@ public class TransfersResponse {
   }
 
    /**
-   * The currency of the transfer. It uses the 3-letter code of ISO 4217.
+   * The currency of the transfer. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)
    * @return currency
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_CURRENCY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getCurrency() {
     return currency;
@@ -237,9 +141,34 @@ public class TransfersResponse {
 
 
   @JsonProperty(JSON_PROPERTY_CURRENCY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCurrency(String currency) {
     this.currency = currency;
+  }
+
+
+  public TransfersResponse id(String id) {
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Unique identifier of the transfer.
+   * @return id
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setId(String id) {
+    this.id = id;
   }
 
 
@@ -252,9 +181,9 @@ public class TransfersResponse {
    * Indicates whether the transfer was created in live mode or test mode.
    * @return livemode
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_LIVEMODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Boolean getLivemode() {
     return livemode;
@@ -262,59 +191,59 @@ public class TransfersResponse {
 
 
   @JsonProperty(JSON_PROPERTY_LIVEMODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLivemode(Boolean livemode) {
     this.livemode = livemode;
   }
 
 
-  public TransfersResponse status(String status) {
-    this.status = status;
+  public TransfersResponse method(TransferMethodResponse method) {
+    this.method = method;
     return this;
   }
 
    /**
-   * Code indicating transfer status.
-   * @return status
+   * Get method
+   * @return method
   **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_METHOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getStatus() {
-    return status;
+  public TransferMethodResponse getMethod() {
+    return method;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setStatus(String status) {
-    this.status = status;
+  @JsonProperty(JSON_PROPERTY_METHOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMethod(TransferMethodResponse method) {
+    this.method = method;
   }
 
 
-  public TransfersResponse statementReference(String statementReference) {
-    this.statementReference = statementReference;
+  public TransfersResponse _object(String _object) {
+    this._object = _object;
     return this;
   }
 
    /**
-   * Reference number of the transfer.
-   * @return statementReference
+   * Object name, which is transfer.
+   * @return _object
   **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_STATEMENT_REFERENCE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_OBJECT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getStatementReference() {
-    return statementReference;
+  public String getObject() {
+    return _object;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_STATEMENT_REFERENCE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setStatementReference(String statementReference) {
-    this.statementReference = statementReference;
+  @JsonProperty(JSON_PROPERTY_OBJECT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setObject(String _object) {
+    this._object = _object;
   }
 
 
@@ -327,9 +256,9 @@ public class TransfersResponse {
    * Description of the transfer.
    * @return statementDescription
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_STATEMENT_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getStatementDescription() {
     return statementDescription;
@@ -337,317 +266,59 @@ public class TransfersResponse {
 
 
   @JsonProperty(JSON_PROPERTY_STATEMENT_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatementDescription(String statementDescription) {
     this.statementDescription = statementDescription;
   }
 
 
-  public TransfersResponse destination(TransfersResponseDestination destination) {
-    this.destination = destination;
+  public TransfersResponse statementReference(String statementReference) {
+    this.statementReference = statementReference;
     return this;
   }
 
    /**
-   * Get destination
-   * @return destination
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DESTINATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public TransfersResponseDestination getDestination() {
-    return destination;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DESTINATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setDestination(TransfersResponseDestination destination) {
-    this.destination = destination;
-  }
-
-
-  public TransfersResponse fee(Long fee) {
-    this.fee = fee;
-    return this;
-  }
-
-   /**
-   * Total fee for the transfer (present only when requesting the &#39;details&#39; expansion).
-   * @return fee
+   * Reference number of the transfer.
+   * @return statementReference
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_FEE)
+  @JsonProperty(JSON_PROPERTY_STATEMENT_REFERENCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Long getFee() {
-    return fee;
+  public String getStatementReference() {
+    return statementReference;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_FEE)
+  @JsonProperty(JSON_PROPERTY_STATEMENT_REFERENCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFee(Long fee) {
-    this.fee = fee;
+  public void setStatementReference(String statementReference) {
+    this.statementReference = statementReference;
   }
 
 
-  public TransfersResponse captureAmount(Long captureAmount) {
-    this.captureAmount = captureAmount;
+  public TransfersResponse status(String status) {
+    this.status = status;
     return this;
   }
 
    /**
-   * Present only when requesting the &#39;details&#39; expansion.
-   * @return captureAmount
+   * Code indicating transfer status.
+   * @return status
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CAPTURE_AMOUNT)
+  @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Long getCaptureAmount() {
-    return captureAmount;
+  public String getStatus() {
+    return status;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CAPTURE_AMOUNT)
+  @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCaptureAmount(Long captureAmount) {
-    this.captureAmount = captureAmount;
-  }
-
-
-  public TransfersResponse captureFee(Long captureFee) {
-    this.captureFee = captureFee;
-    return this;
-  }
-
-   /**
-   * Present only when requesting the &#39;details&#39; expansion.
-   * @return captureFee
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CAPTURE_FEE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Long getCaptureFee() {
-    return captureFee;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CAPTURE_FEE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCaptureFee(Long captureFee) {
-    this.captureFee = captureFee;
-  }
-
-
-  public TransfersResponse captureNet(Long captureNet) {
-    this.captureNet = captureNet;
-    return this;
-  }
-
-   /**
-   * Present only when requesting the &#39;details&#39; expansion.
-   * @return captureNet
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CAPTURE_NET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Long getCaptureNet() {
-    return captureNet;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CAPTURE_NET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCaptureNet(Long captureNet) {
-    this.captureNet = captureNet;
-  }
-
-
-  public TransfersResponse refundAmount(Long refundAmount) {
-    this.refundAmount = refundAmount;
-    return this;
-  }
-
-   /**
-   * Present only when requesting the &#39;details&#39; expansion.
-   * @return refundAmount
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_REFUND_AMOUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Long getRefundAmount() {
-    return refundAmount;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REFUND_AMOUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRefundAmount(Long refundAmount) {
-    this.refundAmount = refundAmount;
-  }
-
-
-  public TransfersResponse refundFee(Long refundFee) {
-    this.refundFee = refundFee;
-    return this;
-  }
-
-   /**
-   * Present only when requesting the &#39;details&#39; expansion.
-   * @return refundFee
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_REFUND_FEE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Long getRefundFee() {
-    return refundFee;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REFUND_FEE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRefundFee(Long refundFee) {
-    this.refundFee = refundFee;
-  }
-
-
-  public TransfersResponse refundNet(Long refundNet) {
-    this.refundNet = refundNet;
-    return this;
-  }
-
-   /**
-   * Present only when requesting the &#39;details&#39; expansion.
-   * @return refundNet
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_REFUND_NET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Long getRefundNet() {
-    return refundNet;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REFUND_NET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRefundNet(Long refundNet) {
-    this.refundNet = refundNet;
-  }
-
-
-  public TransfersResponse payoutAmount(Long payoutAmount) {
-    this.payoutAmount = payoutAmount;
-    return this;
-  }
-
-   /**
-   * Present only when requesting the &#39;details&#39; expansion.
-   * @return payoutAmount
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PAYOUT_AMOUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Long getPayoutAmount() {
-    return payoutAmount;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PAYOUT_AMOUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPayoutAmount(Long payoutAmount) {
-    this.payoutAmount = payoutAmount;
-  }
-
-
-  public TransfersResponse payoutFee(Long payoutFee) {
-    this.payoutFee = payoutFee;
-    return this;
-  }
-
-   /**
-   * Present only when requesting the &#39;details&#39; expansion.
-   * @return payoutFee
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PAYOUT_FEE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Long getPayoutFee() {
-    return payoutFee;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PAYOUT_FEE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPayoutFee(Long payoutFee) {
-    this.payoutFee = payoutFee;
-  }
-
-
-  public TransfersResponse payoutNet(Long payoutNet) {
-    this.payoutNet = payoutNet;
-    return this;
-  }
-
-   /**
-   * Present only when requesting the &#39;details&#39; expansion.
-   * @return payoutNet
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PAYOUT_NET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Long getPayoutNet() {
-    return payoutNet;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PAYOUT_NET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPayoutNet(Long payoutNet) {
-    this.payoutNet = payoutNet;
-  }
-
-
-  public TransfersResponse transactions(List<Object> transactions) {
-    this.transactions = transactions;
-    return this;
-  }
-
-  public TransfersResponse addTransactionsItem(Object transactionsItem) {
-    if (this.transactions == null) {
-      this.transactions = new ArrayList<>();
-    }
-    this.transactions.add(transactionsItem);
-    return this;
-  }
-
-   /**
-   * Present only when requesting the &#39;details&#39; expansion.
-   * @return transactions
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TRANSACTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<Object> getTransactions() {
-    return transactions;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TRANSACTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTransactions(List<Object> transactions) {
-    this.transactions = transactions;
+  public void setStatus(String status) {
+    this.status = status;
   }
 
 
@@ -663,59 +334,37 @@ public class TransfersResponse {
       return false;
     }
     TransfersResponse transfersResponse = (TransfersResponse) o;
-    return Objects.equals(this.id, transfersResponse.id) &&
-        Objects.equals(this._object, transfersResponse._object) &&
-        Objects.equals(this.amount, transfersResponse.amount) &&
+    return Objects.equals(this.amount, transfersResponse.amount) &&
         Objects.equals(this.createdAt, transfersResponse.createdAt) &&
         Objects.equals(this.currency, transfersResponse.currency) &&
+        Objects.equals(this.id, transfersResponse.id) &&
         Objects.equals(this.livemode, transfersResponse.livemode) &&
-        Objects.equals(this.status, transfersResponse.status) &&
-        Objects.equals(this.statementReference, transfersResponse.statementReference) &&
+        Objects.equals(this.method, transfersResponse.method) &&
+        Objects.equals(this._object, transfersResponse._object) &&
         Objects.equals(this.statementDescription, transfersResponse.statementDescription) &&
-        Objects.equals(this.destination, transfersResponse.destination) &&
-        Objects.equals(this.fee, transfersResponse.fee) &&
-        Objects.equals(this.captureAmount, transfersResponse.captureAmount) &&
-        Objects.equals(this.captureFee, transfersResponse.captureFee) &&
-        Objects.equals(this.captureNet, transfersResponse.captureNet) &&
-        Objects.equals(this.refundAmount, transfersResponse.refundAmount) &&
-        Objects.equals(this.refundFee, transfersResponse.refundFee) &&
-        Objects.equals(this.refundNet, transfersResponse.refundNet) &&
-        Objects.equals(this.payoutAmount, transfersResponse.payoutAmount) &&
-        Objects.equals(this.payoutFee, transfersResponse.payoutFee) &&
-        Objects.equals(this.payoutNet, transfersResponse.payoutNet) &&
-        Objects.equals(this.transactions, transfersResponse.transactions);
+        Objects.equals(this.statementReference, transfersResponse.statementReference) &&
+        Objects.equals(this.status, transfersResponse.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, amount, createdAt, currency, livemode, status, statementReference, statementDescription, destination, fee, captureAmount, captureFee, captureNet, refundAmount, refundFee, refundNet, payoutAmount, payoutFee, payoutNet, transactions);
+    return Objects.hash(amount, createdAt, currency, id, livemode, method, _object, statementDescription, statementReference, status);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TransfersResponse {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    livemode: ").append(toIndentedString(livemode)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    statementReference: ").append(toIndentedString(statementReference)).append("\n");
+    sb.append("    method: ").append(toIndentedString(method)).append("\n");
+    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    statementDescription: ").append(toIndentedString(statementDescription)).append("\n");
-    sb.append("    destination: ").append(toIndentedString(destination)).append("\n");
-    sb.append("    fee: ").append(toIndentedString(fee)).append("\n");
-    sb.append("    captureAmount: ").append(toIndentedString(captureAmount)).append("\n");
-    sb.append("    captureFee: ").append(toIndentedString(captureFee)).append("\n");
-    sb.append("    captureNet: ").append(toIndentedString(captureNet)).append("\n");
-    sb.append("    refundAmount: ").append(toIndentedString(refundAmount)).append("\n");
-    sb.append("    refundFee: ").append(toIndentedString(refundFee)).append("\n");
-    sb.append("    refundNet: ").append(toIndentedString(refundNet)).append("\n");
-    sb.append("    payoutAmount: ").append(toIndentedString(payoutAmount)).append("\n");
-    sb.append("    payoutFee: ").append(toIndentedString(payoutFee)).append("\n");
-    sb.append("    payoutNet: ").append(toIndentedString(payoutNet)).append("\n");
-    sb.append("    transactions: ").append(toIndentedString(transactions)).append("\n");
+    sb.append("    statementReference: ").append(toIndentedString(statementReference)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -88,7 +88,7 @@ public class Example {
 
 ## getTransactions
 
-> GetTransactionsResponse getTransactions(acceptLanguage, xChildCompanyId, limit, next, previous, search, chargeId, type, currency)
+> GetTransactionsResponse getTransactions(acceptLanguage, xChildCompanyId, limit, next, previous, id, chargeId, type, currency)
 
 List transactions
 
@@ -126,12 +126,12 @@ public class Example {
         Integer limit = 20; // Integer | The numbers of items to return, the maximum value is 250
         String next = "next_example"; // String | next page
         String previous = "previous_example"; // String | previous page
-        String search = "search_example"; // String | General order search, e.g. by mail, reference etc.
+        String id = "65412a893cd69a0001c25892"; // String | id of the object to be retrieved
         String chargeId = "65412a893cd69a0001c25892"; // String | id of the charge used for filtering
         String type = "capture"; // String | type of the object to be retrieved
         String currency = "MXN"; // String | currency of the object to be retrieved
         try {
-            GetTransactionsResponse result = apiInstance.getTransactions(acceptLanguage, xChildCompanyId, limit, next, previous, search, chargeId, type, currency);
+            GetTransactionsResponse result = apiInstance.getTransactions(acceptLanguage, xChildCompanyId, limit, next, previous, id, chargeId, type, currency);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TransactionsApi#getTransactions");
@@ -154,7 +154,7 @@ public class Example {
 | **limit** | **Integer**| The numbers of items to return, the maximum value is 250 | [optional] [default to 20] |
 | **next** | **String**| next page | [optional] |
 | **previous** | **String**| previous page | [optional] |
-| **search** | **String**| General order search, e.g. by mail, reference etc. | [optional] |
+| **id** | **String**| id of the object to be retrieved | [optional] |
 | **chargeId** | **String**| id of the charge used for filtering | [optional] |
 | **type** | **String**| type of the object to be retrieved | [optional] |
 | **currency** | **String**| currency of the object to be retrieved | [optional] |
@@ -175,7 +175,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful operation |  -  |
+| **200** | successful operation |  -  |
 | **401** | authentication error |  -  |
 | **500** | internal server error |  -  |
 

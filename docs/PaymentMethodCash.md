@@ -7,8 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**type** | **String** | Cash payment type |  [optional] |
-|**_object** | [**ObjectEnum**](#ObjectEnum) |  |  |
+|**type** | **String** |  |  [optional] |
+|**_object** | **String** |  |  |
 |**authCode** | **String** |  |  [optional] |
 |**cashierId** | **String** |  |  [optional] |
 |**reference** | **String** |  |  [optional] |
@@ -17,14 +17,6 @@
 |**serviceName** | **String** |  |  [optional] |
 |**store** | **String** |  |  [optional] |
 |**storeName** | **String** |  |  [optional] |
-
-
-
-## Enum: ObjectEnum
-
-| Name | Value |
-|---- | -----|
-| CASH_PAYMENT | &quot;cash_payment&quot; |
 
 
 

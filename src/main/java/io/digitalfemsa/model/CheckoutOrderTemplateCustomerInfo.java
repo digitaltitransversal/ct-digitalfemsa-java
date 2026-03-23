@@ -38,157 +38,149 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
-@JsonDeserialize(using = UpdatePaymentMethodsExpiresAt.UpdatePaymentMethodsExpiresAtDeserializer.class)
-@JsonSerialize(using = UpdatePaymentMethodsExpiresAt.UpdatePaymentMethodsExpiresAtSerializer.class)
-public class UpdatePaymentMethodsExpiresAt extends AbstractOpenApiSchema {
-    private static final Logger log = Logger.getLogger(UpdatePaymentMethodsExpiresAt.class.getName());
+@JsonDeserialize(using = CheckoutOrderTemplateCustomerInfo.CheckoutOrderTemplateCustomerInfoDeserializer.class)
+@JsonSerialize(using = CheckoutOrderTemplateCustomerInfo.CheckoutOrderTemplateCustomerInfoSerializer.class)
+public class CheckoutOrderTemplateCustomerInfo extends AbstractOpenApiSchema {
+    private static final Logger log = Logger.getLogger(CheckoutOrderTemplateCustomerInfo.class.getName());
 
-    public static class UpdatePaymentMethodsExpiresAtSerializer extends StdSerializer<UpdatePaymentMethodsExpiresAt> {
-        public UpdatePaymentMethodsExpiresAtSerializer(Class<UpdatePaymentMethodsExpiresAt> t) {
+    public static class CheckoutOrderTemplateCustomerInfoSerializer extends StdSerializer<CheckoutOrderTemplateCustomerInfo> {
+        public CheckoutOrderTemplateCustomerInfoSerializer(Class<CheckoutOrderTemplateCustomerInfo> t) {
             super(t);
         }
 
-        public UpdatePaymentMethodsExpiresAtSerializer() {
+        public CheckoutOrderTemplateCustomerInfoSerializer() {
             this(null);
         }
 
         @Override
-        public void serialize(UpdatePaymentMethodsExpiresAt value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
+        public void serialize(CheckoutOrderTemplateCustomerInfo value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
             jgen.writeObject(value.getActualInstance());
         }
     }
 
-    public static class UpdatePaymentMethodsExpiresAtDeserializer extends StdDeserializer<UpdatePaymentMethodsExpiresAt> {
-        public UpdatePaymentMethodsExpiresAtDeserializer() {
-            this(UpdatePaymentMethodsExpiresAt.class);
+    public static class CheckoutOrderTemplateCustomerInfoDeserializer extends StdDeserializer<CheckoutOrderTemplateCustomerInfo> {
+        public CheckoutOrderTemplateCustomerInfoDeserializer() {
+            this(CheckoutOrderTemplateCustomerInfo.class);
         }
 
-        public UpdatePaymentMethodsExpiresAtDeserializer(Class<?> vc) {
+        public CheckoutOrderTemplateCustomerInfoDeserializer(Class<?> vc) {
             super(vc);
         }
 
         @Override
-        public UpdatePaymentMethodsExpiresAt deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+        public CheckoutOrderTemplateCustomerInfo deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
             JsonNode tree = jp.readValueAsTree();
             Object deserialized = null;
             boolean typeCoercion = ctxt.isEnabled(MapperFeature.ALLOW_COERCION_OF_SCALARS);
             int match = 0;
             JsonToken token = tree.traverse(jp.getCodec()).nextToken();
-            // deserialize Long
+            // deserialize CustomerInfo
             try {
                 boolean attemptParsing = true;
-                attemptParsing = typeCoercion; //respect type coercion setting
-                if (!attemptParsing) {
-                    attemptParsing |= (token == JsonToken.VALUE_NUMBER_INT);
-                }
                 if (attemptParsing) {
-                    deserialized = tree.traverse(jp.getCodec()).readValueAs(Long.class);
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(CustomerInfo.class);
                     // TODO: there is no validation against JSON schema constraints
                     // (min, max, enum, pattern...), this does not perform a strict JSON
                     // validation, which means the 'match' count may be higher than it should be.
                     match++;
-                    log.log(Level.FINER, "Input data matches schema 'Long'");
+                    log.log(Level.FINER, "Input data matches schema 'CustomerInfo'");
                 }
             } catch (Exception e) {
                 // deserialization failed, continue
-                log.log(Level.FINER, "Input data does not match schema 'Long'", e);
+                log.log(Level.FINER, "Input data does not match schema 'CustomerInfo'", e);
             }
 
-            // deserialize String
+            // deserialize CustomerInfoJustCustomerId
             try {
                 boolean attemptParsing = true;
-                attemptParsing = typeCoercion; //respect type coercion setting
-                if (!attemptParsing) {
-                    attemptParsing |= (token == JsonToken.VALUE_STRING);
-                }
                 if (attemptParsing) {
-                    deserialized = tree.traverse(jp.getCodec()).readValueAs(String.class);
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(CustomerInfoJustCustomerId.class);
                     // TODO: there is no validation against JSON schema constraints
                     // (min, max, enum, pattern...), this does not perform a strict JSON
                     // validation, which means the 'match' count may be higher than it should be.
                     match++;
-                    log.log(Level.FINER, "Input data matches schema 'String'");
+                    log.log(Level.FINER, "Input data matches schema 'CustomerInfoJustCustomerId'");
                 }
             } catch (Exception e) {
                 // deserialization failed, continue
-                log.log(Level.FINER, "Input data does not match schema 'String'", e);
+                log.log(Level.FINER, "Input data does not match schema 'CustomerInfoJustCustomerId'", e);
             }
 
             if (match == 1) {
-                UpdatePaymentMethodsExpiresAt ret = new UpdatePaymentMethodsExpiresAt();
+                CheckoutOrderTemplateCustomerInfo ret = new CheckoutOrderTemplateCustomerInfo();
                 ret.setActualInstance(deserialized);
                 return ret;
             }
-            throw new IOException(String.format("Failed deserialization for UpdatePaymentMethodsExpiresAt: %d classes match result, expected 1", match));
+            throw new IOException(String.format("Failed deserialization for CheckoutOrderTemplateCustomerInfo: %d classes match result, expected 1", match));
         }
 
         /**
          * Handle deserialization of the 'null' value.
          */
         @Override
-        public UpdatePaymentMethodsExpiresAt getNullValue(DeserializationContext ctxt) throws JsonMappingException {
-            throw new JsonMappingException(ctxt.getParser(), "UpdatePaymentMethodsExpiresAt cannot be null");
+        public CheckoutOrderTemplateCustomerInfo getNullValue(DeserializationContext ctxt) throws JsonMappingException {
+            throw new JsonMappingException(ctxt.getParser(), "CheckoutOrderTemplateCustomerInfo cannot be null");
         }
     }
 
     // store a list of schema names defined in oneOf
     public static final Map<String, GenericType> schemas = new HashMap<>();
 
-    public UpdatePaymentMethodsExpiresAt() {
+    public CheckoutOrderTemplateCustomerInfo() {
         super("oneOf", Boolean.FALSE);
     }
 
-    public UpdatePaymentMethodsExpiresAt(Long o) {
+    public CheckoutOrderTemplateCustomerInfo(CustomerInfo o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }
 
-    public UpdatePaymentMethodsExpiresAt(String o) {
+    public CheckoutOrderTemplateCustomerInfo(CustomerInfoJustCustomerId o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }
 
     static {
-        schemas.put("Long", new GenericType<Long>() {
+        schemas.put("CustomerInfo", new GenericType<CustomerInfo>() {
         });
-        schemas.put("String", new GenericType<String>() {
+        schemas.put("CustomerInfoJustCustomerId", new GenericType<CustomerInfoJustCustomerId>() {
         });
-        JSON.registerDescendants(UpdatePaymentMethodsExpiresAt.class, Collections.unmodifiableMap(schemas));
+        JSON.registerDescendants(CheckoutOrderTemplateCustomerInfo.class, Collections.unmodifiableMap(schemas));
     }
 
     @Override
     public Map<String, GenericType> getSchemas() {
-        return UpdatePaymentMethodsExpiresAt.schemas;
+        return CheckoutOrderTemplateCustomerInfo.schemas;
     }
 
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * Long, String
+     * CustomerInfo, CustomerInfoJustCustomerId
      *
      * It could be an instance of the 'oneOf' schemas.
      * The oneOf child schemas may themselves be a composed schema (allOf, anyOf, oneOf).
      */
     @Override
     public void setActualInstance(Object instance) {
-        if (JSON.isInstanceOf(Long.class, instance, new HashSet<>())) {
+        if (JSON.isInstanceOf(CustomerInfo.class, instance, new HashSet<>())) {
             super.setActualInstance(instance);
             return;
         }
 
-        if (JSON.isInstanceOf(String.class, instance, new HashSet<>())) {
+        if (JSON.isInstanceOf(CustomerInfoJustCustomerId.class, instance, new HashSet<>())) {
             super.setActualInstance(instance);
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be Long, String");
+        throw new RuntimeException("Invalid instance type. Must be CustomerInfo, CustomerInfoJustCustomerId");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * Long, String
+     * CustomerInfo, CustomerInfoJustCustomerId
      *
-     * @return The actual instance (Long, String)
+     * @return The actual instance (CustomerInfo, CustomerInfoJustCustomerId)
      */
     @Override
     public Object getActualInstance() {
@@ -196,25 +188,25 @@ public class UpdatePaymentMethodsExpiresAt extends AbstractOpenApiSchema {
     }
 
     /**
-     * Get the actual instance of `Long`. If the actual instance is not `Long`,
+     * Get the actual instance of `CustomerInfo`. If the actual instance is not `CustomerInfo`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `Long`
-     * @throws ClassCastException if the instance is not `Long`
+     * @return The actual instance of `CustomerInfo`
+     * @throws ClassCastException if the instance is not `CustomerInfo`
      */
-    public Long getLong() throws ClassCastException {
-        return (Long)super.getActualInstance();
+    public CustomerInfo getCustomerInfo() throws ClassCastException {
+        return (CustomerInfo)super.getActualInstance();
     }
 
     /**
-     * Get the actual instance of `String`. If the actual instance is not `String`,
+     * Get the actual instance of `CustomerInfoJustCustomerId`. If the actual instance is not `CustomerInfoJustCustomerId`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `String`
-     * @throws ClassCastException if the instance is not `String`
+     * @return The actual instance of `CustomerInfoJustCustomerId`
+     * @throws ClassCastException if the instance is not `CustomerInfoJustCustomerId`
      */
-    public String getString() throws ClassCastException {
-        return (String)super.getActualInstance();
+    public CustomerInfoJustCustomerId getCustomerInfoJustCustomerId() throws ClassCastException {
+        return (CustomerInfoJustCustomerId)super.getActualInstance();
     }
 
 }

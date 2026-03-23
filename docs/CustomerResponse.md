@@ -17,8 +17,6 @@ customer response
 |**phone** | **String** | Customer&#39;s phone number |  [optional] |
 |**corporate** | **Boolean** | true if the customer is a company |  [optional] |
 |**customReference** | **String** | Custom reference |  [optional] |
-|**referrer** | **String** | Referrer information (if available) |  [optional] |
-|**verticalInfo** | **Map&lt;String, Object&gt;** | Vertical-specific information (shape depends on integration) |  [optional] |
 |**defaultFiscalEntityId** | **String** |  |  [optional] |
 |**defaultShippingContactId** | **String** |  |  [optional] |
 |**metadata** | **Map&lt;String, Object&gt;** | Customer metadata (maps to contextual_data in backend) |  [optional] |

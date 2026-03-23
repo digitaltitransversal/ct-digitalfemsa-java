@@ -14,7 +14,6 @@ create new taxes for an existing order response
 |**id** | **String** |  |  |
 |**_object** | **String** |  |  [optional] |
 |**parentId** | **String** |  |  [optional] |
-|**deleted** | **Boolean** | Present only when the tax line was deleted. |  [optional] |
 
 
 

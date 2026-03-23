@@ -112,8 +112,8 @@ public class ShippingContactsApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Delete shipping contact
-   * Deletes an existing shipping contact for a customer. The shipping contact identified by &#x60;shipping_contacts_id&#x60; belongs to the customer identified by &#x60;id&#x60;. The response includes the deleted resource with &#x60;deleted: true&#x60;.
+   * Delete shipping contacts
+   * Delete shipping contact that corresponds to a customer ID.
    * @param id Identifier of the resource (required)
    * @param shippingContactsId identifier (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -135,8 +135,8 @@ public class ShippingContactsApi {
   }
 
   /**
-   * Delete shipping contact
-   * Deletes an existing shipping contact for a customer. The shipping contact identified by &#x60;shipping_contacts_id&#x60; belongs to the customer identified by &#x60;id&#x60;. The response includes the deleted resource with &#x60;deleted: true&#x60;.
+   * Delete shipping contacts
+   * Delete shipping contact that corresponds to a customer ID.
    * @param id Identifier of the resource (required)
    * @param shippingContactsId identifier (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -185,8 +185,8 @@ public class ShippingContactsApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Update shipping contact
-   * Updates an existing shipping contact for a customer. The shipping contact identified by &#x60;shipping_contacts_id&#x60; belongs to the customer identified by &#x60;id&#x60;. Only the fields provided in the request body are updated.
+   * Update shipping contacts
+   * Update shipping contact that corresponds to a customer ID.
    * @param id Identifier of the resource (required)
    * @param shippingContactsId identifier (required)
    * @param customerUpdateShippingContacts Request body for updating a customer shipping contact. (required)
@@ -209,8 +209,8 @@ public class ShippingContactsApi {
   }
 
   /**
-   * Update shipping contact
-   * Updates an existing shipping contact for a customer. The shipping contact identified by &#x60;shipping_contacts_id&#x60; belongs to the customer identified by &#x60;id&#x60;. Only the fields provided in the request body are updated.
+   * Update shipping contacts
+   * Update shipping contact that corresponds to a customer ID.
    * @param id Identifier of the resource (required)
    * @param shippingContactsId identifier (required)
    * @param customerUpdateShippingContacts Request body for updating a customer shipping contact. (required)

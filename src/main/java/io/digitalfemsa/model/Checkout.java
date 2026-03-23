@@ -130,7 +130,7 @@ public class Checkout {
   }
 
    /**
-   * Payment link name
+   * Reason for charge
    * @return name
   **/
   @javax.annotation.Nonnull

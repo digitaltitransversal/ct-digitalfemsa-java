@@ -112,7 +112,7 @@ public class TransactionsApi {
    * @param limit The numbers of items to return, the maximum value is 250 (optional, default to 20)
    * @param next next page (optional)
    * @param previous previous page (optional)
-   * @param search General order search, e.g. by mail, reference etc. (optional)
+   * @param id id of the object to be retrieved (optional)
    * @param chargeId id of the charge used for filtering (optional)
    * @param type type of the object to be retrieved (optional)
    * @param currency currency of the object to be retrieved (optional)
@@ -121,13 +121,13 @@ public class TransactionsApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
-  public GetTransactionsResponse getTransactions(String acceptLanguage, String xChildCompanyId, Integer limit, String next, String previous, String search, String chargeId, String type, String currency) throws ApiException {
-    return getTransactionsWithHttpInfo(acceptLanguage, xChildCompanyId, limit, next, previous, search, chargeId, type, currency).getData();
+  public GetTransactionsResponse getTransactions(String acceptLanguage, String xChildCompanyId, Integer limit, String next, String previous, String id, String chargeId, String type, String currency) throws ApiException {
+    return getTransactionsWithHttpInfo(acceptLanguage, xChildCompanyId, limit, next, previous, id, chargeId, type, currency).getData();
   }
 
   /**
@@ -138,7 +138,7 @@ public class TransactionsApi {
    * @param limit The numbers of items to return, the maximum value is 250 (optional, default to 20)
    * @param next next page (optional)
    * @param previous previous page (optional)
-   * @param search General order search, e.g. by mail, reference etc. (optional)
+   * @param id id of the object to be retrieved (optional)
    * @param chargeId id of the charge used for filtering (optional)
    * @param type type of the object to be retrieved (optional)
    * @param currency currency of the object to be retrieved (optional)
@@ -147,19 +147,19 @@ public class TransactionsApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<GetTransactionsResponse> getTransactionsWithHttpInfo(String acceptLanguage, String xChildCompanyId, Integer limit, String next, String previous, String search, String chargeId, String type, String currency) throws ApiException {
+  public ApiResponse<GetTransactionsResponse> getTransactionsWithHttpInfo(String acceptLanguage, String xChildCompanyId, Integer limit, String next, String previous, String id, String chargeId, String type, String currency) throws ApiException {
     // Query parameters
     List<Pair> localVarQueryParams = new ArrayList<>(
             apiClient.parameterToPairs("", "limit", limit)
     );
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "next", next));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "previous", previous));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "search", search));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "id", id));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "charge_id", chargeId));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "type", type));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "currency", currency));

@@ -46,7 +46,7 @@ public class ApiKeyUpdateRequest {
   }
 
    /**
-   * Indicates whether the API key is active.
+   * Indicates if the webhook key is active
    * @return active
   **/
   @javax.annotation.Nullable
@@ -71,7 +71,7 @@ public class ApiKeyUpdateRequest {
   }
 
    /**
-   * A name or brief explanation of what this API key is used for.
+   * A name or brief explanation of what this api key is used for
    * @return description
   **/
   @javax.annotation.Nullable

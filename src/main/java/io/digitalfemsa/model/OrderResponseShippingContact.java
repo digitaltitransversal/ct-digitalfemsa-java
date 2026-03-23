@@ -209,7 +209,7 @@ public class OrderResponseShippingContact {
   }
 
    /**
-   * True if this is the customer&#39;s default shipping contact.
+   * Get _default
    * @return _default
   **/
   @javax.annotation.Nullable

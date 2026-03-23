@@ -9,10 +9,10 @@
 |------------ | ------------- | ------------- | -------------|
 |**address** | [**CustomerAddress**](CustomerAddress.md) |  |  |
 |**taxId** | **String** |  |  [optional] |
+|**name** | **String** |  |  [optional] |
 |**email** | **String** |  |  [optional] |
 |**phone** | **String** |  |  [optional] |
 |**metadata** | **Map&lt;String, Object&gt;** |  |  [optional] |
-|**companyName** | **String** |  |  [optional] |
 |**id** | **String** |  |  |
 |**_object** | **String** |  |  |
 |**createdAt** | **Long** |  |  |

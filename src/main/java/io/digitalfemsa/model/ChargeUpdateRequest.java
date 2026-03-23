@@ -42,7 +42,7 @@ public class ChargeUpdateRequest {
   }
 
    /**
-   * Custom reference ID.
+   * custom reference id
    * @return referenceId
   **/
   @javax.annotation.Nullable

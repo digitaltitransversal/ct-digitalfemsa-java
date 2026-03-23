@@ -29,8 +29,7 @@ import java.util.Objects;
   CustomerInfo.JSON_PROPERTY_NAME,
   CustomerInfo.JSON_PROPERTY_EMAIL,
   CustomerInfo.JSON_PROPERTY_PHONE,
-  CustomerInfo.JSON_PROPERTY_CORPORATE,
-  CustomerInfo.JSON_PROPERTY_OBJECT
+  CustomerInfo.JSON_PROPERTY_CORPORATE
 })
 @JsonTypeName("customer_info")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
@@ -49,9 +48,6 @@ public class CustomerInfo {
 
   public static final String JSON_PROPERTY_CORPORATE = "corporate";
   private Boolean corporate;
-
-  public static final String JSON_PROPERTY_OBJECT = "object";
-  private String _object;
 
   public CustomerInfo() { 
   }
@@ -140,9 +136,9 @@ public class CustomerInfo {
    * Get phone
    * @return phone
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_PHONE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getPhone() {
     return phone;
@@ -150,7 +146,7 @@ public class CustomerInfo {
 
 
   @JsonProperty(JSON_PROPERTY_PHONE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPhone(String phone) {
     this.phone = phone;
   }
@@ -181,31 +177,6 @@ public class CustomerInfo {
   }
 
 
-  public CustomerInfo _object(String _object) {
-    this._object = _object;
-    return this;
-  }
-
-   /**
-   * Get _object
-   * @return _object
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_OBJECT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getObject() {
-    return _object;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OBJECT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
-
   /**
    * Return true if this customer_info object is equal to o.
    */
@@ -222,13 +193,12 @@ public class CustomerInfo {
         Objects.equals(this.name, customerInfo.name) &&
         Objects.equals(this.email, customerInfo.email) &&
         Objects.equals(this.phone, customerInfo.phone) &&
-        Objects.equals(this.corporate, customerInfo.corporate) &&
-        Objects.equals(this._object, customerInfo._object);
+        Objects.equals(this.corporate, customerInfo.corporate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(customerId, name, email, phone, corporate, _object);
+    return Objects.hash(customerId, name, email, phone, corporate);
   }
 
   @Override
@@ -240,7 +210,6 @@ public class CustomerInfo {
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     sb.append("    corporate: ").append(toIndentedString(corporate)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("}");
     return sb.toString();
   }

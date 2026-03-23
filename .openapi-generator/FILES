@@ -27,6 +27,7 @@ docs/ChargesApi.md
 docs/ChargesDataResponse.md
 docs/Checkout.md
 docs/CheckoutOrderTemplate.md
+docs/CheckoutOrderTemplateCustomerInfo.md
 docs/CheckoutRequest.md
 docs/CheckoutResponse.md
 docs/CheckoutsResponse.md
@@ -44,12 +45,12 @@ docs/CustomerFiscalEntitiesDataResponse.md
 docs/CustomerFiscalEntitiesRequest.md
 docs/CustomerFiscalEntitiesResponse.md
 docs/CustomerInfo.md
+docs/CustomerInfoJustCustomerId.md
 docs/CustomerInfoJustCustomerIdResponse.md
 docs/CustomerPaymentMethodRequest.md
 docs/CustomerPaymentMethodsData.md
 docs/CustomerPaymentMethodsRequest.md
 docs/CustomerPaymentMethodsResponse.md
-docs/CustomerPaymentSourcesInner.md
 docs/CustomerResponse.md
 docs/CustomerResponseShippingContacts.md
 docs/CustomerShippingContacts.md
@@ -93,9 +94,11 @@ docs/OrderCaptureRequest.md
 docs/OrderCustomerInfoResponse.md
 docs/OrderDiscountLinesRequest.md
 docs/OrderFiscalEntityAddressResponse.md
+docs/OrderFiscalEntityRequest.md
 docs/OrderFiscalEntityResponse.md
 docs/OrderRefundRequest.md
 docs/OrderRequest.md
+docs/OrderRequestCustomerInfo.md
 docs/OrderResponse.md
 docs/OrderResponseChannel.md
 docs/OrderResponseCharges.md
@@ -107,6 +110,7 @@ docs/OrderResponseShippingContact.md
 docs/OrderTaxRequest.md
 docs/OrderUpdateFiscalEntityRequest.md
 docs/OrderUpdateRequest.md
+docs/OrderUpdateRequestCustomerInfo.md
 docs/OrdersApi.md
 docs/OrdersResponse.md
 docs/Page.md
@@ -130,10 +134,10 @@ docs/TaxesApi.md
 docs/TransactionResponse.md
 docs/TransactionsApi.md
 docs/TransferDestinationResponse.md
+docs/TransferMethodResponse.md
 docs/TransferResponse.md
 docs/TransfersApi.md
 docs/TransfersResponse.md
-docs/TransfersResponseDestination.md
 docs/UpdateCustomer.md
 docs/UpdateCustomerFiscalEntitiesResponse.md
 docs/UpdateCustomerPaymentMethodsResponse.md
@@ -141,8 +145,6 @@ docs/UpdateOrderDiscountLinesRequest.md
 docs/UpdateOrderTaxRequest.md
 docs/UpdateOrderTaxResponse.md
 docs/UpdatePaymentMethods.md
-docs/UpdatePaymentMethodsAmount.md
-docs/UpdatePaymentMethodsExpiresAt.md
 docs/UpdateProduct.md
 docs/WebhookKeyCreateResponse.md
 docs/WebhookKeyDeleteResponse.md
@@ -212,6 +214,7 @@ src/main/java/io/digitalfemsa/model/ChargeUpdateRequest.java
 src/main/java/io/digitalfemsa/model/ChargesDataResponse.java
 src/main/java/io/digitalfemsa/model/Checkout.java
 src/main/java/io/digitalfemsa/model/CheckoutOrderTemplate.java
+src/main/java/io/digitalfemsa/model/CheckoutOrderTemplateCustomerInfo.java
 src/main/java/io/digitalfemsa/model/CheckoutRequest.java
 src/main/java/io/digitalfemsa/model/CheckoutResponse.java
 src/main/java/io/digitalfemsa/model/CheckoutsResponse.java
@@ -228,12 +231,12 @@ src/main/java/io/digitalfemsa/model/CustomerFiscalEntitiesDataResponse.java
 src/main/java/io/digitalfemsa/model/CustomerFiscalEntitiesRequest.java
 src/main/java/io/digitalfemsa/model/CustomerFiscalEntitiesResponse.java
 src/main/java/io/digitalfemsa/model/CustomerInfo.java
+src/main/java/io/digitalfemsa/model/CustomerInfoJustCustomerId.java
 src/main/java/io/digitalfemsa/model/CustomerInfoJustCustomerIdResponse.java
 src/main/java/io/digitalfemsa/model/CustomerPaymentMethodRequest.java
 src/main/java/io/digitalfemsa/model/CustomerPaymentMethodsData.java
 src/main/java/io/digitalfemsa/model/CustomerPaymentMethodsRequest.java
 src/main/java/io/digitalfemsa/model/CustomerPaymentMethodsResponse.java
-src/main/java/io/digitalfemsa/model/CustomerPaymentSourcesInner.java
 src/main/java/io/digitalfemsa/model/CustomerResponse.java
 src/main/java/io/digitalfemsa/model/CustomerResponseShippingContacts.java
 src/main/java/io/digitalfemsa/model/CustomerShippingContacts.java
@@ -273,9 +276,11 @@ src/main/java/io/digitalfemsa/model/OrderCaptureRequest.java
 src/main/java/io/digitalfemsa/model/OrderCustomerInfoResponse.java
 src/main/java/io/digitalfemsa/model/OrderDiscountLinesRequest.java
 src/main/java/io/digitalfemsa/model/OrderFiscalEntityAddressResponse.java
+src/main/java/io/digitalfemsa/model/OrderFiscalEntityRequest.java
 src/main/java/io/digitalfemsa/model/OrderFiscalEntityResponse.java
 src/main/java/io/digitalfemsa/model/OrderRefundRequest.java
 src/main/java/io/digitalfemsa/model/OrderRequest.java
+src/main/java/io/digitalfemsa/model/OrderRequestCustomerInfo.java
 src/main/java/io/digitalfemsa/model/OrderResponse.java
 src/main/java/io/digitalfemsa/model/OrderResponseChannel.java
 src/main/java/io/digitalfemsa/model/OrderResponseCharges.java
@@ -287,6 +292,7 @@ src/main/java/io/digitalfemsa/model/OrderResponseShippingContact.java
 src/main/java/io/digitalfemsa/model/OrderTaxRequest.java
 src/main/java/io/digitalfemsa/model/OrderUpdateFiscalEntityRequest.java
 src/main/java/io/digitalfemsa/model/OrderUpdateRequest.java
+src/main/java/io/digitalfemsa/model/OrderUpdateRequestCustomerInfo.java
 src/main/java/io/digitalfemsa/model/OrdersResponse.java
 src/main/java/io/digitalfemsa/model/Page.java
 src/main/java/io/digitalfemsa/model/Pagination.java
@@ -302,9 +308,9 @@ src/main/java/io/digitalfemsa/model/ShippingOrderResponse.java
 src/main/java/io/digitalfemsa/model/ShippingRequest.java
 src/main/java/io/digitalfemsa/model/TransactionResponse.java
 src/main/java/io/digitalfemsa/model/TransferDestinationResponse.java
+src/main/java/io/digitalfemsa/model/TransferMethodResponse.java
 src/main/java/io/digitalfemsa/model/TransferResponse.java
 src/main/java/io/digitalfemsa/model/TransfersResponse.java
-src/main/java/io/digitalfemsa/model/TransfersResponseDestination.java
 src/main/java/io/digitalfemsa/model/UpdateCustomer.java
 src/main/java/io/digitalfemsa/model/UpdateCustomerFiscalEntitiesResponse.java
 src/main/java/io/digitalfemsa/model/UpdateCustomerPaymentMethodsResponse.java
@@ -312,8 +318,6 @@ src/main/java/io/digitalfemsa/model/UpdateOrderDiscountLinesRequest.java
 src/main/java/io/digitalfemsa/model/UpdateOrderTaxRequest.java
 src/main/java/io/digitalfemsa/model/UpdateOrderTaxResponse.java
 src/main/java/io/digitalfemsa/model/UpdatePaymentMethods.java
-src/main/java/io/digitalfemsa/model/UpdatePaymentMethodsAmount.java
-src/main/java/io/digitalfemsa/model/UpdatePaymentMethodsExpiresAt.java
 src/main/java/io/digitalfemsa/model/UpdateProduct.java
 src/main/java/io/digitalfemsa/model/WebhookKeyCreateResponse.java
 src/main/java/io/digitalfemsa/model/WebhookKeyDeleteResponse.java

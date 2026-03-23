@@ -24,7 +24,7 @@ import java.util.Objects;
 
 
 /**
- * Fiscal entity information associated with the order.
+ * Fiscal entity of the order, Currently it is a purely informative field
  */
 @JsonPropertyOrder({
   OrderUpdateFiscalEntityRequest.JSON_PROPERTY_ADDRESS,
@@ -147,7 +147,7 @@ public class OrderUpdateFiscalEntityRequest {
   }
 
    /**
-   * Metadata associated with the fiscal entity
+   * Arbitrary key-value data associated with the fiscal entity for your internal use. Keys should be strings; values can be any JSON value. 
    * @return metadata
   **/
   @javax.annotation.Nullable

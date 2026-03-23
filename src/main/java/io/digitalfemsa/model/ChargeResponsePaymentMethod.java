@@ -76,12 +76,16 @@ public class ChargeResponsePaymentMethod extends AbstractOpenApiSchema {
             Map<String, Object> result2 = tree.traverse(jp.getCodec()).readValueAs(new TypeReference<Map<String, Object>>() {});
             String discriminatorValue = (String)result2.get("object");
             switch (discriminatorValue) {
+                case "cash_payment":
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(PaymentMethodCash.class);
+                    newChargeResponsePaymentMethod.setActualInstance(deserialized);
+                    return newChargeResponsePaymentMethod;
                 case "payment_method_cash":
                     deserialized = tree.traverse(jp.getCodec()).readValueAs(PaymentMethodCash.class);
                     newChargeResponsePaymentMethod.setActualInstance(deserialized);
                     return newChargeResponsePaymentMethod;
                 default:
-                    log.log(Level.WARNING, String.format("Failed to lookup discriminator value `%s` for ChargeResponsePaymentMethod. Possible values: payment_method_cash", discriminatorValue));
+                    log.log(Level.WARNING, String.format("Failed to lookup discriminator value `%s` for ChargeResponsePaymentMethod. Possible values: cash_payment payment_method_cash", discriminatorValue));
             }
 
             boolean typeCoercion = ctxt.isEnabled(MapperFeature.ALLOW_COERCION_OF_SCALARS);
@@ -138,6 +142,7 @@ public class ChargeResponsePaymentMethod extends AbstractOpenApiSchema {
         JSON.registerDescendants(ChargeResponsePaymentMethod.class, Collections.unmodifiableMap(schemas));
         // Initialize and register the discriminator mappings.
         Map<String, Class<?>> mappings = new HashMap<>();
+        mappings.put("cash_payment", PaymentMethodCash.class);
         mappings.put("payment_method_cash", PaymentMethodCash.class);
         mappings.put("charge_response_payment_method", ChargeResponsePaymentMethod.class);
         JSON.registerDiscriminator(ChargeResponsePaymentMethod.class, "object", mappings);

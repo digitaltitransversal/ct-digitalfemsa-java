@@ -13,12 +13,10 @@
 
 package io.digitalfemsa.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,73 +27,40 @@ import java.util.Objects;
  * Represents a webhook endpoint configured to receive event notifications.
  */
 @JsonPropertyOrder({
+  WebhookResponse.JSON_PROPERTY_DELETED,
+  WebhookResponse.JSON_PROPERTY_DEVELOPMENT_ENABLED,
   WebhookResponse.JSON_PROPERTY_ID,
+  WebhookResponse.JSON_PROPERTY_LIVEMODE,
   WebhookResponse.JSON_PROPERTY_OBJECT,
-  WebhookResponse.JSON_PROPERTY_URL,
+  WebhookResponse.JSON_PROPERTY_PRODUCTION_ENABLED,
   WebhookResponse.JSON_PROPERTY_STATUS,
   WebhookResponse.JSON_PROPERTY_SUBSCRIBED_EVENTS,
   WebhookResponse.JSON_PROPERTY_SYNCHRONOUS,
-  WebhookResponse.JSON_PROPERTY_DESCRIPTION,
-  WebhookResponse.JSON_PROPERTY_LIVEMODE,
-  WebhookResponse.JSON_PROPERTY_ACTIVE
+  WebhookResponse.JSON_PROPERTY_URL
 })
 @JsonTypeName("webhook_response")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class WebhookResponse {
+  public static final String JSON_PROPERTY_DELETED = "deleted";
+  private Boolean deleted;
+
+  public static final String JSON_PROPERTY_DEVELOPMENT_ENABLED = "development_enabled";
+  private Boolean developmentEnabled;
+
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
+
+  public static final String JSON_PROPERTY_LIVEMODE = "livemode";
+  private Boolean livemode;
 
   public static final String JSON_PROPERTY_OBJECT = "object";
   private String _object;
 
-  public static final String JSON_PROPERTY_URL = "url";
-  private String url;
-
-  /**
-   * Current delivery status of the webhook.
-   */
-  public enum StatusEnum {
-    BEING_PINGED("being_pinged"),
-    
-    LISTENING("listening"),
-    
-    INTERMITTENT_ERRORS("intermittent_errors"),
-    
-    UNRESPONSIVE("unresponsive"),
-    
-    ERROR("error"),
-    
-    DISABLED("disabled");
-
-    private String value;
-
-    StatusEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static StatusEnum fromValue(String value) {
-      for (StatusEnum b : StatusEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  public static final String JSON_PROPERTY_PRODUCTION_ENABLED = "production_enabled";
+  private Boolean productionEnabled;
 
   public static final String JSON_PROPERTY_STATUS = "status";
-  private StatusEnum status;
+  private String status;
 
   public static final String JSON_PROPERTY_SUBSCRIBED_EVENTS = "subscribed_events";
   private List<String> subscribedEvents = new ArrayList<>();
@@ -103,17 +68,61 @@ public class WebhookResponse {
   public static final String JSON_PROPERTY_SYNCHRONOUS = "synchronous";
   private Boolean synchronous;
 
-  public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  private String description;
-
-  public static final String JSON_PROPERTY_LIVEMODE = "livemode";
-  private Boolean livemode;
-
-  public static final String JSON_PROPERTY_ACTIVE = "active";
-  private Boolean active;
+  public static final String JSON_PROPERTY_URL = "url";
+  private String url;
 
   public WebhookResponse() { 
   }
+
+  public WebhookResponse deleted(Boolean deleted) {
+    this.deleted = deleted;
+    return this;
+  }
+
+   /**
+   * Get deleted
+   * @return deleted
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DELETED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getDeleted() {
+    return deleted;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DELETED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDeleted(Boolean deleted) {
+    this.deleted = deleted;
+  }
+
+
+  public WebhookResponse developmentEnabled(Boolean developmentEnabled) {
+    this.developmentEnabled = developmentEnabled;
+    return this;
+  }
+
+   /**
+   * Get developmentEnabled
+   * @return developmentEnabled
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DEVELOPMENT_ENABLED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getDevelopmentEnabled() {
+    return developmentEnabled;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DEVELOPMENT_ENABLED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDevelopmentEnabled(Boolean developmentEnabled) {
+    this.developmentEnabled = developmentEnabled;
+  }
+
 
   public WebhookResponse id(String id) {
     this.id = id;
@@ -121,12 +130,12 @@ public class WebhookResponse {
   }
 
    /**
-   * Unique identifier of the webhook.
+   * Get id
    * @return id
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getId() {
     return id;
@@ -134,9 +143,34 @@ public class WebhookResponse {
 
 
   @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
+  }
+
+
+  public WebhookResponse livemode(Boolean livemode) {
+    this.livemode = livemode;
+    return this;
+  }
+
+   /**
+   * Get livemode
+   * @return livemode
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_LIVEMODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getLivemode() {
+    return livemode;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_LIVEMODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLivemode(Boolean livemode) {
+    this.livemode = livemode;
   }
 
 
@@ -146,12 +180,12 @@ public class WebhookResponse {
   }
 
    /**
-   * Object name, which is webhook.
+   * Get _object
    * @return _object
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_OBJECT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getObject() {
     return _object;
@@ -159,58 +193,58 @@ public class WebhookResponse {
 
 
   @JsonProperty(JSON_PROPERTY_OBJECT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setObject(String _object) {
     this._object = _object;
   }
 
 
-  public WebhookResponse url(String url) {
-    this.url = url;
+  public WebhookResponse productionEnabled(Boolean productionEnabled) {
+    this.productionEnabled = productionEnabled;
     return this;
   }
 
    /**
-   * The URL where events will be delivered.
-   * @return url
+   * Get productionEnabled
+   * @return productionEnabled
   **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_URL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_PRODUCTION_ENABLED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getUrl() {
-    return url;
+  public Boolean getProductionEnabled() {
+    return productionEnabled;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_URL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setUrl(String url) {
-    this.url = url;
+  @JsonProperty(JSON_PROPERTY_PRODUCTION_ENABLED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setProductionEnabled(Boolean productionEnabled) {
+    this.productionEnabled = productionEnabled;
   }
 
 
-  public WebhookResponse status(StatusEnum status) {
+  public WebhookResponse status(String status) {
     this.status = status;
     return this;
   }
 
    /**
-   * Current delivery status of the webhook.
+   * Get status
    * @return status
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public StatusEnum getStatus() {
+  public String getStatus() {
     return status;
   }
 
 
   @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setStatus(StatusEnum status) {
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStatus(String status) {
     this.status = status;
   }
 
@@ -229,12 +263,12 @@ public class WebhookResponse {
   }
 
    /**
-   * List of event types the webhook is subscribed to.
+   * Get subscribedEvents
    * @return subscribedEvents
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_SUBSCRIBED_EVENTS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public List<String> getSubscribedEvents() {
     return subscribedEvents;
@@ -242,7 +276,7 @@ public class WebhookResponse {
 
 
   @JsonProperty(JSON_PROPERTY_SUBSCRIBED_EVENTS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSubscribedEvents(List<String> subscribedEvents) {
     this.subscribedEvents = subscribedEvents;
   }
@@ -254,12 +288,12 @@ public class WebhookResponse {
   }
 
    /**
-   * Indicates whether the webhook uses synchronous delivery behavior.
+   * Get synchronous
    * @return synchronous
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_SYNCHRONOUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Boolean getSynchronous() {
     return synchronous;
@@ -267,84 +301,34 @@ public class WebhookResponse {
 
 
   @JsonProperty(JSON_PROPERTY_SYNCHRONOUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSynchronous(Boolean synchronous) {
     this.synchronous = synchronous;
   }
 
 
-  public WebhookResponse description(String description) {
-    this.description = description;
+  public WebhookResponse url(String url) {
+    this.url = url;
     return this;
   }
 
    /**
-   * Optional description of the webhook.
-   * @return description
+   * Get url
+   * @return url
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonProperty(JSON_PROPERTY_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getDescription() {
-    return description;
+  public String getUrl() {
+    return url;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonProperty(JSON_PROPERTY_URL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-
-  public WebhookResponse livemode(Boolean livemode) {
-    this.livemode = livemode;
-    return this;
-  }
-
-   /**
-   * Indicates whether the webhook is in live mode or test mode.
-   * @return livemode
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_LIVEMODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Boolean getLivemode() {
-    return livemode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LIVEMODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setLivemode(Boolean livemode) {
-    this.livemode = livemode;
-  }
-
-
-  public WebhookResponse active(Boolean active) {
-    this.active = active;
-    return this;
-  }
-
-   /**
-   * Indicates whether the webhook is active.
-   * @return active
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ACTIVE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Boolean getActive() {
-    return active;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ACTIVE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setActive(Boolean active) {
-    this.active = active;
+  public void setUrl(String url) {
+    this.url = url;
   }
 
 
@@ -360,35 +344,37 @@ public class WebhookResponse {
       return false;
     }
     WebhookResponse webhookResponse = (WebhookResponse) o;
-    return Objects.equals(this.id, webhookResponse.id) &&
+    return Objects.equals(this.deleted, webhookResponse.deleted) &&
+        Objects.equals(this.developmentEnabled, webhookResponse.developmentEnabled) &&
+        Objects.equals(this.id, webhookResponse.id) &&
+        Objects.equals(this.livemode, webhookResponse.livemode) &&
         Objects.equals(this._object, webhookResponse._object) &&
-        Objects.equals(this.url, webhookResponse.url) &&
+        Objects.equals(this.productionEnabled, webhookResponse.productionEnabled) &&
         Objects.equals(this.status, webhookResponse.status) &&
         Objects.equals(this.subscribedEvents, webhookResponse.subscribedEvents) &&
         Objects.equals(this.synchronous, webhookResponse.synchronous) &&
-        Objects.equals(this.description, webhookResponse.description) &&
-        Objects.equals(this.livemode, webhookResponse.livemode) &&
-        Objects.equals(this.active, webhookResponse.active);
+        Objects.equals(this.url, webhookResponse.url);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, url, status, subscribedEvents, synchronous, description, livemode, active);
+    return Objects.hash(deleted, developmentEnabled, id, livemode, _object, productionEnabled, status, subscribedEvents, synchronous, url);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class WebhookResponse {\n");
+    sb.append("    deleted: ").append(toIndentedString(deleted)).append("\n");
+    sb.append("    developmentEnabled: ").append(toIndentedString(developmentEnabled)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    livemode: ").append(toIndentedString(livemode)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
-    sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    productionEnabled: ").append(toIndentedString(productionEnabled)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    subscribedEvents: ").append(toIndentedString(subscribedEvents)).append("\n");
     sb.append("    synchronous: ").append(toIndentedString(synchronous)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    livemode: ").append(toIndentedString(livemode)).append("\n");
-    sb.append("    active: ").append(toIndentedString(active)).append("\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("}");
     return sb.toString();
   }

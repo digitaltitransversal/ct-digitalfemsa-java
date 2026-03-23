@@ -13,12 +13,10 @@
 
 package io.digitalfemsa.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.util.Objects;
 
@@ -27,84 +25,24 @@ import java.util.Objects;
  * Payment method used in the charge. 
  */
 @JsonPropertyOrder({
-  ChargeRequestPaymentMethod.JSON_PROPERTY_TYPE,
   ChargeRequestPaymentMethod.JSON_PROPERTY_EXPIRES_AT,
+  ChargeRequestPaymentMethod.JSON_PROPERTY_TYPE,
   ChargeRequestPaymentMethod.JSON_PROPERTY_PAYMENT_SOURCE_ID
 })
 @JsonTypeName("charge_request_payment_method")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class ChargeRequestPaymentMethod {
-  /**
-   * Payment method type.
-   */
-  public enum TypeEnum {
-    CASH("cash"),
-    
-    OXXO_CASH("oxxo_cash");
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private TypeEnum type;
-
   public static final String JSON_PROPERTY_EXPIRES_AT = "expires_at";
   private Long expiresAt;
+
+  public static final String JSON_PROPERTY_TYPE = "type";
+  private String type;
 
   public static final String JSON_PROPERTY_PAYMENT_SOURCE_ID = "payment_source_id";
   private String paymentSourceId;
 
   public ChargeRequestPaymentMethod() { 
   }
-
-  public ChargeRequestPaymentMethod type(TypeEnum type) {
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Payment method type.
-   * @return type
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public TypeEnum getType() {
-    return type;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setType(TypeEnum type) {
-    this.type = type;
-  }
-
 
   public ChargeRequestPaymentMethod expiresAt(Long expiresAt) {
     this.expiresAt = expiresAt;
@@ -128,6 +66,31 @@ public class ChargeRequestPaymentMethod {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExpiresAt(Long expiresAt) {
     this.expiresAt = expiresAt;
+  }
+
+
+  public ChargeRequestPaymentMethod type(String type) {
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * Get type
+   * @return type
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getType() {
+    return type;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setType(String type) {
+    this.type = type;
   }
 
 
@@ -168,22 +131,22 @@ public class ChargeRequestPaymentMethod {
       return false;
     }
     ChargeRequestPaymentMethod chargeRequestPaymentMethod = (ChargeRequestPaymentMethod) o;
-    return Objects.equals(this.type, chargeRequestPaymentMethod.type) &&
-        Objects.equals(this.expiresAt, chargeRequestPaymentMethod.expiresAt) &&
+    return Objects.equals(this.expiresAt, chargeRequestPaymentMethod.expiresAt) &&
+        Objects.equals(this.type, chargeRequestPaymentMethod.type) &&
         Objects.equals(this.paymentSourceId, chargeRequestPaymentMethod.paymentSourceId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, expiresAt, paymentSourceId);
+    return Objects.hash(expiresAt, type, paymentSourceId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ChargeRequestPaymentMethod {\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    paymentSourceId: ").append(toIndentedString(paymentSourceId)).append("\n");
     sb.append("}");
     return sb.toString();

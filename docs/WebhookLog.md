@@ -7,21 +7,13 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**failedAttempts** | **Integer** |  |  |
-|**id** | **String** |  |  |
-|**lastAttemptedAt** | **Long** |  |  |
-|**lastHttpResponseStatus** | **Integer** |  |  |
-|**_object** | [**ObjectEnum**](#ObjectEnum) |  |  [optional] |
+|**failedAttempts** | **Integer** |  |  [optional] |
+|**id** | **String** |  |  [optional] |
+|**lastAttemptedAt** | **Integer** |  |  [optional] |
+|**lastHttpResponseStatus** | **Integer** |  |  [optional] |
+|**_object** | **String** |  |  [optional] |
 |**responseData** | **Map&lt;String, Object&gt;** |  |  [optional] |
-|**url** | **URI** |  |  |
-
-
-
-## Enum: ObjectEnum
-
-| Name | Value |
-|---- | -----|
-| WEBHOOK_LOG | &quot;webhook_log&quot; |
+|**url** | **URI** |  |  [optional] |
 
 
 

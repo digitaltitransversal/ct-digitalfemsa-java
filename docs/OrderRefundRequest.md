@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**amount** | **Long** | Amount to refund. If not provided, the API refunds the refundable amount of the selected charge. |  |
+|**amount** | **Integer** | Amount to refund. If not provided, the API refunds the refundable amount of the selected charge. |  |
 |**chargeId** | **String** | Charge ID to refund. If not provided, the API selects a refundable charge from the order. |  [optional] |
 |**reason** | [**ReasonEnum**](#ReasonEnum) | Refund reason. If not provided, the API uses a default reason. |  |
 |**expiresAt** | **Long** | Expiration timestamp for cash refunds (must be within the allowed range configured by the API). |  [optional] |

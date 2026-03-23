@@ -105,8 +105,8 @@ public class ApiKeysApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Delete API key
-   * Deletes an API key by its ID. 
+   * Delete Api Key
+   * Deletes a api key that corresponds to a api key ID
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @return DeleteApiKeysResponse
@@ -114,10 +114,9 @@ public class ApiKeysApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful </td><td>  * Content-Type - The format of the response body <br>  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -126,8 +125,8 @@ public class ApiKeysApi {
   }
 
   /**
-   * Delete API key
-   * Deletes an API key by its ID. 
+   * Delete Api Key
+   * Deletes a api key that corresponds to a api key ID
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @return ApiResponse&lt;DeleteApiKeysResponse&gt;
@@ -135,10 +134,9 @@ public class ApiKeysApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful </td><td>  * Content-Type - The format of the response body <br>  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -167,8 +165,8 @@ public class ApiKeysApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Get API key
-   * Retrieves the details of an API key by its ID. 
+   * Get Api Key
+   * Gets a api key that corresponds to a api key ID
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -177,7 +175,7 @@ public class ApiKeysApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful </td><td>  * Content-Type - The format of the response body <br>  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
@@ -188,8 +186,8 @@ public class ApiKeysApi {
   }
 
   /**
-   * Get API key
-   * Retrieves the details of an API key by its ID. 
+   * Get Api Key
+   * Gets a api key that corresponds to a api key ID
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -198,7 +196,7 @@ public class ApiKeysApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful </td><td>  * Content-Type - The format of the response body <br>  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
@@ -239,7 +237,7 @@ public class ApiKeysApi {
    * @param limit The numbers of items to return, the maximum value is 250 (optional, default to 20)
    * @param next next page (optional)
    * @param previous previous page (optional)
-   * @param search General search, e.g. by id or description (optional)
+   * @param search General search, e.g. by id, description, prefix (optional)
    * @return GetApiKeysResponse
    * @throws ApiException if fails to make API call
    * @http.response.details
@@ -262,7 +260,7 @@ public class ApiKeysApi {
    * @param limit The numbers of items to return, the maximum value is 250 (optional, default to 20)
    * @param next next page (optional)
    * @param previous previous page (optional)
-   * @param search General search, e.g. by id or description (optional)
+   * @param search General search, e.g. by id, description, prefix (optional)
    * @return ApiResponse&lt;GetApiKeysResponse&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
@@ -300,8 +298,8 @@ public class ApiKeysApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Update API key
-   * Updates an existing API key by its ID.  Use this endpoint to change the key&#39;s status (active/inactive) or update its description. 
+   * Update Api Key
+   * Update an existing api key
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param apiKeyUpdateRequest  (optional)
@@ -311,9 +309,8 @@ public class ApiKeysApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
+       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -322,8 +319,8 @@ public class ApiKeysApi {
   }
 
   /**
-   * Update API key
-   * Updates an existing API key by its ID.  Use this endpoint to change the key&#39;s status (active/inactive) or update its description. 
+   * Update Api Key
+   * Update an existing api key
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param apiKeyUpdateRequest  (optional)
@@ -333,9 +330,8 @@ public class ApiKeysApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
+       <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */

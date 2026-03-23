@@ -15,8 +15,7 @@ All URIs are relative to *https://api.digitalfemsa.io*
 
 Get Log
 
-Returns a single log by its ID. Logs can be used for troubleshooting and auditing requests and internal operations.
-
+Get the details of a specific log
 
 ### Example
 

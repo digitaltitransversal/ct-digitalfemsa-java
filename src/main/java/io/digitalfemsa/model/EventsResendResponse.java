@@ -68,9 +68,9 @@ public class EventsResendResponse {
    * Get failedAttempts
    * @return failedAttempts
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_FAILED_ATTEMPTS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Integer getFailedAttempts() {
     return failedAttempts;
@@ -78,7 +78,7 @@ public class EventsResendResponse {
 
 
   @JsonProperty(JSON_PROPERTY_FAILED_ATTEMPTS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFailedAttempts(Integer failedAttempts) {
     this.failedAttempts = failedAttempts;
   }
@@ -93,9 +93,9 @@ public class EventsResendResponse {
    * Get id
    * @return id
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getId() {
     return id;
@@ -103,7 +103,7 @@ public class EventsResendResponse {
 
 
   @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -118,9 +118,9 @@ public class EventsResendResponse {
    * Get lastAttemptedAt
    * @return lastAttemptedAt
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_LAST_ATTEMPTED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Integer getLastAttemptedAt() {
     return lastAttemptedAt;
@@ -128,7 +128,7 @@ public class EventsResendResponse {
 
 
   @JsonProperty(JSON_PROPERTY_LAST_ATTEMPTED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLastAttemptedAt(Integer lastAttemptedAt) {
     this.lastAttemptedAt = lastAttemptedAt;
   }
@@ -143,9 +143,9 @@ public class EventsResendResponse {
    * Get lastHttpResponseStatus
    * @return lastHttpResponseStatus
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_LAST_HTTP_RESPONSE_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Integer getLastHttpResponseStatus() {
     return lastHttpResponseStatus;
@@ -153,7 +153,7 @@ public class EventsResendResponse {
 
 
   @JsonProperty(JSON_PROPERTY_LAST_HTTP_RESPONSE_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLastHttpResponseStatus(Integer lastHttpResponseStatus) {
     this.lastHttpResponseStatus = lastHttpResponseStatus;
   }
@@ -176,9 +176,9 @@ public class EventsResendResponse {
    * Get responseData
    * @return responseData
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_RESPONSE_DATA)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
 
   public Map<String, Object> getResponseData() {
     return responseData;
@@ -186,7 +186,7 @@ public class EventsResendResponse {
 
 
   @JsonProperty(JSON_PROPERTY_RESPONSE_DATA)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
   public void setResponseData(Map<String, Object> responseData) {
     this.responseData = responseData;
   }
@@ -201,9 +201,9 @@ public class EventsResendResponse {
    * Get url
    * @return url
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_URL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public URI getUrl() {
     return url;
@@ -211,7 +211,7 @@ public class EventsResendResponse {
 
 
   @JsonProperty(JSON_PROPERTY_URL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUrl(URI url) {
     this.url = url;
   }

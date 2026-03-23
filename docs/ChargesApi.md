@@ -91,7 +91,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  -  |
+| **200** | successful operation |  -  |
 | **401** | authentication error |  -  |
 | **422** | whitelist validation error |  -  |
 | **500** | internal server error |  -  |
@@ -257,9 +257,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  -  |
-| **401** | authentication error |  -  |
+| **200** | successful operation |  -  |
+| **422** | whitelist validation error |  -  |
 | **404** | not found entity |  -  |
-| **422** | parameter validation error |  -  |
 | **500** | internal server error |  -  |
 

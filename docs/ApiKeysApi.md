@@ -5,10 +5,10 @@ All URIs are relative to *https://api.digitalfemsa.io*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**createApiKey**](ApiKeysApi.md#createApiKey) | **POST** /api_keys | Create API key |
-| [**deleteApiKey**](ApiKeysApi.md#deleteApiKey) | **DELETE** /api_keys/{id} | Delete API key |
-| [**getApiKey**](ApiKeysApi.md#getApiKey) | **GET** /api_keys/{id} | Get API key |
+| [**deleteApiKey**](ApiKeysApi.md#deleteApiKey) | **DELETE** /api_keys/{id} | Delete Api Key |
+| [**getApiKey**](ApiKeysApi.md#getApiKey) | **GET** /api_keys/{id} | Get Api Key |
 | [**getApiKeys**](ApiKeysApi.md#getApiKeys) | **GET** /api_keys | List API keys |
-| [**updateApiKey**](ApiKeysApi.md#updateApiKey) | **PUT** /api_keys/{id} | Update API key |
+| [**updateApiKey**](ApiKeysApi.md#updateApiKey) | **PUT** /api_keys/{id} | Update Api Key |
 
 
 
@@ -97,10 +97,9 @@ public class Example {
 
 > DeleteApiKeysResponse deleteApiKey(id, acceptLanguage)
 
-Delete API key
+Delete Api Key
 
-Deletes an API key by its ID.
-
+Deletes a api key that corresponds to a api key ID
 
 ### Example
 
@@ -163,10 +162,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful operation |  -  |
+| **200** | successful |  * Content-Type - The format of the response body <br>  |
 | **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
-| **422** | parameter validation error |  -  |
 | **500** | internal server error |  -  |
 
 
@@ -174,10 +172,9 @@ public class Example {
 
 > ApiKeyResponse getApiKey(id, acceptLanguage, xChildCompanyId)
 
-Get API key
+Get Api Key
 
-Retrieves the details of an API key by its ID.
-
+Gets a api key that corresponds to a api key ID
 
 ### Example
 
@@ -242,7 +239,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful operation |  -  |
+| **200** | successful |  * Content-Type - The format of the response body <br>  |
 | **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
 | **500** | internal server error |  -  |
@@ -286,7 +283,7 @@ public class Example {
         Integer limit = 20; // Integer | The numbers of items to return, the maximum value is 250
         String next = "next_example"; // String | next page
         String previous = "previous_example"; // String | previous page
-        String search = "search_example"; // String | General search, e.g. by id or description
+        String search = "search_example"; // String | General search, e.g. by id, description, prefix
         try {
             GetApiKeysResponse result = apiInstance.getApiKeys(acceptLanguage, xChildCompanyId, limit, next, previous, search);
             System.out.println(result);
@@ -311,7 +308,7 @@ public class Example {
 | **limit** | **Integer**| The numbers of items to return, the maximum value is 250 | [optional] [default to 20] |
 | **next** | **String**| next page | [optional] |
 | **previous** | **String**| previous page | [optional] |
-| **search** | **String**| General search, e.g. by id or description | [optional] |
+| **search** | **String**| General search, e.g. by id, description, prefix | [optional] |
 
 ### Return type
 
@@ -338,12 +335,9 @@ public class Example {
 
 > ApiKeyResponse updateApiKey(id, acceptLanguage, apiKeyUpdateRequest)
 
-Update API key
+Update Api Key
 
-Updates an existing API key by its ID.
-
-Use this endpoint to change the key's status (active/inactive) or update its description.
-
+Update an existing api key
 
 ### Example
 
@@ -409,8 +403,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
-| **422** | parameter validation error |  -  |
+| **401** | authentication error |  -  |
 | **500** | internal server error |  -  |
 

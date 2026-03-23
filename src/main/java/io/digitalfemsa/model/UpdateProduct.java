@@ -29,24 +29,18 @@ import java.util.Objects;
  * UpdateProduct
  */
 @JsonPropertyOrder({
-  UpdateProduct.JSON_PROPERTY_DESCRIPTION,
-  UpdateProduct.JSON_PROPERTY_SKU,
   UpdateProduct.JSON_PROPERTY_NAME,
   UpdateProduct.JSON_PROPERTY_UNIT_PRICE,
   UpdateProduct.JSON_PROPERTY_QUANTITY,
-  UpdateProduct.JSON_PROPERTY_TAGS,
+  UpdateProduct.JSON_PROPERTY_SKU,
   UpdateProduct.JSON_PROPERTY_BRAND,
+  UpdateProduct.JSON_PROPERTY_DESCRIPTION,
+  UpdateProduct.JSON_PROPERTY_TAGS,
   UpdateProduct.JSON_PROPERTY_METADATA
 })
 @JsonTypeName("update_product")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class UpdateProduct {
-  public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  private String description;
-
-  public static final String JSON_PROPERTY_SKU = "sku";
-  private String sku;
-
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
@@ -56,67 +50,23 @@ public class UpdateProduct {
   public static final String JSON_PROPERTY_QUANTITY = "quantity";
   private Integer quantity;
 
-  public static final String JSON_PROPERTY_TAGS = "tags";
-  private List<String> tags = new ArrayList<>();
+  public static final String JSON_PROPERTY_SKU = "sku";
+  private String sku;
 
   public static final String JSON_PROPERTY_BRAND = "brand";
   private String brand;
 
+  public static final String JSON_PROPERTY_DESCRIPTION = "description";
+  private String description;
+
+  public static final String JSON_PROPERTY_TAGS = "tags";
+  private List<String> tags = new ArrayList<>();
+
   public static final String JSON_PROPERTY_METADATA = "metadata";
-  private Map<String, String> metadata = new HashMap<>();
+  private Map<String, Object> metadata = new HashMap<>();
 
   public UpdateProduct() { 
   }
-
-  public UpdateProduct description(String description) {
-    this.description = description;
-    return this;
-  }
-
-   /**
-   * Get description
-   * @return description
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getDescription() {
-    return description;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-
-  public UpdateProduct sku(String sku) {
-    this.sku = sku;
-    return this;
-  }
-
-   /**
-   * Get sku
-   * @return sku
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SKU)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getSku() {
-    return sku;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SKU)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSku(String sku) {
-    this.sku = sku;
-  }
-
 
   public UpdateProduct name(String name) {
     this.name = name;
@@ -195,6 +145,81 @@ public class UpdateProduct {
   }
 
 
+  public UpdateProduct sku(String sku) {
+    this.sku = sku;
+    return this;
+  }
+
+   /**
+   * Get sku
+   * @return sku
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_SKU)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getSku() {
+    return sku;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SKU)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSku(String sku) {
+    this.sku = sku;
+  }
+
+
+  public UpdateProduct brand(String brand) {
+    this.brand = brand;
+    return this;
+  }
+
+   /**
+   * Get brand
+   * @return brand
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_BRAND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getBrand() {
+    return brand;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_BRAND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBrand(String brand) {
+    this.brand = brand;
+  }
+
+
+  public UpdateProduct description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * Get description
+   * @return description
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDescription() {
+    return description;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+
   public UpdateProduct tags(List<String> tags) {
     this.tags = tags;
     return this;
@@ -228,37 +253,12 @@ public class UpdateProduct {
   }
 
 
-  public UpdateProduct brand(String brand) {
-    this.brand = brand;
-    return this;
-  }
-
-   /**
-   * Get brand
-   * @return brand
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_BRAND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getBrand() {
-    return brand;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BRAND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBrand(String brand) {
-    this.brand = brand;
-  }
-
-
-  public UpdateProduct metadata(Map<String, String> metadata) {
+  public UpdateProduct metadata(Map<String, Object> metadata) {
     this.metadata = metadata;
     return this;
   }
 
-  public UpdateProduct putMetadataItem(String key, String metadataItem) {
+  public UpdateProduct putMetadataItem(String key, Object metadataItem) {
     if (this.metadata == null) {
       this.metadata = new HashMap<>();
     }
@@ -272,16 +272,16 @@ public class UpdateProduct {
   **/
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_METADATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Map<String, String> getMetadata() {
+  public Map<String, Object> getMetadata() {
     return metadata;
   }
 
 
   @JsonProperty(JSON_PROPERTY_METADATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMetadata(Map<String, String> metadata) {
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMetadata(Map<String, Object> metadata) {
     this.metadata = metadata;
   }
 
@@ -298,32 +298,32 @@ public class UpdateProduct {
       return false;
     }
     UpdateProduct updateProduct = (UpdateProduct) o;
-    return Objects.equals(this.description, updateProduct.description) &&
-        Objects.equals(this.sku, updateProduct.sku) &&
-        Objects.equals(this.name, updateProduct.name) &&
+    return Objects.equals(this.name, updateProduct.name) &&
         Objects.equals(this.unitPrice, updateProduct.unitPrice) &&
         Objects.equals(this.quantity, updateProduct.quantity) &&
-        Objects.equals(this.tags, updateProduct.tags) &&
+        Objects.equals(this.sku, updateProduct.sku) &&
         Objects.equals(this.brand, updateProduct.brand) &&
+        Objects.equals(this.description, updateProduct.description) &&
+        Objects.equals(this.tags, updateProduct.tags) &&
         Objects.equals(this.metadata, updateProduct.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, sku, name, unitPrice, quantity, tags, brand, metadata);
+    return Objects.hash(name, unitPrice, quantity, sku, brand, description, tags, metadata);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateProduct {\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    sku: ").append(toIndentedString(sku)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    unitPrice: ").append(toIndentedString(unitPrice)).append("\n");
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
-    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    sku: ").append(toIndentedString(sku)).append("\n");
     sb.append("    brand: ").append(toIndentedString(brand)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();

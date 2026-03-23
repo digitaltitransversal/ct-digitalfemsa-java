@@ -14,7 +14,7 @@ All URIs are relative to *https://api.digitalfemsa.io*
 
 ## createWebhookKey
 
-> WebhookKeyCreateResponse createWebhookKey(acceptLanguage, xChildCompanyId, webhookKeyRequest)
+> WebhookKeyCreateResponse createWebhookKey(acceptLanguage, webhookKeyRequest)
 
 Create Webhook Key
 
@@ -42,10 +42,9 @@ public class Example {
 
         WebhookKeysApi apiInstance = new WebhookKeysApi(defaultClient);
         String acceptLanguage = "es"; // String | Use for knowing which language to use
-        String xChildCompanyId = "6441b6376b60c3a638da80af"; // String | In the case of a holding company, the company id of the child company to which will process the request.
         WebhookKeyRequest webhookKeyRequest = new WebhookKeyRequest(); // WebhookKeyRequest | 
         try {
-            WebhookKeyCreateResponse result = apiInstance.createWebhookKey(acceptLanguage, xChildCompanyId, webhookKeyRequest);
+            WebhookKeyCreateResponse result = apiInstance.createWebhookKey(acceptLanguage, webhookKeyRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WebhookKeysApi#createWebhookKey");
@@ -64,7 +63,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
-| **xChildCompanyId** | **String**| In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 | **webhookKeyRequest** | [**WebhookKeyRequest**](WebhookKeyRequest.md)|  | [optional] |
 
 ### Return type
@@ -246,7 +244,7 @@ public class Example {
 
 Get List of Webhook Keys
 
-Consume the list of webhook keys you have, each environment supports 10 webhook keys (For production and testing)
+Consume the list of webhook keys you have
 
 ### Example
 

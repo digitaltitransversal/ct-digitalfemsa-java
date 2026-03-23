@@ -18,9 +18,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 
@@ -29,129 +26,42 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({
   WebhookRequest.JSON_PROPERTY_URL,
-  WebhookRequest.JSON_PROPERTY_SUBSCRIBED_EVENTS,
-  WebhookRequest.JSON_PROPERTY_EVENTS,
-  WebhookRequest.JSON_PROPERTY_SYNCHRONOUS,
-  WebhookRequest.JSON_PROPERTY_ACTIVE,
-  WebhookRequest.JSON_PROPERTY_DESCRIPTION
+  WebhookRequest.JSON_PROPERTY_SYNCHRONOUS
 })
 @JsonTypeName("webhook_request")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class WebhookRequest {
   public static final String JSON_PROPERTY_URL = "url";
-  private URI url;
-
-  public static final String JSON_PROPERTY_SUBSCRIBED_EVENTS = "subscribed_events";
-  private List<String> subscribedEvents = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_EVENTS = "events";
-  @Deprecated
-  private List<String> events = new ArrayList<>();
+  private String url;
 
   public static final String JSON_PROPERTY_SYNCHRONOUS = "synchronous";
   private Boolean synchronous = false;
 
-  public static final String JSON_PROPERTY_ACTIVE = "active";
-  private Boolean active = true;
-
-  public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  private String description;
-
   public WebhookRequest() { 
   }
 
-  public WebhookRequest url(URI url) {
+  public WebhookRequest url(String url) {
     this.url = url;
     return this;
   }
 
    /**
-   * Webhook endpoint URL. Local URLs are not allowed.
+   * Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security.
    * @return url
   **/
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_URL)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public URI getUrl() {
+  public String getUrl() {
     return url;
   }
 
 
   @JsonProperty(JSON_PROPERTY_URL)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setUrl(URI url) {
+  public void setUrl(String url) {
     this.url = url;
-  }
-
-
-  public WebhookRequest subscribedEvents(List<String> subscribedEvents) {
-    this.subscribedEvents = subscribedEvents;
-    return this;
-  }
-
-  public WebhookRequest addSubscribedEventsItem(String subscribedEventsItem) {
-    if (this.subscribedEvents == null) {
-      this.subscribedEvents = new ArrayList<>();
-    }
-    this.subscribedEvents.add(subscribedEventsItem);
-    return this;
-  }
-
-   /**
-   * List of event types the webhook is subscribed to.
-   * @return subscribedEvents
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SUBSCRIBED_EVENTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<String> getSubscribedEvents() {
-    return subscribedEvents;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SUBSCRIBED_EVENTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubscribedEvents(List<String> subscribedEvents) {
-    this.subscribedEvents = subscribedEvents;
-  }
-
-
-  @Deprecated
-  public WebhookRequest events(List<String> events) {
-    this.events = events;
-    return this;
-  }
-
-  public WebhookRequest addEventsItem(String eventsItem) {
-    if (this.events == null) {
-      this.events = new ArrayList<>();
-    }
-    this.events.add(eventsItem);
-    return this;
-  }
-
-   /**
-   * Alias for subscribed_events.
-   * @return events
-   * @deprecated
-  **/
-  @Deprecated
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_EVENTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<String> getEvents() {
-    return events;
-  }
-
-
-  @Deprecated
-  @JsonProperty(JSON_PROPERTY_EVENTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEvents(List<String> events) {
-    this.events = events;
   }
 
 
@@ -161,12 +71,12 @@ public class WebhookRequest {
   }
 
    /**
-   * Indicates whether the webhook uses synchronous delivery behavior.
+   * It is a value that allows to decide if the events will be synchronous or asynchronous. We recommend asynchronous &#x3D; false
    * @return synchronous
   **/
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_SYNCHRONOUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public Boolean getSynchronous() {
     return synchronous;
@@ -174,59 +84,9 @@ public class WebhookRequest {
 
 
   @JsonProperty(JSON_PROPERTY_SYNCHRONOUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSynchronous(Boolean synchronous) {
     this.synchronous = synchronous;
-  }
-
-
-  public WebhookRequest active(Boolean active) {
-    this.active = active;
-    return this;
-  }
-
-   /**
-   * Indicates whether the webhook is active.
-   * @return active
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ACTIVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Boolean getActive() {
-    return active;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ACTIVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setActive(Boolean active) {
-    this.active = active;
-  }
-
-
-  public WebhookRequest description(String description) {
-    this.description = description;
-    return this;
-  }
-
-   /**
-   * Optional description of the webhook.
-   * @return description
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getDescription() {
-    return description;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(String description) {
-    this.description = description;
   }
 
 
@@ -243,16 +103,12 @@ public class WebhookRequest {
     }
     WebhookRequest webhookRequest = (WebhookRequest) o;
     return Objects.equals(this.url, webhookRequest.url) &&
-        Objects.equals(this.subscribedEvents, webhookRequest.subscribedEvents) &&
-        Objects.equals(this.events, webhookRequest.events) &&
-        Objects.equals(this.synchronous, webhookRequest.synchronous) &&
-        Objects.equals(this.active, webhookRequest.active) &&
-        Objects.equals(this.description, webhookRequest.description);
+        Objects.equals(this.synchronous, webhookRequest.synchronous);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(url, subscribedEvents, events, synchronous, active, description);
+    return Objects.hash(url, synchronous);
   }
 
   @Override
@@ -260,11 +116,7 @@ public class WebhookRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class WebhookRequest {\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
-    sb.append("    subscribedEvents: ").append(toIndentedString(subscribedEvents)).append("\n");
-    sb.append("    events: ").append(toIndentedString(events)).append("\n");
     sb.append("    synchronous: ").append(toIndentedString(synchronous)).append("\n");
-    sb.append("    active: ").append(toIndentedString(active)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -34,11 +34,10 @@ import java.util.Objects;
   Customer.JSON_PROPERTY_PHONE,
   Customer.JSON_PROPERTY_CORPORATE,
   Customer.JSON_PROPERTY_CUSTOM_REFERENCE,
-  Customer.JSON_PROPERTY_REFERRER,
   Customer.JSON_PROPERTY_METADATA,
+  Customer.JSON_PROPERTY_PAYMENT_SOURCES,
   Customer.JSON_PROPERTY_FISCAL_ENTITIES,
-  Customer.JSON_PROPERTY_SHIPPING_CONTACTS,
-  Customer.JSON_PROPERTY_PAYMENT_SOURCES
+  Customer.JSON_PROPERTY_SHIPPING_CONTACTS
 })
 @JsonTypeName("customer")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
@@ -58,20 +57,17 @@ public class Customer {
   public static final String JSON_PROPERTY_CUSTOM_REFERENCE = "custom_reference";
   private String customReference;
 
-  public static final String JSON_PROPERTY_REFERRER = "referrer";
-  private String referrer;
-
   public static final String JSON_PROPERTY_METADATA = "metadata";
   private Map<String, Object> metadata = new HashMap<>();
 
+  public static final String JSON_PROPERTY_PAYMENT_SOURCES = "payment_sources";
+  private List<CustomerPaymentMethodsRequest> paymentSources = new ArrayList<>();
+
   public static final String JSON_PROPERTY_FISCAL_ENTITIES = "fiscal_entities";
-  private List<CustomerFiscalEntitiesRequest> fiscalEntities;
+  private List<CustomerFiscalEntitiesRequest> fiscalEntities = new ArrayList<>();
 
   public static final String JSON_PROPERTY_SHIPPING_CONTACTS = "shipping_contacts";
-  private List<CustomerShippingContacts> shippingContacts;
-
-  public static final String JSON_PROPERTY_PAYMENT_SOURCES = "payment_sources";
-  private List<CustomerPaymentSourcesInner> paymentSources;
+  private List<CustomerShippingContacts> shippingContacts = new ArrayList<>();
 
   public Customer() { 
   }
@@ -201,31 +197,6 @@ public class Customer {
   }
 
 
-  public Customer referrer(String referrer) {
-    this.referrer = referrer;
-    return this;
-  }
-
-   /**
-   * Referrer value (if applicable).
-   * @return referrer
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_REFERRER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getReferrer() {
-    return referrer;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REFERRER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReferrer(String referrer) {
-    this.referrer = referrer;
-  }
-
-
   public Customer metadata(Map<String, Object> metadata) {
     this.metadata = metadata;
     return this;
@@ -256,6 +227,39 @@ public class Customer {
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
   public void setMetadata(Map<String, Object> metadata) {
     this.metadata = metadata;
+  }
+
+
+  public Customer paymentSources(List<CustomerPaymentMethodsRequest> paymentSources) {
+    this.paymentSources = paymentSources;
+    return this;
+  }
+
+  public Customer addPaymentSourcesItem(CustomerPaymentMethodsRequest paymentSourcesItem) {
+    if (this.paymentSources == null) {
+      this.paymentSources = new ArrayList<>();
+    }
+    this.paymentSources.add(paymentSourcesItem);
+    return this;
+  }
+
+   /**
+   * Customer payment sources to be created with the customer (optional).
+   * @return paymentSources
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_PAYMENT_SOURCES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<CustomerPaymentMethodsRequest> getPaymentSources() {
+    return paymentSources;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_PAYMENT_SOURCES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPaymentSources(List<CustomerPaymentMethodsRequest> paymentSources) {
+    this.paymentSources = paymentSources;
   }
 
 
@@ -325,39 +329,6 @@ public class Customer {
   }
 
 
-  public Customer paymentSources(List<CustomerPaymentSourcesInner> paymentSources) {
-    this.paymentSources = paymentSources;
-    return this;
-  }
-
-  public Customer addPaymentSourcesItem(CustomerPaymentSourcesInner paymentSourcesItem) {
-    if (this.paymentSources == null) {
-      this.paymentSources = new ArrayList<>();
-    }
-    this.paymentSources.add(paymentSourcesItem);
-    return this;
-  }
-
-   /**
-   * Customer payment sources to be created with the customer (optional).
-   * @return paymentSources
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PAYMENT_SOURCES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<CustomerPaymentSourcesInner> getPaymentSources() {
-    return paymentSources;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PAYMENT_SOURCES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPaymentSources(List<CustomerPaymentSourcesInner> paymentSources) {
-    this.paymentSources = paymentSources;
-  }
-
-
   /**
    * Return true if this customer object is equal to o.
    */
@@ -375,16 +346,15 @@ public class Customer {
         Objects.equals(this.phone, customer.phone) &&
         Objects.equals(this.corporate, customer.corporate) &&
         Objects.equals(this.customReference, customer.customReference) &&
-        Objects.equals(this.referrer, customer.referrer) &&
         Objects.equals(this.metadata, customer.metadata) &&
+        Objects.equals(this.paymentSources, customer.paymentSources) &&
         Objects.equals(this.fiscalEntities, customer.fiscalEntities) &&
-        Objects.equals(this.shippingContacts, customer.shippingContacts) &&
-        Objects.equals(this.paymentSources, customer.paymentSources);
+        Objects.equals(this.shippingContacts, customer.shippingContacts);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, email, phone, corporate, customReference, referrer, metadata, fiscalEntities, shippingContacts, paymentSources);
+    return Objects.hash(name, email, phone, corporate, customReference, metadata, paymentSources, fiscalEntities, shippingContacts);
   }
 
   @Override
@@ -396,11 +366,10 @@ public class Customer {
     sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     sb.append("    corporate: ").append(toIndentedString(corporate)).append("\n");
     sb.append("    customReference: ").append(toIndentedString(customReference)).append("\n");
-    sb.append("    referrer: ").append(toIndentedString(referrer)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    paymentSources: ").append(toIndentedString(paymentSources)).append("\n");
     sb.append("    fiscalEntities: ").append(toIndentedString(fiscalEntities)).append("\n");
     sb.append("    shippingContacts: ").append(toIndentedString(shippingContacts)).append("\n");
-    sb.append("    paymentSources: ").append(toIndentedString(paymentSources)).append("\n");
     sb.append("}");
     return sb.toString();
   }

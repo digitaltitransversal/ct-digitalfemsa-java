@@ -41,7 +41,7 @@ public class LogsApi {
 
   /**
    * Get Log
-   * Returns a single log by its ID. Logs can be used for troubleshooting and auditing requests and internal operations. 
+   * Get the details of a specific log
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -62,7 +62,7 @@ public class LogsApi {
 
   /**
    * Get Log
-   * Returns a single log by its ID. Logs can be used for troubleshooting and auditing requests and internal operations. 
+   * Get the details of a specific log
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)

@@ -5,12 +5,12 @@ All URIs are relative to *https://api.digitalfemsa.io*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**cancelOrder**](OrdersApi.md#cancelOrder) | **POST** /orders/{id}/cancel | Cancel Order |
-| [**cancelOrderRefund**](OrdersApi.md#cancelOrderRefund) | **DELETE** /orders/{id}/refunds/{refund_id} | Cancel Refund |
-| [**captureOrder**](OrdersApi.md#captureOrder) | **POST** /orders/{id}/capture | Capture Order |
 | [**createOrder**](OrdersApi.md#createOrder) | **POST** /orders | Create order |
 | [**getOrderById**](OrdersApi.md#getOrderById) | **GET** /orders/{id} | Get Order |
 | [**getOrders**](OrdersApi.md#getOrders) | **GET** /orders | Get a list of Orders |
+| [**orderCancelRefund**](OrdersApi.md#orderCancelRefund) | **DELETE** /orders/{id}/refunds/{refund_id} | Cancel Refund |
 | [**orderRefund**](OrdersApi.md#orderRefund) | **POST** /orders/{id}/refunds | Refund Order |
+| [**ordersCreateCapture**](OrdersApi.md#ordersCreateCapture) | **POST** /orders/{id}/capture | Capture Order |
 | [**updateOrder**](OrdersApi.md#updateOrder) | **PUT** /orders/{id} | Update order |
 
 
@@ -89,167 +89,6 @@ public class Example {
 | **200** | Successful operation |  -  |
 | **401** | authentication error |  -  |
 | **402** | payment required error |  -  |
-| **404** | not found entity |  -  |
-| **428** | Precondition Required |  -  |
-| **500** | internal server error |  -  |
-
-
-## cancelOrderRefund
-
-> OrderResponse cancelOrderRefund(id, refundId, acceptLanguage, xChildCompanyId)
-
-Cancel Refund
-
-Cancels a refund previously created for an order. This operation is only available when the refund is still cancellable according to its current status and the payment method rules. If the refund cannot be cancelled, the API returns an error response.
-
-### Example
-
-```java
-// Import classes:
-import io.digitalfemsa.ApiClient;
-import io.digitalfemsa.ApiException;
-import io.digitalfemsa.Configuration;
-import io.digitalfemsa.auth.*;
-import io.digitalfemsa.model.*;
-import io.digitalfemsa.OrdersApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.digitalfemsa.io");
-        
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
-
-        OrdersApi apiInstance = new OrdersApi(defaultClient);
-        String id = "6307a60c41de27127515a575"; // String | Identifier of the resource
-        String refundId = "6407b5bee1329a000175ba11"; // String | refund identifier
-        String acceptLanguage = "es"; // String | Use for knowing which language to use
-        String xChildCompanyId = "6441b6376b60c3a638da80af"; // String | In the case of a holding company, the company id of the child company to which will process the request.
-        try {
-            OrderResponse result = apiInstance.cancelOrderRefund(id, refundId, acceptLanguage, xChildCompanyId);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling OrdersApi#cancelOrderRefund");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **id** | **String**| Identifier of the resource | |
-| **refundId** | **String**| refund identifier | |
-| **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
-| **xChildCompanyId** | **String**| In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
-
-### Return type
-
-[**OrderResponse**](OrderResponse.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/vnd.app-v2.1.0+json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Successful operation |  -  |
-| **401** | authentication error |  -  |
-| **402** | payment required error |  -  |
-| **404** | not found entity |  -  |
-| **422** | parameter validation error |  -  |
-| **500** | internal server error |  -  |
-
-
-## captureOrder
-
-> OrderResponse captureOrder(id, acceptLanguage, xChildCompanyId, orderCaptureRequest)
-
-Capture Order
-
-Captures (finalizes) an order that has been previously authorized. Use this endpoint to capture a specific amount. The captured amount must be greater than 0 and must comply with the order and charge constraints enforced by the API.
-
-### Example
-
-```java
-// Import classes:
-import io.digitalfemsa.ApiClient;
-import io.digitalfemsa.ApiException;
-import io.digitalfemsa.Configuration;
-import io.digitalfemsa.auth.*;
-import io.digitalfemsa.model.*;
-import io.digitalfemsa.OrdersApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.digitalfemsa.io");
-        
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
-
-        OrdersApi apiInstance = new OrdersApi(defaultClient);
-        String id = "6307a60c41de27127515a575"; // String | Identifier of the resource
-        String acceptLanguage = "es"; // String | Use for knowing which language to use
-        String xChildCompanyId = "6441b6376b60c3a638da80af"; // String | In the case of a holding company, the company id of the child company to which will process the request.
-        OrderCaptureRequest orderCaptureRequest = new OrderCaptureRequest(); // OrderCaptureRequest | Requested fields for capturing an order
-        try {
-            OrderResponse result = apiInstance.captureOrder(id, acceptLanguage, xChildCompanyId, orderCaptureRequest);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling OrdersApi#captureOrder");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **id** | **String**| Identifier of the resource | |
-| **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
-| **xChildCompanyId** | **String**| In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
-| **orderCaptureRequest** | [**OrderCaptureRequest**](OrderCaptureRequest.md)| Requested fields for capturing an order | [optional] |
-
-### Return type
-
-[**OrderResponse**](OrderResponse.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/vnd.app-v2.1.0+json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Successful operation |  -  |
-| **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
 | **428** | Precondition Required |  -  |
 | **500** | internal server error |  -  |
@@ -423,7 +262,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful operation |  -  |
+| **200** | successful operation |  -  |
 | **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
 | **500** | internal server error |  -  |
@@ -513,6 +352,87 @@ public class Example {
 | **500** | internal server error |  -  |
 
 
+## orderCancelRefund
+
+> OrderResponse orderCancelRefund(id, refundId, acceptLanguage, xChildCompanyId)
+
+Cancel Refund
+
+Cancels a refund previously created for an order. This operation is only available when the refund is still cancellable according to its current status and the payment method rules. If the refund cannot be cancelled, the API returns an error response.
+
+### Example
+
+```java
+// Import classes:
+import io.digitalfemsa.ApiClient;
+import io.digitalfemsa.ApiException;
+import io.digitalfemsa.Configuration;
+import io.digitalfemsa.auth.*;
+import io.digitalfemsa.model.*;
+import io.digitalfemsa.OrdersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.digitalfemsa.io");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        OrdersApi apiInstance = new OrdersApi(defaultClient);
+        String id = "6307a60c41de27127515a575"; // String | Identifier of the resource
+        String refundId = "6407b5bee1329a000175ba11"; // String | refund identifier
+        String acceptLanguage = "es"; // String | Use for knowing which language to use
+        String xChildCompanyId = "6441b6376b60c3a638da80af"; // String | In the case of a holding company, the company id of the child company to which will process the request.
+        try {
+            OrderResponse result = apiInstance.orderCancelRefund(id, refundId, acceptLanguage, xChildCompanyId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling OrdersApi#orderCancelRefund");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Identifier of the resource | |
+| **refundId** | **String**| refund identifier | |
+| **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
+| **xChildCompanyId** | **String**| In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
+
+### Return type
+
+[**OrderResponse**](OrderResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/vnd.app-v2.1.0+json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful operation |  -  |
+| **401** | authentication error |  -  |
+| **402** | payment required error |  -  |
+| **404** | not found entity |  -  |
+| **422** | parameter validation error |  -  |
+| **500** | internal server error |  -  |
+
+
 ## orderRefund
 
 > OrderResponse orderRefund(id, orderRefundRequest, acceptLanguage, xChildCompanyId)
@@ -586,11 +506,91 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful operation |  -  |
+| **200** | successful operation |  -  |
 | **401** | authentication error |  -  |
 | **402** | payment required error |  -  |
 | **404** | not found entity |  -  |
 | **422** | parameter validation error |  -  |
+| **500** | internal server error |  -  |
+
+
+## ordersCreateCapture
+
+> OrderResponse ordersCreateCapture(id, acceptLanguage, xChildCompanyId, orderCaptureRequest)
+
+Capture Order
+
+Captures (finalizes) an order that has been previously authorized. Use this endpoint to capture a specific amount. The captured amount must be greater than 0 and must comply with the order and charge constraints enforced by the API.
+
+### Example
+
+```java
+// Import classes:
+import io.digitalfemsa.ApiClient;
+import io.digitalfemsa.ApiException;
+import io.digitalfemsa.Configuration;
+import io.digitalfemsa.auth.*;
+import io.digitalfemsa.model.*;
+import io.digitalfemsa.OrdersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.digitalfemsa.io");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        OrdersApi apiInstance = new OrdersApi(defaultClient);
+        String id = "6307a60c41de27127515a575"; // String | Identifier of the resource
+        String acceptLanguage = "es"; // String | Use for knowing which language to use
+        String xChildCompanyId = "6441b6376b60c3a638da80af"; // String | In the case of a holding company, the company id of the child company to which will process the request.
+        OrderCaptureRequest orderCaptureRequest = new OrderCaptureRequest(); // OrderCaptureRequest | Requested fields for capturing an order
+        try {
+            OrderResponse result = apiInstance.ordersCreateCapture(id, acceptLanguage, xChildCompanyId, orderCaptureRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling OrdersApi#ordersCreateCapture");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Identifier of the resource | |
+| **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
+| **xChildCompanyId** | **String**| In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
+| **orderCaptureRequest** | [**OrderCaptureRequest**](OrderCaptureRequest.md)| Requested fields for capturing an order | [optional] |
+
+### Return type
+
+[**OrderResponse**](OrderResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/vnd.app-v2.1.0+json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful operation |  -  |
+| **401** | authentication error |  -  |
+| **404** | not found entity |  -  |
+| **428** | Precondition Required |  -  |
 | **500** | internal server error |  -  |
 
 
@@ -670,7 +670,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful operation |  -  |
+| **200** | successful operation |  -  |
 | **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
 | **422** | parameter validation error |  -  |

@@ -29,10 +29,10 @@ import java.util.Objects;
 @JsonPropertyOrder({
   CustomerFiscalEntitiesRequest.JSON_PROPERTY_ADDRESS,
   CustomerFiscalEntitiesRequest.JSON_PROPERTY_TAX_ID,
+  CustomerFiscalEntitiesRequest.JSON_PROPERTY_NAME,
   CustomerFiscalEntitiesRequest.JSON_PROPERTY_EMAIL,
   CustomerFiscalEntitiesRequest.JSON_PROPERTY_PHONE,
-  CustomerFiscalEntitiesRequest.JSON_PROPERTY_METADATA,
-  CustomerFiscalEntitiesRequest.JSON_PROPERTY_COMPANY_NAME
+  CustomerFiscalEntitiesRequest.JSON_PROPERTY_METADATA
 })
 @JsonTypeName("customer_fiscal_entities_request")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
@@ -43,6 +43,9 @@ public class CustomerFiscalEntitiesRequest {
   public static final String JSON_PROPERTY_TAX_ID = "tax_id";
   private String taxId;
 
+  public static final String JSON_PROPERTY_NAME = "name";
+  private String name;
+
   public static final String JSON_PROPERTY_EMAIL = "email";
   private String email;
 
@@ -51,9 +54,6 @@ public class CustomerFiscalEntitiesRequest {
 
   public static final String JSON_PROPERTY_METADATA = "metadata";
   private Map<String, Object> metadata = new HashMap<>();
-
-  public static final String JSON_PROPERTY_COMPANY_NAME = "company_name";
-  private String companyName;
 
   public CustomerFiscalEntitiesRequest() { 
   }
@@ -105,6 +105,31 @@ public class CustomerFiscalEntitiesRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTaxId(String taxId) {
     this.taxId = taxId;
+  }
+
+
+  public CustomerFiscalEntitiesRequest name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * Get name
+   * @return name
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getName() {
+    return name;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -191,31 +216,6 @@ public class CustomerFiscalEntitiesRequest {
   }
 
 
-  public CustomerFiscalEntitiesRequest companyName(String companyName) {
-    this.companyName = companyName;
-    return this;
-  }
-
-   /**
-   * Get companyName
-   * @return companyName
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_COMPANY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getCompanyName() {
-    return companyName;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_COMPANY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCompanyName(String companyName) {
-    this.companyName = companyName;
-  }
-
-
   /**
    * Return true if this customer_fiscal_entities_request object is equal to o.
    */
@@ -230,15 +230,15 @@ public class CustomerFiscalEntitiesRequest {
     CustomerFiscalEntitiesRequest customerFiscalEntitiesRequest = (CustomerFiscalEntitiesRequest) o;
     return Objects.equals(this.address, customerFiscalEntitiesRequest.address) &&
         Objects.equals(this.taxId, customerFiscalEntitiesRequest.taxId) &&
+        Objects.equals(this.name, customerFiscalEntitiesRequest.name) &&
         Objects.equals(this.email, customerFiscalEntitiesRequest.email) &&
         Objects.equals(this.phone, customerFiscalEntitiesRequest.phone) &&
-        Objects.equals(this.metadata, customerFiscalEntitiesRequest.metadata) &&
-        Objects.equals(this.companyName, customerFiscalEntitiesRequest.companyName);
+        Objects.equals(this.metadata, customerFiscalEntitiesRequest.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(address, taxId, email, phone, metadata, companyName);
+    return Objects.hash(address, taxId, name, email, phone, metadata);
   }
 
   @Override
@@ -247,10 +247,10 @@ public class CustomerFiscalEntitiesRequest {
     sb.append("class CustomerFiscalEntitiesRequest {\n");
     sb.append("    address: ").append(toIndentedString(address)).append("\n");
     sb.append("    taxId: ").append(toIndentedString(taxId)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
-    sb.append("    companyName: ").append(toIndentedString(companyName)).append("\n");
     sb.append("}");
     return sb.toString();
   }

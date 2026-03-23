@@ -13,11 +13,9 @@
 
 package io.digitalfemsa.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.net.URI;
 import java.util.HashMap;
@@ -46,49 +44,16 @@ public class WebhookLog {
   private String id;
 
   public static final String JSON_PROPERTY_LAST_ATTEMPTED_AT = "last_attempted_at";
-  private Long lastAttemptedAt;
+  private Integer lastAttemptedAt;
 
   public static final String JSON_PROPERTY_LAST_HTTP_RESPONSE_STATUS = "last_http_response_status";
   private Integer lastHttpResponseStatus;
 
-  /**
-   * Gets or Sets _object
-   */
-  public enum ObjectEnum {
-    WEBHOOK_LOG("webhook_log");
-
-    private String value;
-
-    ObjectEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ObjectEnum fromValue(String value) {
-      for (ObjectEnum b : ObjectEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_OBJECT = "object";
-  private ObjectEnum _object;
+  private String _object;
 
   public static final String JSON_PROPERTY_RESPONSE_DATA = "response_data";
-  private Map<String, Object> responseData;
+  private Map<String, Object> responseData = new HashMap<>();
 
   public static final String JSON_PROPERTY_URL = "url";
   private URI url;
@@ -105,9 +70,9 @@ public class WebhookLog {
    * Get failedAttempts
    * @return failedAttempts
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_FAILED_ATTEMPTS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Integer getFailedAttempts() {
     return failedAttempts;
@@ -115,7 +80,7 @@ public class WebhookLog {
 
 
   @JsonProperty(JSON_PROPERTY_FAILED_ATTEMPTS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFailedAttempts(Integer failedAttempts) {
     this.failedAttempts = failedAttempts;
   }
@@ -130,9 +95,9 @@ public class WebhookLog {
    * Get id
    * @return id
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getId() {
     return id;
@@ -140,13 +105,13 @@ public class WebhookLog {
 
 
   @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
 
 
-  public WebhookLog lastAttemptedAt(Long lastAttemptedAt) {
+  public WebhookLog lastAttemptedAt(Integer lastAttemptedAt) {
     this.lastAttemptedAt = lastAttemptedAt;
     return this;
   }
@@ -155,18 +120,18 @@ public class WebhookLog {
    * Get lastAttemptedAt
    * @return lastAttemptedAt
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_LAST_ATTEMPTED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Long getLastAttemptedAt() {
+  public Integer getLastAttemptedAt() {
     return lastAttemptedAt;
   }
 
 
   @JsonProperty(JSON_PROPERTY_LAST_ATTEMPTED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setLastAttemptedAt(Long lastAttemptedAt) {
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLastAttemptedAt(Integer lastAttemptedAt) {
     this.lastAttemptedAt = lastAttemptedAt;
   }
 
@@ -180,9 +145,9 @@ public class WebhookLog {
    * Get lastHttpResponseStatus
    * @return lastHttpResponseStatus
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_LAST_HTTP_RESPONSE_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Integer getLastHttpResponseStatus() {
     return lastHttpResponseStatus;
@@ -190,13 +155,13 @@ public class WebhookLog {
 
 
   @JsonProperty(JSON_PROPERTY_LAST_HTTP_RESPONSE_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLastHttpResponseStatus(Integer lastHttpResponseStatus) {
     this.lastHttpResponseStatus = lastHttpResponseStatus;
   }
 
 
-  public WebhookLog _object(ObjectEnum _object) {
+  public WebhookLog _object(String _object) {
     this._object = _object;
     return this;
   }
@@ -209,14 +174,14 @@ public class WebhookLog {
   @JsonProperty(JSON_PROPERTY_OBJECT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public ObjectEnum getObject() {
+  public String getObject() {
     return _object;
   }
 
 
   @JsonProperty(JSON_PROPERTY_OBJECT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setObject(ObjectEnum _object) {
+  public void setObject(String _object) {
     this._object = _object;
   }
 
@@ -263,9 +228,9 @@ public class WebhookLog {
    * Get url
    * @return url
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_URL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public URI getUrl() {
     return url;
@@ -273,7 +238,7 @@ public class WebhookLog {
 
 
   @JsonProperty(JSON_PROPERTY_URL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUrl(URI url) {
     this.url = url;
   }

@@ -201,7 +201,7 @@ public class Example {
         TaxesApi apiInstance = new TaxesApi(defaultClient);
         String id = "6307a60c41de27127515a575"; // String | Identifier of the resource
         String taxId = "tax_lin_2tQ974hSHcsdeSZHG"; // String | identifier
-        UpdateOrderTaxRequest updateOrderTaxRequest = new UpdateOrderTaxRequest(); // UpdateOrderTaxRequest | Request body for creating a tax line.
+        UpdateOrderTaxRequest updateOrderTaxRequest = new UpdateOrderTaxRequest(); // UpdateOrderTaxRequest | Request body for updating a tax line.
         String acceptLanguage = "es"; // String | Use for knowing which language to use
         String xChildCompanyId = "6441b6376b60c3a638da80af"; // String | In the case of a holding company, the company id of the child company to which will process the request.
         try {
@@ -225,7 +225,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| Identifier of the resource | |
 | **taxId** | **String**| identifier | |
-| **updateOrderTaxRequest** | [**UpdateOrderTaxRequest**](UpdateOrderTaxRequest.md)| Request body for creating a tax line. | |
+| **updateOrderTaxRequest** | [**UpdateOrderTaxRequest**](UpdateOrderTaxRequest.md)| Request body for updating a tax line. | |
 | **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
 | **xChildCompanyId** | **String**| In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 

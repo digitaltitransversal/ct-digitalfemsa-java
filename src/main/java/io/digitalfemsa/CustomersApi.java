@@ -461,7 +461,7 @@ public class CustomersApi {
    * Update Fiscal Entity resource that corresponds to a customer ID.
    * @param id Identifier of the resource (required)
    * @param fiscalEntitiesId identifier (required)
-   * @param customerUpdateFiscalEntitiesRequest requested field for customer update fiscal entities (required)
+   * @param customerUpdateFiscalEntitiesRequest Request body for updating a customer fiscal entity. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return UpdateCustomerFiscalEntitiesResponse
@@ -485,7 +485,7 @@ public class CustomersApi {
    * Update Fiscal Entity resource that corresponds to a customer ID.
    * @param id Identifier of the resource (required)
    * @param fiscalEntitiesId identifier (required)
-   * @param customerUpdateFiscalEntitiesRequest requested field for customer update fiscal entities (required)
+   * @param customerUpdateFiscalEntitiesRequest Request body for updating a customer fiscal entity. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return ApiResponse&lt;UpdateCustomerFiscalEntitiesResponse&gt;

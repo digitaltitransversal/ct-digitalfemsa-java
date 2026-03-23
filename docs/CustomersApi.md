@@ -529,7 +529,7 @@ public class Example {
         CustomersApi apiInstance = new CustomersApi(defaultClient);
         String id = "6307a60c41de27127515a575"; // String | Identifier of the resource
         String fiscalEntitiesId = "fis_ent_2tQ8HkkfbauaKP9Ho"; // String | identifier
-        CustomerUpdateFiscalEntitiesRequest customerUpdateFiscalEntitiesRequest = new CustomerUpdateFiscalEntitiesRequest(); // CustomerUpdateFiscalEntitiesRequest | requested field for customer update fiscal entities
+        CustomerUpdateFiscalEntitiesRequest customerUpdateFiscalEntitiesRequest = new CustomerUpdateFiscalEntitiesRequest(); // CustomerUpdateFiscalEntitiesRequest | Request body for updating a customer fiscal entity.
         String acceptLanguage = "es"; // String | Use for knowing which language to use
         String xChildCompanyId = "6441b6376b60c3a638da80af"; // String | In the case of a holding company, the company id of the child company to which will process the request.
         try {
@@ -553,7 +553,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| Identifier of the resource | |
 | **fiscalEntitiesId** | **String**| identifier | |
-| **customerUpdateFiscalEntitiesRequest** | [**CustomerUpdateFiscalEntitiesRequest**](CustomerUpdateFiscalEntitiesRequest.md)| requested field for customer update fiscal entities | |
+| **customerUpdateFiscalEntitiesRequest** | [**CustomerUpdateFiscalEntitiesRequest**](CustomerUpdateFiscalEntitiesRequest.md)| Request body for updating a customer fiscal entity. | |
 | **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
 | **xChildCompanyId** | **String**| In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 

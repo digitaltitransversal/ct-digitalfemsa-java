@@ -13,7 +13,7 @@ Contains the detail of the shipping addresses that the client has active or has 
 |**betweenStreets** | **String** |  |  [optional] |
 |**address** | [**CustomerShippingContactsResponseAddress**](CustomerShippingContactsResponseAddress.md) |  |  [optional] |
 |**parentId** | **String** | Customer ID that owns this shipping contact. |  [optional] |
-|**_default** | **Boolean** | True if this is the customer&#39;s default shipping contact. |  [optional] |
+|**_default** | **Boolean** |  |  [optional] |
 |**id** | **String** |  |  [optional] |
 |**createdAt** | **Long** |  |  [optional] |
 |**metadata** | **Map&lt;String, Object&gt;** | Metadata associated with the shipping contact |  [optional] |

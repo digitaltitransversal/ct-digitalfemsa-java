@@ -18,7 +18,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,56 +29,46 @@ import java.util.Objects;
  * a order
  */
 @JsonPropertyOrder({
-  OrderRequest.JSON_PROPERTY_CHARGES,
-  OrderRequest.JSON_PROPERTY_CHECKOUT,
-  OrderRequest.JSON_PROPERTY_RETURN_URL,
   OrderRequest.JSON_PROPERTY_CURRENCY,
   OrderRequest.JSON_PROPERTY_CUSTOMER_INFO,
-  OrderRequest.JSON_PROPERTY_DISCOUNT_LINES,
-  OrderRequest.JSON_PROPERTY_FISCAL_ENTITY,
   OrderRequest.JSON_PROPERTY_LINE_ITEMS,
-  OrderRequest.JSON_PROPERTY_METADATA,
+  OrderRequest.JSON_PROPERTY_CHARGES,
+  OrderRequest.JSON_PROPERTY_CHECKOUT,
+  OrderRequest.JSON_PROPERTY_DISCOUNT_LINES,
+  OrderRequest.JSON_PROPERTY_TAX_LINES,
   OrderRequest.JSON_PROPERTY_NEEDS_SHIPPING_CONTACT,
-  OrderRequest.JSON_PROPERTY_PROCESSING_MODE,
   OrderRequest.JSON_PROPERTY_SHIPPING_CONTACT,
   OrderRequest.JSON_PROPERTY_SHIPPING_LINES,
-  OrderRequest.JSON_PROPERTY_TAX_LINES
+  OrderRequest.JSON_PROPERTY_FISCAL_ENTITY,
+  OrderRequest.JSON_PROPERTY_PROCESSING_MODE,
+  OrderRequest.JSON_PROPERTY_METADATA
 })
 @JsonTypeName("order_request")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class OrderRequest {
+  public static final String JSON_PROPERTY_CURRENCY = "currency";
+  private String currency;
+
+  public static final String JSON_PROPERTY_CUSTOMER_INFO = "customer_info";
+  private OrderRequestCustomerInfo customerInfo;
+
+  public static final String JSON_PROPERTY_LINE_ITEMS = "line_items";
+  private List<Product> lineItems = new ArrayList<>();
+
   public static final String JSON_PROPERTY_CHARGES = "charges";
   private List<ChargeRequest> charges = new ArrayList<>();
 
   public static final String JSON_PROPERTY_CHECKOUT = "checkout";
   private CheckoutRequest checkout;
 
-  public static final String JSON_PROPERTY_RETURN_URL = "return_url";
-  private URI returnUrl;
-
-  public static final String JSON_PROPERTY_CURRENCY = "currency";
-  private String currency;
-
-  public static final String JSON_PROPERTY_CUSTOMER_INFO = "customer_info";
-  private CustomerInfo customerInfo;
-
   public static final String JSON_PROPERTY_DISCOUNT_LINES = "discount_lines";
   private List<OrderDiscountLinesRequest> discountLines = new ArrayList<>();
 
-  public static final String JSON_PROPERTY_FISCAL_ENTITY = "fiscal_entity";
-  private Object fiscalEntity;
-
-  public static final String JSON_PROPERTY_LINE_ITEMS = "line_items";
-  private List<Product> lineItems = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_METADATA = "metadata";
-  private Map<String, Object> metadata = new HashMap<>();
+  public static final String JSON_PROPERTY_TAX_LINES = "tax_lines";
+  private List<OrderTaxRequest> taxLines = new ArrayList<>();
 
   public static final String JSON_PROPERTY_NEEDS_SHIPPING_CONTACT = "needs_shipping_contact";
   private Boolean needsShippingContact;
-
-  public static final String JSON_PROPERTY_PROCESSING_MODE = "processing_mode";
-  private String processingMode;
 
   public static final String JSON_PROPERTY_SHIPPING_CONTACT = "shipping_contact";
   private CustomerShippingContacts shippingContact;
@@ -87,11 +76,100 @@ public class OrderRequest {
   public static final String JSON_PROPERTY_SHIPPING_LINES = "shipping_lines";
   private List<ShippingRequest> shippingLines = new ArrayList<>();
 
-  public static final String JSON_PROPERTY_TAX_LINES = "tax_lines";
-  private List<OrderTaxRequest> taxLines = new ArrayList<>();
+  public static final String JSON_PROPERTY_FISCAL_ENTITY = "fiscal_entity";
+  private OrderFiscalEntityRequest fiscalEntity;
+
+  public static final String JSON_PROPERTY_PROCESSING_MODE = "processing_mode";
+  private String processingMode;
+
+  public static final String JSON_PROPERTY_METADATA = "metadata";
+  private Map<String, Object> metadata = new HashMap<>();
 
   public OrderRequest() { 
   }
+
+  public OrderRequest currency(String currency) {
+    this.currency = currency;
+    return this;
+  }
+
+   /**
+   * Currency with which the payment will be made.
+   * @return currency
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_CURRENCY)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getCurrency() {
+    return currency;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CURRENCY)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCurrency(String currency) {
+    this.currency = currency;
+  }
+
+
+  public OrderRequest customerInfo(OrderRequestCustomerInfo customerInfo) {
+    this.customerInfo = customerInfo;
+    return this;
+  }
+
+   /**
+   * Get customerInfo
+   * @return customerInfo
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_CUSTOMER_INFO)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public OrderRequestCustomerInfo getCustomerInfo() {
+    return customerInfo;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CUSTOMER_INFO)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCustomerInfo(OrderRequestCustomerInfo customerInfo) {
+    this.customerInfo = customerInfo;
+  }
+
+
+  public OrderRequest lineItems(List<Product> lineItems) {
+    this.lineItems = lineItems;
+    return this;
+  }
+
+  public OrderRequest addLineItemsItem(Product lineItemsItem) {
+    if (this.lineItems == null) {
+      this.lineItems = new ArrayList<>();
+    }
+    this.lineItems.add(lineItemsItem);
+    return this;
+  }
+
+   /**
+   * List of [products](https://developers.digitalfemsa.io/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
+   * @return lineItems
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_LINE_ITEMS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public List<Product> getLineItems() {
+    return lineItems;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_LINE_ITEMS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setLineItems(List<Product> lineItems) {
+    this.lineItems = lineItems;
+  }
+
 
   public OrderRequest charges(List<ChargeRequest> charges) {
     this.charges = charges;
@@ -151,81 +229,6 @@ public class OrderRequest {
   }
 
 
-  public OrderRequest returnUrl(URI returnUrl) {
-    this.returnUrl = returnUrl;
-    return this;
-  }
-
-   /**
-   * Optional return URL used by some payment/checkout flows.
-   * @return returnUrl
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_RETURN_URL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public URI getReturnUrl() {
-    return returnUrl;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RETURN_URL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReturnUrl(URI returnUrl) {
-    this.returnUrl = returnUrl;
-  }
-
-
-  public OrderRequest currency(String currency) {
-    this.currency = currency;
-    return this;
-  }
-
-   /**
-   * Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)
-   * @return currency
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_CURRENCY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getCurrency() {
-    return currency;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CURRENCY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCurrency(String currency) {
-    this.currency = currency;
-  }
-
-
-  public OrderRequest customerInfo(CustomerInfo customerInfo) {
-    this.customerInfo = customerInfo;
-    return this;
-  }
-
-   /**
-   * Get customerInfo
-   * @return customerInfo
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_CUSTOMER_INFO)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public CustomerInfo getCustomerInfo() {
-    return customerInfo;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CUSTOMER_INFO)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCustomerInfo(CustomerInfo customerInfo) {
-    this.customerInfo = customerInfo;
-  }
-
-
   public OrderRequest discountLines(List<OrderDiscountLinesRequest> discountLines) {
     this.discountLines = discountLines;
     return this;
@@ -259,94 +262,36 @@ public class OrderRequest {
   }
 
 
-  public OrderRequest fiscalEntity(Object fiscalEntity) {
-    this.fiscalEntity = fiscalEntity;
+  public OrderRequest taxLines(List<OrderTaxRequest> taxLines) {
+    this.taxLines = taxLines;
+    return this;
+  }
+
+  public OrderRequest addTaxLinesItem(OrderTaxRequest taxLinesItem) {
+    if (this.taxLines == null) {
+      this.taxLines = new ArrayList<>();
+    }
+    this.taxLines.add(taxLinesItem);
     return this;
   }
 
    /**
-   * Fiscal entity of the order, Currently it is a purely informative field
-   * @return fiscalEntity
+   * List of [taxes](https://developers.digitalfemsa.io/reference/orderscreatetaxes) that are applied to the order.
+   * @return taxLines
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_FISCAL_ENTITY)
+  @JsonProperty(JSON_PROPERTY_TAX_LINES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Object getFiscalEntity() {
-    return fiscalEntity;
+  public List<OrderTaxRequest> getTaxLines() {
+    return taxLines;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_FISCAL_ENTITY)
+  @JsonProperty(JSON_PROPERTY_TAX_LINES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFiscalEntity(Object fiscalEntity) {
-    this.fiscalEntity = fiscalEntity;
-  }
-
-
-  public OrderRequest lineItems(List<Product> lineItems) {
-    this.lineItems = lineItems;
-    return this;
-  }
-
-  public OrderRequest addLineItemsItem(Product lineItemsItem) {
-    if (this.lineItems == null) {
-      this.lineItems = new ArrayList<>();
-    }
-    this.lineItems.add(lineItemsItem);
-    return this;
-  }
-
-   /**
-   * List of [products](https://developers.digitalfemsa.io/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
-   * @return lineItems
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_LINE_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public List<Product> getLineItems() {
-    return lineItems;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LINE_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setLineItems(List<Product> lineItems) {
-    this.lineItems = lineItems;
-  }
-
-
-  public OrderRequest metadata(Map<String, Object> metadata) {
-    this.metadata = metadata;
-    return this;
-  }
-
-  public OrderRequest putMetadataItem(String key, Object metadataItem) {
-    if (this.metadata == null) {
-      this.metadata = new HashMap<>();
-    }
-    this.metadata.put(key, metadataItem);
-    return this;
-  }
-
-   /**
-   * Metadata associated with the order
-   * @return metadata
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_METADATA)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Map<String, Object> getMetadata() {
-    return metadata;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_METADATA)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMetadata(Map<String, Object> metadata) {
-    this.metadata = metadata;
+  public void setTaxLines(List<OrderTaxRequest> taxLines) {
+    this.taxLines = taxLines;
   }
 
 
@@ -372,31 +317,6 @@ public class OrderRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNeedsShippingContact(Boolean needsShippingContact) {
     this.needsShippingContact = needsShippingContact;
-  }
-
-
-  public OrderRequest processingMode(String processingMode) {
-    this.processingMode = processingMode;
-    return this;
-  }
-
-   /**
-   * Indicates the processing mode for the order, either ecommerce, recurrent or validation.
-   * @return processingMode
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PROCESSING_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getProcessingMode() {
-    return processingMode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PROCESSING_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setProcessingMode(String processingMode) {
-    this.processingMode = processingMode;
   }
 
 
@@ -458,36 +378,86 @@ public class OrderRequest {
   }
 
 
-  public OrderRequest taxLines(List<OrderTaxRequest> taxLines) {
-    this.taxLines = taxLines;
-    return this;
-  }
-
-  public OrderRequest addTaxLinesItem(OrderTaxRequest taxLinesItem) {
-    if (this.taxLines == null) {
-      this.taxLines = new ArrayList<>();
-    }
-    this.taxLines.add(taxLinesItem);
+  public OrderRequest fiscalEntity(OrderFiscalEntityRequest fiscalEntity) {
+    this.fiscalEntity = fiscalEntity;
     return this;
   }
 
    /**
-   * List of [taxes](https://developers.digitalfemsa.io/reference/orderscreatetaxes) that are applied to the order.
-   * @return taxLines
+   * Get fiscalEntity
+   * @return fiscalEntity
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TAX_LINES)
+  @JsonProperty(JSON_PROPERTY_FISCAL_ENTITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<OrderTaxRequest> getTaxLines() {
-    return taxLines;
+  public OrderFiscalEntityRequest getFiscalEntity() {
+    return fiscalEntity;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TAX_LINES)
+  @JsonProperty(JSON_PROPERTY_FISCAL_ENTITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTaxLines(List<OrderTaxRequest> taxLines) {
-    this.taxLines = taxLines;
+  public void setFiscalEntity(OrderFiscalEntityRequest fiscalEntity) {
+    this.fiscalEntity = fiscalEntity;
+  }
+
+
+  public OrderRequest processingMode(String processingMode) {
+    this.processingMode = processingMode;
+    return this;
+  }
+
+   /**
+   * Indicates the processing mode for the order, either ecommerce, recurrent or validation.
+   * @return processingMode
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_PROCESSING_MODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getProcessingMode() {
+    return processingMode;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_PROCESSING_MODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setProcessingMode(String processingMode) {
+    this.processingMode = processingMode;
+  }
+
+
+  public OrderRequest metadata(Map<String, Object> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  public OrderRequest putMetadataItem(String key, Object metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+   /**
+   * Arbitrary key-value data that you can attach to the order for your internal use (e.g. &#x60;customer_segment&#x60;, &#x60;sales_channel&#x60;, &#x60;internal_order_id&#x60;). It is not used for payment processing or fraud decisions. Keys should be strings; values can be any JSON value.
+   * @return metadata
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_METADATA)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Map<String, Object> getMetadata() {
+    return metadata;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_METADATA)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMetadata(Map<String, Object> metadata) {
+    this.metadata = metadata;
   }
 
 
@@ -503,45 +473,43 @@ public class OrderRequest {
       return false;
     }
     OrderRequest orderRequest = (OrderRequest) o;
-    return Objects.equals(this.charges, orderRequest.charges) &&
-        Objects.equals(this.checkout, orderRequest.checkout) &&
-        Objects.equals(this.returnUrl, orderRequest.returnUrl) &&
-        Objects.equals(this.currency, orderRequest.currency) &&
+    return Objects.equals(this.currency, orderRequest.currency) &&
         Objects.equals(this.customerInfo, orderRequest.customerInfo) &&
-        Objects.equals(this.discountLines, orderRequest.discountLines) &&
-        Objects.equals(this.fiscalEntity, orderRequest.fiscalEntity) &&
         Objects.equals(this.lineItems, orderRequest.lineItems) &&
-        Objects.equals(this.metadata, orderRequest.metadata) &&
+        Objects.equals(this.charges, orderRequest.charges) &&
+        Objects.equals(this.checkout, orderRequest.checkout) &&
+        Objects.equals(this.discountLines, orderRequest.discountLines) &&
+        Objects.equals(this.taxLines, orderRequest.taxLines) &&
         Objects.equals(this.needsShippingContact, orderRequest.needsShippingContact) &&
-        Objects.equals(this.processingMode, orderRequest.processingMode) &&
         Objects.equals(this.shippingContact, orderRequest.shippingContact) &&
         Objects.equals(this.shippingLines, orderRequest.shippingLines) &&
-        Objects.equals(this.taxLines, orderRequest.taxLines);
+        Objects.equals(this.fiscalEntity, orderRequest.fiscalEntity) &&
+        Objects.equals(this.processingMode, orderRequest.processingMode) &&
+        Objects.equals(this.metadata, orderRequest.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(charges, checkout, returnUrl, currency, customerInfo, discountLines, fiscalEntity, lineItems, metadata, needsShippingContact, processingMode, shippingContact, shippingLines, taxLines);
+    return Objects.hash(currency, customerInfo, lineItems, charges, checkout, discountLines, taxLines, needsShippingContact, shippingContact, shippingLines, fiscalEntity, processingMode, metadata);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class OrderRequest {\n");
-    sb.append("    charges: ").append(toIndentedString(charges)).append("\n");
-    sb.append("    checkout: ").append(toIndentedString(checkout)).append("\n");
-    sb.append("    returnUrl: ").append(toIndentedString(returnUrl)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    customerInfo: ").append(toIndentedString(customerInfo)).append("\n");
-    sb.append("    discountLines: ").append(toIndentedString(discountLines)).append("\n");
-    sb.append("    fiscalEntity: ").append(toIndentedString(fiscalEntity)).append("\n");
     sb.append("    lineItems: ").append(toIndentedString(lineItems)).append("\n");
-    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    charges: ").append(toIndentedString(charges)).append("\n");
+    sb.append("    checkout: ").append(toIndentedString(checkout)).append("\n");
+    sb.append("    discountLines: ").append(toIndentedString(discountLines)).append("\n");
+    sb.append("    taxLines: ").append(toIndentedString(taxLines)).append("\n");
     sb.append("    needsShippingContact: ").append(toIndentedString(needsShippingContact)).append("\n");
-    sb.append("    processingMode: ").append(toIndentedString(processingMode)).append("\n");
     sb.append("    shippingContact: ").append(toIndentedString(shippingContact)).append("\n");
     sb.append("    shippingLines: ").append(toIndentedString(shippingLines)).append("\n");
-    sb.append("    taxLines: ").append(toIndentedString(taxLines)).append("\n");
+    sb.append("    fiscalEntity: ").append(toIndentedString(fiscalEntity)).append("\n");
+    sb.append("    processingMode: ").append(toIndentedString(processingMode)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }

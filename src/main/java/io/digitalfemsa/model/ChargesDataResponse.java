@@ -13,12 +13,10 @@
 
 package io.digitalfemsa.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.util.Objects;
 
@@ -27,34 +25,34 @@ import java.util.Objects;
  * ChargesDataResponse
  */
 @JsonPropertyOrder({
-  ChargesDataResponse.JSON_PROPERTY_ID,
-  ChargesDataResponse.JSON_PROPERTY_LIVEMODE,
+  ChargesDataResponse.JSON_PROPERTY_AMOUNT,
+  ChargesDataResponse.JSON_PROPERTY_CHANNEL,
   ChargesDataResponse.JSON_PROPERTY_CREATED_AT,
   ChargesDataResponse.JSON_PROPERTY_CURRENCY,
+  ChargesDataResponse.JSON_PROPERTY_CUSTOMER_ID,
+  ChargesDataResponse.JSON_PROPERTY_DESCRIPTION,
+  ChargesDataResponse.JSON_PROPERTY_DEVICE_FINGERPRINT,
   ChargesDataResponse.JSON_PROPERTY_FAILURE_CODE,
   ChargesDataResponse.JSON_PROPERTY_FAILURE_MESSAGE,
-  ChargesDataResponse.JSON_PROPERTY_CHANNEL,
-  ChargesDataResponse.JSON_PROPERTY_PAYMENT_METHOD,
+  ChargesDataResponse.JSON_PROPERTY_ID,
+  ChargesDataResponse.JSON_PROPERTY_LIVEMODE,
   ChargesDataResponse.JSON_PROPERTY_OBJECT,
-  ChargesDataResponse.JSON_PROPERTY_DEVICE_FINGERPRINT,
-  ChargesDataResponse.JSON_PROPERTY_DESCRIPTION,
-  ChargesDataResponse.JSON_PROPERTY_IS_REFUNDABLE,
-  ChargesDataResponse.JSON_PROPERTY_REFERENCE_ID,
-  ChargesDataResponse.JSON_PROPERTY_STATUS,
-  ChargesDataResponse.JSON_PROPERTY_AMOUNT,
-  ChargesDataResponse.JSON_PROPERTY_PAID_AT,
-  ChargesDataResponse.JSON_PROPERTY_CUSTOMER_ID,
   ChargesDataResponse.JSON_PROPERTY_ORDER_ID,
-  ChargesDataResponse.JSON_PROPERTY_REFUNDS
+  ChargesDataResponse.JSON_PROPERTY_PAID_AT,
+  ChargesDataResponse.JSON_PROPERTY_PAYMENT_METHOD,
+  ChargesDataResponse.JSON_PROPERTY_REFERENCE_ID,
+  ChargesDataResponse.JSON_PROPERTY_REFUNDS,
+  ChargesDataResponse.JSON_PROPERTY_STATUS,
+  ChargesDataResponse.JSON_PROPERTY_IS_REFUNDABLE
 })
 @JsonTypeName("charges_data_response")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class ChargesDataResponse {
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  public static final String JSON_PROPERTY_AMOUNT = "amount";
+  private Long amount;
 
-  public static final String JSON_PROPERTY_LIVEMODE = "livemode";
-  private Boolean livemode;
+  public static final String JSON_PROPERTY_CHANNEL = "channel";
+  private ChargeResponseChannel channel;
 
   public static final String JSON_PROPERTY_CREATED_AT = "created_at";
   private Long createdAt;
@@ -62,134 +60,101 @@ public class ChargesDataResponse {
   public static final String JSON_PROPERTY_CURRENCY = "currency";
   private String currency;
 
+  public static final String JSON_PROPERTY_CUSTOMER_ID = "customer_id";
+  private String customerId;
+
+  public static final String JSON_PROPERTY_DESCRIPTION = "description";
+  private String description;
+
+  public static final String JSON_PROPERTY_DEVICE_FINGERPRINT = "device_fingerprint";
+  private String deviceFingerprint;
+
   public static final String JSON_PROPERTY_FAILURE_CODE = "failure_code";
   private String failureCode;
 
   public static final String JSON_PROPERTY_FAILURE_MESSAGE = "failure_message";
   private String failureMessage;
 
-  public static final String JSON_PROPERTY_CHANNEL = "channel";
-  private ChargeResponseChannel channel;
+  public static final String JSON_PROPERTY_ID = "id";
+  private String id;
 
-  public static final String JSON_PROPERTY_PAYMENT_METHOD = "payment_method";
-  private ChargeResponsePaymentMethod paymentMethod;
-
-  /**
-   * Gets or Sets _object
-   */
-  public enum ObjectEnum {
-    CHARGE("charge");
-
-    private String value;
-
-    ObjectEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ObjectEnum fromValue(String value) {
-      for (ObjectEnum b : ObjectEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  public static final String JSON_PROPERTY_LIVEMODE = "livemode";
+  private Boolean livemode;
 
   public static final String JSON_PROPERTY_OBJECT = "object";
-  private ObjectEnum _object;
-
-  public static final String JSON_PROPERTY_DEVICE_FINGERPRINT = "device_fingerprint";
-  private String deviceFingerprint;
-
-  public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  private String description;
-
-  public static final String JSON_PROPERTY_IS_REFUNDABLE = "is_refundable";
-  private Boolean isRefundable;
-
-  public static final String JSON_PROPERTY_REFERENCE_ID = "reference_id";
-  private String referenceId;
-
-  public static final String JSON_PROPERTY_STATUS = "status";
-  private String status;
-
-  public static final String JSON_PROPERTY_AMOUNT = "amount";
-  private Long amount;
-
-  public static final String JSON_PROPERTY_PAID_AT = "paid_at";
-  private Long paidAt;
-
-  public static final String JSON_PROPERTY_CUSTOMER_ID = "customer_id";
-  private String customerId;
+  private String _object;
 
   public static final String JSON_PROPERTY_ORDER_ID = "order_id";
   private String orderId;
 
+  public static final String JSON_PROPERTY_PAID_AT = "paid_at";
+  private Long paidAt;
+
+  public static final String JSON_PROPERTY_PAYMENT_METHOD = "payment_method";
+  private ChargeResponsePaymentMethod paymentMethod;
+
+  public static final String JSON_PROPERTY_REFERENCE_ID = "reference_id";
+  private String referenceId;
+
   public static final String JSON_PROPERTY_REFUNDS = "refunds";
   private ChargeResponseRefunds refunds;
+
+  public static final String JSON_PROPERTY_STATUS = "status";
+  private String status;
+
+  public static final String JSON_PROPERTY_IS_REFUNDABLE = "is_refundable";
+  private Boolean isRefundable;
 
   public ChargesDataResponse() { 
   }
 
-  public ChargesDataResponse id(String id) {
-    this.id = id;
+  public ChargesDataResponse amount(Long amount) {
+    this.amount = amount;
     return this;
   }
 
    /**
-   * Get id
-   * @return id
+   * Get amount
+   * @return amount
   **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getId() {
-    return id;
+  public Long getAmount() {
+    return amount;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setId(String id) {
-    this.id = id;
+  @JsonProperty(JSON_PROPERTY_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAmount(Long amount) {
+    this.amount = amount;
   }
 
 
-  public ChargesDataResponse livemode(Boolean livemode) {
-    this.livemode = livemode;
+  public ChargesDataResponse channel(ChargeResponseChannel channel) {
+    this.channel = channel;
     return this;
   }
 
    /**
-   * Get livemode
-   * @return livemode
+   * Get channel
+   * @return channel
   **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_LIVEMODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_CHANNEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Boolean getLivemode() {
-    return livemode;
+  public ChargeResponseChannel getChannel() {
+    return channel;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LIVEMODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setLivemode(Boolean livemode) {
-    this.livemode = livemode;
+  @JsonProperty(JSON_PROPERTY_CHANNEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setChannel(ChargeResponseChannel channel) {
+    this.channel = channel;
   }
 
 
@@ -202,9 +167,9 @@ public class ChargesDataResponse {
    * Get createdAt
    * @return createdAt
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_CREATED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Long getCreatedAt() {
     return createdAt;
@@ -212,7 +177,7 @@ public class ChargesDataResponse {
 
 
   @JsonProperty(JSON_PROPERTY_CREATED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreatedAt(Long createdAt) {
     this.createdAt = createdAt;
   }
@@ -227,9 +192,9 @@ public class ChargesDataResponse {
    * Get currency
    * @return currency
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_CURRENCY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getCurrency() {
     return currency;
@@ -237,9 +202,84 @@ public class ChargesDataResponse {
 
 
   @JsonProperty(JSON_PROPERTY_CURRENCY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCurrency(String currency) {
     this.currency = currency;
+  }
+
+
+  public ChargesDataResponse customerId(String customerId) {
+    this.customerId = customerId;
+    return this;
+  }
+
+   /**
+   * Get customerId
+   * @return customerId
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_CUSTOMER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getCustomerId() {
+    return customerId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CUSTOMER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCustomerId(String customerId) {
+    this.customerId = customerId;
+  }
+
+
+  public ChargesDataResponse description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * Get description
+   * @return description
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDescription() {
+    return description;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+
+  public ChargesDataResponse deviceFingerprint(String deviceFingerprint) {
+    this.deviceFingerprint = deviceFingerprint;
+    return this;
+  }
+
+   /**
+   * Get deviceFingerprint
+   * @return deviceFingerprint
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_DEVICE_FINGERPRINT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDeviceFingerprint() {
+    return deviceFingerprint;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DEVICE_FINGERPRINT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDeviceFingerprint(String deviceFingerprint) {
+    this.deviceFingerprint = deviceFingerprint;
   }
 
 
@@ -293,57 +333,57 @@ public class ChargesDataResponse {
   }
 
 
-  public ChargesDataResponse channel(ChargeResponseChannel channel) {
-    this.channel = channel;
+  public ChargesDataResponse id(String id) {
+    this.id = id;
     return this;
   }
 
    /**
-   * Get channel
-   * @return channel
+   * Get id
+   * @return id
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CHANNEL)
+  @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public ChargeResponseChannel getChannel() {
-    return channel;
+  public String getId() {
+    return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CHANNEL)
+  @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChannel(ChargeResponseChannel channel) {
-    this.channel = channel;
+  public void setId(String id) {
+    this.id = id;
   }
 
 
-  public ChargesDataResponse paymentMethod(ChargeResponsePaymentMethod paymentMethod) {
-    this.paymentMethod = paymentMethod;
+  public ChargesDataResponse livemode(Boolean livemode) {
+    this.livemode = livemode;
     return this;
   }
 
    /**
-   * Get paymentMethod
-   * @return paymentMethod
+   * Get livemode
+   * @return livemode
   **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_PAYMENT_METHOD)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_LIVEMODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public ChargeResponsePaymentMethod getPaymentMethod() {
-    return paymentMethod;
+  public Boolean getLivemode() {
+    return livemode;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PAYMENT_METHOD)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPaymentMethod(ChargeResponsePaymentMethod paymentMethod) {
-    this.paymentMethod = paymentMethod;
+  @JsonProperty(JSON_PROPERTY_LIVEMODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLivemode(Boolean livemode) {
+    this.livemode = livemode;
   }
 
 
-  public ChargesDataResponse _object(ObjectEnum _object) {
+  public ChargesDataResponse _object(String _object) {
     this._object = _object;
     return this;
   }
@@ -352,219 +392,19 @@ public class ChargesDataResponse {
    * Get _object
    * @return _object
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_OBJECT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public ObjectEnum getObject() {
+  public String getObject() {
     return _object;
   }
 
 
   @JsonProperty(JSON_PROPERTY_OBJECT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setObject(ObjectEnum _object) {
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setObject(String _object) {
     this._object = _object;
-  }
-
-
-  public ChargesDataResponse deviceFingerprint(String deviceFingerprint) {
-    this.deviceFingerprint = deviceFingerprint;
-    return this;
-  }
-
-   /**
-   * Get deviceFingerprint
-   * @return deviceFingerprint
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DEVICE_FINGERPRINT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getDeviceFingerprint() {
-    return deviceFingerprint;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEVICE_FINGERPRINT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeviceFingerprint(String deviceFingerprint) {
-    this.deviceFingerprint = deviceFingerprint;
-  }
-
-
-  public ChargesDataResponse description(String description) {
-    this.description = description;
-    return this;
-  }
-
-   /**
-   * Get description
-   * @return description
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getDescription() {
-    return description;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-
-  public ChargesDataResponse isRefundable(Boolean isRefundable) {
-    this.isRefundable = isRefundable;
-    return this;
-  }
-
-   /**
-   * Get isRefundable
-   * @return isRefundable
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IS_REFUNDABLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Boolean getIsRefundable() {
-    return isRefundable;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IS_REFUNDABLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIsRefundable(Boolean isRefundable) {
-    this.isRefundable = isRefundable;
-  }
-
-
-  public ChargesDataResponse referenceId(String referenceId) {
-    this.referenceId = referenceId;
-    return this;
-  }
-
-   /**
-   * Get referenceId
-   * @return referenceId
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_REFERENCE_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getReferenceId() {
-    return referenceId;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REFERENCE_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReferenceId(String referenceId) {
-    this.referenceId = referenceId;
-  }
-
-
-  public ChargesDataResponse status(String status) {
-    this.status = status;
-    return this;
-  }
-
-   /**
-   * Get status
-   * @return status
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getStatus() {
-    return status;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-
-  public ChargesDataResponse amount(Long amount) {
-    this.amount = amount;
-    return this;
-  }
-
-   /**
-   * Get amount
-   * @return amount
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_AMOUNT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Long getAmount() {
-    return amount;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_AMOUNT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAmount(Long amount) {
-    this.amount = amount;
-  }
-
-
-  public ChargesDataResponse paidAt(Long paidAt) {
-    this.paidAt = paidAt;
-    return this;
-  }
-
-   /**
-   * Get paidAt
-   * @return paidAt
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PAID_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Long getPaidAt() {
-    return paidAt;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PAID_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPaidAt(Long paidAt) {
-    this.paidAt = paidAt;
-  }
-
-
-  public ChargesDataResponse customerId(String customerId) {
-    this.customerId = customerId;
-    return this;
-  }
-
-   /**
-   * Get customerId
-   * @return customerId
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CUSTOMER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getCustomerId() {
-    return customerId;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CUSTOMER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCustomerId(String customerId) {
-    this.customerId = customerId;
   }
 
 
@@ -593,6 +433,81 @@ public class ChargesDataResponse {
   }
 
 
+  public ChargesDataResponse paidAt(Long paidAt) {
+    this.paidAt = paidAt;
+    return this;
+  }
+
+   /**
+   * Get paidAt
+   * @return paidAt
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_PAID_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Long getPaidAt() {
+    return paidAt;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_PAID_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPaidAt(Long paidAt) {
+    this.paidAt = paidAt;
+  }
+
+
+  public ChargesDataResponse paymentMethod(ChargeResponsePaymentMethod paymentMethod) {
+    this.paymentMethod = paymentMethod;
+    return this;
+  }
+
+   /**
+   * Get paymentMethod
+   * @return paymentMethod
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_PAYMENT_METHOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public ChargeResponsePaymentMethod getPaymentMethod() {
+    return paymentMethod;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_PAYMENT_METHOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPaymentMethod(ChargeResponsePaymentMethod paymentMethod) {
+    this.paymentMethod = paymentMethod;
+  }
+
+
+  public ChargesDataResponse referenceId(String referenceId) {
+    this.referenceId = referenceId;
+    return this;
+  }
+
+   /**
+   * Reference ID of the charge
+   * @return referenceId
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_REFERENCE_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getReferenceId() {
+    return referenceId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REFERENCE_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReferenceId(String referenceId) {
+    this.referenceId = referenceId;
+  }
+
+
   public ChargesDataResponse refunds(ChargeResponseRefunds refunds) {
     this.refunds = refunds;
     return this;
@@ -618,6 +533,56 @@ public class ChargesDataResponse {
   }
 
 
+  public ChargesDataResponse status(String status) {
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * Get status
+   * @return status
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getStatus() {
+    return status;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
+
+  public ChargesDataResponse isRefundable(Boolean isRefundable) {
+    this.isRefundable = isRefundable;
+    return this;
+  }
+
+   /**
+   * Get isRefundable
+   * @return isRefundable
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_IS_REFUNDABLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIsRefundable() {
+    return isRefundable;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IS_REFUNDABLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsRefundable(Boolean isRefundable) {
+    this.isRefundable = isRefundable;
+  }
+
+
   /**
    * Return true if this charges_data_response object is equal to o.
    */
@@ -630,55 +595,55 @@ public class ChargesDataResponse {
       return false;
     }
     ChargesDataResponse chargesDataResponse = (ChargesDataResponse) o;
-    return Objects.equals(this.id, chargesDataResponse.id) &&
-        Objects.equals(this.livemode, chargesDataResponse.livemode) &&
+    return Objects.equals(this.amount, chargesDataResponse.amount) &&
+        Objects.equals(this.channel, chargesDataResponse.channel) &&
         Objects.equals(this.createdAt, chargesDataResponse.createdAt) &&
         Objects.equals(this.currency, chargesDataResponse.currency) &&
+        Objects.equals(this.customerId, chargesDataResponse.customerId) &&
+        Objects.equals(this.description, chargesDataResponse.description) &&
+        Objects.equals(this.deviceFingerprint, chargesDataResponse.deviceFingerprint) &&
         Objects.equals(this.failureCode, chargesDataResponse.failureCode) &&
         Objects.equals(this.failureMessage, chargesDataResponse.failureMessage) &&
-        Objects.equals(this.channel, chargesDataResponse.channel) &&
-        Objects.equals(this.paymentMethod, chargesDataResponse.paymentMethod) &&
+        Objects.equals(this.id, chargesDataResponse.id) &&
+        Objects.equals(this.livemode, chargesDataResponse.livemode) &&
         Objects.equals(this._object, chargesDataResponse._object) &&
-        Objects.equals(this.deviceFingerprint, chargesDataResponse.deviceFingerprint) &&
-        Objects.equals(this.description, chargesDataResponse.description) &&
-        Objects.equals(this.isRefundable, chargesDataResponse.isRefundable) &&
-        Objects.equals(this.referenceId, chargesDataResponse.referenceId) &&
-        Objects.equals(this.status, chargesDataResponse.status) &&
-        Objects.equals(this.amount, chargesDataResponse.amount) &&
-        Objects.equals(this.paidAt, chargesDataResponse.paidAt) &&
-        Objects.equals(this.customerId, chargesDataResponse.customerId) &&
         Objects.equals(this.orderId, chargesDataResponse.orderId) &&
-        Objects.equals(this.refunds, chargesDataResponse.refunds);
+        Objects.equals(this.paidAt, chargesDataResponse.paidAt) &&
+        Objects.equals(this.paymentMethod, chargesDataResponse.paymentMethod) &&
+        Objects.equals(this.referenceId, chargesDataResponse.referenceId) &&
+        Objects.equals(this.refunds, chargesDataResponse.refunds) &&
+        Objects.equals(this.status, chargesDataResponse.status) &&
+        Objects.equals(this.isRefundable, chargesDataResponse.isRefundable);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, livemode, createdAt, currency, failureCode, failureMessage, channel, paymentMethod, _object, deviceFingerprint, description, isRefundable, referenceId, status, amount, paidAt, customerId, orderId, refunds);
+    return Objects.hash(amount, channel, createdAt, currency, customerId, description, deviceFingerprint, failureCode, failureMessage, id, livemode, _object, orderId, paidAt, paymentMethod, referenceId, refunds, status, isRefundable);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ChargesDataResponse {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    livemode: ").append(toIndentedString(livemode)).append("\n");
+    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+    sb.append("    channel: ").append(toIndentedString(channel)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
+    sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    deviceFingerprint: ").append(toIndentedString(deviceFingerprint)).append("\n");
     sb.append("    failureCode: ").append(toIndentedString(failureCode)).append("\n");
     sb.append("    failureMessage: ").append(toIndentedString(failureMessage)).append("\n");
-    sb.append("    channel: ").append(toIndentedString(channel)).append("\n");
-    sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    livemode: ").append(toIndentedString(livemode)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
-    sb.append("    deviceFingerprint: ").append(toIndentedString(deviceFingerprint)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    isRefundable: ").append(toIndentedString(isRefundable)).append("\n");
-    sb.append("    referenceId: ").append(toIndentedString(referenceId)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    sb.append("    paidAt: ").append(toIndentedString(paidAt)).append("\n");
-    sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
     sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
+    sb.append("    paidAt: ").append(toIndentedString(paidAt)).append("\n");
+    sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
+    sb.append("    referenceId: ").append(toIndentedString(referenceId)).append("\n");
     sb.append("    refunds: ").append(toIndentedString(refunds)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    isRefundable: ").append(toIndentedString(isRefundable)).append("\n");
     sb.append("}");
     return sb.toString();
   }

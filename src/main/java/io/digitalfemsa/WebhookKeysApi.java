@@ -47,7 +47,6 @@ public class WebhookKeysApi {
    * Create Webhook Key
    * Creates a new webhook signing key for the current company.
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
-   * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @param webhookKeyRequest  (optional)
    * @return WebhookKeyCreateResponse
    * @throws ApiException if fails to make API call
@@ -59,15 +58,14 @@ public class WebhookKeysApi {
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
-  public WebhookKeyCreateResponse createWebhookKey(String acceptLanguage, String xChildCompanyId, WebhookKeyRequest webhookKeyRequest) throws ApiException {
-    return createWebhookKeyWithHttpInfo(acceptLanguage, xChildCompanyId, webhookKeyRequest).getData();
+  public WebhookKeyCreateResponse createWebhookKey(String acceptLanguage, WebhookKeyRequest webhookKeyRequest) throws ApiException {
+    return createWebhookKeyWithHttpInfo(acceptLanguage, webhookKeyRequest).getData();
   }
 
   /**
    * Create Webhook Key
    * Creates a new webhook signing key for the current company.
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
-   * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @param webhookKeyRequest  (optional)
    * @return ApiResponse&lt;WebhookKeyCreateResponse&gt;
    * @throws ApiException if fails to make API call
@@ -79,14 +77,11 @@ public class WebhookKeysApi {
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
-  public ApiResponse<WebhookKeyCreateResponse> createWebhookKeyWithHttpInfo(String acceptLanguage, String xChildCompanyId, WebhookKeyRequest webhookKeyRequest) throws ApiException {
+  public ApiResponse<WebhookKeyCreateResponse> createWebhookKeyWithHttpInfo(String acceptLanguage, WebhookKeyRequest webhookKeyRequest) throws ApiException {
     // Header parameters
     Map<String, String> localVarHeaderParams = new LinkedHashMap<>();
     if (acceptLanguage != null) {
       localVarHeaderParams.put("Accept-Language", apiClient.parameterToString(acceptLanguage));
-    }
-    if (xChildCompanyId != null) {
-      localVarHeaderParams.put("X-Child-Company-Id", apiClient.parameterToString(xChildCompanyId));
     }
 
     String localVarAccept = apiClient.selectHeaderAccept("application/vnd.app-v2.1.0+json");
@@ -224,7 +219,7 @@ public class WebhookKeysApi {
   }
   /**
    * Get List of Webhook Keys
-   * Consume the list of webhook keys you have, each environment supports 10 webhook keys (For production and testing)
+   * Consume the list of webhook keys you have
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @param limit The numbers of items to return, the maximum value is 250 (optional, default to 20)
@@ -247,7 +242,7 @@ public class WebhookKeysApi {
 
   /**
    * Get List of Webhook Keys
-   * Consume the list of webhook keys you have, each environment supports 10 webhook keys (For production and testing)
+   * Consume the list of webhook keys you have
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @param limit The numbers of items to return, the maximum value is 250 (optional, default to 20)

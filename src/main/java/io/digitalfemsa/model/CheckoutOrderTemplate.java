@@ -41,7 +41,7 @@ public class CheckoutOrderTemplate {
   private String currency;
 
   public static final String JSON_PROPERTY_CUSTOMER_INFO = "customer_info";
-  private CustomerInfo customerInfo;
+  private CheckoutOrderTemplateCustomerInfo customerInfo;
 
   public static final String JSON_PROPERTY_LINE_ITEMS = "line_items";
   private List<Product> lineItems = new ArrayList<>();
@@ -77,7 +77,7 @@ public class CheckoutOrderTemplate {
   }
 
 
-  public CheckoutOrderTemplate customerInfo(CustomerInfo customerInfo) {
+  public CheckoutOrderTemplate customerInfo(CheckoutOrderTemplateCustomerInfo customerInfo) {
     this.customerInfo = customerInfo;
     return this;
   }
@@ -90,14 +90,14 @@ public class CheckoutOrderTemplate {
   @JsonProperty(JSON_PROPERTY_CUSTOMER_INFO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public CustomerInfo getCustomerInfo() {
+  public CheckoutOrderTemplateCustomerInfo getCustomerInfo() {
     return customerInfo;
   }
 
 
   @JsonProperty(JSON_PROPERTY_CUSTOMER_INFO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCustomerInfo(CustomerInfo customerInfo) {
+  public void setCustomerInfo(CheckoutOrderTemplateCustomerInfo customerInfo) {
     this.customerInfo = customerInfo;
   }
 

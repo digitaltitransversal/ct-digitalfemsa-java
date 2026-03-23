@@ -29,10 +29,10 @@ import java.util.Objects;
 @JsonPropertyOrder({
   CreateCustomerFiscalEntitiesResponse.JSON_PROPERTY_ADDRESS,
   CreateCustomerFiscalEntitiesResponse.JSON_PROPERTY_TAX_ID,
+  CreateCustomerFiscalEntitiesResponse.JSON_PROPERTY_NAME,
   CreateCustomerFiscalEntitiesResponse.JSON_PROPERTY_EMAIL,
   CreateCustomerFiscalEntitiesResponse.JSON_PROPERTY_PHONE,
   CreateCustomerFiscalEntitiesResponse.JSON_PROPERTY_METADATA,
-  CreateCustomerFiscalEntitiesResponse.JSON_PROPERTY_COMPANY_NAME,
   CreateCustomerFiscalEntitiesResponse.JSON_PROPERTY_ID,
   CreateCustomerFiscalEntitiesResponse.JSON_PROPERTY_OBJECT,
   CreateCustomerFiscalEntitiesResponse.JSON_PROPERTY_CREATED_AT,
@@ -48,6 +48,9 @@ public class CreateCustomerFiscalEntitiesResponse {
   public static final String JSON_PROPERTY_TAX_ID = "tax_id";
   private String taxId;
 
+  public static final String JSON_PROPERTY_NAME = "name";
+  private String name;
+
   public static final String JSON_PROPERTY_EMAIL = "email";
   private String email;
 
@@ -56,9 +59,6 @@ public class CreateCustomerFiscalEntitiesResponse {
 
   public static final String JSON_PROPERTY_METADATA = "metadata";
   private Map<String, Object> metadata = new HashMap<>();
-
-  public static final String JSON_PROPERTY_COMPANY_NAME = "company_name";
-  private String companyName;
 
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
@@ -125,6 +125,31 @@ public class CreateCustomerFiscalEntitiesResponse {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTaxId(String taxId) {
     this.taxId = taxId;
+  }
+
+
+  public CreateCustomerFiscalEntitiesResponse name(String name) {
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * Get name
+   * @return name
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getName() {
+    return name;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -208,31 +233,6 @@ public class CreateCustomerFiscalEntitiesResponse {
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
   public void setMetadata(Map<String, Object> metadata) {
     this.metadata = metadata;
-  }
-
-
-  public CreateCustomerFiscalEntitiesResponse companyName(String companyName) {
-    this.companyName = companyName;
-    return this;
-  }
-
-   /**
-   * Get companyName
-   * @return companyName
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_COMPANY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getCompanyName() {
-    return companyName;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_COMPANY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCompanyName(String companyName) {
-    this.companyName = companyName;
   }
 
 
@@ -375,10 +375,10 @@ public class CreateCustomerFiscalEntitiesResponse {
     CreateCustomerFiscalEntitiesResponse createCustomerFiscalEntitiesResponse = (CreateCustomerFiscalEntitiesResponse) o;
     return Objects.equals(this.address, createCustomerFiscalEntitiesResponse.address) &&
         Objects.equals(this.taxId, createCustomerFiscalEntitiesResponse.taxId) &&
+        Objects.equals(this.name, createCustomerFiscalEntitiesResponse.name) &&
         Objects.equals(this.email, createCustomerFiscalEntitiesResponse.email) &&
         Objects.equals(this.phone, createCustomerFiscalEntitiesResponse.phone) &&
         Objects.equals(this.metadata, createCustomerFiscalEntitiesResponse.metadata) &&
-        Objects.equals(this.companyName, createCustomerFiscalEntitiesResponse.companyName) &&
         Objects.equals(this.id, createCustomerFiscalEntitiesResponse.id) &&
         Objects.equals(this._object, createCustomerFiscalEntitiesResponse._object) &&
         Objects.equals(this.createdAt, createCustomerFiscalEntitiesResponse.createdAt) &&
@@ -388,7 +388,7 @@ public class CreateCustomerFiscalEntitiesResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(address, taxId, email, phone, metadata, companyName, id, _object, createdAt, parentId, _default);
+    return Objects.hash(address, taxId, name, email, phone, metadata, id, _object, createdAt, parentId, _default);
   }
 
   @Override
@@ -397,10 +397,10 @@ public class CreateCustomerFiscalEntitiesResponse {
     sb.append("class CreateCustomerFiscalEntitiesResponse {\n");
     sb.append("    address: ").append(toIndentedString(address)).append("\n");
     sb.append("    taxId: ").append(toIndentedString(taxId)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
-    sb.append("    companyName: ").append(toIndentedString(companyName)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");

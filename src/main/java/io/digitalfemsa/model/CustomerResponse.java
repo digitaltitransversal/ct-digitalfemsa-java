@@ -38,8 +38,6 @@ import java.util.Objects;
   CustomerResponse.JSON_PROPERTY_PHONE,
   CustomerResponse.JSON_PROPERTY_CORPORATE,
   CustomerResponse.JSON_PROPERTY_CUSTOM_REFERENCE,
-  CustomerResponse.JSON_PROPERTY_REFERRER,
-  CustomerResponse.JSON_PROPERTY_VERTICAL_INFO,
   CustomerResponse.JSON_PROPERTY_DEFAULT_FISCAL_ENTITY_ID,
   CustomerResponse.JSON_PROPERTY_DEFAULT_SHIPPING_CONTACT_ID,
   CustomerResponse.JSON_PROPERTY_METADATA,
@@ -109,12 +107,6 @@ public class CustomerResponse {
 
   public static final String JSON_PROPERTY_CUSTOM_REFERENCE = "custom_reference";
   private String customReference;
-
-  public static final String JSON_PROPERTY_REFERRER = "referrer";
-  private String referrer;
-
-  public static final String JSON_PROPERTY_VERTICAL_INFO = "vertical_info";
-  private Map<String, Object> verticalInfo;
 
   public static final String JSON_PROPERTY_DEFAULT_FISCAL_ENTITY_ID = "default_fiscal_entity_id";
   private String defaultFiscalEntityId;
@@ -362,64 +354,6 @@ public class CustomerResponse {
   }
 
 
-  public CustomerResponse referrer(String referrer) {
-    this.referrer = referrer;
-    return this;
-  }
-
-   /**
-   * Referrer information (if available)
-   * @return referrer
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_REFERRER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getReferrer() {
-    return referrer;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REFERRER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReferrer(String referrer) {
-    this.referrer = referrer;
-  }
-
-
-  public CustomerResponse verticalInfo(Map<String, Object> verticalInfo) {
-    this.verticalInfo = verticalInfo;
-    return this;
-  }
-
-  public CustomerResponse putVerticalInfoItem(String key, Object verticalInfoItem) {
-    if (this.verticalInfo == null) {
-      this.verticalInfo = new HashMap<>();
-    }
-    this.verticalInfo.put(key, verticalInfoItem);
-    return this;
-  }
-
-   /**
-   * Vertical-specific information (shape depends on integration)
-   * @return verticalInfo
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_VERTICAL_INFO)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Map<String, Object> getVerticalInfo() {
-    return verticalInfo;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VERTICAL_INFO)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVerticalInfo(Map<String, Object> verticalInfo) {
-    this.verticalInfo = verticalInfo;
-  }
-
-
   public CustomerResponse defaultFiscalEntityId(String defaultFiscalEntityId) {
     this.defaultFiscalEntityId = defaultFiscalEntityId;
     return this;
@@ -599,8 +533,6 @@ public class CustomerResponse {
         Objects.equals(this.phone, customerResponse.phone) &&
         Objects.equals(this.corporate, customerResponse.corporate) &&
         Objects.equals(this.customReference, customerResponse.customReference) &&
-        Objects.equals(this.referrer, customerResponse.referrer) &&
-        Objects.equals(this.verticalInfo, customerResponse.verticalInfo) &&
         Objects.equals(this.defaultFiscalEntityId, customerResponse.defaultFiscalEntityId) &&
         Objects.equals(this.defaultShippingContactId, customerResponse.defaultShippingContactId) &&
         Objects.equals(this.metadata, customerResponse.metadata) &&
@@ -611,7 +543,7 @@ public class CustomerResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _object, createdAt, livemode, name, email, phone, corporate, customReference, referrer, verticalInfo, defaultFiscalEntityId, defaultShippingContactId, metadata, paymentSources, fiscalEntities, shippingContacts);
+    return Objects.hash(id, _object, createdAt, livemode, name, email, phone, corporate, customReference, defaultFiscalEntityId, defaultShippingContactId, metadata, paymentSources, fiscalEntities, shippingContacts);
   }
 
   @Override
@@ -627,8 +559,6 @@ public class CustomerResponse {
     sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     sb.append("    corporate: ").append(toIndentedString(corporate)).append("\n");
     sb.append("    customReference: ").append(toIndentedString(customReference)).append("\n");
-    sb.append("    referrer: ").append(toIndentedString(referrer)).append("\n");
-    sb.append("    verticalInfo: ").append(toIndentedString(verticalInfo)).append("\n");
     sb.append("    defaultFiscalEntityId: ").append(toIndentedString(defaultFiscalEntityId)).append("\n");
     sb.append("    defaultShippingContactId: ").append(toIndentedString(defaultShippingContactId)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");

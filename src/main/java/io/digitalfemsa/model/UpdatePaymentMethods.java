@@ -25,97 +25,39 @@ import java.util.Objects;
  * UpdatePaymentMethods
  */
 @JsonPropertyOrder({
-  UpdatePaymentMethods.JSON_PROPERTY_EXPIRES_AT,
-  UpdatePaymentMethods.JSON_PROPERTY_AMOUNT,
-  UpdatePaymentMethods.JSON_PROPERTY_TYPE
+  UpdatePaymentMethods.JSON_PROPERTY_NAME
 })
 @JsonTypeName("update_payment_methods")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class UpdatePaymentMethods {
-  public static final String JSON_PROPERTY_EXPIRES_AT = "expires_at";
-  private UpdatePaymentMethodsExpiresAt expiresAt;
-
-  public static final String JSON_PROPERTY_AMOUNT = "amount";
-  private UpdatePaymentMethodsAmount amount;
-
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private String type;
+  public static final String JSON_PROPERTY_NAME = "name";
+  private String name;
 
   public UpdatePaymentMethods() { 
   }
 
-  public UpdatePaymentMethods expiresAt(UpdatePaymentMethodsExpiresAt expiresAt) {
-    this.expiresAt = expiresAt;
+  public UpdatePaymentMethods name(String name) {
+    this.name = name;
     return this;
   }
 
    /**
-   * Get expiresAt
-   * @return expiresAt
+   * Get name
+   * @return name
   **/
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public UpdatePaymentMethodsExpiresAt getExpiresAt() {
-    return expiresAt;
+  public String getName() {
+    return name;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExpiresAt(UpdatePaymentMethodsExpiresAt expiresAt) {
-    this.expiresAt = expiresAt;
-  }
-
-
-  public UpdatePaymentMethods amount(UpdatePaymentMethodsAmount amount) {
-    this.amount = amount;
-    return this;
-  }
-
-   /**
-   * Get amount
-   * @return amount
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_AMOUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public UpdatePaymentMethodsAmount getAmount() {
-    return amount;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_AMOUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAmount(UpdatePaymentMethodsAmount amount) {
-    this.amount = amount;
-  }
-
-
-  public UpdatePaymentMethods type(String type) {
-    this.type = type;
-    return this;
-  }
-
-   /**
-   * Get type
-   * @return type
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getType() {
-    return type;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(String type) {
-    this.type = type;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -131,23 +73,19 @@ public class UpdatePaymentMethods {
       return false;
     }
     UpdatePaymentMethods updatePaymentMethods = (UpdatePaymentMethods) o;
-    return Objects.equals(this.expiresAt, updatePaymentMethods.expiresAt) &&
-        Objects.equals(this.amount, updatePaymentMethods.amount) &&
-        Objects.equals(this.type, updatePaymentMethods.type);
+    return Objects.equals(this.name, updatePaymentMethods.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expiresAt, amount, type);
+    return Objects.hash(name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdatePaymentMethods {\n");
-    sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
-    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }
