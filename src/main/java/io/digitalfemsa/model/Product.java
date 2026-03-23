@@ -60,7 +60,7 @@ public class Product {
   private String description;
 
   public static final String JSON_PROPERTY_TAGS = "tags";
-  private List<String> tags = new ArrayList<>();
+  private List<String> tags;
 
   public static final String JSON_PROPERTY_METADATA = "metadata";
   private Map<String, Object> metadata = new HashMap<>();
@@ -239,7 +239,7 @@ public class Product {
   **/
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_TAGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.NON_EMPTY)
 
   public List<String> getTags() {
     return tags;
