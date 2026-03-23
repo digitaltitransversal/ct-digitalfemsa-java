@@ -18,3 +18,5 @@ appveyor.yml
 .openapi-generator
 .gitignore
 .github/workflows/maven.yml
+pom.xml
+README.md
