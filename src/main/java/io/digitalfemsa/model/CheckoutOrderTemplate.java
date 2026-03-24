@@ -26,7 +26,7 @@ import java.util.Objects;
 
 
 /**
- * It maintains the attributes with which the order will be created when receiving a new payment.
+ * Attributes used to create the order when a new payment is received.
  */
 @JsonPropertyOrder({
   CheckoutOrderTemplate.JSON_PROPERTY_CURRENCY,
@@ -58,7 +58,7 @@ public class CheckoutOrderTemplate {
   }
 
    /**
-   * It is the currency in which the order will be created. It must be a valid ISO 4217 currency code.
+   * ISO 4217 currency code for the order.
    * @return currency
   **/
   @javax.annotation.Nonnull
@@ -116,7 +116,7 @@ public class CheckoutOrderTemplate {
   }
 
    /**
-   * They are the products to buy. Each contains the \&quot;unit price\&quot; and \&quot;quantity\&quot; parameters that are used to calculate the total amount of the order.
+   * Products to buy. Each contains unit price and quantity used to calculate the order total.
    * @return lineItems
   **/
   @javax.annotation.Nonnull
@@ -149,7 +149,7 @@ public class CheckoutOrderTemplate {
   }
 
    /**
-   * It is a set of key-value pairs that you can attach to the order. It can be used to store additional information about the order in a structured format.
+   * Arbitrary key-value data attached to the order for internal use.
    * @return metadata
   **/
   @javax.annotation.Nullable

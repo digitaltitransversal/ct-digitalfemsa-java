@@ -111,8 +111,8 @@ public class PaymentLinkApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Create Unique Payment Link
-   * Creates a new payment link. The request body defines the payment link type, allowed payment methods, and expiration settings.
+   * Create Payment Link
+   * Creates a Payment Link: a shareable URL that lets your customer pay without you building a custom checkout. Configure the link type, allowed payment methods, and expiration. The request also includes an order_template (currency and line items) used to generate an Order when the customer completes a payment. Use recurrent&#x3D;false for a single-use link, or recurrent&#x3D;true to allow multiple payments (limited by payments_limit_count).
    * @param checkout requested field for checkout (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -133,8 +133,8 @@ public class PaymentLinkApi {
   }
 
   /**
-   * Create Unique Payment Link
-   * Creates a new payment link. The request body defines the payment link type, allowed payment methods, and expiration settings.
+   * Create Payment Link
+   * Creates a Payment Link: a shareable URL that lets your customer pay without you building a custom checkout. Configure the link type, allowed payment methods, and expiration. The request also includes an order_template (currency and line items) used to generate an Order when the customer completes a payment. Use recurrent&#x3D;false for a single-use link, or recurrent&#x3D;true to allow multiple payments (limited by payments_limit_count).
    * @param checkout requested field for checkout (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)

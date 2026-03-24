@@ -8,7 +8,9 @@ java:
 		-o /local \
 		-c /local/config-java.json \
 		--global-property modelTests=false \
-		--additional-properties=hideGenerationTimestamp=true
+		--additional-properties=hideGenerationTimestamp=true && \
+	sed -i '' 's/private List<String> tags = new ArrayList<>();/private List<String> tags;/' src/main/java/io/digitalfemsa/model/Product.java && \
+	sed -i '' 's/private List<String> tags = new ArrayList<>();/private List<String> tags;/' src/main/java/io/digitalfemsa/model/UpdateProduct.java
 
 test:
 	mvn -B package --no-transfer-progress --file pom.xml

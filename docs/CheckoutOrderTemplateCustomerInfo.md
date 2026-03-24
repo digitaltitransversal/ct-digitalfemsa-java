@@ -2,7 +2,7 @@
 
 # CheckoutOrderTemplateCustomerInfo
 
-It is the information of the customer who will be created when receiving a new payment.
+Customer information used when creating the order.
 
 ## oneOf schemas
 * [CustomerInfo](CustomerInfo.md)

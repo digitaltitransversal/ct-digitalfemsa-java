@@ -4829,8 +4829,12 @@ paths:
       x-accepts:
       - application/vnd.app-v2.1.0+json
     post:
-      description: "Creates a new payment link. The request body defines the payment\
-        \ link type, allowed payment methods, and expiration settings."
+      description: "Creates a Payment Link: a shareable URL that lets your customer\
+        \ pay without you building a custom checkout. Configure the link type, allowed\
+        \ payment methods, and expiration. The request also includes an order_template\
+        \ (currency and line items) used to generate an Order when the customer completes\
+        \ a payment. Use recurrent=false for a single-use link, or recurrent=true\
+        \ to allow multiple payments (limited by payments_limit_count)."
       operationId: createCheckout
       parameters:
       - description: Use for knowing which language to use
@@ -4933,7 +4937,7 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Create Unique Payment Link
+      summary: Create Payment Link
       tags:
       - Payment Link
       x-content-type: application/json
@@ -10955,53 +10959,61 @@ components:
       title: update_product
       type: object
     checkout:
-      description: It is a sub-resource of the Order model that can be stipulated
-        in order to configure its corresponding checkout
+      description: |
+        Creates a Payment Link. This is a sub-resource related to an Order template: each time a customer pays using the link, the API will create an Order using `order_template`.
       properties:
+        name:
+          description: Payment link name.
+          example: Payment Link Name
+          type: string
+        type:
+          description: Checkout type.
+          example: PaymentLink
+          type: string
+        recurrent:
+          description: "false: single use. true: multiple payments"
+          example: false
+          type: boolean
+        payments_limit_count:
+          description: Required when `recurrent` is true. Maximum number of payments
+            allowed through the link.
+          format: int32
+          type: integer
         allowed_payment_methods:
-          description: Those are the payment methods that will be available for the
-            link
+          description: Payment methods available in the payment link.
           example:
           - cash
           items:
             type: string
           type: array
-        expires_at:
-          description: |
-            It is the time when the link will expire. It is expressed in seconds since the Unix epoch.
-            The valid range is from 2 to 365 days (the valid range will be taken from the next day of the creation date at 00:01 hrs)
-          example: 1680397724
-          format: int64
-          type: integer
-        name:
-          description: Reason for charge
-          example: Payment Link Name 1594138857
-          type: string
         needs_shipping_contact:
           description: This flag allows you to fill in the shipping information at
             checkout.
           example: false
           type: boolean
-        order_template:
-          $ref: '#/components/schemas/checkout_order_template'
-        payments_limit_count:
-          description: It is the number of payments that can be made through the link.
-          example: 5
-          format: int32
+        starts_at:
+          description: Start time for the link. Unix timestamp in seconds.
+          example: 1680224924
+          format: int64
           type: integer
-        recurrent:
-          description: "false: single use. true: multiple payments"
+        expires_at:
+          description: |
+            Expiration time for the link (Unix timestamp in seconds).
+            Valid range is between 2 and 365 days (calculated from the next day of creation at 00:01).
+          example: 1680397724
+          format: int64
+          type: integer
+        can_not_expire:
+          description: "If true, the link does not expire."
           example: false
           type: boolean
-        type:
-          description: It is the type of link that will be created. It must be a valid
-            type.
-          example: PaymentLink
-          type: string
+        order_template:
+          $ref: '#/components/schemas/checkout_order_template'
       required:
       - allowed_payment_methods
       - expires_at
       - name
+      - needs_shipping_contact
       - order_template
       - recurrent
       - type
@@ -12691,35 +12703,30 @@ components:
       title: order_update_fiscal_entity_request
       type: object
     checkout_order_template_customer_info:
-      description: It is the information of the customer who will be created when
-        receiving a new payment.
+      description: Customer information used when creating the order.
       oneOf:
       - $ref: '#/components/schemas/customer_info'
       - $ref: '#/components/schemas/customer_info_just_customer_id'
     checkout_order_template:
-      description: It maintains the attributes with which the order will be created
-        when receiving a new payment.
+      description: Attributes used to create the order when a new payment is received.
       properties:
         currency:
-          description: It is the currency in which the order will be created. It must
-            be a valid ISO 4217 currency code.
+          description: ISO 4217 currency code for the order.
           example: MXN
           maxLength: 3
           type: string
         customer_info:
           $ref: '#/components/schemas/checkout_order_template_customer_info'
         line_items:
-          description: They are the products to buy. Each contains the "unit price"
-            and "quantity" parameters that are used to calculate the total amount
-            of the order.
+          description: Products to buy. Each contains unit price and quantity used
+            to calculate the order total.
           items:
             $ref: '#/components/schemas/product'
           type: array
         metadata:
           additionalProperties: true
-          description: It is a set of key-value pairs that you can attach to the order.
-            It can be used to store additional information about the order in a structured
-            format.
+          description: Arbitrary key-value data attached to the order for internal
+            use.
           example:
             key: value
           maxProperties: 100

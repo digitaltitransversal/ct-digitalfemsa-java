@@ -1,6 +1,5 @@
 CODE_OF_CONDUCT.md
 LICENSE
-README.md
 VERSION
 api/openapi.yaml
 docs/ApiKeyCreateResponse.md
@@ -157,7 +156,6 @@ docs/WebhookRequest.md
 docs/WebhookResponse.md
 docs/WebhookUpdateRequest.md
 docs/WebhooksApi.md
-pom.xml
 src/main/java/io/digitalfemsa/ApiClient.java
 src/main/java/io/digitalfemsa/ApiException.java
 src/main/java/io/digitalfemsa/ApiKeysApi.java

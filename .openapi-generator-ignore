@@ -20,3 +20,4 @@ appveyor.yml
 .github/workflows/maven.yml
 pom.xml
 README.md
+src/main/java/io/digitalfemsa/model/BalanceResponse.java
