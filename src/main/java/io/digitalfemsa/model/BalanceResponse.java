@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +64,7 @@ public class BalanceResponse {
   private List<BalanceCommonField> retentionAmount = new ArrayList<>();
 
   public static final String JSON_PROPERTY_TARGET_COLLATERAL_AMOUNT = "target_collateral_amount";
-  private Object targetCollateralAmount;
+  private List<BalanceCommonField> targetCollateralAmount = new ArrayList<>();
 
   public static final String JSON_PROPERTY_TARGET_RETENTION_AMOUNT = "target_retention_amount";
   private List<BalanceCommonField> targetRetentionAmount = new ArrayList<>();
@@ -193,6 +194,7 @@ public class BalanceResponse {
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_GATEWAY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonDeserialize(using = BalanceCommonFieldListDeserializer.class)
 
   public List<BalanceCommonField> getGateway() {
     return gateway;
@@ -305,8 +307,16 @@ public class BalanceResponse {
   }
 
 
-  public BalanceResponse targetCollateralAmount(Object targetCollateralAmount) {
+  public BalanceResponse targetCollateralAmount(List<BalanceCommonField> targetCollateralAmount) {
     this.targetCollateralAmount = targetCollateralAmount;
+    return this;
+  }
+
+  public BalanceResponse addTargetCollateralAmountItem(BalanceCommonField targetCollateralAmountItem) {
+    if (this.targetCollateralAmount == null) {
+      this.targetCollateralAmount = new ArrayList<>();
+    }
+    this.targetCollateralAmount.add(targetCollateralAmountItem);
     return this;
   }
 
@@ -317,15 +327,16 @@ public class BalanceResponse {
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_TARGET_COLLATERAL_AMOUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonDeserialize(using = BalanceCommonFieldListDeserializer.class)
 
-  public Object getTargetCollateralAmount() {
+  public List<BalanceCommonField> getTargetCollateralAmount() {
     return targetCollateralAmount;
   }
 
 
   @JsonProperty(JSON_PROPERTY_TARGET_COLLATERAL_AMOUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTargetCollateralAmount(Object targetCollateralAmount) {
+  public void setTargetCollateralAmount(List<BalanceCommonField> targetCollateralAmount) {
     this.targetCollateralAmount = targetCollateralAmount;
   }
 
