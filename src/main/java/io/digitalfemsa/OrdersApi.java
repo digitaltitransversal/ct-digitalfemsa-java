@@ -522,7 +522,7 @@ public class OrdersApi {
     String localVarContentType = apiClient.selectHeaderContentType("application/json");
     String[] localVarAuthNames = new String[] {"bearerAuth"};
     GenericType<OrderResponse> localVarReturnType = new GenericType<OrderResponse>() {};
-    return apiClient.invokeAPI("OrdersApi.ordersCreateCapture", localVarPath, "POST", new ArrayList<>(), orderCaptureRequest,
+    return apiClient.invokeAPI("OrdersApi.ordersCreateCapture", localVarPath, "PUT", new ArrayList<>(), orderCaptureRequest,
                                localVarHeaderParams, new LinkedHashMap<>(), new LinkedHashMap<>(), localVarAccept, localVarContentType,
                                localVarAuthNames, localVarReturnType, false);
   }
