@@ -13,20 +13,12 @@
 
 package io.digitalfemsa.model;
 
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.digitalfemsa.model.ChargeResponseChannel;
-import io.digitalfemsa.model.ChargeResponsePaymentMethod;
-import io.digitalfemsa.model.ChargeResponseRefunds;
-import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.digitalfemsa.JSON;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+import java.util.Objects;
 
 
 /**
@@ -50,13 +42,14 @@ import io.digitalfemsa.JSON;
   ChargesDataResponse.JSON_PROPERTY_PAYMENT_METHOD,
   ChargesDataResponse.JSON_PROPERTY_REFERENCE_ID,
   ChargesDataResponse.JSON_PROPERTY_REFUNDS,
-  ChargesDataResponse.JSON_PROPERTY_STATUS
+  ChargesDataResponse.JSON_PROPERTY_STATUS,
+  ChargesDataResponse.JSON_PROPERTY_IS_REFUNDABLE
 })
 @JsonTypeName("charges_data_response")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class ChargesDataResponse {
   public static final String JSON_PROPERTY_AMOUNT = "amount";
-  private Integer amount;
+  private Long amount;
 
   public static final String JSON_PROPERTY_CHANNEL = "channel";
   private ChargeResponseChannel channel;
@@ -95,7 +88,7 @@ public class ChargesDataResponse {
   private String orderId;
 
   public static final String JSON_PROPERTY_PAID_AT = "paid_at";
-  private Integer paidAt;
+  private Long paidAt;
 
   public static final String JSON_PROPERTY_PAYMENT_METHOD = "payment_method";
   private ChargeResponsePaymentMethod paymentMethod;
@@ -109,10 +102,13 @@ public class ChargesDataResponse {
   public static final String JSON_PROPERTY_STATUS = "status";
   private String status;
 
+  public static final String JSON_PROPERTY_IS_REFUNDABLE = "is_refundable";
+  private Boolean isRefundable;
+
   public ChargesDataResponse() { 
   }
 
-  public ChargesDataResponse amount(Integer amount) {
+  public ChargesDataResponse amount(Long amount) {
     this.amount = amount;
     return this;
   }
@@ -125,14 +121,14 @@ public class ChargesDataResponse {
   @JsonProperty(JSON_PROPERTY_AMOUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Integer getAmount() {
+  public Long getAmount() {
     return amount;
   }
 
 
   @JsonProperty(JSON_PROPERTY_AMOUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAmount(Integer amount) {
+  public void setAmount(Long amount) {
     this.amount = amount;
   }
 
@@ -437,7 +433,7 @@ public class ChargesDataResponse {
   }
 
 
-  public ChargesDataResponse paidAt(Integer paidAt) {
+  public ChargesDataResponse paidAt(Long paidAt) {
     this.paidAt = paidAt;
     return this;
   }
@@ -450,14 +446,14 @@ public class ChargesDataResponse {
   @JsonProperty(JSON_PROPERTY_PAID_AT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Integer getPaidAt() {
+  public Long getPaidAt() {
     return paidAt;
   }
 
 
   @JsonProperty(JSON_PROPERTY_PAID_AT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPaidAt(Integer paidAt) {
+  public void setPaidAt(Long paidAt) {
     this.paidAt = paidAt;
   }
 
@@ -562,6 +558,31 @@ public class ChargesDataResponse {
   }
 
 
+  public ChargesDataResponse isRefundable(Boolean isRefundable) {
+    this.isRefundable = isRefundable;
+    return this;
+  }
+
+   /**
+   * Get isRefundable
+   * @return isRefundable
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_IS_REFUNDABLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIsRefundable() {
+    return isRefundable;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IS_REFUNDABLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsRefundable(Boolean isRefundable) {
+    this.isRefundable = isRefundable;
+  }
+
+
   /**
    * Return true if this charges_data_response object is equal to o.
    */
@@ -591,12 +612,13 @@ public class ChargesDataResponse {
         Objects.equals(this.paymentMethod, chargesDataResponse.paymentMethod) &&
         Objects.equals(this.referenceId, chargesDataResponse.referenceId) &&
         Objects.equals(this.refunds, chargesDataResponse.refunds) &&
-        Objects.equals(this.status, chargesDataResponse.status);
+        Objects.equals(this.status, chargesDataResponse.status) &&
+        Objects.equals(this.isRefundable, chargesDataResponse.isRefundable);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, channel, createdAt, currency, customerId, description, deviceFingerprint, failureCode, failureMessage, id, livemode, _object, orderId, paidAt, paymentMethod, referenceId, refunds, status);
+    return Objects.hash(amount, channel, createdAt, currency, customerId, description, deviceFingerprint, failureCode, failureMessage, id, livemode, _object, orderId, paidAt, paymentMethod, referenceId, refunds, status, isRefundable);
   }
 
   @Override
@@ -621,6 +643,7 @@ public class ChargesDataResponse {
     sb.append("    referenceId: ").append(toIndentedString(referenceId)).append("\n");
     sb.append("    refunds: ").append(toIndentedString(refunds)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    isRefundable: ").append(toIndentedString(isRefundable)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -637,4 +660,3 @@ public class ChargesDataResponse {
   }
 
 }
-

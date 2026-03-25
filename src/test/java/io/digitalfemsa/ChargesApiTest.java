@@ -13,23 +13,7 @@
 
 package io.digitalfemsa;
 
-import io.digitalfemsa.*;
-import io.digitalfemsa.auth.*;
-import io.digitalfemsa.model.ChargeOrderResponse;
-import io.digitalfemsa.model.ChargeRequest;
-import io.digitalfemsa.model.ChargeResponse;
-import io.digitalfemsa.model.ChargeUpdateRequest;
-import io.digitalfemsa.model.Error;
-import io.digitalfemsa.model.GetChargesResponse;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for ChargesApi

@@ -5,10 +5,10 @@ All URIs are relative to *https://api.digitalfemsa.io*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**createWebhookKey**](WebhookKeysApi.md#createWebhookKey) | **POST** /webhook_keys | Create Webhook Key |
-| [**deleteWebhookKey**](WebhookKeysApi.md#deleteWebhookKey) | **DELETE** /webhook_keys/{id} | Delete Webhook key |
-| [**getWebhookKey**](WebhookKeysApi.md#getWebhookKey) | **GET** /webhook_keys/{id} | Get Webhook Key |
+| [**deleteWebhookKey**](WebhookKeysApi.md#deleteWebhookKey) | **DELETE** /webhook_keys/{id} | Delete webhook key |
+| [**getWebhookKey**](WebhookKeysApi.md#getWebhookKey) | **GET** /webhook_keys/{id} | Get webhook key |
 | [**getWebhookKeys**](WebhookKeysApi.md#getWebhookKeys) | **GET** /webhook_keys | Get List of Webhook Keys |
-| [**updateWebhookKey**](WebhookKeysApi.md#updateWebhookKey) | **PUT** /webhook_keys/{id} | Update Webhook Key |
+| [**updateWebhookKey**](WebhookKeysApi.md#updateWebhookKey) | **PUT** /webhook_keys/{id} | Update webhook key |
 
 
 
@@ -18,7 +18,7 @@ All URIs are relative to *https://api.digitalfemsa.io*
 
 Create Webhook Key
 
-Create a webhook key
+Creates a new webhook signing key for the current company.
 
 ### Example
 
@@ -90,7 +90,9 @@ public class Example {
 
 > WebhookKeyDeleteResponse deleteWebhookKey(id, acceptLanguage)
 
-Delete Webhook key
+Delete webhook key
+
+Deletes a webhook signing key.
 
 ### Example
 
@@ -153,7 +155,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  |
+| **200** | successful |  -  |
 | **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
 | **500** | internal server error |  -  |
@@ -163,7 +165,9 @@ public class Example {
 
 > WebhookKeyResponse getWebhookKey(id, acceptLanguage, xChildCompanyId)
 
-Get Webhook Key
+Get webhook key
+
+Retrieves the details of a webhook signing key by its ID.
 
 ### Example
 
@@ -228,7 +232,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  |
+| **200** | successful operation |  -  |
 | **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
 | **500** | internal server error |  -  |
@@ -311,7 +315,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  |
+| **200** | successful operation |  -  |
 | **401** | authentication error |  -  |
 | **500** | internal server error |  -  |
 
@@ -320,9 +324,9 @@ public class Example {
 
 > WebhookKeyResponse updateWebhookKey(id, acceptLanguage, webhookKeyUpdateRequest)
 
-Update Webhook Key
+Update webhook key
 
-updates an existing webhook key
+Activates or deactivates an existing webhook signing key.
 
 ### Example
 

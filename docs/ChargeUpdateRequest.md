@@ -2,7 +2,7 @@
 
 # ChargeUpdateRequest
 
-requested field for update a charge
+Request body to update a charge. Only `reference_id` can be updated.
 
 ## Properties
 

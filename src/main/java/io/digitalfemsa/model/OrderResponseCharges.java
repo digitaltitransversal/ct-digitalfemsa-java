@@ -13,24 +13,18 @@
 
 package io.digitalfemsa.model;
 
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.digitalfemsa.model.ChargesDataResponse;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.digitalfemsa.JSON;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 
 /**
- * The charges associated with the order
+ * List preview of charges created for the order. Charges are only created when included in the request or created later through payment flows. This field can be &#x60;null&#x60; depending on the response context. 
  */
 @JsonPropertyOrder({
   OrderResponseCharges.JSON_PROPERTY_HAS_MORE,
@@ -180,4 +174,3 @@ public class OrderResponseCharges {
   }
 
 }
-

@@ -13,17 +13,12 @@
 
 package io.digitalfemsa.model;
 
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.digitalfemsa.JSON;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+import java.util.Objects;
 
 
 /**
@@ -51,7 +46,7 @@ public class PaymentMethodCash {
   private String _object;
 
   public static final String JSON_PROPERTY_AUTH_CODE = "auth_code";
-  private Integer authCode;
+  private String authCode;
 
   public static final String JSON_PROPERTY_CASHIER_ID = "cashier_id";
   private String cashierId;
@@ -127,7 +122,7 @@ public class PaymentMethodCash {
   }
 
 
-  public PaymentMethodCash authCode(Integer authCode) {
+  public PaymentMethodCash authCode(String authCode) {
     this.authCode = authCode;
     return this;
   }
@@ -140,14 +135,14 @@ public class PaymentMethodCash {
   @JsonProperty(JSON_PROPERTY_AUTH_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Integer getAuthCode() {
+  public String getAuthCode() {
     return authCode;
   }
 
 
   @JsonProperty(JSON_PROPERTY_AUTH_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAuthCode(Integer authCode) {
+  public void setAuthCode(String authCode) {
     this.authCode = authCode;
   }
 
@@ -386,4 +381,3 @@ public class PaymentMethodCash {
   }
 
 }
-

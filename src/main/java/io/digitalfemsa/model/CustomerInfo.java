@@ -13,32 +13,30 @@
 
 package io.digitalfemsa.model;
 
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.digitalfemsa.JSON;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+import java.util.Objects;
 
 
 /**
  * CustomerInfo
  */
 @JsonPropertyOrder({
+  CustomerInfo.JSON_PROPERTY_CUSTOMER_ID,
   CustomerInfo.JSON_PROPERTY_NAME,
   CustomerInfo.JSON_PROPERTY_EMAIL,
   CustomerInfo.JSON_PROPERTY_PHONE,
-  CustomerInfo.JSON_PROPERTY_CORPORATE,
-  CustomerInfo.JSON_PROPERTY_OBJECT
+  CustomerInfo.JSON_PROPERTY_CORPORATE
 })
 @JsonTypeName("customer_info")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class CustomerInfo {
+  public static final String JSON_PROPERTY_CUSTOMER_ID = "customer_id";
+  private String customerId;
+
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
@@ -51,11 +49,33 @@ public class CustomerInfo {
   public static final String JSON_PROPERTY_CORPORATE = "corporate";
   private Boolean corporate;
 
-  public static final String JSON_PROPERTY_OBJECT = "object";
-  private String _object;
-
   public CustomerInfo() { 
   }
+
+  public CustomerInfo customerId(String customerId) {
+    this.customerId = customerId;
+    return this;
+  }
+
+   /**
+   * Get customerId
+   * @return customerId
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_CUSTOMER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getCustomerId() {
+    return customerId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CUSTOMER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCustomerId(String customerId) {
+    this.customerId = customerId;
+  }
+
 
   public CustomerInfo name(String name) {
     this.name = name;
@@ -116,9 +136,9 @@ public class CustomerInfo {
    * Get phone
    * @return phone
   **/
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_PHONE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getPhone() {
     return phone;
@@ -126,7 +146,7 @@ public class CustomerInfo {
 
 
   @JsonProperty(JSON_PROPERTY_PHONE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPhone(String phone) {
     this.phone = phone;
   }
@@ -157,31 +177,6 @@ public class CustomerInfo {
   }
 
 
-  public CustomerInfo _object(String _object) {
-    this._object = _object;
-    return this;
-  }
-
-   /**
-   * Get _object
-   * @return _object
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_OBJECT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getObject() {
-    return _object;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OBJECT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setObject(String _object) {
-    this._object = _object;
-  }
-
-
   /**
    * Return true if this customer_info object is equal to o.
    */
@@ -194,27 +189,27 @@ public class CustomerInfo {
       return false;
     }
     CustomerInfo customerInfo = (CustomerInfo) o;
-    return Objects.equals(this.name, customerInfo.name) &&
+    return Objects.equals(this.customerId, customerInfo.customerId) &&
+        Objects.equals(this.name, customerInfo.name) &&
         Objects.equals(this.email, customerInfo.email) &&
         Objects.equals(this.phone, customerInfo.phone) &&
-        Objects.equals(this.corporate, customerInfo.corporate) &&
-        Objects.equals(this._object, customerInfo._object);
+        Objects.equals(this.corporate, customerInfo.corporate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, email, phone, corporate, _object);
+    return Objects.hash(customerId, name, email, phone, corporate);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CustomerInfo {\n");
+    sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     sb.append("    corporate: ").append(toIndentedString(corporate)).append("\n");
-    sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -231,4 +226,3 @@ public class CustomerInfo {
   }
 
 }
-

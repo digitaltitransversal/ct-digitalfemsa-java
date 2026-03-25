@@ -13,23 +13,18 @@
 
 package io.digitalfemsa.model;
 
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
+
 import java.util.HashMap;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.digitalfemsa.JSON;
+import java.util.Objects;
 
 
 /**
- * create new taxes for an existing order
+ * Create a new tax line for an existing order.
  */
 @JsonPropertyOrder({
   UpdateOrderTaxRequest.JSON_PROPERTY_AMOUNT,
@@ -83,7 +78,7 @@ public class UpdateOrderTaxRequest {
   }
 
    /**
-   * description or tax&#39;s name
+   * Description or tax name
    * @return description
   **/
   @javax.annotation.Nullable
@@ -121,7 +116,7 @@ public class UpdateOrderTaxRequest {
   **/
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_METADATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
 
   public Map<String, Object> getMetadata() {
     return metadata;
@@ -129,7 +124,7 @@ public class UpdateOrderTaxRequest {
 
 
   @JsonProperty(JSON_PROPERTY_METADATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
   public void setMetadata(Map<String, Object> metadata) {
     this.metadata = metadata;
   }
@@ -180,4 +175,3 @@ public class UpdateOrderTaxRequest {
   }
 
 }
-

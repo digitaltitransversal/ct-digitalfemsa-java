@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**customerId** | **String** |  |  [optional] |
 |**name** | **String** |  |  |
 |**email** | **String** |  |  |
-|**phone** | **String** |  |  |
+|**phone** | **String** |  |  [optional] |
 |**corporate** | **Boolean** |  |  [optional] |
-|**_object** | **String** |  |  [optional] |
 
 
 

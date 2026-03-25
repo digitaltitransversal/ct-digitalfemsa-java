@@ -13,198 +13,194 @@
 
 package io.digitalfemsa.model;
 
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.digitalfemsa.JSON;
+
+import java.util.Objects;
 
 
 /**
- * The Transaction object represents the actions or steps of an order. Statuses can be: unprocessed, pending, available, owen, paid_out, voided, capture, capture_reversal, liquidation, liquidation_reversal, payout, payout_reversal, refund, refund_reversal, chargeback, chargeback_reversal, rounding_adjustment, won_chargeback, transferred, and transferred.
+ * Transaction object.
  */
 @JsonPropertyOrder({
-  TransactionResponse.JSON_PROPERTY_AMOUNT,
-  TransactionResponse.JSON_PROPERTY_CHARGE,
-  TransactionResponse.JSON_PROPERTY_CREATED_AT,
-  TransactionResponse.JSON_PROPERTY_CURRENCY,
-  TransactionResponse.JSON_PROPERTY_FEE,
   TransactionResponse.JSON_PROPERTY_ID,
-  TransactionResponse.JSON_PROPERTY_LIVEMODE,
-  TransactionResponse.JSON_PROPERTY_NET,
   TransactionResponse.JSON_PROPERTY_OBJECT,
+  TransactionResponse.JSON_PROPERTY_AMOUNT,
+  TransactionResponse.JSON_PROPERTY_FEE,
+  TransactionResponse.JSON_PROPERTY_NET,
+  TransactionResponse.JSON_PROPERTY_CURRENCY,
   TransactionResponse.JSON_PROPERTY_STATUS,
-  TransactionResponse.JSON_PROPERTY_TYPE
+  TransactionResponse.JSON_PROPERTY_TYPE,
+  TransactionResponse.JSON_PROPERTY_CREATED_AT,
+  TransactionResponse.JSON_PROPERTY_LIVEMODE,
+  TransactionResponse.JSON_PROPERTY_CHARGE,
+  TransactionResponse.JSON_PROPERTY_TRANSFER,
+  TransactionResponse.JSON_PROPERTY_TRANSFERRED_AT,
+  TransactionResponse.JSON_PROPERTY_FORMULA
 })
 @JsonTypeName("transaction_response")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class TransactionResponse {
-  public static final String JSON_PROPERTY_AMOUNT = "amount";
-  private Long amount;
-
-  public static final String JSON_PROPERTY_CHARGE = "charge";
-  private String charge;
-
-  public static final String JSON_PROPERTY_CREATED_AT = "created_at";
-  private Long createdAt;
-
-  public static final String JSON_PROPERTY_CURRENCY = "currency";
-  private String currency;
-
-  public static final String JSON_PROPERTY_FEE = "fee";
-  private Long fee;
-
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
-
-  public static final String JSON_PROPERTY_LIVEMODE = "livemode";
-  private Boolean livemode;
-
-  public static final String JSON_PROPERTY_NET = "net";
-  private Long net;
 
   public static final String JSON_PROPERTY_OBJECT = "object";
   private String _object;
 
+  public static final String JSON_PROPERTY_AMOUNT = "amount";
+  private Long amount;
+
+  public static final String JSON_PROPERTY_FEE = "fee";
+  private Long fee;
+
+  public static final String JSON_PROPERTY_NET = "net";
+  private Long net;
+
+  public static final String JSON_PROPERTY_CURRENCY = "currency";
+  private String currency;
+
+  /**
+   * Code indicating transaction status.
+   */
+  public enum StatusEnum {
+    UNPROCESSED("unprocessed"),
+    
+    PENDING("pending"),
+    
+    AVAILABLE("available"),
+    
+    OWING("owing"),
+    
+    PAID_OUT("paid_out"),
+    
+    ON_HOLD("on_hold"),
+    
+    RETAINED("retained"),
+    
+    VOIDED("voided");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_STATUS = "status";
-  private String status;
+  private StatusEnum status;
+
+  /**
+   * Transaction type.
+   */
+  public enum TypeEnum {
+    CAPTURE("capture"),
+    
+    CAPTURE_REVERSAL("capture_reversal"),
+    
+    LIQUIDATION("liquidation"),
+    
+    LIQUIDATION_REVERSAL("liquidation_reversal"),
+    
+    PAYOUT("payout"),
+    
+    PAYOUT_REVERSAL("payout_reversal"),
+    
+    REFUND("refund"),
+    
+    REFUND_REVERSAL("refund_reversal"),
+    
+    ROUNDING_ADJUSTMENT("rounding_adjustment"),
+    
+    TRANSFER("transfer"),
+    
+    TRANSFERRED("transferred"),
+    
+    RETENTION("retention"),
+    
+    TEMPORARY_RETENTION("temporary_retention"),
+    
+    CASHOUT_RETENTION("cashout_retention"),
+    
+    CASHOUT_CONFIRMATION("cashout_confirmation"),
+    
+    CASHOUT_CANCELATION("cashout_cancelation"),
+    
+    AUTOFUND_CAPTURE("autofund_capture");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
 
   public static final String JSON_PROPERTY_TYPE = "type";
-  private String type;
+  private TypeEnum type;
+
+  public static final String JSON_PROPERTY_CREATED_AT = "created_at";
+  private Long createdAt;
+
+  public static final String JSON_PROPERTY_LIVEMODE = "livemode";
+  private Boolean livemode;
+
+  public static final String JSON_PROPERTY_CHARGE = "charge";
+  private String charge;
+
+  public static final String JSON_PROPERTY_TRANSFER = "transfer";
+  private String transfer;
+
+  public static final String JSON_PROPERTY_TRANSFERRED_AT = "transferred_at";
+  private Long transferredAt;
+
+  public static final String JSON_PROPERTY_FORMULA = "formula";
+  private String formula;
 
   public TransactionResponse() { 
   }
-
-  public TransactionResponse amount(Long amount) {
-    this.amount = amount;
-    return this;
-  }
-
-   /**
-   * The amount of the transaction.
-   * @return amount
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_AMOUNT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Long getAmount() {
-    return amount;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_AMOUNT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAmount(Long amount) {
-    this.amount = amount;
-  }
-
-
-  public TransactionResponse charge(String charge) {
-    this.charge = charge;
-    return this;
-  }
-
-   /**
-   * Randomly assigned unique order identifier associated with the charge.
-   * @return charge
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_CHARGE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getCharge() {
-    return charge;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHARGE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCharge(String charge) {
-    this.charge = charge;
-  }
-
-
-  public TransactionResponse createdAt(Long createdAt) {
-    this.createdAt = createdAt;
-    return this;
-  }
-
-   /**
-   * Date and time of creation of the transaction in Unix format.
-   * @return createdAt
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_CREATED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Long getCreatedAt() {
-    return createdAt;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATED_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCreatedAt(Long createdAt) {
-    this.createdAt = createdAt;
-  }
-
-
-  public TransactionResponse currency(String currency) {
-    this.currency = currency;
-    return this;
-  }
-
-   /**
-   * The currency of the transaction. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)
-   * @return currency
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_CURRENCY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getCurrency() {
-    return currency;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CURRENCY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCurrency(String currency) {
-    this.currency = currency;
-  }
-
-
-  public TransactionResponse fee(Long fee) {
-    this.fee = fee;
-    return this;
-  }
-
-   /**
-   * The amount to be deducted for taxes and commissions.
-   * @return fee
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_FEE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Long getFee() {
-    return fee;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_FEE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setFee(Long fee) {
-    this.fee = fee;
-  }
-
 
   public TransactionResponse id(String id) {
     this.id = id;
@@ -228,56 +224,6 @@ public class TransactionResponse {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(String id) {
     this.id = id;
-  }
-
-
-  public TransactionResponse livemode(Boolean livemode) {
-    this.livemode = livemode;
-    return this;
-  }
-
-   /**
-   * Indicates whether the transaction was created in live mode or test mode.
-   * @return livemode
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_LIVEMODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Boolean getLivemode() {
-    return livemode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LIVEMODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setLivemode(Boolean livemode) {
-    this.livemode = livemode;
-  }
-
-
-  public TransactionResponse net(Long net) {
-    this.net = net;
-    return this;
-  }
-
-   /**
-   * The net amount after deducting commissions and taxes.
-   * @return net
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NET)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Long getNet() {
-    return net;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NET)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setNet(Long net) {
-    this.net = net;
   }
 
 
@@ -306,7 +252,107 @@ public class TransactionResponse {
   }
 
 
-  public TransactionResponse status(String status) {
+  public TransactionResponse amount(Long amount) {
+    this.amount = amount;
+    return this;
+  }
+
+   /**
+   * The amount of the transaction.
+   * @return amount
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Long getAmount() {
+    return amount;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_AMOUNT)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setAmount(Long amount) {
+    this.amount = amount;
+  }
+
+
+  public TransactionResponse fee(Long fee) {
+    this.fee = fee;
+    return this;
+  }
+
+   /**
+   * The amount to be deducted for taxes and commissions.
+   * @return fee
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_FEE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Long getFee() {
+    return fee;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_FEE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setFee(Long fee) {
+    this.fee = fee;
+  }
+
+
+  public TransactionResponse net(Long net) {
+    this.net = net;
+    return this;
+  }
+
+   /**
+   * The net amount after deducting commissions and taxes.
+   * @return net
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_NET)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Long getNet() {
+    return net;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_NET)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setNet(Long net) {
+    this.net = net;
+  }
+
+
+  public TransactionResponse currency(String currency) {
+    this.currency = currency;
+    return this;
+  }
+
+   /**
+   * The currency of the transaction. It uses the 3-letter code of ISO 4217.
+   * @return currency
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_CURRENCY)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getCurrency() {
+    return currency;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CURRENCY)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCurrency(String currency) {
+    this.currency = currency;
+  }
+
+
+  public TransactionResponse status(StatusEnum status) {
     this.status = status;
     return this;
   }
@@ -319,40 +365,190 @@ public class TransactionResponse {
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getStatus() {
+  public StatusEnum getStatus() {
     return status;
   }
 
 
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setStatus(String status) {
+  public void setStatus(StatusEnum status) {
     this.status = status;
   }
 
 
-  public TransactionResponse type(String type) {
+  public TransactionResponse type(TypeEnum type) {
     this.type = type;
     return this;
   }
 
    /**
-   * Transaction Type
+   * Transaction type.
    * @return type
   **/
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getType() {
+  public TypeEnum getType() {
     return type;
   }
 
 
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setType(String type) {
+  public void setType(TypeEnum type) {
     this.type = type;
+  }
+
+
+  public TransactionResponse createdAt(Long createdAt) {
+    this.createdAt = createdAt;
+    return this;
+  }
+
+   /**
+   * Date and time of creation of the transaction in Unix format.
+   * @return createdAt
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_CREATED_AT)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Long getCreatedAt() {
+    return createdAt;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CREATED_AT)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCreatedAt(Long createdAt) {
+    this.createdAt = createdAt;
+  }
+
+
+  public TransactionResponse livemode(Boolean livemode) {
+    this.livemode = livemode;
+    return this;
+  }
+
+   /**
+   * Indicates whether the transaction was created in live mode or test mode.
+   * @return livemode
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_LIVEMODE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Boolean getLivemode() {
+    return livemode;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_LIVEMODE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setLivemode(Boolean livemode) {
+    this.livemode = livemode;
+  }
+
+
+  public TransactionResponse charge(String charge) {
+    this.charge = charge;
+    return this;
+  }
+
+   /**
+   * Charge ID associated with the transaction (present only if the transaction belongs to a charge).
+   * @return charge
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_CHARGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getCharge() {
+    return charge;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CHARGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCharge(String charge) {
+    this.charge = charge;
+  }
+
+
+  public TransactionResponse transfer(String transfer) {
+    this.transfer = transfer;
+    return this;
+  }
+
+   /**
+   * Transfer ID associated with the transaction (present only if the transaction belongs to a transfer).
+   * @return transfer
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_TRANSFER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getTransfer() {
+    return transfer;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TRANSFER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTransfer(String transfer) {
+    this.transfer = transfer;
+  }
+
+
+  public TransactionResponse transferredAt(Long transferredAt) {
+    this.transferredAt = transferredAt;
+    return this;
+  }
+
+   /**
+   * Date and time when the transaction was transferred, in Unix format.
+   * @return transferredAt
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_TRANSFERRED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Long getTransferredAt() {
+    return transferredAt;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TRANSFERRED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTransferredAt(Long transferredAt) {
+    this.transferredAt = transferredAt;
+  }
+
+
+  public TransactionResponse formula(String formula) {
+    this.formula = formula;
+    return this;
+  }
+
+   /**
+   * Transaction fee formula identifier (if available).
+   * @return formula
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_FORMULA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getFormula() {
+    return formula;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_FORMULA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFormula(String formula) {
+    this.formula = formula;
   }
 
 
@@ -368,39 +564,45 @@ public class TransactionResponse {
       return false;
     }
     TransactionResponse transactionResponse = (TransactionResponse) o;
-    return Objects.equals(this.amount, transactionResponse.amount) &&
-        Objects.equals(this.charge, transactionResponse.charge) &&
-        Objects.equals(this.createdAt, transactionResponse.createdAt) &&
-        Objects.equals(this.currency, transactionResponse.currency) &&
-        Objects.equals(this.fee, transactionResponse.fee) &&
-        Objects.equals(this.id, transactionResponse.id) &&
-        Objects.equals(this.livemode, transactionResponse.livemode) &&
-        Objects.equals(this.net, transactionResponse.net) &&
+    return Objects.equals(this.id, transactionResponse.id) &&
         Objects.equals(this._object, transactionResponse._object) &&
+        Objects.equals(this.amount, transactionResponse.amount) &&
+        Objects.equals(this.fee, transactionResponse.fee) &&
+        Objects.equals(this.net, transactionResponse.net) &&
+        Objects.equals(this.currency, transactionResponse.currency) &&
         Objects.equals(this.status, transactionResponse.status) &&
-        Objects.equals(this.type, transactionResponse.type);
+        Objects.equals(this.type, transactionResponse.type) &&
+        Objects.equals(this.createdAt, transactionResponse.createdAt) &&
+        Objects.equals(this.livemode, transactionResponse.livemode) &&
+        Objects.equals(this.charge, transactionResponse.charge) &&
+        Objects.equals(this.transfer, transactionResponse.transfer) &&
+        Objects.equals(this.transferredAt, transactionResponse.transferredAt) &&
+        Objects.equals(this.formula, transactionResponse.formula);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, charge, createdAt, currency, fee, id, livemode, net, _object, status, type);
+    return Objects.hash(id, _object, amount, fee, net, currency, status, type, createdAt, livemode, charge, transfer, transferredAt, formula);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TransactionResponse {\n");
-    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    sb.append("    charge: ").append(toIndentedString(charge)).append("\n");
-    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
-    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-    sb.append("    fee: ").append(toIndentedString(fee)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    livemode: ").append(toIndentedString(livemode)).append("\n");
-    sb.append("    net: ").append(toIndentedString(net)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
+    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+    sb.append("    fee: ").append(toIndentedString(fee)).append("\n");
+    sb.append("    net: ").append(toIndentedString(net)).append("\n");
+    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    livemode: ").append(toIndentedString(livemode)).append("\n");
+    sb.append("    charge: ").append(toIndentedString(charge)).append("\n");
+    sb.append("    transfer: ").append(toIndentedString(transfer)).append("\n");
+    sb.append("    transferredAt: ").append(toIndentedString(transferredAt)).append("\n");
+    sb.append("    formula: ").append(toIndentedString(formula)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -417,4 +619,3 @@ public class TransactionResponse {
   }
 
 }
-

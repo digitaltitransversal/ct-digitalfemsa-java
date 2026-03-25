@@ -13,21 +13,16 @@
 
 package io.digitalfemsa.model;
 
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.digitalfemsa.JSON;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+import java.util.Objects;
 
 
 /**
- * Payment method used in the charge. Go to the [payment methods](https://developers.femsa.com/reference/m%C3%A9todos-de-pago) section for more details 
+ * Payment method used in the charge. 
  */
 @JsonPropertyOrder({
   ChargeRequestPaymentMethod.JSON_PROPERTY_EXPIRES_AT,
@@ -55,7 +50,7 @@ public class ChargeRequestPaymentMethod {
   }
 
    /**
-   * Method expiration date as unix timestamp
+   * Method expiration date as unix timestamp (applies to some payment methods, e.g. cash).
    * @return expiresAt
   **/
   @javax.annotation.Nullable
@@ -105,7 +100,7 @@ public class ChargeRequestPaymentMethod {
   }
 
    /**
-   * Get paymentSourceId
+   * Identifier of a saved payment source to be used for this charge (if applicable).
    * @return paymentSourceId
   **/
   @javax.annotation.Nullable
@@ -169,4 +164,3 @@ public class ChargeRequestPaymentMethod {
   }
 
 }
-

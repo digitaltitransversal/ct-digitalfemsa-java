@@ -13,13 +13,11 @@
 
 package io.digitalfemsa.model;
 
-import io.digitalfemsa.ApiException;
-import java.util.Objects;
-import java.lang.reflect.Type;
-import java.util.Map;
-import javax.ws.rs.core.GenericType;
-
 import com.fasterxml.jackson.annotation.JsonValue;
+
+import javax.ws.rs.core.GenericType;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Abstract class for oneOf,anyOf schemas defined in OpenAPI spec

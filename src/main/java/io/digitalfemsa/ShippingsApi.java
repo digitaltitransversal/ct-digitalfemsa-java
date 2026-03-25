@@ -1,21 +1,11 @@
 package io.digitalfemsa;
 
-import io.digitalfemsa.ApiException;
-import io.digitalfemsa.ApiClient;
-import io.digitalfemsa.ApiResponse;
-import io.digitalfemsa.Configuration;
-import io.digitalfemsa.Pair;
-
-import javax.ws.rs.core.GenericType;
-
-import io.digitalfemsa.model.Error;
 import io.digitalfemsa.model.ShippingOrderResponse;
 import io.digitalfemsa.model.ShippingRequest;
 
+import javax.ws.rs.core.GenericType;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
@@ -50,9 +40,9 @@ public class ShippingsApi {
 
   /**
    * Create Shipping
-   * Create new shipping for an existing orden
+   * Creates a new shipping line for an existing order. The shipping line is added to the order identified by &#x60;id&#x60;. The response returns the created shipping line.
    * @param id Identifier of the resource (required)
-   * @param shippingRequest requested field for a shipping (required)
+   * @param shippingRequest Request body for creating or updating a shipping line. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return ShippingOrderResponse
@@ -63,6 +53,7 @@ public class ShippingsApi {
        <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -72,9 +63,9 @@ public class ShippingsApi {
 
   /**
    * Create Shipping
-   * Create new shipping for an existing orden
+   * Creates a new shipping line for an existing order. The shipping line is added to the order identified by &#x60;id&#x60;. The response returns the created shipping line.
    * @param id Identifier of the resource (required)
-   * @param shippingRequest requested field for a shipping (required)
+   * @param shippingRequest Request body for creating or updating a shipping line. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return ApiResponse&lt;ShippingOrderResponse&gt;
@@ -85,6 +76,7 @@ public class ShippingsApi {
        <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -120,7 +112,7 @@ public class ShippingsApi {
   }
   /**
    * Delete Shipping
-   * Delete shipping
+   * Deletes an existing shipping line from an order. The shipping line identified by &#x60;shipping_id&#x60; belongs to the order identified by &#x60;id&#x60;.
    * @param id Identifier of the resource (required)
    * @param shippingId identifier (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -134,7 +126,6 @@ public class ShippingsApi {
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
-       <tr><td> 428 </td><td> Precondition Required </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -144,7 +135,7 @@ public class ShippingsApi {
 
   /**
    * Delete Shipping
-   * Delete shipping
+   * Deletes an existing shipping line from an order. The shipping line identified by &#x60;shipping_id&#x60; belongs to the order identified by &#x60;id&#x60;.
    * @param id Identifier of the resource (required)
    * @param shippingId identifier (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -158,7 +149,6 @@ public class ShippingsApi {
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
-       <tr><td> 428 </td><td> Precondition Required </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -195,10 +185,10 @@ public class ShippingsApi {
   }
   /**
    * Update Shipping
-   * Update existing shipping for an existing orden
+   * Updates an existing shipping line for an order. The shipping line identified by &#x60;shipping_id&#x60; belongs to the order identified by &#x60;id&#x60;. Only the fields provided in the request body are updated.
    * @param id Identifier of the resource (required)
    * @param shippingId identifier (required)
-   * @param shippingRequest requested field for a shipping (required)
+   * @param shippingRequest Request body for creating or updating a shipping line. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return ShippingOrderResponse
@@ -219,10 +209,10 @@ public class ShippingsApi {
 
   /**
    * Update Shipping
-   * Update existing shipping for an existing orden
+   * Updates an existing shipping line for an order. The shipping line identified by &#x60;shipping_id&#x60; belongs to the order identified by &#x60;id&#x60;. Only the fields provided in the request body are updated.
    * @param id Identifier of the resource (required)
    * @param shippingId identifier (required)
-   * @param shippingRequest requested field for a shipping (required)
+   * @param shippingRequest Request body for creating or updating a shipping line. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return ApiResponse&lt;ShippingOrderResponse&gt;

@@ -2,7 +2,7 @@
 
 # WebhookResponse
 
-webhooks model
+Represents a webhook endpoint configured to receive event notifications.
 
 ## Properties
 

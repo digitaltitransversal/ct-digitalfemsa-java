@@ -13,24 +13,19 @@
 
 package io.digitalfemsa.model;
 
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+
 import java.net.URI;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.digitalfemsa.JSON;
+import java.util.Objects;
 
 
 /**
- * event model
+ * Webhook log model returned after resending an event webhook delivery.
  */
 @JsonPropertyOrder({
   EventsResendResponse.JSON_PROPERTY_FAILED_ATTEMPTS,
@@ -273,4 +268,3 @@ public class EventsResendResponse {
   }
 
 }
-

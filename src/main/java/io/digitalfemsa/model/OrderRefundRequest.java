@@ -13,17 +13,14 @@
 
 package io.digitalfemsa.model;
 
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.digitalfemsa.JSON;
+
+import java.util.Objects;
 
 
 /**
@@ -31,8 +28,9 @@ import io.digitalfemsa.JSON;
  */
 @JsonPropertyOrder({
   OrderRefundRequest.JSON_PROPERTY_AMOUNT,
-  OrderRefundRequest.JSON_PROPERTY_EXPIRES_AT,
-  OrderRefundRequest.JSON_PROPERTY_REASON
+  OrderRefundRequest.JSON_PROPERTY_CHARGE_ID,
+  OrderRefundRequest.JSON_PROPERTY_REASON,
+  OrderRefundRequest.JSON_PROPERTY_EXPIRES_AT
 })
 @JsonTypeName("orderRefund_request")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
@@ -40,11 +38,55 @@ public class OrderRefundRequest {
   public static final String JSON_PROPERTY_AMOUNT = "amount";
   private Integer amount;
 
-  public static final String JSON_PROPERTY_EXPIRES_AT = "expires_at";
-  private Long expiresAt;
+  public static final String JSON_PROPERTY_CHARGE_ID = "charge_id";
+  private String chargeId;
+
+  /**
+   * Refund reason. If not provided, the API uses a default reason.
+   */
+  public enum ReasonEnum {
+    REQUESTED_BY_CLIENT("requested_by_client"),
+    
+    CANNOT_BE_FULFILLED("cannot_be_fulfilled"),
+    
+    DUPLICATED_TRANSACTION("duplicated_transaction"),
+    
+    SUSPECTED_FRAUD("suspected_fraud"),
+    
+    OTHER("other");
+
+    private String value;
+
+    ReasonEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ReasonEnum fromValue(String value) {
+      for (ReasonEnum b : ReasonEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
 
   public static final String JSON_PROPERTY_REASON = "reason";
-  private String reason;
+  private ReasonEnum reason;
+
+  public static final String JSON_PROPERTY_EXPIRES_AT = "expires_at";
+  private Long expiresAt;
 
   public OrderRefundRequest() { 
   }
@@ -55,7 +97,7 @@ public class OrderRefundRequest {
   }
 
    /**
-   * Get amount
+   * Amount to refund. If not provided, the API refunds the refundable amount of the selected charge.
    * @return amount
   **/
   @javax.annotation.Nonnull
@@ -74,13 +116,63 @@ public class OrderRefundRequest {
   }
 
 
+  public OrderRefundRequest chargeId(String chargeId) {
+    this.chargeId = chargeId;
+    return this;
+  }
+
+   /**
+   * Charge ID to refund. If not provided, the API selects a refundable charge from the order.
+   * @return chargeId
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_CHARGE_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getChargeId() {
+    return chargeId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CHARGE_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setChargeId(String chargeId) {
+    this.chargeId = chargeId;
+  }
+
+
+  public OrderRefundRequest reason(ReasonEnum reason) {
+    this.reason = reason;
+    return this;
+  }
+
+   /**
+   * Refund reason. If not provided, the API uses a default reason.
+   * @return reason
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_REASON)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public ReasonEnum getReason() {
+    return reason;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REASON)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setReason(ReasonEnum reason) {
+    this.reason = reason;
+  }
+
+
   public OrderRefundRequest expiresAt(Long expiresAt) {
     this.expiresAt = expiresAt;
     return this;
   }
 
    /**
-   * Get expiresAt
+   * Expiration timestamp for cash refunds (must be within the allowed range configured by the API).
    * @return expiresAt
   **/
   @javax.annotation.Nullable
@@ -99,31 +191,6 @@ public class OrderRefundRequest {
   }
 
 
-  public OrderRefundRequest reason(String reason) {
-    this.reason = reason;
-    return this;
-  }
-
-   /**
-   * Get reason
-   * @return reason
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_REASON)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getReason() {
-    return reason;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REASON)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setReason(String reason) {
-    this.reason = reason;
-  }
-
-
   /**
    * Return true if this orderRefund_request object is equal to o.
    */
@@ -137,13 +204,14 @@ public class OrderRefundRequest {
     }
     OrderRefundRequest orderRefundRequest = (OrderRefundRequest) o;
     return Objects.equals(this.amount, orderRefundRequest.amount) &&
-        Objects.equals(this.expiresAt, orderRefundRequest.expiresAt) &&
-        Objects.equals(this.reason, orderRefundRequest.reason);
+        Objects.equals(this.chargeId, orderRefundRequest.chargeId) &&
+        Objects.equals(this.reason, orderRefundRequest.reason) &&
+        Objects.equals(this.expiresAt, orderRefundRequest.expiresAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, expiresAt, reason);
+    return Objects.hash(amount, chargeId, reason, expiresAt);
   }
 
   @Override
@@ -151,8 +219,9 @@ public class OrderRefundRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class OrderRefundRequest {\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
+    sb.append("    chargeId: ").append(toIndentedString(chargeId)).append("\n");
     sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
+    sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -169,4 +238,3 @@ public class OrderRefundRequest {
   }
 
 }
-

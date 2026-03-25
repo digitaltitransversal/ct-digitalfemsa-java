@@ -13,24 +13,7 @@
 
 package io.digitalfemsa;
 
-import io.digitalfemsa.*;
-import io.digitalfemsa.auth.*;
-import io.digitalfemsa.model.Error;
-import io.digitalfemsa.model.GetWebhookKeysResponse;
-import io.digitalfemsa.model.WebhookKeyCreateResponse;
-import io.digitalfemsa.model.WebhookKeyDeleteResponse;
-import io.digitalfemsa.model.WebhookKeyRequest;
-import io.digitalfemsa.model.WebhookKeyResponse;
-import io.digitalfemsa.model.WebhookKeyUpdateRequest;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for WebhookKeysApi

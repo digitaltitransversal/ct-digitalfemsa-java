@@ -1,23 +1,14 @@
 package io.digitalfemsa;
 
-import io.digitalfemsa.ApiException;
-import io.digitalfemsa.ApiClient;
-import io.digitalfemsa.ApiResponse;
-import io.digitalfemsa.Configuration;
-import io.digitalfemsa.Pair;
-
-import javax.ws.rs.core.GenericType;
-
 import io.digitalfemsa.model.ApiKeyCreateResponse;
 import io.digitalfemsa.model.ApiKeyRequest;
 import io.digitalfemsa.model.ApiKeyResponse;
 import io.digitalfemsa.model.ApiKeyUpdateRequest;
 import io.digitalfemsa.model.DeleteApiKeysResponse;
-import io.digitalfemsa.model.Error;
 import io.digitalfemsa.model.GetApiKeysResponse;
 
+import javax.ws.rs.core.GenericType;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,8 +44,8 @@ public class ApiKeysApi {
   }
 
   /**
-   * Create Api Key
-   * Create a api key
+   * Create API key
+   * Creates a new API key.  The response includes an &#x60;authentication_token&#x60; that is shown only once (at creation time). Copy and store it securely. 
    * @param apiKeyRequest requested field for a api keys (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -63,7 +54,7 @@ public class ApiKeysApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  * Content-Type - The format of the response body <br>  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
@@ -74,8 +65,8 @@ public class ApiKeysApi {
   }
 
   /**
-   * Create Api Key
-   * Create a api key
+   * Create API key
+   * Creates a new API key.  The response includes an &#x60;authentication_token&#x60; that is shown only once (at creation time). Copy and store it securely. 
    * @param apiKeyRequest requested field for a api keys (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -84,7 +75,7 @@ public class ApiKeysApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful operation </td><td>  * Content-Type - The format of the response body <br>  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
@@ -239,8 +230,8 @@ public class ApiKeysApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Get list of Api Keys
-   * Consume the list of api keys you have
+   * List API keys
+   * Retrieves a paginated list of API keys for the authenticated account.  Use the pagination parameters (&#x60;limit&#x60;, &#x60;next_page&#x60;, &#x60;previous_page&#x60;) to navigate through results. Use the &#x60;search&#x60; query parameter to perform a general search (for example by key &#x60;id&#x60; or description). 
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @param limit The numbers of items to return, the maximum value is 250 (optional, default to 20)
@@ -252,7 +243,7 @@ public class ApiKeysApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  * Content-Type - The format of the response body <br>  </td></tr>
+       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
@@ -262,8 +253,8 @@ public class ApiKeysApi {
   }
 
   /**
-   * Get list of Api Keys
-   * Consume the list of api keys you have
+   * List API keys
+   * Retrieves a paginated list of API keys for the authenticated account.  Use the pagination parameters (&#x60;limit&#x60;, &#x60;next_page&#x60;, &#x60;previous_page&#x60;) to navigate through results. Use the &#x60;search&#x60; query parameter to perform a general search (for example by key &#x60;id&#x60; or description). 
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @param limit The numbers of items to return, the maximum value is 250 (optional, default to 20)
@@ -275,7 +266,7 @@ public class ApiKeysApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  * Content-Type - The format of the response body <br>  </td></tr>
+       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>

@@ -13,12 +13,12 @@
 
 package io.digitalfemsa.auth;
 
-import io.digitalfemsa.Pair;
 import io.digitalfemsa.ApiException;
+import io.digitalfemsa.Pair;
 
 import java.net.URI;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 public interface Authentication {
     /**

@@ -1,14 +1,5 @@
 package io.digitalfemsa;
 
-import io.digitalfemsa.ApiException;
-import io.digitalfemsa.ApiClient;
-import io.digitalfemsa.ApiResponse;
-import io.digitalfemsa.Configuration;
-import io.digitalfemsa.Pair;
-
-import javax.ws.rs.core.GenericType;
-
-import io.digitalfemsa.model.Error;
 import io.digitalfemsa.model.GetWebhookKeysResponse;
 import io.digitalfemsa.model.WebhookKeyCreateResponse;
 import io.digitalfemsa.model.WebhookKeyDeleteResponse;
@@ -16,8 +7,8 @@ import io.digitalfemsa.model.WebhookKeyRequest;
 import io.digitalfemsa.model.WebhookKeyResponse;
 import io.digitalfemsa.model.WebhookKeyUpdateRequest;
 
+import javax.ws.rs.core.GenericType;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,7 +45,7 @@ public class WebhookKeysApi {
 
   /**
    * Create Webhook Key
-   * Create a webhook key
+   * Creates a new webhook signing key for the current company.
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param webhookKeyRequest  (optional)
    * @return WebhookKeyCreateResponse
@@ -73,7 +64,7 @@ public class WebhookKeysApi {
 
   /**
    * Create Webhook Key
-   * Create a webhook key
+   * Creates a new webhook signing key for the current company.
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param webhookKeyRequest  (optional)
    * @return ApiResponse&lt;WebhookKeyCreateResponse&gt;
@@ -102,8 +93,8 @@ public class WebhookKeysApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Delete Webhook key
-   * 
+   * Delete webhook key
+   * Deletes a webhook signing key.
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @return WebhookKeyDeleteResponse
@@ -111,7 +102,7 @@ public class WebhookKeysApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
@@ -122,8 +113,8 @@ public class WebhookKeysApi {
   }
 
   /**
-   * Delete Webhook key
-   * 
+   * Delete webhook key
+   * Deletes a webhook signing key.
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @return ApiResponse&lt;WebhookKeyDeleteResponse&gt;
@@ -131,7 +122,7 @@ public class WebhookKeysApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
@@ -162,8 +153,8 @@ public class WebhookKeysApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Get Webhook Key
-   * 
+   * Get webhook key
+   * Retrieves the details of a webhook signing key by its ID.
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -172,7 +163,7 @@ public class WebhookKeysApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
@@ -183,8 +174,8 @@ public class WebhookKeysApi {
   }
 
   /**
-   * Get Webhook Key
-   * 
+   * Get webhook key
+   * Retrieves the details of a webhook signing key by its ID.
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -193,7 +184,7 @@ public class WebhookKeysApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
@@ -240,7 +231,7 @@ public class WebhookKeysApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
@@ -263,7 +254,7 @@ public class WebhookKeysApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
@@ -295,8 +286,8 @@ public class WebhookKeysApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Update Webhook Key
-   * updates an existing webhook key
+   * Update webhook key
+   * Activates or deactivates an existing webhook signing key.
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param webhookKeyUpdateRequest  (optional)
@@ -316,8 +307,8 @@ public class WebhookKeysApi {
   }
 
   /**
-   * Update Webhook Key
-   * updates an existing webhook key
+   * Update webhook key
+   * Activates or deactivates an existing webhook signing key.
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param webhookKeyUpdateRequest  (optional)

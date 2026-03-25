@@ -15,7 +15,7 @@ package io.digitalfemsa;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class Configuration {
-    public static final String VERSION = "1.1.2";
+    public static final String VERSION = "1.2.0";
 
     private static ApiClient defaultApiClient = new ApiClient();
 

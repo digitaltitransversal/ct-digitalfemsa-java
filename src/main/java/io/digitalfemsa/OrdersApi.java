@@ -1,14 +1,5 @@
 package io.digitalfemsa;
 
-import io.digitalfemsa.ApiException;
-import io.digitalfemsa.ApiClient;
-import io.digitalfemsa.ApiResponse;
-import io.digitalfemsa.Configuration;
-import io.digitalfemsa.Pair;
-
-import javax.ws.rs.core.GenericType;
-
-import io.digitalfemsa.model.Error;
 import io.digitalfemsa.model.GetOrdersResponse;
 import io.digitalfemsa.model.OrderCaptureRequest;
 import io.digitalfemsa.model.OrderRefundRequest;
@@ -16,8 +7,8 @@ import io.digitalfemsa.model.OrderRequest;
 import io.digitalfemsa.model.OrderResponse;
 import io.digitalfemsa.model.OrderUpdateRequest;
 
+import javax.ws.rs.core.GenericType;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,7 +45,7 @@ public class OrdersApi {
 
   /**
    * Cancel Order
-   * Cancel an order that has been previously created.
+   * Cancels an existing order. This operation marks the order as cancelled and prevents further processing depending on its current state. If the order cannot be cancelled (for example, due to its status or related charge constraints), the API returns an error response.
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -63,7 +54,7 @@ public class OrdersApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
@@ -77,7 +68,7 @@ public class OrdersApi {
 
   /**
    * Cancel Order
-   * Cancel an order that has been previously created.
+   * Cancels an existing order. This operation marks the order as cancelled and prevents further processing depending on its current state. If the order cannot be cancelled (for example, due to its status or related charge constraints), the API returns an error response.
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -86,7 +77,7 @@ public class OrdersApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> Successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
@@ -123,7 +114,7 @@ public class OrdersApi {
   }
   /**
    * Create order
-   * Create a new order.
+   * Creates a new order (products + amounts + customer data).  Minimum required fields: - &#x60;currency&#x60; - &#x60;line_items&#x60; - &#x60;customer_info&#x60;  About &#x60;customer_info&#x60;: - You can reference an existing customer using &#x60;customer_info.customer_id&#x60;, or - You can provide customer details at minimum &#x60;customer_info.name&#x60; and &#x60;customer_info.email&#x60; to create the order with customer context.  How to create the order: - Create an order only (no payment): send only the order data. - Create an order and create the first payment charge: include &#x60;charges&#x60;. - Create an order with a checkout configuration (for a hosted payment flow): include &#x60;checkout&#x60;.  Important rules: - You cannot send &#x60;charges&#x60; and &#x60;checkout&#x60; in the same request (they are mutually exclusive). - If you send &#x60;shipping_contact_id&#x60; and/or &#x60;fiscal_entity_id&#x60;, you must also send &#x60;customer_info.customer_id&#x60; so the API can validate those IDs against that customer. 
    * @param orderRequest requested field for order (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -133,9 +124,9 @@ public class OrdersApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -145,7 +136,7 @@ public class OrdersApi {
 
   /**
    * Create order
-   * Create a new order.
+   * Creates a new order (products + amounts + customer data).  Minimum required fields: - &#x60;currency&#x60; - &#x60;line_items&#x60; - &#x60;customer_info&#x60;  About &#x60;customer_info&#x60;: - You can reference an existing customer using &#x60;customer_info.customer_id&#x60;, or - You can provide customer details at minimum &#x60;customer_info.name&#x60; and &#x60;customer_info.email&#x60; to create the order with customer context.  How to create the order: - Create an order only (no payment): send only the order data. - Create an order and create the first payment charge: include &#x60;charges&#x60;. - Create an order with a checkout configuration (for a hosted payment flow): include &#x60;checkout&#x60;.  Important rules: - You cannot send &#x60;charges&#x60; and &#x60;checkout&#x60; in the same request (they are mutually exclusive). - If you send &#x60;shipping_contact_id&#x60; and/or &#x60;fiscal_entity_id&#x60;, you must also send &#x60;customer_info.customer_id&#x60; so the API can validate those IDs against that customer. 
    * @param orderRequest requested field for order (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -155,9 +146,9 @@ public class OrdersApi {
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -186,7 +177,7 @@ public class OrdersApi {
   }
   /**
    * Get Order
-   * Info for a specific order
+   * Returns the full details of an Order by its ID. The response follows the standard Order representation, including nested previews (for example &#x60;charges&#x60;, &#x60;line_items&#x60;, &#x60;shipping_lines&#x60;, &#x60;tax_lines&#x60;, and &#x60;discount_lines&#x60;) when available.
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -195,7 +186,7 @@ public class OrdersApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
@@ -207,7 +198,7 @@ public class OrdersApi {
 
   /**
    * Get Order
-   * Info for a specific order
+   * Returns the full details of an Order by its ID. The response follows the standard Order representation, including nested previews (for example &#x60;charges&#x60;, &#x60;line_items&#x60;, &#x60;shipping_lines&#x60;, &#x60;tax_lines&#x60;, and &#x60;discount_lines&#x60;) when available.
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -216,7 +207,7 @@ public class OrdersApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
@@ -251,7 +242,7 @@ public class OrdersApi {
   }
   /**
    * Get a list of Orders
-   * Get order details in the form of a list
+   * Returns a paginated list of orders created in your account. Use pagination parameters to navigate through results, and &#x60;search&#x60; to filter by supported criteria. 
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @param limit The numbers of items to return, the maximum value is 250 (optional, default to 20)
@@ -274,7 +265,7 @@ public class OrdersApi {
 
   /**
    * Get a list of Orders
-   * Get order details in the form of a list
+   * Returns a paginated list of orders created in your account. Use pagination parameters to navigate through results, and &#x60;search&#x60; to filter by supported criteria. 
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @param limit The numbers of items to return, the maximum value is 250 (optional, default to 20)
@@ -319,7 +310,7 @@ public class OrdersApi {
   }
   /**
    * Cancel Refund
-   * A refunded order describes the items, amount, and reason an order is being refunded.
+   * Cancels a refund previously created for an order. This operation is only available when the refund is still cancellable according to its current status and the payment method rules. If the refund cannot be cancelled, the API returns an error response.
    * @param id Identifier of the resource (required)
    * @param refundId refund identifier (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -329,7 +320,7 @@ public class OrdersApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
@@ -343,7 +334,7 @@ public class OrdersApi {
 
   /**
    * Cancel Refund
-   * A refunded order describes the items, amount, and reason an order is being refunded.
+   * Cancels a refund previously created for an order. This operation is only available when the refund is still cancellable according to its current status and the payment method rules. If the refund cannot be cancelled, the API returns an error response.
    * @param id Identifier of the resource (required)
    * @param refundId refund identifier (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -353,7 +344,7 @@ public class OrdersApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
@@ -394,7 +385,7 @@ public class OrdersApi {
   }
   /**
    * Refund Order
-   * A refunded order describes the items, amount, and reason an order is being refunded.
+   * Creates a refund for an order. This operation is used to refund a previously paid order (fully or partially, depending on the request body). The API will validate the order and its related charges before processing the refund. If the refund cannot be created due to business rules or state, an error response is returned.
    * @param id Identifier of the resource (required)
    * @param orderRefundRequest requested field for a refund (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -404,7 +395,7 @@ public class OrdersApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
@@ -418,7 +409,7 @@ public class OrdersApi {
 
   /**
    * Refund Order
-   * A refunded order describes the items, amount, and reason an order is being refunded.
+   * Creates a refund for an order. This operation is used to refund a previously paid order (fully or partially, depending on the request body). The API will validate the order and its related charges before processing the refund. If the refund cannot be created due to business rules or state, an error response is returned.
    * @param id Identifier of the resource (required)
    * @param orderRefundRequest requested field for a refund (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -428,7 +419,7 @@ public class OrdersApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 402 </td><td> payment required error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
@@ -468,17 +459,17 @@ public class OrdersApi {
   }
   /**
    * Capture Order
-   * Processes an order that has been previously authorized.
+   * Captures (finalizes) an order that has been previously authorized. Use this endpoint to capture a specific amount. The captured amount must be greater than 0 and must comply with the order and charge constraints enforced by the API.
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
-   * @param orderCaptureRequest requested fields for capture order (optional)
+   * @param orderCaptureRequest Requested fields for capturing an order (optional)
    * @return OrderResponse
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 428 </td><td> Precondition Required </td><td>  -  </td></tr>
@@ -491,17 +482,17 @@ public class OrdersApi {
 
   /**
    * Capture Order
-   * Processes an order that has been previously authorized.
+   * Captures (finalizes) an order that has been previously authorized. Use this endpoint to capture a specific amount. The captured amount must be greater than 0 and must comply with the order and charge constraints enforced by the API.
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
-   * @param orderCaptureRequest requested fields for capture order (optional)
+   * @param orderCaptureRequest Requested fields for capturing an order (optional)
    * @return ApiResponse&lt;OrderResponse&gt;
    * @throws ApiException if fails to make API call
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 428 </td><td> Precondition Required </td><td>  -  </td></tr>
@@ -536,8 +527,8 @@ public class OrdersApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Update Order
-   * Update an existing Order.
+   * Update order
+   * Updates an existing order by its ID.  Orders are the central resource in the API. Updating an order may also update related order sub-resources when they are included in the request payload, according to server-side validations.  Only fields supported by the API can be modified. 
    * @param id Identifier of the resource (required)
    * @param orderUpdateRequest requested field for an order (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -546,7 +537,7 @@ public class OrdersApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
@@ -558,8 +549,8 @@ public class OrdersApi {
   }
 
   /**
-   * Update Order
-   * Update an existing Order.
+   * Update order
+   * Updates an existing order by its ID.  Orders are the central resource in the API. Updating an order may also update related order sub-resources when they are included in the request payload, according to server-side validations.  Only fields supported by the API can be modified. 
    * @param id Identifier of the resource (required)
    * @param orderUpdateRequest requested field for an order (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -568,7 +559,7 @@ public class OrdersApi {
    * @http.response.details
      <table summary="Response Details" border="1">
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-       <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
+       <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
        <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>

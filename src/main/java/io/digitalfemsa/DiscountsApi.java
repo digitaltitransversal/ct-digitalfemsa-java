@@ -1,21 +1,12 @@
 package io.digitalfemsa;
 
-import io.digitalfemsa.ApiException;
-import io.digitalfemsa.ApiClient;
-import io.digitalfemsa.ApiResponse;
-import io.digitalfemsa.Configuration;
-import io.digitalfemsa.Pair;
-
-import javax.ws.rs.core.GenericType;
-
 import io.digitalfemsa.model.DiscountLinesResponse;
-import io.digitalfemsa.model.Error;
 import io.digitalfemsa.model.GetOrderDiscountLinesResponse;
 import io.digitalfemsa.model.OrderDiscountLinesRequest;
 import io.digitalfemsa.model.UpdateOrderDiscountLinesRequest;
 
+import javax.ws.rs.core.GenericType;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +43,7 @@ public class DiscountsApi {
 
   /**
    * Create Discount
-   * Create discount lines for an existing orden
+   * Create discount lines for an existing order
    * @param id Identifier of the resource (required)
    * @param orderDiscountLinesRequest requested field for a discount lines (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -74,7 +65,7 @@ public class DiscountsApi {
 
   /**
    * Create Discount
-   * Create discount lines for an existing orden
+   * Create discount lines for an existing order
    * @param id Identifier of the resource (required)
    * @param orderDiscountLinesRequest requested field for a discount lines (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -122,7 +113,7 @@ public class DiscountsApi {
   }
   /**
    * Delete Discount
-   * Delete an existing discount lines for an existing orden
+   * Delete an existing discount line for an existing order
    * @param id Identifier of the resource (required)
    * @param discountLinesId discount line id identifier (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -145,7 +136,7 @@ public class DiscountsApi {
 
   /**
    * Delete Discount
-   * Delete an existing discount lines for an existing orden
+   * Delete an existing discount line for an existing order
    * @param id Identifier of the resource (required)
    * @param discountLinesId discount line id identifier (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -195,7 +186,7 @@ public class DiscountsApi {
   }
   /**
    * Get Discount
-   * Get an existing discount lines for an existing orden
+   * Get an existing discount line for an existing order
    * @param id Identifier of the resource (required)
    * @param discountLinesId discount line id identifier (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -208,7 +199,6 @@ public class DiscountsApi {
        <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -218,7 +208,7 @@ public class DiscountsApi {
 
   /**
    * Get Discount
-   * Get an existing discount lines for an existing orden
+   * Get an existing discount line for an existing order
    * @param id Identifier of the resource (required)
    * @param discountLinesId discount line id identifier (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -231,7 +221,6 @@ public class DiscountsApi {
        <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -267,8 +256,8 @@ public class DiscountsApi {
                                localVarAuthNames, localVarReturnType, false);
   }
   /**
-   * Get a List of Discount
-   * Get discount lines for an existing orden
+   * Get a List of Discounts
+   * Get discount lines for an existing order
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -291,8 +280,8 @@ public class DiscountsApi {
   }
 
   /**
-   * Get a List of Discount
-   * Get discount lines for an existing orden
+   * Get a List of Discounts
+   * Get discount lines for an existing order
    * @param id Identifier of the resource (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
@@ -347,7 +336,7 @@ public class DiscountsApi {
   }
   /**
    * Update Discount
-   * Update an existing discount lines for an existing orden
+   * Update an existing discount line for an existing order
    * @param id Identifier of the resource (required)
    * @param discountLinesId discount line id identifier (required)
    * @param updateOrderDiscountLinesRequest requested field for a discount lines (required)
@@ -371,7 +360,7 @@ public class DiscountsApi {
 
   /**
    * Update Discount
-   * Update an existing discount lines for an existing orden
+   * Update an existing discount line for an existing order
    * @param id Identifier of the resource (required)
    * @param discountLinesId discount line id identifier (required)
    * @param updateOrderDiscountLinesRequest requested field for a discount lines (required)

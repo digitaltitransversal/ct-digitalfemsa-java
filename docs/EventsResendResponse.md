@@ -2,7 +2,7 @@
 
 # EventsResendResponse
 
-event model
+Webhook log model returned after resending an event webhook delivery.
 
 ## Properties
 

@@ -13,24 +13,18 @@
 
 package io.digitalfemsa.model;
 
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.digitalfemsa.model.OrderFiscalEntityAddressResponse;
-import java.util.Arrays;
+
 import java.util.HashMap;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.digitalfemsa.JSON;
+import java.util.Objects;
 
 
 /**
- * Fiscal entity of the order, Currently it is a purely informative field
+ * Fiscal entity information associated with the order. This field can be &#x60;null&#x60;.
  */
 @JsonPropertyOrder({
   OrderFiscalEntityResponse.JSON_PROPERTY_ADDRESS,
@@ -366,4 +360,3 @@ public class OrderFiscalEntityResponse {
   }
 
 }
-

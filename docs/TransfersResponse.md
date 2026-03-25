@@ -2,7 +2,7 @@
 
 # TransfersResponse
 
-A transfer represents the action of sending an amount to a business bank account including the status, amount and method used to make the transfer.
+A transfer represents the action of sending an amount to a business bank account including the status, amount and destination used to make the transfer.
 
 ## Properties
 

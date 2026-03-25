@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**type** | **String** |  |  [optional] |
 |**_object** | **String** |  |  |
-|**authCode** | **Integer** |  |  [optional] |
+|**authCode** | **String** |  |  [optional] |
 |**cashierId** | **String** |  |  [optional] |
 |**reference** | **String** |  |  [optional] |
 |**barcodeUrl** | **String** |  |  [optional] |

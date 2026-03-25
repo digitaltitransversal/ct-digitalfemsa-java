@@ -13,24 +13,19 @@
 
 package io.digitalfemsa.model;
 
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.digitalfemsa.model.BalanceCommonField;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.digitalfemsa.JSON;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 
 /**
- * balance model
+ * Company balance summary.  Monetary fields are returned as arrays of amounts grouped by currency (see &#x60;balance_common_field&#x60; items). 
  */
 @JsonPropertyOrder({
   BalanceResponse.JSON_PROPERTY_AVAILABLE,
@@ -94,7 +89,7 @@ public class BalanceResponse {
   }
 
    /**
-   * The balance&#39;s available
+   * Amounts currently available, grouped by currency.
    * @return available
   **/
   @javax.annotation.Nullable
@@ -193,12 +188,13 @@ public class BalanceResponse {
   }
 
    /**
-   * The balance&#39;s gateway
+   * Gateway balance amounts, grouped by currency.
    * @return gateway
   **/
   @javax.annotation.Nullable
   @JsonProperty(JSON_PROPERTY_GATEWAY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonDeserialize(using = BalanceCommonFieldListDeserializer.class)
 
   public List<BalanceCommonField> getGateway() {
     return gateway;
@@ -226,7 +222,7 @@ public class BalanceResponse {
   }
 
    /**
-   * The balance&#39;s pending
+   * Amounts pending settlement, grouped by currency.
    * @return pending
   **/
   @javax.annotation.Nullable
@@ -259,7 +255,7 @@ public class BalanceResponse {
   }
 
    /**
-   * The balance&#39;s retained
+   * Amounts currently retained, grouped by currency.
    * @return retained
   **/
   @javax.annotation.Nullable
@@ -292,7 +288,7 @@ public class BalanceResponse {
   }
 
    /**
-   * The balance&#39;s retention amount
+   * Retention amount applied, grouped by currency.
    * @return retentionAmount
   **/
   @javax.annotation.Nullable
@@ -317,7 +313,7 @@ public class BalanceResponse {
   }
 
    /**
-   * The balance&#39;s target collateral amount
+   * Target collateral amount, grouped by currency.
    * @return targetCollateralAmount
   **/
   @javax.annotation.Nullable
@@ -350,7 +346,7 @@ public class BalanceResponse {
   }
 
    /**
-   * The balance&#39;s target retention amount
+   * Target retention amount, grouped by currency.
    * @return targetRetentionAmount
   **/
   @javax.annotation.Nullable
@@ -383,7 +379,7 @@ public class BalanceResponse {
   }
 
    /**
-   * The balance&#39;s temporarily retained
+   * Amounts temporarily retained
    * @return temporarilyRetained
   **/
   @javax.annotation.Nullable
@@ -461,4 +457,3 @@ public class BalanceResponse {
   }
 
 }
-

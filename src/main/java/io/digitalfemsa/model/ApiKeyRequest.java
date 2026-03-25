@@ -13,17 +13,14 @@
 
 package io.digitalfemsa.model;
 
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.digitalfemsa.JSON;
+
+import java.util.Objects;
 
 
 /**
@@ -39,8 +36,41 @@ public class ApiKeyRequest {
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
   private String description;
 
+  /**
+   * Defines the type of API key to create. Only \&quot;private\&quot; is supported for creation. A \&quot;public\&quot; API key already exists by default per company/environment. 
+   */
+  public enum RoleEnum {
+    PRIVATE("private");
+
+    private String value;
+
+    RoleEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static RoleEnum fromValue(String value) {
+      for (RoleEnum b : RoleEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_ROLE = "role";
-  private String role;
+  private RoleEnum role;
 
   public ApiKeyRequest() { 
   }
@@ -51,7 +81,7 @@ public class ApiKeyRequest {
   }
 
    /**
-   * A name or brief explanation of what this api key is used for
+   * A name or brief explanation of what this API key is used for.
    * @return description
   **/
   @javax.annotation.Nullable
@@ -70,27 +100,27 @@ public class ApiKeyRequest {
   }
 
 
-  public ApiKeyRequest role(String role) {
+  public ApiKeyRequest role(RoleEnum role) {
     this.role = role;
     return this;
   }
 
    /**
-   * Get role
+   * Defines the type of API key to create. Only \&quot;private\&quot; is supported for creation. A \&quot;public\&quot; API key already exists by default per company/environment. 
    * @return role
   **/
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_ROLE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getRole() {
+  public RoleEnum getRole() {
     return role;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ROLE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRole(String role) {
+  public void setRole(RoleEnum role) {
     this.role = role;
   }
 
@@ -138,4 +168,3 @@ public class ApiKeyRequest {
   }
 
 }
-

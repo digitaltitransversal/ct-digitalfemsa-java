@@ -13,21 +13,16 @@
 
 package io.digitalfemsa.model;
 
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.digitalfemsa.JSON;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+import java.util.Objects;
 
 
 /**
- * webhook keys model
+ * Represents a webhook signing key after it has been deleted.
  */
 @JsonPropertyOrder({
   WebhookKeyDeleteResponse.JSON_PROPERTY_ACTIVE,
@@ -262,4 +257,3 @@ public class WebhookKeyDeleteResponse {
   }
 
 }
-

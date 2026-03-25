@@ -4,7 +4,7 @@ All URIs are relative to *https://api.digitalfemsa.io*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createCustomerShippingContacts**](ShippingContactsApi.md#createCustomerShippingContacts) | **POST** /customers/{id}/shipping_contacts | Create a shipping contacts |
+| [**createCustomerShippingContacts**](ShippingContactsApi.md#createCustomerShippingContacts) | **POST** /customers/{id}/shipping_contacts | Create a shipping contact |
 | [**deleteCustomerShippingContacts**](ShippingContactsApi.md#deleteCustomerShippingContacts) | **DELETE** /customers/{id}/shipping_contacts/{shipping_contacts_id} | Delete shipping contacts |
 | [**updateCustomerShippingContacts**](ShippingContactsApi.md#updateCustomerShippingContacts) | **PUT** /customers/{id}/shipping_contacts/{shipping_contacts_id} | Update shipping contacts |
 
@@ -14,9 +14,9 @@ All URIs are relative to *https://api.digitalfemsa.io*
 
 > CustomerShippingContactsResponse createCustomerShippingContacts(id, customerShippingContacts, acceptLanguage, xChildCompanyId)
 
-Create a shipping contacts
+Create a shipping contact
 
-Create a shipping contacts for a customer.
+Creates a new shipping contact for a customer. The shipping contact is associated with the customer identified by `id`.
 
 ### Example
 
@@ -40,7 +40,7 @@ public class Example {
 
         ShippingContactsApi apiInstance = new ShippingContactsApi(defaultClient);
         String id = "6307a60c41de27127515a575"; // String | Identifier of the resource
-        CustomerShippingContacts customerShippingContacts = new CustomerShippingContacts(); // CustomerShippingContacts | requested field for customer shippings contacts
+        CustomerShippingContacts customerShippingContacts = new CustomerShippingContacts(); // CustomerShippingContacts | Request body for creating or updating a customer shipping contact.
         String acceptLanguage = "es"; // String | Use for knowing which language to use
         String xChildCompanyId = "6441b6376b60c3a638da80af"; // String | In the case of a holding company, the company id of the child company to which will process the request.
         try {
@@ -63,7 +63,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| Identifier of the resource | |
-| **customerShippingContacts** | [**CustomerShippingContacts**](CustomerShippingContacts.md)| requested field for customer shippings contacts | |
+| **customerShippingContacts** | [**CustomerShippingContacts**](CustomerShippingContacts.md)| Request body for creating or updating a customer shipping contact. | |
 | **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
 | **xChildCompanyId** | **String**| In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 
@@ -201,7 +201,7 @@ public class Example {
         ShippingContactsApi apiInstance = new ShippingContactsApi(defaultClient);
         String id = "6307a60c41de27127515a575"; // String | Identifier of the resource
         String shippingContactsId = "6307a60c41de27127515a575"; // String | identifier
-        CustomerUpdateShippingContacts customerUpdateShippingContacts = new CustomerUpdateShippingContacts(); // CustomerUpdateShippingContacts | requested field for customer update shippings contacts
+        CustomerUpdateShippingContacts customerUpdateShippingContacts = new CustomerUpdateShippingContacts(); // CustomerUpdateShippingContacts | Request body for updating a customer shipping contact.
         String acceptLanguage = "es"; // String | Use for knowing which language to use
         String xChildCompanyId = "6441b6376b60c3a638da80af"; // String | In the case of a holding company, the company id of the child company to which will process the request.
         try {
@@ -225,7 +225,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| Identifier of the resource | |
 | **shippingContactsId** | **String**| identifier | |
-| **customerUpdateShippingContacts** | [**CustomerUpdateShippingContacts**](CustomerUpdateShippingContacts.md)| requested field for customer update shippings contacts | |
+| **customerUpdateShippingContacts** | [**CustomerUpdateShippingContacts**](CustomerUpdateShippingContacts.md)| Request body for updating a customer shipping contact. | |
 | **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
 | **xChildCompanyId** | **String**| In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 

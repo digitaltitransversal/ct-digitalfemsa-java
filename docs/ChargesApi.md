@@ -4,17 +4,23 @@ All URIs are relative to *https://api.digitalfemsa.io*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getCharges**](ChargesApi.md#getCharges) | **GET** /charges | Get A List of Charges |
-| [**ordersCreateCharge**](ChargesApi.md#ordersCreateCharge) | **POST** /orders/{id}/charges | Create charge |
+| [**getCharges**](ChargesApi.md#getCharges) | **GET** /charges | List charges |
+| [**ordersCreateCharge**](ChargesApi.md#ordersCreateCharge) | **POST** /orders/{id}/charges | Create a charge for an order |
 | [**updateCharge**](ChargesApi.md#updateCharge) | **PUT** /charges/{id} | Update a charge |
 
 
 
 ## getCharges
 
-> GetChargesResponse getCharges(acceptLanguage, xChildCompanyId, limit, search, next, previous)
+> GetChargesResponse getCharges(acceptLanguage, xChildCompanyId, limit, next, previous, search)
 
-Get A List of Charges
+List charges
+
+Retrieves a paginated list of charges for the authenticated account.
+
+Use the pagination parameters (`limit`, `next_page`, `previous_page`) to navigate through results.
+Use `search` to filter charges (for example by id or reference).
+
 
 ### Example
 
@@ -40,11 +46,11 @@ public class Example {
         String acceptLanguage = "es"; // String | Use for knowing which language to use
         String xChildCompanyId = "6441b6376b60c3a638da80af"; // String | In the case of a holding company, the company id of the child company to which will process the request.
         Integer limit = 20; // Integer | The numbers of items to return, the maximum value is 250
-        String search = "search_example"; // String | General order search, e.g. by mail, reference etc.
         String next = "next_example"; // String | next page
         String previous = "previous_example"; // String | previous page
+        String search = "search_example"; // String | General order search, e.g. by mail, reference etc.
         try {
-            GetChargesResponse result = apiInstance.getCharges(acceptLanguage, xChildCompanyId, limit, search, next, previous);
+            GetChargesResponse result = apiInstance.getCharges(acceptLanguage, xChildCompanyId, limit, next, previous, search);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ChargesApi#getCharges");
@@ -65,9 +71,9 @@ public class Example {
 | **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
 | **xChildCompanyId** | **String**| In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 | **limit** | **Integer**| The numbers of items to return, the maximum value is 250 | [optional] [default to 20] |
-| **search** | **String**| General order search, e.g. by mail, reference etc. | [optional] |
 | **next** | **String**| next page | [optional] |
 | **previous** | **String**| previous page | [optional] |
+| **search** | **String**| General order search, e.g. by mail, reference etc. | [optional] |
 
 ### Return type
 
@@ -85,7 +91,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  |
+| **200** | successful operation |  -  |
+| **401** | authentication error |  -  |
 | **422** | whitelist validation error |  -  |
 | **500** | internal server error |  -  |
 
@@ -94,9 +101,15 @@ public class Example {
 
 > ChargeOrderResponse ordersCreateCharge(id, chargeRequest, acceptLanguage, xChildCompanyId)
 
-Create charge
+Create a charge for an order
 
-Create charge for an existing orden
+Creates a new charge associated with an existing order.
+
+Notes:
+- The charge is created for the order identified by the path parameter `id`.
+- Depending on the payment method, the charge may be created in a non-final status (for example, pending).
+- If the order does not meet the required conditions, the API may respond with **428 Precondition Required**.
+
 
 ### Example
 
@@ -163,9 +176,10 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  -  |
+| **200** | successful operation |  -  |
 | **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
+| **422** | parameter validation error |  -  |
 | **428** | Precondition Required |  -  |
 | **500** | internal server error |  -  |
 
@@ -175,6 +189,8 @@ public class Example {
 > ChargeResponse updateCharge(id, chargeUpdateRequest, acceptLanguage, xChildCompanyId)
 
 Update a charge
+
+Updates an existing charge. Only `reference_id` can be updated.
 
 ### Example
 
@@ -241,7 +257,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  |
+| **200** | successful operation |  -  |
 | **422** | whitelist validation error |  -  |
 | **404** | not found entity |  -  |
 | **500** | internal server error |  -  |

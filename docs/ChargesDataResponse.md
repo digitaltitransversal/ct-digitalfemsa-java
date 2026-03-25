@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**amount** | **Integer** |  |  [optional] |
+|**amount** | **Long** |  |  [optional] |
 |**channel** | [**ChargeResponseChannel**](ChargeResponseChannel.md) |  |  [optional] |
 |**createdAt** | **Long** |  |  [optional] |
 |**currency** | **String** |  |  [optional] |
@@ -20,11 +20,12 @@
 |**livemode** | **Boolean** |  |  [optional] |
 |**_object** | **String** |  |  [optional] |
 |**orderId** | **String** |  |  [optional] |
-|**paidAt** | **Integer** |  |  [optional] |
+|**paidAt** | **Long** |  |  [optional] |
 |**paymentMethod** | [**ChargeResponsePaymentMethod**](ChargeResponsePaymentMethod.md) |  |  [optional] |
 |**referenceId** | **String** | Reference ID of the charge |  [optional] |
 |**refunds** | [**ChargeResponseRefunds**](ChargeResponseRefunds.md) |  |  [optional] |
 |**status** | **String** |  |  [optional] |
+|**isRefundable** | **Boolean** |  |  [optional] |
 
 
 

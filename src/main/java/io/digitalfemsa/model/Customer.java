@@ -13,49 +13,43 @@
 
 package io.digitalfemsa.model;
 
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.digitalfemsa.model.CustomerAntifraudInfo;
-import io.digitalfemsa.model.CustomerFiscalEntitiesRequest;
-import io.digitalfemsa.model.CustomerPaymentMethodsRequest;
-import io.digitalfemsa.model.CustomerShippingContacts;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.digitalfemsa.JSON;
+import java.util.Objects;
 
 
 /**
- * a customer
+ * Customer create request.
  */
 @JsonPropertyOrder({
-  Customer.JSON_PROPERTY_ANTIFRAUD_INFO,
+  Customer.JSON_PROPERTY_NAME,
+  Customer.JSON_PROPERTY_EMAIL,
+  Customer.JSON_PROPERTY_PHONE,
   Customer.JSON_PROPERTY_CORPORATE,
   Customer.JSON_PROPERTY_CUSTOM_REFERENCE,
-  Customer.JSON_PROPERTY_EMAIL,
-  Customer.JSON_PROPERTY_DEFAULT_PAYMENT_SOURCE_ID,
-  Customer.JSON_PROPERTY_DEFAULT_SHIPPING_CONTACT_ID,
-  Customer.JSON_PROPERTY_FISCAL_ENTITIES,
   Customer.JSON_PROPERTY_METADATA,
-  Customer.JSON_PROPERTY_NAME,
   Customer.JSON_PROPERTY_PAYMENT_SOURCES,
-  Customer.JSON_PROPERTY_PHONE,
+  Customer.JSON_PROPERTY_FISCAL_ENTITIES,
   Customer.JSON_PROPERTY_SHIPPING_CONTACTS
 })
 @JsonTypeName("customer")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class Customer {
-  public static final String JSON_PROPERTY_ANTIFRAUD_INFO = "antifraud_info";
-  private CustomerAntifraudInfo antifraudInfo;
+  public static final String JSON_PROPERTY_NAME = "name";
+  private String name;
+
+  public static final String JSON_PROPERTY_EMAIL = "email";
+  private String email;
+
+  public static final String JSON_PROPERTY_PHONE = "phone";
+  private String phone;
 
   public static final String JSON_PROPERTY_CORPORATE = "corporate";
   private Boolean corporate = false;
@@ -63,29 +57,14 @@ public class Customer {
   public static final String JSON_PROPERTY_CUSTOM_REFERENCE = "custom_reference";
   private String customReference;
 
-  public static final String JSON_PROPERTY_EMAIL = "email";
-  private String email;
-
-  public static final String JSON_PROPERTY_DEFAULT_PAYMENT_SOURCE_ID = "default_payment_source_id";
-  private String defaultPaymentSourceId;
-
-  public static final String JSON_PROPERTY_DEFAULT_SHIPPING_CONTACT_ID = "default_shipping_contact_id";
-  private String defaultShippingContactId;
-
-  public static final String JSON_PROPERTY_FISCAL_ENTITIES = "fiscal_entities";
-  private List<CustomerFiscalEntitiesRequest> fiscalEntities = new ArrayList<>();
-
   public static final String JSON_PROPERTY_METADATA = "metadata";
   private Map<String, Object> metadata = new HashMap<>();
-
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
 
   public static final String JSON_PROPERTY_PAYMENT_SOURCES = "payment_sources";
   private List<CustomerPaymentMethodsRequest> paymentSources = new ArrayList<>();
 
-  public static final String JSON_PROPERTY_PHONE = "phone";
-  private String phone;
+  public static final String JSON_PROPERTY_FISCAL_ENTITIES = "fiscal_entities";
+  private List<CustomerFiscalEntitiesRequest> fiscalEntities = new ArrayList<>();
 
   public static final String JSON_PROPERTY_SHIPPING_CONTACTS = "shipping_contacts";
   private List<CustomerShippingContacts> shippingContacts = new ArrayList<>();
@@ -93,28 +72,78 @@ public class Customer {
   public Customer() { 
   }
 
-  public Customer antifraudInfo(CustomerAntifraudInfo antifraudInfo) {
-    this.antifraudInfo = antifraudInfo;
+  public Customer name(String name) {
+    this.name = name;
     return this;
   }
 
    /**
-   * Get antifraudInfo
-   * @return antifraudInfo
+   * Customer&#39;s name.
+   * @return name
   **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ANTIFRAUD_INFO)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public CustomerAntifraudInfo getAntifraudInfo() {
-    return antifraudInfo;
+  public String getName() {
+    return name;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ANTIFRAUD_INFO)
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
+  public Customer email(String email) {
+    this.email = email;
+    return this;
+  }
+
+   /**
+   * Customer email address.
+   * @return email
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_EMAIL)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getEmail() {
+    return email;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_EMAIL)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+
+  public Customer phone(String phone) {
+    this.phone = phone;
+    return this;
+  }
+
+   /**
+   * Customer phone number.
+   * @return phone
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_PHONE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAntifraudInfo(CustomerAntifraudInfo antifraudInfo) {
-    this.antifraudInfo = antifraudInfo;
+
+  public String getPhone() {
+    return phone;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_PHONE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPhone(String phone) {
+    this.phone = phone;
   }
 
 
@@ -124,7 +153,7 @@ public class Customer {
   }
 
    /**
-   * It is a value that allows identifying if the email is corporate or not.
+   * Indicates whether the customer email is corporate.
    * @return corporate
   **/
   @javax.annotation.Nullable
@@ -149,7 +178,7 @@ public class Customer {
   }
 
    /**
-   * It is an undefined value.
+   * Merchant-defined reference used to identify the customer in your system.
    * @return customReference
   **/
   @javax.annotation.Nullable
@@ -168,114 +197,6 @@ public class Customer {
   }
 
 
-  public Customer email(String email) {
-    this.email = email;
-    return this;
-  }
-
-   /**
-   * An email address is a series of customizable characters followed by a universal Internet symbol, the at symbol (@), the name of a host server, and a web domain ending (.mx, .com, .org, . net, etc).
-   * @return email
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_EMAIL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getEmail() {
-    return email;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EMAIL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-
-  public Customer defaultPaymentSourceId(String defaultPaymentSourceId) {
-    this.defaultPaymentSourceId = defaultPaymentSourceId;
-    return this;
-  }
-
-   /**
-   * It is a parameter that allows to identify in the response, the Femsa ID of a payment method (payment_id)
-   * @return defaultPaymentSourceId
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DEFAULT_PAYMENT_SOURCE_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getDefaultPaymentSourceId() {
-    return defaultPaymentSourceId;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEFAULT_PAYMENT_SOURCE_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDefaultPaymentSourceId(String defaultPaymentSourceId) {
-    this.defaultPaymentSourceId = defaultPaymentSourceId;
-  }
-
-
-  public Customer defaultShippingContactId(String defaultShippingContactId) {
-    this.defaultShippingContactId = defaultShippingContactId;
-    return this;
-  }
-
-   /**
-   * It is a parameter that allows to identify in the response, the Femsa ID of the shipping address (shipping_contact)
-   * @return defaultShippingContactId
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DEFAULT_SHIPPING_CONTACT_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getDefaultShippingContactId() {
-    return defaultShippingContactId;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEFAULT_SHIPPING_CONTACT_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDefaultShippingContactId(String defaultShippingContactId) {
-    this.defaultShippingContactId = defaultShippingContactId;
-  }
-
-
-  public Customer fiscalEntities(List<CustomerFiscalEntitiesRequest> fiscalEntities) {
-    this.fiscalEntities = fiscalEntities;
-    return this;
-  }
-
-  public Customer addFiscalEntitiesItem(CustomerFiscalEntitiesRequest fiscalEntitiesItem) {
-    if (this.fiscalEntities == null) {
-      this.fiscalEntities = new ArrayList<>();
-    }
-    this.fiscalEntities.add(fiscalEntitiesItem);
-    return this;
-  }
-
-   /**
-   * Get fiscalEntities
-   * @return fiscalEntities
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_FISCAL_ENTITIES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<CustomerFiscalEntitiesRequest> getFiscalEntities() {
-    return fiscalEntities;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_FISCAL_ENTITIES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFiscalEntities(List<CustomerFiscalEntitiesRequest> fiscalEntities) {
-    this.fiscalEntities = fiscalEntities;
-  }
-
-
   public Customer metadata(Map<String, Object> metadata) {
     this.metadata = metadata;
     return this;
@@ -290,7 +211,7 @@ public class Customer {
   }
 
    /**
-   * Get metadata
+   * Arbitrary metadata associated with the customer.
    * @return metadata
   **/
   @javax.annotation.Nullable
@@ -309,31 +230,6 @@ public class Customer {
   }
 
 
-  public Customer name(String name) {
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * Client&#39;s name
-   * @return name
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
   public Customer paymentSources(List<CustomerPaymentMethodsRequest> paymentSources) {
     this.paymentSources = paymentSources;
     return this;
@@ -348,7 +244,7 @@ public class Customer {
   }
 
    /**
-   * Contains details of the payment methods that the customer has active or has used in Femsa
+   * Customer payment sources to be created with the customer (optional).
    * @return paymentSources
   **/
   @javax.annotation.Nullable
@@ -367,28 +263,36 @@ public class Customer {
   }
 
 
-  public Customer phone(String phone) {
-    this.phone = phone;
+  public Customer fiscalEntities(List<CustomerFiscalEntitiesRequest> fiscalEntities) {
+    this.fiscalEntities = fiscalEntities;
+    return this;
+  }
+
+  public Customer addFiscalEntitiesItem(CustomerFiscalEntitiesRequest fiscalEntitiesItem) {
+    if (this.fiscalEntities == null) {
+      this.fiscalEntities = new ArrayList<>();
+    }
+    this.fiscalEntities.add(fiscalEntitiesItem);
     return this;
   }
 
    /**
-   * Is the customer&#39;s phone number
-   * @return phone
+   * Customer fiscal entities to be created with the customer (optional).
+   * @return fiscalEntities
   **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_PHONE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_FISCAL_ENTITIES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getPhone() {
-    return phone;
+  public List<CustomerFiscalEntitiesRequest> getFiscalEntities() {
+    return fiscalEntities;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PHONE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPhone(String phone) {
-    this.phone = phone;
+  @JsonProperty(JSON_PROPERTY_FISCAL_ENTITIES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFiscalEntities(List<CustomerFiscalEntitiesRequest> fiscalEntities) {
+    this.fiscalEntities = fiscalEntities;
   }
 
 
@@ -406,7 +310,7 @@ public class Customer {
   }
 
    /**
-   * Contains the detail of the shipping addresses that the client has active or has used in Femsa
+   * Customer shipping contacts to be created with the customer (optional).
    * @return shippingContacts
   **/
   @javax.annotation.Nullable
@@ -437,40 +341,34 @@ public class Customer {
       return false;
     }
     Customer customer = (Customer) o;
-    return Objects.equals(this.antifraudInfo, customer.antifraudInfo) &&
+    return Objects.equals(this.name, customer.name) &&
+        Objects.equals(this.email, customer.email) &&
+        Objects.equals(this.phone, customer.phone) &&
         Objects.equals(this.corporate, customer.corporate) &&
         Objects.equals(this.customReference, customer.customReference) &&
-        Objects.equals(this.email, customer.email) &&
-        Objects.equals(this.defaultPaymentSourceId, customer.defaultPaymentSourceId) &&
-        Objects.equals(this.defaultShippingContactId, customer.defaultShippingContactId) &&
-        Objects.equals(this.fiscalEntities, customer.fiscalEntities) &&
         Objects.equals(this.metadata, customer.metadata) &&
-        Objects.equals(this.name, customer.name) &&
         Objects.equals(this.paymentSources, customer.paymentSources) &&
-        Objects.equals(this.phone, customer.phone) &&
+        Objects.equals(this.fiscalEntities, customer.fiscalEntities) &&
         Objects.equals(this.shippingContacts, customer.shippingContacts);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(antifraudInfo, corporate, customReference, email, defaultPaymentSourceId, defaultShippingContactId, fiscalEntities, metadata, name, paymentSources, phone, shippingContacts);
+    return Objects.hash(name, email, phone, corporate, customReference, metadata, paymentSources, fiscalEntities, shippingContacts);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Customer {\n");
-    sb.append("    antifraudInfo: ").append(toIndentedString(antifraudInfo)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     sb.append("    corporate: ").append(toIndentedString(corporate)).append("\n");
     sb.append("    customReference: ").append(toIndentedString(customReference)).append("\n");
-    sb.append("    email: ").append(toIndentedString(email)).append("\n");
-    sb.append("    defaultPaymentSourceId: ").append(toIndentedString(defaultPaymentSourceId)).append("\n");
-    sb.append("    defaultShippingContactId: ").append(toIndentedString(defaultShippingContactId)).append("\n");
-    sb.append("    fiscalEntities: ").append(toIndentedString(fiscalEntities)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    paymentSources: ").append(toIndentedString(paymentSources)).append("\n");
-    sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
+    sb.append("    fiscalEntities: ").append(toIndentedString(fiscalEntities)).append("\n");
     sb.append("    shippingContacts: ").append(toIndentedString(shippingContacts)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -488,4 +386,3 @@ public class Customer {
   }
 
 }
-

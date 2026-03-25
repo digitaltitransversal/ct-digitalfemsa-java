@@ -13,17 +13,12 @@
 
 package io.digitalfemsa.model;
 
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.digitalfemsa.JSON;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+import java.util.Objects;
 
 
 /**
@@ -36,7 +31,9 @@ import io.digitalfemsa.JSON;
   ChargeResponseRefundsData.JSON_PROPERTY_EXPIRES_AT,
   ChargeResponseRefundsData.JSON_PROPERTY_ID,
   ChargeResponseRefundsData.JSON_PROPERTY_OBJECT,
-  ChargeResponseRefundsData.JSON_PROPERTY_STATUS
+  ChargeResponseRefundsData.JSON_PROPERTY_STATUS,
+  ChargeResponseRefundsData.JSON_PROPERTY_PAYOUT_ID,
+  ChargeResponseRefundsData.JSON_PROPERTY_REFERENCE
 })
 @JsonTypeName("charge_response_refunds_data")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
@@ -61,6 +58,12 @@ public class ChargeResponseRefundsData {
 
   public static final String JSON_PROPERTY_STATUS = "status";
   private String status;
+
+  public static final String JSON_PROPERTY_PAYOUT_ID = "payout_id";
+  private String payoutId;
+
+  public static final String JSON_PROPERTY_REFERENCE = "reference";
+  private String reference;
 
   public ChargeResponseRefundsData() { 
   }
@@ -240,6 +243,56 @@ public class ChargeResponseRefundsData {
   }
 
 
+  public ChargeResponseRefundsData payoutId(String payoutId) {
+    this.payoutId = payoutId;
+    return this;
+  }
+
+   /**
+   * Get payoutId
+   * @return payoutId
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_PAYOUT_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getPayoutId() {
+    return payoutId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_PAYOUT_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPayoutId(String payoutId) {
+    this.payoutId = payoutId;
+  }
+
+
+  public ChargeResponseRefundsData reference(String reference) {
+    this.reference = reference;
+    return this;
+  }
+
+   /**
+   * payout reference for oxxo stores
+   * @return reference
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_REFERENCE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getReference() {
+    return reference;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REFERENCE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReference(String reference) {
+    this.reference = reference;
+  }
+
+
   /**
    * Return true if this charge_response_refunds_data object is equal to o.
    */
@@ -258,12 +311,14 @@ public class ChargeResponseRefundsData {
         Objects.equals(this.expiresAt, chargeResponseRefundsData.expiresAt) &&
         Objects.equals(this.id, chargeResponseRefundsData.id) &&
         Objects.equals(this._object, chargeResponseRefundsData._object) &&
-        Objects.equals(this.status, chargeResponseRefundsData.status);
+        Objects.equals(this.status, chargeResponseRefundsData.status) &&
+        Objects.equals(this.payoutId, chargeResponseRefundsData.payoutId) &&
+        Objects.equals(this.reference, chargeResponseRefundsData.reference);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, authCode, createdAt, expiresAt, id, _object, status);
+    return Objects.hash(amount, authCode, createdAt, expiresAt, id, _object, status, payoutId, reference);
   }
 
   @Override
@@ -277,6 +332,8 @@ public class ChargeResponseRefundsData {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    _object: ").append(toIndentedString(_object)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    payoutId: ").append(toIndentedString(payoutId)).append("\n");
+    sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -293,4 +350,3 @@ public class ChargeResponseRefundsData {
   }
 
 }
-

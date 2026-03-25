@@ -5,11 +5,11 @@ All URIs are relative to *https://api.digitalfemsa.io*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**createWebhook**](WebhooksApi.md#createWebhook) | **POST** /webhooks | Create Webhook |
-| [**deleteWebhook**](WebhooksApi.md#deleteWebhook) | **DELETE** /webhooks/{id} | Delete Webhook |
-| [**getWebhook**](WebhooksApi.md#getWebhook) | **GET** /webhooks/{id} | Get Webhook |
+| [**deleteWebhook**](WebhooksApi.md#deleteWebhook) | **DELETE** /webhooks/{id} | Delete webhook |
+| [**getWebhook**](WebhooksApi.md#getWebhook) | **GET** /webhooks/{id} | Get webhook |
 | [**getWebhooks**](WebhooksApi.md#getWebhooks) | **GET** /webhooks | Get List of Webhooks |
-| [**testWebhook**](WebhooksApi.md#testWebhook) | **POST** /webhooks/{id}/test | Test Webhook |
-| [**updateWebhook**](WebhooksApi.md#updateWebhook) | **PUT** /webhooks/{id} | Update Webhook |
+| [**testWebhook**](WebhooksApi.md#testWebhook) | **POST** /webhooks/{id}/test | Test webhook |
+| [**updateWebhook**](WebhooksApi.md#updateWebhook) | **PUT** /webhooks/{id} | Update webhook |
 
 
 
@@ -42,7 +42,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WebhooksApi apiInstance = new WebhooksApi(defaultClient);
-        WebhookRequest webhookRequest = new WebhookRequest(); // WebhookRequest | requested field for webhook
+        WebhookRequest webhookRequest = new WebhookRequest(); // WebhookRequest | Webhook creation/update request payload.
         String acceptLanguage = "es"; // String | Use for knowing which language to use
         try {
             WebhookResponse result = apiInstance.createWebhook(webhookRequest, acceptLanguage);
@@ -63,7 +63,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **webhookRequest** | [**WebhookRequest**](WebhookRequest.md)| requested field for webhook | |
+| **webhookRequest** | [**WebhookRequest**](WebhookRequest.md)| Webhook creation/update request payload. | |
 | **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
 
 ### Return type
@@ -91,7 +91,9 @@ public class Example {
 
 > WebhookResponse deleteWebhook(id, acceptLanguage)
 
-Delete Webhook
+Delete webhook
+
+Deletes a webhook.
 
 ### Example
 
@@ -154,7 +156,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  |
+| **200** | successful |  -  |
 | **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
 | **500** | internal server error |  -  |
@@ -164,7 +166,9 @@ public class Example {
 
 > WebhookResponse getWebhook(id, acceptLanguage, xChildCompanyId)
 
-Get Webhook
+Get webhook
+
+Retrieves the details of a webhook by its ID.
 
 ### Example
 
@@ -229,7 +233,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  |
+| **200** | successful operation |  -  |
 | **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
 | **500** | internal server error |  -  |
@@ -323,9 +327,9 @@ public class Example {
 
 > WebhookResponse testWebhook(id, acceptLanguage)
 
-Test Webhook
+Test webhook
 
-Send a webhook.ping event
+Sends a test event to the specified webhook to verify it can receive events.
 
 ### Example
 
@@ -398,9 +402,9 @@ public class Example {
 
 > WebhookResponse updateWebhook(id, webhookUpdateRequest, acceptLanguage, xChildCompanyId)
 
-Update Webhook
+Update webhook
 
-updates an existing webhook
+Updates an existing webhook.
 
 ### Example
 
@@ -424,7 +428,7 @@ public class Example {
 
         WebhooksApi apiInstance = new WebhooksApi(defaultClient);
         String id = "6307a60c41de27127515a575"; // String | Identifier of the resource
-        WebhookUpdateRequest webhookUpdateRequest = new WebhookUpdateRequest(); // WebhookUpdateRequest | requested fields in order to update a webhook
+        WebhookUpdateRequest webhookUpdateRequest = new WebhookUpdateRequest(); // WebhookUpdateRequest | Webhook update request payload.
         String acceptLanguage = "es"; // String | Use for knowing which language to use
         String xChildCompanyId = "6441b6376b60c3a638da80af"; // String | In the case of a holding company, the company id of the child company to which will process the request.
         try {
@@ -447,7 +451,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| Identifier of the resource | |
-| **webhookUpdateRequest** | [**WebhookUpdateRequest**](WebhookUpdateRequest.md)| requested fields in order to update a webhook | |
+| **webhookUpdateRequest** | [**WebhookUpdateRequest**](WebhookUpdateRequest.md)| Webhook update request payload. | |
 | **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
 | **xChildCompanyId** | **String**| In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 
@@ -468,7 +472,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | successful operation |  -  |
-| **404** | not found entity |  -  |
 | **401** | authentication error |  -  |
+| **404** | not found entity |  -  |
 | **500** | internal server error |  -  |
 

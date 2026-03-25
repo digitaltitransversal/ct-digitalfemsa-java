@@ -13,21 +13,14 @@
 
 package io.digitalfemsa.model;
 
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.digitalfemsa.model.ChargeOrderResponsePaymentMethod;
-import io.digitalfemsa.model.ChargeResponseChannel;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.digitalfemsa.JSON;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -60,7 +53,7 @@ public class ChargeOrderResponse {
   private Integer amount;
 
   public static final String JSON_PROPERTY_CHANNEL = "channel";
-  private ChargeResponseChannel channel;
+  private ChargeOrderResponseChannel channel;
 
   public static final String JSON_PROPERTY_CREATED_AT = "created_at";
   private Long createdAt;
@@ -138,7 +131,7 @@ public class ChargeOrderResponse {
   }
 
 
-  public ChargeOrderResponse channel(ChargeResponseChannel channel) {
+  public ChargeOrderResponse channel(ChargeOrderResponseChannel channel) {
     this.channel = channel;
     return this;
   }
@@ -151,14 +144,14 @@ public class ChargeOrderResponse {
   @JsonProperty(JSON_PROPERTY_CHANNEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public ChargeResponseChannel getChannel() {
+  public ChargeOrderResponseChannel getChannel() {
     return channel;
   }
 
 
   @JsonProperty(JSON_PROPERTY_CHANNEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChannel(ChargeResponseChannel channel) {
+  public void setChannel(ChargeOrderResponseChannel channel) {
     this.channel = channel;
   }
 
@@ -646,4 +639,3 @@ public class ChargeOrderResponse {
   }
 
 }
-

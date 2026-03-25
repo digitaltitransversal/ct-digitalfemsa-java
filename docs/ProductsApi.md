@@ -16,7 +16,7 @@ All URIs are relative to *https://api.digitalfemsa.io*
 
 Create Product
 
-Create a new product for an existing order.
+Creates a new product (line item) for an existing order. Use this endpoint to add an additional item to the order after it has been created.
 
 ### Example
 
@@ -40,7 +40,7 @@ public class Example {
 
         ProductsApi apiInstance = new ProductsApi(defaultClient);
         String id = "6307a60c41de27127515a575"; // String | Identifier of the resource
-        Product product = new Product(); // Product | requested field for a product
+        Product product = new Product(); // Product | Fields required to create a new product (line item) for an existing order. This request adds a new item to the order.
         String acceptLanguage = "es"; // String | Use for knowing which language to use
         String xChildCompanyId = "6441b6376b60c3a638da80af"; // String | In the case of a holding company, the company id of the child company to which will process the request.
         try {
@@ -63,7 +63,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| Identifier of the resource | |
-| **product** | [**Product**](Product.md)| requested field for a product | |
+| **product** | [**Product**](Product.md)| Fields required to create a new product (line item) for an existing order. This request adds a new item to the order. | |
 | **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
 | **xChildCompanyId** | **String**| In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 
@@ -83,7 +83,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  -  |
+| **200** | Successful operation |  -  |
 | **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
 | **500** | internal server error |  -  |
@@ -95,7 +95,7 @@ public class Example {
 
 Delete Product
 
-Delete product for an existing orden
+Deletes a product (line item) from an existing order. The API will validate whether the order can be modified before removing the item.
 
 ### Example
 
@@ -162,10 +162,10 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  -  |
+| **200** | successful operation |  -  |
 | **401** | authentication error |  -  |
-| **422** | parameter validation error |  -  |
 | **404** | not found entity |  -  |
+| **422** | parameter validation error |  -  |
 | **500** | internal server error |  -  |
 
 
@@ -175,7 +175,7 @@ public class Example {
 
 Update Product
 
-Update an existing product for an existing orden
+Updates an existing product (line item) for an existing order. Use this endpoint to modify the details of a specific line item in the order.
 
 ### Example
 
@@ -200,7 +200,7 @@ public class Example {
         ProductsApi apiInstance = new ProductsApi(defaultClient);
         String id = "6307a60c41de27127515a575"; // String | Identifier of the resource
         String lineItemId = "line_item_2tQ8HkkfbauaKP9Ho"; // String | identifier
-        UpdateProduct updateProduct = new UpdateProduct(); // UpdateProduct | requested field for products
+        UpdateProduct updateProduct = new UpdateProduct(); // UpdateProduct | Fields allowed to update an existing product (line item) in an order. All fields are optional; only the provided fields will be updated.
         String acceptLanguage = "es"; // String | Use for knowing which language to use
         String xChildCompanyId = "6441b6376b60c3a638da80af"; // String | In the case of a holding company, the company id of the child company to which will process the request.
         try {
@@ -224,7 +224,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| Identifier of the resource | |
 | **lineItemId** | **String**| identifier | |
-| **updateProduct** | [**UpdateProduct**](UpdateProduct.md)| requested field for products | |
+| **updateProduct** | [**UpdateProduct**](UpdateProduct.md)| Fields allowed to update an existing product (line item) in an order. All fields are optional; only the provided fields will be updated. | |
 | **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
 | **xChildCompanyId** | **String**| In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 
@@ -244,9 +244,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  -  |
+| **200** | successful operation |  -  |
 | **401** | authentication error |  -  |
-| **422** | parameter validation error |  -  |
 | **404** | not found entity |  -  |
+| **422** | parameter validation error |  -  |
 | **500** | internal server error |  -  |
 

@@ -2,24 +2,26 @@
 
 # OrderUpdateRequest
 
-a order
+Order update payload. Only supported fields can be modified.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**charges** | [**List&lt;ChargeRequest&gt;**](ChargeRequest.md) |  |  [optional] |
-|**checkout** | [**CheckoutRequest**](CheckoutRequest.md) |  |  [optional] |
-|**currency** | **String** | Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217) |  [optional] |
+|**currency** | **String** | Currency code in ISO 4217 (3-letter uppercase). |  [optional] |
 |**customerInfo** | [**OrderUpdateRequestCustomerInfo**](OrderUpdateRequestCustomerInfo.md) |  |  [optional] |
-|**discountLines** | [**List&lt;OrderDiscountLinesRequest&gt;**](OrderDiscountLinesRequest.md) | List of [discounts](https://developers.femsa.com/v2.1.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount. |  [optional] |
-|**fiscalEntity** | [**OrderUpdateFiscalEntityRequest**](OrderUpdateFiscalEntityRequest.md) |  |  [optional] |
 |**lineItems** | [**List&lt;Product&gt;**](Product.md) | List of [products](https://developers.femsa.com/v2.1.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product. |  [optional] |
-|**metadata** | **Map&lt;String, String&gt;** |  |  [optional] |
-|**preAuthorize** | **Boolean** | Indicates whether the order charges must be preauthorized |  [optional] |
+|**charges** | [**List&lt;ChargeRequest&gt;**](ChargeRequest.md) |  |  [optional] |
+|**discountLines** | [**List&lt;OrderDiscountLinesRequest&gt;**](OrderDiscountLinesRequest.md) | List of [discounts](https://developers.femsa.com/v2.1.0/reference/orderscreatediscountline) that are applied to the order. You must have at least one discount. |  [optional] |
+|**taxLines** | [**List&lt;OrderTaxRequest&gt;**](OrderTaxRequest.md) |  |  [optional] |
+|**shippingContactId** | **String** | Existing shipping contact id from the customer to link to this order. |  [optional] |
 |**shippingContact** | [**CustomerShippingContacts**](CustomerShippingContacts.md) |  |  [optional] |
 |**shippingLines** | [**List&lt;ShippingRequest&gt;**](ShippingRequest.md) | List of [shipping costs](https://developers.femsa.com/v2.1.0/reference/orderscreateshipping). If the online store offers digital products. |  [optional] |
-|**taxLines** | [**List&lt;OrderTaxRequest&gt;**](OrderTaxRequest.md) |  |  [optional] |
+|**fiscalEntityId** | **String** | Existing fiscal entity id from the customer to link to this order. |  [optional] |
+|**fiscalEntity** | [**OrderUpdateFiscalEntityRequest**](OrderUpdateFiscalEntityRequest.md) |  |  [optional] |
+|**returnUrl** | **String** | URL where the customer should be redirected after completing a payment flow (if applicable). |  [optional] |
+|**metadata** | **Map&lt;String, Object&gt;** | Arbitrary key-value data that you can attach to the order for your internal use. It is not used for payment processing. Keys should be strings; values can be any JSON value.  |  [optional] |
+|**status** | **String** | Order status update (only allowed transitions will be accepted). |  [optional] |
 
 
 

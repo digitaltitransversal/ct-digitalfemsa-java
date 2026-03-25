@@ -1,22 +1,12 @@
 package io.digitalfemsa;
 
-import io.digitalfemsa.ApiException;
-import io.digitalfemsa.ApiClient;
-import io.digitalfemsa.ApiResponse;
-import io.digitalfemsa.Configuration;
-import io.digitalfemsa.Pair;
-
-import javax.ws.rs.core.GenericType;
-
-import io.digitalfemsa.model.Error;
 import io.digitalfemsa.model.OrderTaxRequest;
 import io.digitalfemsa.model.UpdateOrderTaxRequest;
 import io.digitalfemsa.model.UpdateOrderTaxResponse;
 
+import javax.ws.rs.core.GenericType;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
@@ -51,9 +41,9 @@ public class TaxesApi {
 
   /**
    * Create Tax
-   * Create new taxes for an existing orden
+   * Creates a new tax line for an existing order. The tax line is added to the order identified by &#x60;id&#x60;. The response returns the created tax line.
    * @param id Identifier of the resource (required)
-   * @param orderTaxRequest requested field for a taxes (required)
+   * @param orderTaxRequest Request body for creating a tax line. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return UpdateOrderTaxResponse
@@ -64,6 +54,7 @@ public class TaxesApi {
        <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -73,9 +64,9 @@ public class TaxesApi {
 
   /**
    * Create Tax
-   * Create new taxes for an existing orden
+   * Creates a new tax line for an existing order. The tax line is added to the order identified by &#x60;id&#x60;. The response returns the created tax line.
    * @param id Identifier of the resource (required)
-   * @param orderTaxRequest requested field for a taxes (required)
+   * @param orderTaxRequest Request body for creating a tax line. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return ApiResponse&lt;UpdateOrderTaxResponse&gt;
@@ -86,6 +77,7 @@ public class TaxesApi {
        <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -121,7 +113,7 @@ public class TaxesApi {
   }
   /**
    * Delete Tax
-   * Delete taxes for an existing orden
+   * Deletes an existing tax line from an order. The tax line identified by &#x60;tax_id&#x60; belongs to the order identified by &#x60;id&#x60;. The response includes the deleted resource with &#x60;deleted: true&#x60;.
    * @param id Identifier of the resource (required)
    * @param taxId identifier (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -133,8 +125,8 @@ public class TaxesApi {
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -144,7 +136,7 @@ public class TaxesApi {
 
   /**
    * Delete Tax
-   * Delete taxes for an existing orden
+   * Deletes an existing tax line from an order. The tax line identified by &#x60;tax_id&#x60; belongs to the order identified by &#x60;id&#x60;. The response includes the deleted resource with &#x60;deleted: true&#x60;.
    * @param id Identifier of the resource (required)
    * @param taxId identifier (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
@@ -156,8 +148,8 @@ public class TaxesApi {
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -194,10 +186,10 @@ public class TaxesApi {
   }
   /**
    * Update Tax
-   * Update taxes for an existing orden
+   * Updates an existing tax line for an order. The tax line identified by &#x60;tax_id&#x60; belongs to the order identified by &#x60;id&#x60;. Only the fields provided in the request body are updated.
    * @param id Identifier of the resource (required)
    * @param taxId identifier (required)
-   * @param updateOrderTaxRequest requested field for taxes (required)
+   * @param updateOrderTaxRequest Request body for updating a tax line. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return UpdateOrderTaxResponse
@@ -207,8 +199,8 @@ public class TaxesApi {
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */
@@ -218,10 +210,10 @@ public class TaxesApi {
 
   /**
    * Update Tax
-   * Update taxes for an existing orden
+   * Updates an existing tax line for an order. The tax line identified by &#x60;tax_id&#x60; belongs to the order identified by &#x60;id&#x60;. Only the fields provided in the request body are updated.
    * @param id Identifier of the resource (required)
    * @param taxId identifier (required)
-   * @param updateOrderTaxRequest requested field for taxes (required)
+   * @param updateOrderTaxRequest Request body for updating a tax line. (required)
    * @param acceptLanguage Use for knowing which language to use (optional, default to es)
    * @param xChildCompanyId In the case of a holding company, the company id of the child company to which will process the request. (optional)
    * @return ApiResponse&lt;UpdateOrderTaxResponse&gt;
@@ -231,8 +223,8 @@ public class TaxesApi {
        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
        <tr><td> 200 </td><td> successful </td><td>  -  </td></tr>
        <tr><td> 401 </td><td> authentication error </td><td>  -  </td></tr>
-       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 404 </td><td> not found entity </td><td>  -  </td></tr>
+       <tr><td> 422 </td><td> parameter validation error </td><td>  -  </td></tr>
        <tr><td> 500 </td><td> internal server error </td><td>  -  </td></tr>
      </table>
    */

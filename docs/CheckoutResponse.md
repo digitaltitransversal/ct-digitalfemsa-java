@@ -16,7 +16,7 @@ checkout response
 |**id** | **String** |  |  |
 |**livemode** | **Boolean** |  |  |
 |**metadata** | **Map&lt;String, Object&gt;** |  |  [optional] |
-|**name** | **String** | Reason for charge |  |
+|**name** | **String** | Payment link name |  |
 |**needsShippingContact** | **Boolean** |  |  [optional] |
 |**_object** | **String** |  |  |
 |**paidPaymentsCount** | **Integer** |  |  [optional] |

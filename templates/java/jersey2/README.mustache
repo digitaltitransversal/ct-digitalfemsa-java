@@ -85,6 +85,23 @@ Then manually install the following JARs:
 - `target/{{{artifactId}}}-{{{artifactVersion}}}.jar`
 - `target/lib/*.jar`
 
+## Update project version
+
+To update all version references in the repository, run:
+
+```shell
+make version-update NEW_VERSION=1.2.3
+```
+
+This command updates:
+
+- VERSION
+- pom.xml
+- config-java.json (artifactVersion and httpUserAgent)
+- src/main/java/io/digitalfemsa/Configuration.java
+- src/main/java/io/digitalfemsa/ApiClient.java
+- README.md (Maven, Gradle, and JAR name)
+
 {{#jersey2}}
 ## Usage
 

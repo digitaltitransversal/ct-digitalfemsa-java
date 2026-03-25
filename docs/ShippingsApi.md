@@ -16,7 +16,7 @@ All URIs are relative to *https://api.digitalfemsa.io*
 
 Create Shipping
 
-Create new shipping for an existing orden
+Creates a new shipping line for an existing order. The shipping line is added to the order identified by `id`. The response returns the created shipping line.
 
 ### Example
 
@@ -40,7 +40,7 @@ public class Example {
 
         ShippingsApi apiInstance = new ShippingsApi(defaultClient);
         String id = "6307a60c41de27127515a575"; // String | Identifier of the resource
-        ShippingRequest shippingRequest = new ShippingRequest(); // ShippingRequest | requested field for a shipping
+        ShippingRequest shippingRequest = new ShippingRequest(); // ShippingRequest | Request body for creating or updating a shipping line.
         String acceptLanguage = "es"; // String | Use for knowing which language to use
         String xChildCompanyId = "6441b6376b60c3a638da80af"; // String | In the case of a holding company, the company id of the child company to which will process the request.
         try {
@@ -63,7 +63,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| Identifier of the resource | |
-| **shippingRequest** | [**ShippingRequest**](ShippingRequest.md)| requested field for a shipping | |
+| **shippingRequest** | [**ShippingRequest**](ShippingRequest.md)| Request body for creating or updating a shipping line. | |
 | **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
 | **xChildCompanyId** | **String**| In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 
@@ -86,6 +86,7 @@ public class Example {
 | **200** | successful |  -  |
 | **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
+| **422** | parameter validation error |  -  |
 | **500** | internal server error |  -  |
 
 
@@ -95,7 +96,7 @@ public class Example {
 
 Delete Shipping
 
-Delete shipping
+Deletes an existing shipping line from an order. The shipping line identified by `shipping_id` belongs to the order identified by `id`.
 
 ### Example
 
@@ -166,7 +167,6 @@ public class Example {
 | **401** | authentication error |  -  |
 | **404** | not found entity |  -  |
 | **422** | parameter validation error |  -  |
-| **428** | Precondition Required |  -  |
 | **500** | internal server error |  -  |
 
 
@@ -176,7 +176,7 @@ public class Example {
 
 Update Shipping
 
-Update existing shipping for an existing orden
+Updates an existing shipping line for an order. The shipping line identified by `shipping_id` belongs to the order identified by `id`. Only the fields provided in the request body are updated.
 
 ### Example
 
@@ -201,7 +201,7 @@ public class Example {
         ShippingsApi apiInstance = new ShippingsApi(defaultClient);
         String id = "6307a60c41de27127515a575"; // String | Identifier of the resource
         String shippingId = "ship_lin_2tQ974hSHcsdeSZHG"; // String | identifier
-        ShippingRequest shippingRequest = new ShippingRequest(); // ShippingRequest | requested field for a shipping
+        ShippingRequest shippingRequest = new ShippingRequest(); // ShippingRequest | Request body for creating or updating a shipping line.
         String acceptLanguage = "es"; // String | Use for knowing which language to use
         String xChildCompanyId = "6441b6376b60c3a638da80af"; // String | In the case of a holding company, the company id of the child company to which will process the request.
         try {
@@ -225,7 +225,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**| Identifier of the resource | |
 | **shippingId** | **String**| identifier | |
-| **shippingRequest** | [**ShippingRequest**](ShippingRequest.md)| requested field for a shipping | |
+| **shippingRequest** | [**ShippingRequest**](ShippingRequest.md)| Request body for creating or updating a shipping line. | |
 | **acceptLanguage** | **String**| Use for knowing which language to use | [optional] [default to es] [enum: es, en] |
 | **xChildCompanyId** | **String**| In the case of a holding company, the company id of the child company to which will process the request. | [optional] |
 

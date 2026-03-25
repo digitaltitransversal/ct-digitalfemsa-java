@@ -13,24 +13,7 @@
 
 package io.digitalfemsa;
 
-import io.digitalfemsa.*;
-import io.digitalfemsa.auth.*;
-import io.digitalfemsa.model.Error;
-import io.digitalfemsa.model.GetOrdersResponse;
-import io.digitalfemsa.model.OrderCaptureRequest;
-import io.digitalfemsa.model.OrderRefundRequest;
-import io.digitalfemsa.model.OrderRequest;
-import io.digitalfemsa.model.OrderResponse;
-import io.digitalfemsa.model.OrderUpdateRequest;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for OrdersApi

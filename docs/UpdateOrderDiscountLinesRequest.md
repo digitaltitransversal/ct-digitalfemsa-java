@@ -10,7 +10,18 @@ List of discounts that apply to the order.
 |------------ | ------------- | ------------- | -------------|
 |**amount** | **Long** |  |  [optional] |
 |**code** | **String** | Discount code. |  [optional] |
-|**type** | **String** |  |  [optional] |
+|**type** | [**TypeEnum**](#TypeEnum) |  |  [optional] |
+
+
+
+## Enum: TypeEnum
+
+| Name | Value |
+|---- | -----|
+| LOYALTY | &quot;loyalty&quot; |
+| CAMPAIGN | &quot;campaign&quot; |
+| COUPON | &quot;coupon&quot; |
+| SIGN | &quot;sign&quot; |
 
 
 

@@ -1,5 +1,22 @@
 package io.digitalfemsa;
 
+import io.digitalfemsa.auth.ApiKeyAuth;
+import io.digitalfemsa.auth.Authentication;
+import io.digitalfemsa.auth.HttpBasicAuth;
+import io.digitalfemsa.auth.HttpBearerAuth;
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.client.ClientProperties;
+import org.glassfish.jersey.client.HttpUrlConnectorProvider;
+import org.glassfish.jersey.jackson.JacksonFeature;
+import org.glassfish.jersey.logging.LoggingFeature;
+import org.glassfish.jersey.media.multipart.FormDataBodyPart;
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.glassfish.jersey.media.multipart.MultiPart;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -10,58 +27,35 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-
-import org.glassfish.jersey.client.ClientConfig;
-import org.glassfish.jersey.client.ClientProperties;
-import org.glassfish.jersey.client.HttpUrlConnectorProvider;
-import org.glassfish.jersey.jackson.JacksonFeature;
-import org.glassfish.jersey.media.multipart.FormDataBodyPart;
-import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
-import org.glassfish.jersey.media.multipart.MultiPart;
-import org.glassfish.jersey.media.multipart.MultiPartFeature;
-
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-import java.security.cert.X509Certificate;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import org.glassfish.jersey.logging.LoggingFeature;
-import java.util.logging.Logger;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
+import java.text.DateFormat;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.stream.Collectors;
-import java.time.OffsetDateTime;
-
-import java.net.URLEncoder;
-
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-
-import java.text.DateFormat;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import io.digitalfemsa.auth.Authentication;
-import io.digitalfemsa.auth.HttpBasicAuth;
-import io.digitalfemsa.auth.HttpBearerAuth;
-import io.digitalfemsa.auth.ApiKeyAuth;
+import java.util.stream.Collectors;
 
 /**
  * <p>ApiClient class.</p>
@@ -83,7 +77,7 @@ public class ApiClient extends JavaTimeFormatter {
     userAgentFields.put("lang", "java");
     userAgentFields.put("lang_version", System.getProperty("java.version"));
     userAgentFields.put("uname", "\"" + System.getProperty("os.name") + " " + System.getProperty("os.version") + "\"");
-    userAgentFields.put("sdk_version", "1.1.2");
+    userAgentFields.put("sdk_version", "1.2.0");
 
     return userAgentFields.entrySet().stream()
         .filter(e -> e.getValue() != null && !e.getValue().isEmpty())
@@ -136,7 +130,7 @@ public class ApiClient extends JavaTimeFormatter {
     this.dateFormat = new RFC3339DateFormat();
 
     // Set default User-Agent.
-    setUserAgent("App/v2 JavaBindings/1.1.2");
+    setUserAgent("App/v2 JavaBindings/1.2.0");
 
     // Setup authentications (key: authentication name, value: authentication).
     authentications = new HashMap<>();

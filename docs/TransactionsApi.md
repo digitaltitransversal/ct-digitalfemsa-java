@@ -5,7 +5,7 @@ All URIs are relative to *https://api.digitalfemsa.io*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**getTransaction**](TransactionsApi.md#getTransaction) | **GET** /transactions/{id} | Get transaction |
-| [**getTransactions**](TransactionsApi.md#getTransactions) | **GET** /transactions | Get List transactions |
+| [**getTransactions**](TransactionsApi.md#getTransactions) | **GET** /transactions | List transactions |
 
 
 
@@ -15,7 +15,7 @@ All URIs are relative to *https://api.digitalfemsa.io*
 
 Get transaction
 
-Get the details of a transaction
+Retrieves the details of a transaction by its ID.
 
 ### Example
 
@@ -80,9 +80,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  |
+| **200** | successful |  -  |
 | **401** | authentication error |  -  |
-| **404** | authentication error |  -  |
+| **404** | not found entity |  -  |
 | **500** | internal server error |  -  |
 
 
@@ -90,9 +90,15 @@ public class Example {
 
 > GetTransactionsResponse getTransactions(acceptLanguage, xChildCompanyId, limit, next, previous, id, chargeId, type, currency)
 
-Get List transactions
+List transactions
 
-Get transaction details in the form of a list
+Returns a paginated list of transactions (ledger movements).
+
+A transaction is a movement that represents the financial impact of payment operations, including amounts, fees, and net values.
+Transactions can be linked to a charge and may be linked to a transfer (payout) when they are included in a payout.
+
+If you need payout-level information (destination, statement reference/description, payout status), use GET /transfers.
+
 
 ### Example
 
@@ -169,7 +175,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  |
+| **200** | successful operation |  -  |
 | **401** | authentication error |  -  |
 | **500** | internal server error |  -  |
 

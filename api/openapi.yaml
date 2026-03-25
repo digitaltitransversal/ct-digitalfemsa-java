@@ -18,7 +18,11 @@ security:
 paths:
   /api_keys:
     get:
-      description: Consume the list of api keys you have
+      description: |
+        Retrieves a paginated list of API keys for the authenticated account.
+
+        Use the pagination parameters (`limit`, `next_page`, `previous_page`) to navigate through results.
+        Use the `search` query parameter to perform a general search (for example by key `id` or description).
       operationId: getApiKeys
       parameters:
       - description: Use for knowing which language to use
@@ -93,14 +97,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/get_api_keys_response'
           description: successful
-          headers:
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -134,13 +130,17 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Get list of Api Keys
+      summary: List API keys
       tags:
       - Api Keys
       x-accepts:
       - application/vnd.app-v2.1.0+json
     post:
-      description: Create a api key
+      description: |
+        Creates a new API key.
+
+        The response includes an `authentication_token` that is shown only once (at creation time).
+        Copy and store it securely.
       operationId: createApiKey
       parameters:
       - description: Use for knowing which language to use
@@ -181,14 +181,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/api_key_create_response'
           description: successful operation
-          headers:
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -237,7 +229,7 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Create Api Key
+      summary: Create API key
       tags:
       - Api Keys
       x-content-type: application/json
@@ -557,7 +549,10 @@ paths:
       - application/vnd.app-v2.1.0+json
   /balance:
     get:
-      description: Get a company's balance
+      description: |
+        Retrieves the current balance information for the authenticated company.
+
+        Monetary fields are returned as arrays of amounts grouped by currency.
       operationId: getBalance
       parameters:
       - description: Use for knowing which language to use
@@ -585,36 +580,7 @@ paths:
             application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/balance_response'
-          description: successful
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
+          description: successful operation
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -629,6 +595,35 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: authentication error
+        "402":
+          content:
+            application/vnd.app-v2.1.0+json:
+              example:
+                details:
+                - message: The order could not be processed.
+                  code: femsa.errors.processing.order.used
+                  debug_message: The order has already been used.
+                log_id: 641b6d073cd9a50001515007
+                object: error
+                type: processing_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: payment required error
+        "422":
+          content:
+            application/vnd.app-v2.1.0+json:
+              example:
+                details:
+                - message: The name does not exist.
+                  param: payment_method.name
+                  code: femsa.errors.parameter_validation.payment_method.name.nonexistent_token
+                  debug_message: The name does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
         "500":
           content:
             application/vnd.app-v2.1.0+json:
@@ -655,6 +650,11 @@ paths:
       - application/vnd.app-v2.1.0+json
   /charges:
     get:
+      description: |
+        Retrieves a paginated list of charges for the authenticated account.
+
+        Use the pagination parameters (`limit`, `next_page`, `previous_page`) to navigate through results.
+        Use `search` to filter charges (for example by id or reference).
       operationId: getCharges
       parameters:
       - description: Use for knowing which language to use
@@ -698,14 +698,6 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - description: "General order search, e.g. by mail, reference etc."
-        explode: true
-        in: query
-        name: search
-        required: false
-        schema:
-          type: string
-        style: form
       - description: next page
         explode: true
         in: query
@@ -722,42 +714,35 @@ paths:
         schema:
           type: string
         style: form
+      - description: "General order search, e.g. by mail, reference etc."
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
             application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/get_charges_response'
-          description: successful
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
+          description: successful operation
+        "401":
+          content:
+            application/vnd.app-v2.1.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  param: null
+                  code: femsa.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
               schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
+                $ref: '#/components/schemas/error'
+          description: authentication error
         "422":
           content:
             application/vnd.app-v2.1.0+json:
@@ -791,13 +776,14 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Get A List of Charges
+      summary: List charges
       tags:
       - Charges
       x-accepts:
       - application/vnd.app-v2.1.0+json
   /charges/{id}:
     put:
+      description: Updates an existing charge. Only `reference_id` can be updated.
       operationId: updateCharge
       parameters:
       - description: Identifier of the resource
@@ -846,36 +832,7 @@ paths:
             application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/charge_response'
-          description: successful
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
+          description: successful operation
         "422":
           content:
             application/vnd.app-v2.1.0+json:
@@ -933,7 +890,13 @@ paths:
       - application/vnd.app-v2.1.0+json
   /orders/{id}/charges:
     post:
-      description: Create charge for an existing orden
+      description: |
+        Creates a new charge associated with an existing order.
+
+        Notes:
+        - The charge is created for the order identified by the path parameter `id`.
+        - Depending on the payment method, the charge may be created in a non-final status (for example, pending).
+        - If the order does not meet the required conditions, the API may respond with **428 Precondition Required**.
       operationId: ordersCreateCharge
       parameters:
       - description: Identifier of the resource
@@ -982,7 +945,7 @@ paths:
             application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/charge_order_response'
-          description: successful
+          description: successful operation
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -1013,6 +976,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: not found entity
+        "422":
+          content:
+            application/vnd.app-v2.1.0+json:
+              example:
+                details:
+                - message: The name does not exist.
+                  param: payment_method.name
+                  code: femsa.errors.parameter_validation.payment_method.name.nonexistent_token
+                  debug_message: The name does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
         "428":
           content:
             application/vnd.app-v2.1.0+json:
@@ -1049,7 +1027,7 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Create charge
+      summary: Create a charge for an order
       tags:
       - Charges
       x-content-type: application/json
@@ -1314,9 +1292,10 @@ paths:
       - application/vnd.app-v2.1.0+json
   /customers:
     get:
-      description: "The purpose of business is to create and maintain a client, you\
-        \ will learn what elements you need to obtain a list of clients, which can\
-        \ be paged."
+      description: |
+        Returns a paginated list of customers for the authenticated company.
+
+        Use the [search] parameter to filter results.
       operationId: getCustomers
       parameters:
       - description: Use for knowing which language to use
@@ -1391,145 +1370,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/customers_response'
           description: successful operation
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
-        "401":
-          content:
-            application/vnd.app-v2.1.0+json:
-              example:
-                details:
-                - message: Please include your access key in your request.
-                  param: null
-                  code: femsa.errors.authentication.missing_key
-                log_id: 507f1f77bcf86cd799439011
-                object: error
-                type: authentication_error
-              schema:
-                $ref: '#/components/schemas/error'
-          description: authentication error
-        "500":
-          content:
-            application/vnd.app-v2.1.0+json:
-              example:
-                details:
-                - debug_message: There was a runtime error and Femsa engineers have
-                    been notified.
-                  message: There was a runtime error and Femsa engineers have been
-                    notified.
-                  param: null
-                  code: femsa.errors.api.system.general_failure
-                object: error
-                type: api_error
-                log_id: 641b6f2b3cd9a50001515098
-              schema:
-                $ref: '#/components/schemas/error'
-          description: internal server error
-      security:
-      - bearerAuth: []
-      summary: Get a list of customers
-      tags:
-      - Customers
-      x-accepts:
-      - application/vnd.app-v2.1.0+json
-    post:
-      description: |
-        The purpose of business is to create and keep a customer, you will learn what elements you need to create a customer.
-      operationId: createCustomer
-      parameters:
-      - description: Use for knowing which language to use
-        examples:
-          es:
-            summary: for spanish request/response
-            value: es
-          en:
-            summary: for english request/response
-            value: en
-        explode: false
-        in: header
-        name: Accept-Language
-        required: false
-        schema:
-          default: es
-          enum:
-          - es
-          - en
-          type: string
-        style: simple
-      - description: "In the case of a holding company, the company id of the child\
-          \ company to which will process the request."
-        example: 6441b6376b60c3a638da80af
-        explode: false
-        in: header
-        name: X-Child-Company-Id
-        required: false
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        $ref: '#/components/requestBodies/customer'
-      responses:
-        "200":
-          content:
-            application/vnd.app-v2.1.0+json:
-              schema:
-                $ref: '#/components/schemas/customer_response'
-          description: successful operation
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -1592,7 +1432,120 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Create customer
+      summary: Get a list of customers
+      tags:
+      - Customers
+      x-accepts:
+      - application/vnd.app-v2.1.0+json
+    post:
+      description: |
+        Creates a new customer for the authenticated company.
+
+        Use customers to store and reuse buyer information (for example name, email, phone, and addresses).
+        The created customer can be referenced later when creating orders and other resources.
+      operationId: createCustomer
+      parameters:
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: "In the case of a holding company, the company id of the child\
+          \ company to which will process the request."
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/customer'
+      responses:
+        "200":
+          content:
+            application/vnd.app-v2.1.0+json:
+              schema:
+                $ref: '#/components/schemas/customer_response'
+          description: successful operation
+        "401":
+          content:
+            application/vnd.app-v2.1.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  param: null
+                  code: femsa.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        "402":
+          content:
+            application/vnd.app-v2.1.0+json:
+              example:
+                details:
+                - message: The order could not be processed.
+                  code: femsa.errors.processing.order.used
+                  debug_message: The order has already been used.
+                log_id: 641b6d073cd9a50001515007
+                object: error
+                type: processing_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: payment required error
+        "422":
+          content:
+            application/vnd.app-v2.1.0+json:
+              example:
+                details:
+                - message: The name does not exist.
+                  param: payment_method.name
+                  code: femsa.errors.parameter_validation.payment_method.name.nonexistent_token
+                  debug_message: The name does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
+        "500":
+          content:
+            application/vnd.app-v2.1.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Femsa engineers have
+                    been notified.
+                  message: There was a runtime error and Femsa engineers have been
+                    notified.
+                  param: null
+                  code: femsa.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Create a customer
       tags:
       - Customers
       x-content-type: application/json
@@ -1941,7 +1894,7 @@ paths:
       - application/vnd.app-v2.1.0+json
   /customers/{id}/fiscal_entities:
     post:
-      description: Create Fiscal entity resource that corresponds to a customer ID.
+      description: Create a fiscal entity resource for a given customer ID.
       operationId: CreateCustomerFiscalEntities
       parameters:
       - description: Identifier of the resource
@@ -2186,7 +2139,7 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Update  Fiscal Entity
+      summary: Update Fiscal Entity
       tags:
       - Customers
       x-content-type: application/json
@@ -2194,7 +2147,7 @@ paths:
       - application/vnd.app-v2.1.0+json
   /orders/{id}/discount_lines:
     get:
-      description: Get discount lines for an existing orden
+      description: Get discount lines for an existing order
       operationId: ordersGetDiscountLines
       parameters:
       - description: Identifier of the resource
@@ -2311,13 +2264,13 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Get a List of Discount
+      summary: Get a List of Discounts
       tags:
       - Discounts
       x-accepts:
       - application/vnd.app-v2.1.0+json
     post:
-      description: Create discount lines for an existing orden
+      description: Create discount lines for an existing order
       operationId: ordersCreateDiscountLine
       parameters:
       - description: Identifier of the resource
@@ -2424,7 +2377,7 @@ paths:
       - application/vnd.app-v2.1.0+json
   /orders/{id}/discount_lines/{discount_lines_id}:
     delete:
-      description: Delete an existing discount lines for an existing orden
+      description: Delete an existing discount line for an existing order
       operationId: ordersDeleteDiscountLines
       parameters:
       - description: Identifier of the resource
@@ -2551,7 +2504,7 @@ paths:
       x-accepts:
       - application/vnd.app-v2.1.0+json
     get:
-      description: Get an existing discount lines for an existing orden
+      description: Get an existing discount line for an existing order
       operationId: ordersGetDiscountLine
       parameters:
       - description: Identifier of the resource
@@ -2638,21 +2591,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: not found entity
-        "422":
-          content:
-            application/vnd.app-v2.1.0+json:
-              example:
-                details:
-                - message: The name does not exist.
-                  param: payment_method.name
-                  code: femsa.errors.parameter_validation.payment_method.name.nonexistent_token
-                  debug_message: The name does not exist.
-                log_id: 641b6d813cd9a50001515017
-                object: error
-                type: parameter_validation_error
-              schema:
-                $ref: '#/components/schemas/error'
-          description: parameter validation error
         "500":
           content:
             application/vnd.app-v2.1.0+json:
@@ -2678,7 +2616,7 @@ paths:
       x-accepts:
       - application/vnd.app-v2.1.0+json
     put:
-      description: Update an existing discount lines for an existing orden
+      description: Update an existing discount line for an existing order
       operationId: ordersUpdateDiscountLines
       parameters:
       - description: Identifier of the resource
@@ -2883,35 +2821,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/get_events_response'
           description: successful
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -2952,7 +2861,9 @@ paths:
       - application/vnd.app-v2.1.0+json
   /events/{id}:
     get:
-      description: Returns a single event
+      description: |
+        Returns a single event by its ID, including its payload (`data`) and webhook delivery information.
+        The `webhook_status` indicates whether webhook notifications were applicable and their overall status. The [webhook_logs]) array contains delivery attempts (it can be empty when webhook notifications are not applicable or no attempts were created).
       operationId: getEvent
       parameters:
       - description: Use for knowing which language to use
@@ -3000,35 +2911,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/event_response'
           description: successful
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -3085,7 +2967,9 @@ paths:
       - application/vnd.app-v2.1.0+json
   /events/{event_id}/webhook_logs/{webhook_log_id}/resend:
     post:
-      description: Try to send an event
+      description: |
+        Triggers a new delivery attempt for a specific webhook log associated with the given event.
+        Use this endpoint to retry failed webhook deliveries (for example, non-2xx responses or timeouts). The response returns the updated webhook log with the latest attempt metadata.
       operationId: resendEvent
       parameters:
       - description: event identifier
@@ -3188,7 +3072,9 @@ paths:
       - application/vnd.app-v2.1.0+json
   /logs:
     get:
-      description: Get log details in the form of a list
+      description: |
+        Returns a paginated list of logs generated by the platform. Logs can be used for troubleshooting and auditing requests and internal operations.
+        Use pagination parameters to navigate through results, and `search` to filter by supported criteria.
       operationId: getLogs
       parameters:
       - description: Use for knowing which language to use
@@ -3262,36 +3148,7 @@ paths:
             application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/logs_response'
-          description: successful
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
+          description: successful operation
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -3436,7 +3293,9 @@ paths:
       - application/vnd.app-v2.1.0+json
   /orders:
     get:
-      description: Get order details in the form of a list
+      description: |
+        Returns a paginated list of orders created in your account.
+        Use pagination parameters to navigate through results, and `search` to filter by supported criteria.
       operationId: getOrders
       parameters:
       - description: Use for knowing which language to use
@@ -3550,7 +3409,26 @@ paths:
       x-accepts:
       - application/vnd.app-v2.1.0+json
     post:
-      description: Create a new order.
+      description: |
+        Creates a new order (products + amounts + customer data).
+
+        Minimum required fields:
+        - `currency`
+        - `line_items`
+        - `customer_info`
+
+        About `customer_info`:
+        - You can reference an existing customer using `customer_info.customer_id`, or
+        - You can provide customer details at minimum `customer_info.name` and `customer_info.email` to create the order with customer context.
+
+        How to create the order:
+        - Create an order only (no payment): send only the order data.
+        - Create an order and create the first payment charge: include `charges`.
+        - Create an order with a checkout configuration (for a hosted payment flow): include `checkout`.
+
+        Important rules:
+        - You cannot send `charges` and `checkout` in the same request (they are mutually exclusive).
+        - If you send `shipping_contact_id` and/or `fiscal_entity_id`, you must also send `customer_info.customer_id` so the API can validate those IDs against that customer.
       operationId: createOrder
       parameters:
       - description: Use for knowing which language to use
@@ -3594,21 +3472,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/order_response'
           description: successful operation
-        "422":
-          content:
-            application/vnd.app-v2.1.0+json:
-              example:
-                details:
-                - message: The name does not exist.
-                  param: payment_method.name
-                  code: femsa.errors.parameter_validation.payment_method.name.nonexistent_token
-                  debug_message: The name does not exist.
-                log_id: 641b6d813cd9a50001515017
-                object: error
-                type: parameter_validation_error
-              schema:
-                $ref: '#/components/schemas/error'
-          description: parameter validation error
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -3637,6 +3500,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: payment required error
+        "422":
+          content:
+            application/vnd.app-v2.1.0+json:
+              example:
+                details:
+                - message: The name does not exist.
+                  param: payment_method.name
+                  code: femsa.errors.parameter_validation.payment_method.name.nonexistent_token
+                  debug_message: The name does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
         "500":
           content:
             application/vnd.app-v2.1.0+json:
@@ -3664,7 +3542,10 @@ paths:
       - application/vnd.app-v2.1.0+json
   /orders/{id}:
     get:
-      description: Info for a specific order
+      description: "Returns the full details of an Order by its ID. The response follows\
+        \ the standard Order representation, including nested previews (for example\
+        \ `charges`, `line_items`, `shipping_lines`, `tax_lines`, and `discount_lines`)\
+        \ when available."
       operationId: getOrderById
       parameters:
       - description: Identifier of the resource
@@ -3711,7 +3592,7 @@ paths:
             application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/order_response'
-          description: successful
+          description: successful operation
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -3767,7 +3648,12 @@ paths:
       x-accepts:
       - application/vnd.app-v2.1.0+json
     put:
-      description: Update an existing Order.
+      description: |
+        Updates an existing order by its ID.
+
+        Orders are the central resource in the API. Updating an order may also update related order sub-resources when they are included in the request payload, according to server-side validations.
+
+        Only fields supported by the API can be modified.
       operationId: updateOrder
       parameters:
       - description: Identifier of the resource
@@ -3806,7 +3692,7 @@ paths:
             application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/order_response'
-          description: successful
+          description: successful operation
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -3871,7 +3757,7 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Update Order
+      summary: Update order
       tags:
       - Orders
       x-content-type: application/json
@@ -3879,7 +3765,10 @@ paths:
       - application/vnd.app-v2.1.0+json
   /orders/{id}/cancel:
     post:
-      description: Cancel an order that has been previously created.
+      description: "Cancels an existing order. This operation marks the order as cancelled\
+        \ and prevents further processing depending on its current state. If the order\
+        \ cannot be cancelled (for example, due to its status or related charge constraints),\
+        \ the API returns an error response."
       operationId: CancelOrder
       parameters:
       - description: Identifier of the resource
@@ -3926,7 +3815,7 @@ paths:
             application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/order_response'
-          description: successful
+          description: Successful operation
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -4014,7 +3903,10 @@ paths:
       - application/vnd.app-v2.1.0+json
   /orders/{id}/capture:
     post:
-      description: Processes an order that has been previously authorized.
+      description: Captures (finalizes) an order that has been previously authorized.
+        Use this endpoint to capture a specific amount. The captured amount must be
+        greater than 0 and must comply with the order and charge constraints enforced
+        by the API.
       operationId: ordersCreateCapture
       parameters:
       - description: Identifier of the resource
@@ -4060,14 +3952,14 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/order_capture_request'
-        description: requested fields for capture order
+        description: Requested fields for capturing an order
       responses:
         "200":
           content:
             application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/order_response'
-          description: successful
+          description: successful operation
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -4132,8 +4024,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: internal server error
-      security:
-      - bearerAuth: []
       summary: Capture Order
       tags:
       - Orders
@@ -4142,7 +4032,8 @@ paths:
       - application/vnd.app-v2.1.0+json
   /orders/{id}/line_items:
     post:
-      description: Create a new product for an existing order.
+      description: Creates a new product (line item) for an existing order. Use this
+        endpoint to add an additional item to the order after it has been created.
       operationId: ordersCreateProduct
       parameters:
       - description: Identifier of the resource
@@ -4191,7 +4082,7 @@ paths:
             application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/product_order_response'
-          description: successful
+          description: Successful operation
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -4249,7 +4140,8 @@ paths:
       - application/vnd.app-v2.1.0+json
   /orders/{id}/line_items/{line_item_id}:
     delete:
-      description: Delete product for an existing orden
+      description: Deletes a product (line item) from an existing order. The API will
+        validate whether the order can be modified before removing the item.
       operationId: ordersDeleteProduct
       parameters:
       - description: Identifier of the resource
@@ -4305,7 +4197,7 @@ paths:
             application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/product_order_response'
-          description: successful
+          description: successful operation
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -4320,21 +4212,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: authentication error
-        "422":
-          content:
-            application/vnd.app-v2.1.0+json:
-              example:
-                details:
-                - message: The name does not exist.
-                  param: payment_method.name
-                  code: femsa.errors.parameter_validation.payment_method.name.nonexistent_token
-                  debug_message: The name does not exist.
-                log_id: 641b6d813cd9a50001515017
-                object: error
-                type: parameter_validation_error
-              schema:
-                $ref: '#/components/schemas/error'
-          description: parameter validation error
         "404":
           content:
             application/vnd.app-v2.1.0+json:
@@ -4351,6 +4228,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: not found entity
+        "422":
+          content:
+            application/vnd.app-v2.1.0+json:
+              example:
+                details:
+                - message: The name does not exist.
+                  param: payment_method.name
+                  code: femsa.errors.parameter_validation.payment_method.name.nonexistent_token
+                  debug_message: The name does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
         "500":
           content:
             application/vnd.app-v2.1.0+json:
@@ -4376,7 +4268,8 @@ paths:
       x-accepts:
       - application/vnd.app-v2.1.0+json
     put:
-      description: Update an existing product for an existing orden
+      description: Updates an existing product (line item) for an existing order.
+        Use this endpoint to modify the details of a specific line item in the order.
       operationId: ordersUpdateProduct
       parameters:
       - description: Identifier of the resource
@@ -4434,7 +4327,7 @@ paths:
             application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/product_order_response'
-          description: successful
+          description: successful operation
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -4449,21 +4342,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: authentication error
-        "422":
-          content:
-            application/vnd.app-v2.1.0+json:
-              example:
-                details:
-                - message: The name does not exist.
-                  param: payment_method.name
-                  code: femsa.errors.parameter_validation.payment_method.name.nonexistent_token
-                  debug_message: The name does not exist.
-                log_id: 641b6d813cd9a50001515017
-                object: error
-                type: parameter_validation_error
-              schema:
-                $ref: '#/components/schemas/error'
-          description: parameter validation error
         "404":
           content:
             application/vnd.app-v2.1.0+json:
@@ -4480,6 +4358,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: not found entity
+        "422":
+          content:
+            application/vnd.app-v2.1.0+json:
+              example:
+                details:
+                - message: The name does not exist.
+                  param: payment_method.name
+                  code: femsa.errors.parameter_validation.payment_method.name.nonexistent_token
+                  debug_message: The name does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
         "500":
           content:
             application/vnd.app-v2.1.0+json:
@@ -4507,8 +4400,11 @@ paths:
       - application/vnd.app-v2.1.0+json
   /orders/{id}/refunds:
     post:
-      description: "A refunded order describes the items, amount, and reason an order\
-        \ is being refunded."
+      description: "Creates a refund for an order. This operation is used to refund\
+        \ a previously paid order (fully or partially, depending on the request body).\
+        \ The API will validate the order and its related charges before processing\
+        \ the refund. If the refund cannot be created due to business rules or state,\
+        \ an error response is returned."
       operationId: orderRefund
       parameters:
       - description: Identifier of the resource
@@ -4557,7 +4453,7 @@ paths:
             application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/order_response'
-          description: successful
+          description: successful operation
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -4644,8 +4540,10 @@ paths:
       - application/vnd.app-v2.1.0+json
   /orders/{id}/refunds/{refund_id}:
     delete:
-      description: "A refunded order describes the items, amount, and reason an order\
-        \ is being refunded."
+      description: "Cancels a refund previously created for an order. This operation\
+        \ is only available when the refund is still cancellable according to its\
+        \ current status and the payment method rules. If the refund cannot be cancelled,\
+        \ the API returns an error response."
       operationId: orderCancelRefund
       parameters:
       - description: Identifier of the resource
@@ -4701,7 +4599,7 @@ paths:
             application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/order_response'
-          description: successful
+          description: successful operation
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -4787,7 +4685,8 @@ paths:
       - application/vnd.app-v2.1.0+json
   /checkouts:
     get:
-      description: Returns a list of links generated by the merchant
+      description: Returns a paginated list of payment links created by the merchant.
+        Results can be navigated using the pagination parameters.
       operationId: getCheckouts
       parameters:
       - description: Use for knowing which language to use
@@ -4862,35 +4761,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/checkouts_response'
           description: successful operation
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -4959,6 +4829,12 @@ paths:
       x-accepts:
       - application/vnd.app-v2.1.0+json
     post:
+      description: "Creates a Payment Link: a shareable URL that lets your customer\
+        \ pay without you building a custom checkout. Configure the link type, allowed\
+        \ payment methods, and expiration. The request also includes an order_template\
+        \ (currency and line items) used to generate an Order when the customer completes\
+        \ a payment. Use recurrent=false for a single-use link, or recurrent=true\
+        \ to allow multiple payments (limited by payments_limit_count)."
       operationId: createCheckout
       parameters:
       - description: Use for knowing which language to use
@@ -4999,35 +4875,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/checkout_response'
           description: successful operation
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -5090,7 +4937,7 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Create Unique Payment Link
+      summary: Create Payment Link
       tags:
       - Payment Link
       x-content-type: application/json
@@ -5098,8 +4945,18 @@ paths:
       - application/vnd.app-v2.1.0+json
   /checkouts/{id}:
     get:
+      description: Retrieves the details of a checkout by its ID.
       operationId: getCheckout
       parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
       - description: Use for knowing which language to use
         examples:
           es:
@@ -5129,15 +4986,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Identifier of the resource
-        example: 6307a60c41de27127515a575
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
       responses:
         "200":
           content:
@@ -5145,35 +4993,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/checkout_response'
           description: successful operation
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -5218,21 +5037,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: not found entity
-        "422":
-          content:
-            application/vnd.app-v2.1.0+json:
-              example:
-                details:
-                - message: The name does not exist.
-                  param: payment_method.name
-                  code: femsa.errors.parameter_validation.payment_method.name.nonexistent_token
-                  debug_message: The name does not exist.
-                log_id: 641b6d813cd9a50001515017
-                object: error
-                type: parameter_validation_error
-              schema:
-                $ref: '#/components/schemas/error'
-          description: parameter validation error
         "500":
           content:
             application/vnd.app-v2.1.0+json:
@@ -5259,6 +5063,10 @@ paths:
       - application/vnd.app-v2.1.0+json
   /checkouts/{id}/cancel:
     put:
+      description: "Cancels an existing payment link. After cancellation, the link\
+        \ can no longer be used to generate new payments. This operation is idempotent:\
+        \ cancelling an already cancelled payment link returns the current resource\
+        \ representation."
       operationId: cancelCheckout
       parameters:
       - description: Use for knowing which language to use
@@ -5306,35 +5114,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/checkout_response'
           description: successful operation
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -5469,35 +5248,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/checkout_response'
           description: successful operation
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -5577,170 +5327,6 @@ paths:
       security:
       - bearerAuth: []
       summary: Send an email
-      tags:
-      - Payment Link
-      x-content-type: application/json
-      x-accepts:
-      - application/vnd.app-v2.1.0+json
-  /checkouts/{id}/sms:
-    post:
-      operationId: smsCheckout
-      parameters:
-      - description: Use for knowing which language to use
-        examples:
-          es:
-            summary: for spanish request/response
-            value: es
-          en:
-            summary: for english request/response
-            value: en
-        explode: false
-        in: header
-        name: Accept-Language
-        required: false
-        schema:
-          default: es
-          enum:
-          - es
-          - en
-          type: string
-        style: simple
-      - description: "In the case of a holding company, the company id of the child\
-          \ company to which will process the request."
-        example: 6441b6376b60c3a638da80af
-        explode: false
-        in: header
-        name: X-Child-Company-Id
-        required: false
-        schema:
-          type: string
-        style: simple
-      - description: Identifier of the resource
-        example: 6307a60c41de27127515a575
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        $ref: '#/components/requestBodies/checkout_sms'
-      responses:
-        "200":
-          content:
-            application/vnd.app-v2.1.0+json:
-              schema:
-                $ref: '#/components/schemas/checkout_response'
-          description: successful operation
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
-        "401":
-          content:
-            application/vnd.app-v2.1.0+json:
-              example:
-                details:
-                - message: Please include your access key in your request.
-                  param: null
-                  code: femsa.errors.authentication.missing_key
-                log_id: 507f1f77bcf86cd799439011
-                object: error
-                type: authentication_error
-              schema:
-                $ref: '#/components/schemas/error'
-          description: authentication error
-        "402":
-          content:
-            application/vnd.app-v2.1.0+json:
-              example:
-                details:
-                - message: The order could not be processed.
-                  code: femsa.errors.processing.order.used
-                  debug_message: The order has already been used.
-                log_id: 641b6d073cd9a50001515007
-                object: error
-                type: processing_error
-              schema:
-                $ref: '#/components/schemas/error'
-          description: payment required error
-        "404":
-          content:
-            application/vnd.app-v2.1.0+json:
-              example:
-                details:
-                - message: The resource was not found.
-                  param: null
-                  code: femsa.errors.resource_not_found.entity
-                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could
-                    not be found.
-                log_id: 641b6c253cd9a50001514fae
-                object: error
-                type: resource_not_found_error
-              schema:
-                $ref: '#/components/schemas/error'
-          description: not found entity
-        "422":
-          content:
-            application/vnd.app-v2.1.0+json:
-              example:
-                details:
-                - message: The name does not exist.
-                  param: payment_method.name
-                  code: femsa.errors.parameter_validation.payment_method.name.nonexistent_token
-                  debug_message: The name does not exist.
-                log_id: 641b6d813cd9a50001515017
-                object: error
-                type: parameter_validation_error
-              schema:
-                $ref: '#/components/schemas/error'
-          description: parameter validation error
-        "500":
-          content:
-            application/vnd.app-v2.1.0+json:
-              example:
-                details:
-                - debug_message: There was a runtime error and Femsa engineers have
-                    been notified.
-                  message: There was a runtime error and Femsa engineers have been
-                    notified.
-                  param: null
-                  code: femsa.errors.api.system.general_failure
-                object: error
-                type: api_error
-                log_id: 641b6f2b3cd9a50001515098
-              schema:
-                $ref: '#/components/schemas/error'
-          description: internal server error
-      security:
-      - bearerAuth: []
-      summary: Send an sms
       tags:
       - Payment Link
       x-content-type: application/json
@@ -5887,7 +5473,9 @@ paths:
       x-accepts:
       - application/vnd.app-v2.1.0+json
     post:
-      description: Create a payment method for a customer.
+      description: Creates a new payment method for a customer. The payment method
+        is associated with the customer identified by `id`. The accepted fields depend
+        on the payment method `type`.
       operationId: CreateCustomerPaymentMethods
       parameters:
       - description: Identifier of the resource
@@ -6009,7 +5597,8 @@ paths:
       - application/vnd.app-v2.1.0+json
   /customers/{id}/payment_sources/{payment_method_id}:
     delete:
-      description: Delete an existing payment method
+      description: "Deletes a specific payment method of a customer. After deletion,\
+        \ the payment method can no longer be used for future payments."
       operationId: DeleteCustomerPaymentMethods
       parameters:
       - description: Identifier of the resource
@@ -6136,7 +5725,10 @@ paths:
       x-accepts:
       - application/vnd.app-v2.1.0+json
     put:
-      description: Gets a payment Method that corresponds to a customer ID.
+      description: Updates a specific payment method of a customer. Use this endpoint
+        to modify the payment method identified by `payment_method_id` for the customer
+        identified by `id`. The fields that can be updated depend on the payment method
+        `type`.
       operationId: UpdateCustomerPaymentMethods
       parameters:
       - description: Identifier of the resource
@@ -6267,7 +5859,9 @@ paths:
       - application/vnd.app-v2.1.0+json
   /orders/{id}/shipping_lines:
     post:
-      description: Create new shipping for an existing orden
+      description: Creates a new shipping line for an existing order. The shipping
+        line is added to the order identified by `id`. The response returns the created
+        shipping line.
       operationId: ordersCreateShipping
       parameters:
       - description: Identifier of the resource
@@ -6315,7 +5909,7 @@ paths:
           content:
             application/vnd.app-v2.1.0+json:
               examples:
-                sucessfull:
+                successful:
                   $ref: '#/components/examples/shipping'
               schema:
                 $ref: '#/components/schemas/shipping_order_response'
@@ -6350,6 +5944,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: not found entity
+        "422":
+          content:
+            application/vnd.app-v2.1.0+json:
+              example:
+                details:
+                - message: The name does not exist.
+                  param: payment_method.name
+                  code: femsa.errors.parameter_validation.payment_method.name.nonexistent_token
+                  debug_message: The name does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
         "500":
           content:
             application/vnd.app-v2.1.0+json:
@@ -6377,7 +5986,8 @@ paths:
       - application/vnd.app-v2.1.0+json
   /orders/{id}/shipping_lines/{shipping_id}:
     delete:
-      description: Delete shipping
+      description: Deletes an existing shipping line from an order. The shipping line
+        identified by `shipping_id` belongs to the order identified by `id`.
       operationId: ordersDeleteShipping
       parameters:
       - description: Identifier of the resource
@@ -6479,23 +6089,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: parameter validation error
-        "428":
-          content:
-            application/vnd.app-v2.1.0+json:
-              example:
-                details:
-                - debug_message: The order cannot be modified because it has already
-                    a charge which is pending payment.
-                  message: The order cannot be modified because it has already a charge
-                    which is pending payment.
-                  param: null
-                  code: femsa.errors.precondition_required.combo.order.cannot_be_updated_because_has_charge
-                log_id: 641b6e233cd9a50001515039
-                object: error
-                type: precondition_required_error
-              schema:
-                $ref: '#/components/schemas/error'
-          description: Precondition Required
         "500":
           content:
             application/vnd.app-v2.1.0+json:
@@ -6521,7 +6114,9 @@ paths:
       x-accepts:
       - application/vnd.app-v2.1.0+json
     put:
-      description: Update existing shipping for an existing orden
+      description: Updates an existing shipping line for an order. The shipping line
+        identified by `shipping_id` belongs to the order identified by `id`. Only
+        the fields provided in the request body are updated.
       operationId: ordersUpdateShipping
       parameters:
       - description: Identifier of the resource
@@ -6652,7 +6247,8 @@ paths:
       - application/vnd.app-v2.1.0+json
   /customers/{id}/shipping_contacts:
     post:
-      description: Create a shipping contacts for a customer.
+      description: Creates a new shipping contact for a customer. The shipping contact
+        is associated with the customer identified by `id`.
       operationId: CreateCustomerShippingContacts
       parameters:
       - description: Identifier of the resource
@@ -6766,7 +6362,7 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Create a shipping contacts
+      summary: Create a shipping contact
       tags:
       - Shipping Contacts
       x-content-type: application/json
@@ -7032,7 +6628,8 @@ paths:
       - application/vnd.app-v2.1.0+json
   /orders/{id}/tax_lines:
     post:
-      description: Create new taxes for an existing orden
+      description: Creates a new tax line for an existing order. The tax line is added
+        to the order identified by `id`. The response returns the created tax line.
       operationId: ordersCreateTaxes
       parameters:
       - description: Identifier of the resource
@@ -7112,6 +6709,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: not found entity
+        "422":
+          content:
+            application/vnd.app-v2.1.0+json:
+              example:
+                details:
+                - message: The name does not exist.
+                  param: payment_method.name
+                  code: femsa.errors.parameter_validation.payment_method.name.nonexistent_token
+                  debug_message: The name does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
         "500":
           content:
             application/vnd.app-v2.1.0+json:
@@ -7139,7 +6751,9 @@ paths:
       - application/vnd.app-v2.1.0+json
   /orders/{id}/tax_lines/{tax_id}:
     delete:
-      description: Delete taxes for an existing orden
+      description: "Deletes an existing tax line from an order. The tax line identified\
+        \ by `tax_id` belongs to the order identified by `id`. The response includes\
+        \ the deleted resource with `deleted: true`."
       operationId: ordersDeleteTaxes
       parameters:
       - description: Identifier of the resource
@@ -7210,21 +6824,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: authentication error
-        "422":
-          content:
-            application/vnd.app-v2.1.0+json:
-              example:
-                details:
-                - message: The name does not exist.
-                  param: payment_method.name
-                  code: femsa.errors.parameter_validation.payment_method.name.nonexistent_token
-                  debug_message: The name does not exist.
-                log_id: 641b6d813cd9a50001515017
-                object: error
-                type: parameter_validation_error
-              schema:
-                $ref: '#/components/schemas/error'
-          description: parameter validation error
         "404":
           content:
             application/vnd.app-v2.1.0+json:
@@ -7241,6 +6840,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: not found entity
+        "422":
+          content:
+            application/vnd.app-v2.1.0+json:
+              example:
+                details:
+                - message: The name does not exist.
+                  param: payment_method.name
+                  code: femsa.errors.parameter_validation.payment_method.name.nonexistent_token
+                  debug_message: The name does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
         "500":
           content:
             application/vnd.app-v2.1.0+json:
@@ -7266,7 +6880,9 @@ paths:
       x-accepts:
       - application/vnd.app-v2.1.0+json
     put:
-      description: Update taxes for an existing orden
+      description: Updates an existing tax line for an order. The tax line identified
+        by `tax_id` belongs to the order identified by `id`. Only the fields provided
+        in the request body are updated.
       operationId: ordersUpdateTaxes
       parameters:
       - description: Identifier of the resource
@@ -7339,21 +6955,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: authentication error
-        "422":
-          content:
-            application/vnd.app-v2.1.0+json:
-              example:
-                details:
-                - message: The name does not exist.
-                  param: payment_method.name
-                  code: femsa.errors.parameter_validation.payment_method.name.nonexistent_token
-                  debug_message: The name does not exist.
-                log_id: 641b6d813cd9a50001515017
-                object: error
-                type: parameter_validation_error
-              schema:
-                $ref: '#/components/schemas/error'
-          description: parameter validation error
         "404":
           content:
             application/vnd.app-v2.1.0+json:
@@ -7370,6 +6971,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: not found entity
+        "422":
+          content:
+            application/vnd.app-v2.1.0+json:
+              example:
+                details:
+                - message: The name does not exist.
+                  param: payment_method.name
+                  code: femsa.errors.parameter_validation.payment_method.name.nonexistent_token
+                  debug_message: The name does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
         "500":
           content:
             application/vnd.app-v2.1.0+json:
@@ -7397,7 +7013,13 @@ paths:
       - application/vnd.app-v2.1.0+json
   /transactions:
     get:
-      description: Get transaction details in the form of a list
+      description: |
+        Returns a paginated list of transactions (ledger movements).
+
+        A transaction is a movement that represents the financial impact of payment operations, including amounts, fees, and net values.
+        Transactions can be linked to a charge and may be linked to a transfer (payout) when they are included in a payout.
+
+        If you need payout-level information (destination, statement reference/description, payout status), use GET /transfers.
       operationId: getTransactions
       parameters:
       - description: Use for knowing which language to use
@@ -7499,36 +7121,7 @@ paths:
             application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/get_transactions_response'
-          description: successful
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
+          description: successful operation
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -7562,14 +7155,14 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Get List transactions
+      summary: List transactions
       tags:
       - Transactions
       x-accepts:
       - application/vnd.app-v2.1.0+json
   /transactions/{id}:
     get:
-      description: Get the details of a transaction
+      description: Retrieves the details of a transaction by its ID.
       operationId: getTransaction
       parameters:
       - description: Use for knowing which language to use
@@ -7617,35 +7210,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/transaction_response'
           description: successful
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -7665,15 +7229,17 @@ paths:
             application/vnd.app-v2.1.0+json:
               example:
                 details:
-                - message: Please include your access key in your request.
+                - message: The resource was not found.
                   param: null
-                  code: femsa.errors.authentication.missing_key
-                log_id: 507f1f77bcf86cd799439011
+                  code: femsa.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could
+                    not be found.
+                log_id: 641b6c253cd9a50001514fae
                 object: error
-                type: authentication_error
+                type: resource_not_found_error
               schema:
                 $ref: '#/components/schemas/error'
-          description: authentication error
+          description: not found entity
         "500":
           content:
             application/vnd.app-v2.1.0+json:
@@ -7700,7 +7266,13 @@ paths:
       - application/vnd.app-v2.1.0+json
   /transfers:
     get:
-      description: Get transfers details in the form of a list
+      description: |
+        Returns a paginated list of transfers (payouts/dispersions).
+
+        A transfer represents a payout of funds to the merchant (where the money is sent and the payout status).
+        Transfers typically aggregate multiple transactions.
+
+        If you need movement-level details (amount/fee/net per operation) or to reconcile charges, use GET /transactions.
       operationId: getTransfers
       parameters:
       - description: Use for knowing which language to use
@@ -7775,35 +7347,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/get_transfers_response'
           description: successful
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -7837,14 +7380,14 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Get a list of transfers
+      summary: List transfers
       tags:
       - Transfers
       x-accepts:
       - application/vnd.app-v2.1.0+json
   /transfers/{id}:
     get:
-      description: Get the details of a Transfer
+      description: Retrieves the details of a transfer by its ID.
       operationId: getTransfer
       parameters:
       - description: Use for knowing which language to use
@@ -7891,51 +7434,8 @@ paths:
             application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/transfer_response'
-          description: successful
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
+          description: successful operation
         "401":
-          content:
-            application/vnd.app-v2.1.0+json:
-              example:
-                details:
-                - message: Please include your access key in your request.
-                  param: null
-                  code: femsa.errors.authentication.missing_key
-                log_id: 507f1f77bcf86cd799439011
-                object: error
-                type: authentication_error
-              schema:
-                $ref: '#/components/schemas/error'
-          description: authentication error
-        "404":
           content:
             application/vnd.app-v2.1.0+json:
               example:
@@ -7968,7 +7468,7 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Get Transfer
+      summary: Get transfer
       tags:
       - Transfers
       x-accepts:
@@ -8049,36 +7549,7 @@ paths:
             application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/get_webhook_keys_response'
-          description: successful
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
+          description: successful operation
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -8118,7 +7589,7 @@ paths:
       x-accepts:
       - application/vnd.app-v2.1.0+json
     post:
-      description: Create a webhook key
+      description: Creates a new webhook signing key for the current company.
       operationId: createWebhookKey
       parameters:
       - description: Use for knowing which language to use
@@ -8193,6 +7664,7 @@ paths:
       - application/vnd.app-v2.1.0+json
   /webhook_keys/{id}:
     delete:
+      description: Deletes a webhook signing key.
       operationId: deleteWebhookKey
       parameters:
       - description: Identifier of the resource
@@ -8230,35 +7702,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/webhook-key_delete_response'
           description: successful
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -8308,12 +7751,13 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Delete Webhook key
+      summary: Delete webhook key
       tags:
       - Webhook keys
       x-accepts:
       - application/vnd.app-v2.1.0+json
     get:
+      description: Retrieves the details of a webhook signing key by its ID.
       operationId: getWebhookKey
       parameters:
       - description: Identifier of the resource
@@ -8360,36 +7804,7 @@ paths:
             application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/webhook-key_response'
-          description: successful
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
+          description: successful operation
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -8439,13 +7854,13 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Get Webhook Key
+      summary: Get webhook key
       tags:
       - Webhook keys
       x-accepts:
       - application/vnd.app-v2.1.0+json
     put:
-      description: updates an existing webhook key
+      description: Activates or deactivates an existing webhook signing key.
       operationId: updateWebhookKey
       parameters:
       - description: Identifier of the resource
@@ -8537,7 +7952,7 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Update Webhook Key
+      summary: Update webhook key
       tags:
       - Webhook keys
       x-content-type: application/json
@@ -8774,6 +8189,7 @@ paths:
       - application/vnd.app-v2.1.0+json
   /webhooks/{id}:
     delete:
+      description: Deletes a webhook.
       operationId: deleteWebhook
       parameters:
       - description: Identifier of the resource
@@ -8811,35 +8227,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/webhook_response'
           description: successful
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -8889,12 +8276,13 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Delete Webhook
+      summary: Delete webhook
       tags:
       - Webhooks
       x-accepts:
       - application/vnd.app-v2.1.0+json
     get:
+      description: Retrieves the details of a webhook by its ID.
       operationId: getWebhook
       parameters:
       - description: Identifier of the resource
@@ -8941,36 +8329,7 @@ paths:
             application/vnd.app-v2.1.0+json:
               schema:
                 $ref: '#/components/schemas/webhook_response'
-          description: successful
-          headers:
-            Date:
-              description: The date and time that the response was sent
-              explode: false
-              schema:
-                example: "Fri, 03 Feb 2023 16:57:48 GMT"
-                type: string
-              style: simple
-            Content-Type:
-              description: The format of the response body
-              explode: false
-              schema:
-                example: application/json; charset=utf-8
-                type: string
-              style: simple
-            Content-Length:
-              description: The length of the response body in bytes
-              explode: false
-              schema:
-                example: "2737"
-                type: string
-              style: simple
-            Connection:
-              description: The type of connection used to transfer the response
-              explode: false
-              schema:
-                example: keep-alive
-                type: string
-              style: simple
+          description: successful operation
         "401":
           content:
             application/vnd.app-v2.1.0+json:
@@ -9020,13 +8379,13 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Get Webhook
+      summary: Get webhook
       tags:
       - Webhooks
       x-accepts:
       - application/vnd.app-v2.1.0+json
     put:
-      description: updates an existing webhook
+      description: Updates an existing webhook.
       operationId: updateWebhook
       parameters:
       - description: Use for knowing which language to use
@@ -9076,6 +8435,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/webhook_response'
           description: successful operation
+        "401":
+          content:
+            application/vnd.app-v2.1.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  param: null
+                  code: femsa.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
         "404":
           content:
             application/vnd.app-v2.1.0+json:
@@ -9092,20 +8465,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
           description: not found entity
-        "401":
-          content:
-            application/vnd.app-v2.1.0+json:
-              example:
-                details:
-                - message: Please include your access key in your request.
-                  param: null
-                  code: femsa.errors.authentication.missing_key
-                log_id: 507f1f77bcf86cd799439011
-                object: error
-                type: authentication_error
-              schema:
-                $ref: '#/components/schemas/error'
-          description: authentication error
         "500":
           content:
             application/vnd.app-v2.1.0+json:
@@ -9125,7 +8484,7 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Update Webhook
+      summary: Update webhook
       tags:
       - Webhooks
       x-content-type: application/json
@@ -9133,7 +8492,8 @@ paths:
       - application/vnd.app-v2.1.0+json
   /webhooks/{id}/test:
     post:
-      description: Send a webhook.ping event
+      description: Sends a test event to the specified webhook to verify it can receive
+        events.
       operationId: testWebhook
       parameters:
       - description: Identifier of the resource
@@ -9220,7 +8580,7 @@ paths:
           description: internal server error
       security:
       - bearerAuth: []
-      summary: Test Webhook
+      summary: Test webhook
       tags:
       - Webhooks
       x-accepts:
@@ -9262,193 +8622,40 @@ components:
     order_with_charges:
       summary: Create an order with charges
       value:
-        charges:
-        - amount: 40000
-          expires_at: 1677196303
-          payment_method:
-            type: cash
-            payment_source_id: src_2tLkkyfMPh6v7pFry
-          reference_id: string
         currency: MXN
         customer_info:
           name: DevTest
-          email: test@Femsa.com
+          email: test@femsa.com
           phone: "5522997233"
           corporate: false
-          object: customer_info
-        fiscal_entity:
-          tax_id: "1234567890"
-          name: Femsa Inc
-          email: test@gmail.com
-          phone: "525511223344"
-          metadata:
-            test: true
-            company_id: "123"
-          address:
-            street1: Nuevo Leon 254
-            street2: Departamento 404
-            postal_code: "06100"
-            city: Ciudad de Mexico
-            state: Ciudad de Mexico
-            country: MX
-            external_number: "123"
-        discount_lines:
-        - amount: 500
-          code: "123"
-          type: loyalty
         line_items:
-        - antifraud_info:
-            additionalProp1: {}
-            additionalProp2: {}
-            additionalProp3: {}
-          description: string
-          sku: string
-          name: Box of Cohiba S1s
+        - name: Box of Cohiba S1s
           unit_price: 20000
-          quantity: 1
-          tags:
-          - string
-          brand: string
-          metadata:
-            additionalProp1: string
-            additionalProp2: string
-            additionalProp3: string
-        metadata:
-          test: true
-          company_id: "123"
-        pre_authorize: false
-        shipping_contact:
-          phone: "525511223344"
-          receiver: Marvin Fuller
-          between_streets: Ackerman Crescent
-          metadata:
-            test: true
-            company_id: "123"
-          address:
-            street1: Nuevo Leon 254
-            street2: Departamento 404
-            postal_code: "06100"
-            city: Ciudad de Mexico
-            state: Ciudad de Mexico
-            country: MX
-            residential: true
-          parent_id: string
-          default: true
-          deleted: true
-        shipping_lines:
-        - amount: 100
-          carrier: FEDEX
-          tracking_number: TRACK123
-          method: TRAING
-          metadata:
-            key: value
-        tax_lines:
-        - amount: 100
-          description: testing
-          metadata:
-            additionalProp1: {}
-            additionalProp2: {}
-            additionalProp3: {}
+          quantity: 2
+        charges:
+        - amount: 40000
+          payment_method:
+            type: cash
+          reference_id: test-reference-id-001
     order_with_checkout:
       summary: Create an order with checkout
       value:
-        checkout:
-          allowed_payment_methods:
-          - "[cash]"
-          expires_at: 0
-          failure_url: string
-          name: string
-          on_demand_enabled: true
-          success_url: string
-          type: Integration
         currency: MXN
         customer_info:
           name: DevTest
           email: test@femsa.com
           phone: "5522997233"
-          corporate: false
-          object: customer_info
-        discount_lines:
-        - amount: 500
-          code: "123"
-          type: loyalty
         line_items:
-        - antifraud_info:
-            additionalProp1: {}
-            additionalProp2: {}
-            additionalProp3: {}
-          description: string
-          sku: string
-          name: Box of Cohiba S1s
+        - name: Box of Cohiba S1s
           unit_price: 20000
           quantity: 1
-          tags:
-          - string
-          brand: string
-          metadata:
-            additionalProp1: string
-            additionalProp2: string
-            additionalProp3: string
-        metadata:
-          additionalProp1: string
-          additionalProp2: string
-          additionalProp3: string
-        pre_authorize: false
-        shipping_contact:
-          phone: "525511223344"
-          receiver: Marvin Fuller
-          between_streets: Ackerman Crescent
-          address:
-            street1: Nuevo Leon 254
-            street2: Departamento 404
-            postal_code: "06100"
-            city: Ciudad de Mexico
-            state: Ciudad de Mexico
-            country: MX
-            residential: true
-          parent_id: string
-          default: true
-          deleted: true
-        shipping_lines:
-        - amount: 100
-          carrier: FEDEX
-          tracking_number: TRACK123
-          method: TRAING
-          metadata:
-            key: value
-        tax_lines:
-        - amount: 100
-          description: testing
-          metadata:
-            additionalProp1: {}
-            additionalProp2: {}
-            additionalProp3: {}
-    split_payment_with_cash:
-      summary: Create an order with 3 cash charges
-      value:
-        charges:
-        - amount: 10000
-          payment_method:
-            type: cash
-        - amount: 10000
-          payment_method:
-            type: cash
-        - amount: 10000
-          payment_method:
-            type: cash
-        currency: MXN
-        customer_info:
-          name: DevTest
-          email: test@femsa.com
-          phone: "5522997233"
-          corporate: false
-        line_items:
-          description: string
-          sku: string
-          name: Box of Cohiba S1s
-          unit_price: 10000
-          quantity: 3
-          brand: string
+        checkout:
+          type: HostedPayment
+          allowed_payment_methods:
+          - cash
+          success_url: https://example.com/success
+          failure_url: https://example.com/failure
+          redirection_time: 15
   parameters:
     accept_language:
       description: Use for knowing which language to use
@@ -9729,7 +8936,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/customer_update_fiscal_entities_request'
-      description: requested field for customer update fiscal entities
+      description: Request body for updating a customer fiscal entity.
       required: true
     discount_line_create:
       content:
@@ -9753,8 +8960,6 @@ components:
               $ref: '#/components/examples/order_with_charges'
             order_with_checkout:
               $ref: '#/components/examples/order_with_checkout'
-            split_payment_with_3_cash_charges:
-              $ref: '#/components/examples/split_payment_with_cash'
           schema:
             $ref: '#/components/schemas/order_request'
       description: requested field for order
@@ -9771,14 +8976,16 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/product'
-      description: requested field for a product
+      description: Fields required to create a new product (line item) for an existing
+        order. This request adds a new item to the order.
       required: true
     product_update:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/update_product'
-      description: requested field for products
+      description: Fields allowed to update an existing product (line item) in an
+        order. All fields are optional; only the provided fields will be updated.
       required: true
     order_refunds_request:
       content:
@@ -9801,13 +9008,6 @@ components:
             $ref: '#/components/schemas/emailCheckout_request'
       description: requested field for sms checkout
       required: true
-    checkout_sms:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/smsCheckout_request'
-      description: requested field for sms checkout
-      required: true
     customer_payment_methods:
       content:
         application/json:
@@ -9825,56 +9025,56 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/update_payment_methods'
-      description: requested field for customer payment methods
+      description: Request body for updating a customer payment method.
       required: true
     shipping_create:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/shipping_request'
-      description: requested field for a shipping
+      description: Request body for creating or updating a shipping line.
       required: true
     customer_shipping_contacts:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/customer_shipping_contacts'
-      description: requested field for customer shippings contacts
+      description: Request body for creating or updating a customer shipping contact.
       required: true
     customer_update_shipping_contacts:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/customer_update_shipping_contacts'
-      description: requested field for customer update shippings contacts
+      description: Request body for updating a customer shipping contact.
       required: true
     order_tax:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/order_tax_request'
-      description: requested field for a taxes
+      description: Request body for creating a tax line.
       required: true
     order_tax_update:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/update_order_tax_request'
-      description: requested field for taxes
+      description: Request body for updating a tax line.
       required: true
     webhook:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/webhook_request'
-      description: requested field for webhook
+      description: Webhook creation/update request payload.
       required: true
     webhook_update:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/webhook_update_request'
-      description: requested fields in order to update a webhook
+      description: Webhook update request payload.
       required: true
   responses:
     "401":
@@ -9938,6 +9138,20 @@ components:
           schema:
             $ref: '#/components/schemas/error'
       description: not found entity
+    "402":
+      content:
+        application/vnd.app-v2.1.0+json:
+          example:
+            details:
+            - message: The order could not be processed.
+              code: femsa.errors.processing.order.used
+              debug_message: The order has already been used.
+            log_id: 641b6d073cd9a50001515007
+            object: error
+            type: processing_error
+          schema:
+            $ref: '#/components/schemas/error'
+      description: payment required error
     "422_whitelist":
       content:
         application/vnd.app-v2.1.0+json:
@@ -9969,20 +9183,6 @@ components:
           schema:
             $ref: '#/components/schemas/error'
       description: Precondition Required
-    "402":
-      content:
-        application/vnd.app-v2.1.0+json:
-          example:
-            details:
-            - message: The order could not be processed.
-              code: femsa.errors.processing.order.used
-              debug_message: The order has already been used.
-            log_id: 641b6d073cd9a50001515007
-            object: error
-            type: processing_error
-          schema:
-            $ref: '#/components/schemas/error'
-      description: payment required error
   schemas:
     page:
       description: page metadata
@@ -10091,7 +9291,7 @@ components:
       properties:
         active:
           description: Indicates if the api key is active
-          example: true
+          example: false
           type: boolean
         created_at:
           description: Unix timestamp in seconds of when the api key was created
@@ -10120,7 +9320,7 @@ components:
           type: string
         deleted:
           description: Indicates if the api key was deleted
-          example: false
+          example: true
           type: boolean
         role:
           description: Indicates if the api key is private or public
@@ -10129,10 +9329,13 @@ components:
       title: api_key_response_delete
       type: object
     balance_response:
-      description: balance model
+      description: |
+        Company balance summary.
+
+        Monetary fields are returned as arrays of amounts grouped by currency (see `balance_common_field` items).
       properties:
         available:
-          description: The balance's available
+          description: "Amounts currently available, grouped by currency."
           items:
             $ref: '#/components/schemas/balance_common_field'
           type: array
@@ -10147,35 +9350,35 @@ components:
             $ref: '#/components/schemas/balance_common_field'
           type: array
         gateway:
-          description: The balance's gateway
+          description: "Gateway balance amounts, grouped by currency."
           items:
             $ref: '#/components/schemas/balance_common_field'
           type: array
         pending:
-          description: The balance's pending
+          description: "Amounts pending settlement, grouped by currency."
           items:
             $ref: '#/components/schemas/balance_common_field'
           type: array
         retained:
-          description: The balance's retained
+          description: "Amounts currently retained, grouped by currency."
           items:
             $ref: '#/components/schemas/balance_common_field'
           type: array
         retention_amount:
-          description: The balance's retention amount
+          description: "Retention amount applied, grouped by currency."
           items:
             $ref: '#/components/schemas/balance_common_field'
           type: array
         target_collateral_amount:
-          description: The balance's target collateral amount
+          description: "Target collateral amount, grouped by currency."
           type: object
         target_retention_amount:
-          description: The balance's target retention amount
+          description: "Target retention amount, grouped by currency."
           items:
             $ref: '#/components/schemas/balance_common_field'
           type: array
         temporarily_retained:
-          description: The balance's temporarily retained
+          description: Amounts temporarily retained
           items:
             $ref: '#/components/schemas/balance_common_field'
           type: array
@@ -10184,12 +9387,13 @@ components:
     charge_response:
       properties:
         amount:
-          example: 4321
+          example: 600000
+          format: int64
           type: integer
         channel:
           $ref: '#/components/schemas/charge_response_channel'
         created_at:
-          example: 1676386026
+          example: 1768581166
           format: int64
           type: integer
         currency:
@@ -10205,23 +9409,26 @@ components:
           type: string
         failure_code:
           example: suspected_fraud
+          nullable: true
           type: string
         failure_message:
           example: Este cargo ha sido declinado porque el comportamiento del comprador
             es sospechoso.
+          nullable: true
           type: string
         id:
-          example: 63efa757cf65380001aec040
+          example: 696a682e1ef5ca00015698b7
           type: string
         livemode:
+          example: true
           type: boolean
         object:
           type: string
         order_id:
-          example: ord_2tN73UdUSNrYRPD9r
+          example: ord_2zNwzJrfNC24uQUzq
           type: string
         paid_at:
-          example: 1676390742
+          format: int64
           nullable: true
           type: integer
         payment_method:
@@ -10236,7 +9443,10 @@ components:
         status:
           example: pending_payment
           type: string
-      title: charges_data_response
+        is_refundable:
+          example: false
+          type: boolean
+      title: charge_response
       type: object
     charge_order_response:
       properties:
@@ -10244,7 +9454,7 @@ components:
           example: 4321
           type: integer
         channel:
-          $ref: '#/components/schemas/charge_response_channel'
+          $ref: '#/components/schemas/charge_order_response_channel'
         created_at:
           example: 1676386026
           format: int64
@@ -10338,16 +9548,44 @@ components:
     customer_response:
       description: customer response
       properties:
-        antifraud_info:
-          $ref: '#/components/schemas/customer_antifraud_info_response'
-        corporate:
-          description: true if the customer is a company
-          type: boolean
+        id:
+          description: Customer's ID
+          example: cus_2tHJfJ79KyUwpxTik
+          type: string
+        object:
+          enum:
+          - customer
+          example: customer
+          type: string
         created_at:
-          description: Creation date of the object
+          description: Creation date of the object (Unix timestamp)
           example: 1485151007
           format: int64
           type: integer
+        livemode:
+          description: true if the object exists in live mode or false if the object
+            exists in test mode
+          example: true
+          type: boolean
+        name:
+          description: Customer's name
+          example: Felipe
+          nullable: true
+          type: string
+        email:
+          example: felipe@gmail.com
+          format: email
+          nullable: true
+          type: string
+        phone:
+          description: Customer's phone number
+          example: "5215555555555"
+          nullable: true
+          type: string
+        corporate:
+          description: true if the customer is a company
+          example: false
+          type: boolean
         custom_reference:
           description: Custom reference
           example: custom_reference
@@ -10358,52 +9596,26 @@ components:
           type: string
         default_shipping_contact_id:
           example: ship_cont_2tKZsTYcsryyu7Ah8
-          type: string
-        default_payment_source_id:
-          example: src_2tHJfJ79KyUwpxTio
           nullable: true
-          type: string
-        email:
-          example: Felipe@gmail.com
-          format: email
-          type: string
-        fiscal_entities:
-          $ref: '#/components/schemas/customer_fiscal_entities_response'
-        id:
-          description: Customer's ID
-          example: cus_2tHJfJ79KyUwpxTik
-          type: string
-        livemode:
-          description: true if the object exists in live mode or the value false if
-            the object exists in test mode
-          example: true
-          type: boolean
-        name:
-          description: Customer's name
-          example: Felipe
           type: string
         metadata:
           additionalProperties: true
+          description: Customer metadata (maps to contextual_data in backend)
           maxProperties: 100
+          nullable: true
           type: object
-        object:
-          example: customer
-          type: string
         payment_sources:
           $ref: '#/components/schemas/customer_payment_methods_response'
-        phone:
-          description: Customer's phone number
-          example: "+5215555555555"
-          type: string
+        fiscal_entities:
+          $ref: '#/components/schemas/customer_fiscal_entities_response'
         shipping_contacts:
           $ref: '#/components/schemas/customer_response_shipping_contacts'
       required:
       - created_at
       - id
       - livemode
-      - name
       - object
-      title: customer response
+      title: customer_response
       type: object
     customer_fiscal_entities_request:
       properties:
@@ -10412,17 +9624,16 @@ components:
           - $ref: '#/components/schemas/customer_address'
         tax_id:
           type: string
+        name:
+          example: Femsa
+          type: string
         email:
           type: string
         phone:
           type: string
         metadata:
-          additionalProperties:
-            type: object
+          additionalProperties: true
           type: object
-        company_name:
-          example: Femsa
-          type: string
       required:
       - address
       title: fiscal_entity_request
@@ -10449,6 +9660,7 @@ components:
         - parent_id
         type: object
       title: discount_lines_order_response
+      type: object
     event_response:
       description: event model
       properties:
@@ -10485,7 +9697,7 @@ components:
       title: event_response
       type: object
     events_resend_response:
-      description: event model
+      description: Webhook log model returned after resending an event webhook delivery.
       properties:
         failed_attempts:
           example: 6
@@ -10506,13 +9718,14 @@ components:
           maxProperties: 100
           type: object
         url:
-          example: https://username:password@mockoon.stg.femsa.io/payments-api/cash/merchant_approval
+          example: https://example.com/new-webhooks
           format: uri
           type: string
       title: event_webhook_resend_response
       type: object
     logs_response:
-      description: logs model
+      description: Log model representing a recorded request/response cycle for troubleshooting
+        and auditing.
       properties:
         has_more:
           description: "True, if there are more pages."
@@ -10536,10 +9749,11 @@ components:
             $ref: '#/components/schemas/logs_response_data'
           nullable: true
           type: array
-      title: log response for request
+      title: log_response
       type: object
     log_response:
-      description: log model
+      description: Log model representing a recorded request/response cycle for troubleshooting
+        and auditing.
       properties:
         created_at:
           example: 1661445644
@@ -10660,7 +9874,7 @@ components:
       - created_at
       - id
       - livemode
-      title: log response for request
+      title: log_response
       type: object
     orders_response:
       properties:
@@ -10673,80 +9887,88 @@ components:
       title: orders_response
       type: object
     order_response:
-      description: order response
+      description: |
+        Order model.
+        Some nested resources are returned as list previews (for example: `charges`, `line_items`), and may be `null` depending on the request/context.
+        The `checkout` field is only present when the order is linked to a checkout (`channel.checkout_request_id`).
       properties:
+        id:
+          example: ord_2zKSF2aUY2kBRcyXJ
+          type: string
+        object:
+          enum:
+          - order
+          example: order
+          type: string
+        livemode:
+          example: true
+          type: boolean
         amount:
-          description: The total amount to be collected in cents
-          example: 21605
-          type: integer
-        amount_refunded:
-          description: The total amount refunded in cents
-          example: 0
-          type: integer
-        channel:
-          $ref: '#/components/schemas/charge_response_channel'
-        charges:
-          $ref: '#/components/schemas/order_response_charges'
-        checkout:
-          $ref: '#/components/schemas/order_response_checkout'
-        created_at:
-          description: The time at which the object was created in seconds since the
-            Unix epoch
-          example: 1676328434
-          format: int64
+          example: 10000
           type: integer
         currency:
-          description: The three-letter ISO 4217 currency code. The currency of the
-            order.
           example: MXN
+          maxLength: 3
           type: string
-        customer_info:
-          $ref: '#/components/schemas/order_response_customer_info'
-        discount_lines:
-          $ref: '#/components/schemas/order_response_discount_lines'
-        fiscal_entity:
-          $ref: '#/components/schemas/order_fiscal_entity_response'
-        id:
-          example: ord_2tMtQQpDvfnNjiuFG
+        payment_status:
+          description: Current payment status of the order. It can be `null` for orders
+            without payment information yet.
+          example: pending_payment
+          nullable: true
           type: string
-        is_refundable:
-          example: false
-          type: boolean
-        line_items:
-          $ref: '#/components/schemas/order_response_products'
-        livemode:
-          description: Whether the object exists in live mode or test mode
-          example: false
+        amount_refunded:
+          example: 0
+          type: integer
+        split_payment:
+          description: Indicates whether the order uses split payments (when available/configured).
+          nullable: true
           type: boolean
         metadata:
           additionalProperties: true
-          description: Set of key-value pairs that you can attach to an object. This
-            can be useful for storing additional information about the object in a
-            structured format.
+          description: Metadata attached to the order.
+          example: {}
           maxProperties: 100
           type: object
-        object:
-          description: String representing the object’s type. Objects of the same
-            type share the same value.
-          example: order
-          type: string
-        payment_status:
-          description: The payment status of the order.
-          example: paid
-          type: string
-        processing_mode:
-          description: "Indicates the processing mode for the order, either ecommerce,\
-            \ recurrent or validation."
-          example: ecommerce
-          type: string
-        shipping_contact:
-          $ref: '#/components/schemas/order_response_shipping_contact'
-        updated_at:
-          description: The time at which the object was last updated in seconds since
-            the Unix epoch
-          example: 1676328434
+        is_refundable:
+          description: Indicates whether the order is currently refundable.
+          example: false
+          type: boolean
+        created_at:
+          example: 1767651766
           format: int64
           type: integer
+        updated_at:
+          example: 1767651766
+          format: int64
+          type: integer
+        customer_info:
+          $ref: '#/components/schemas/order_response_customer_info'
+        shipping_contact:
+          $ref: '#/components/schemas/order_response_shipping_contact'
+        channel:
+          $ref: '#/components/schemas/order_response_channel'
+        fiscal_entity:
+          $ref: '#/components/schemas/order_fiscal_entity_response'
+        checkout:
+          $ref: '#/components/schemas/order_response_checkout'
+        line_items:
+          $ref: '#/components/schemas/order_response_products'
+        discount_lines:
+          $ref: '#/components/schemas/order_response_discount_lines'
+        charges:
+          $ref: '#/components/schemas/order_response_charges'
+        partial_reference:
+          additionalProperties: true
+          description: Partial reference information (when applicable). Structure
+            may vary depending on the payment flow.
+          nullable: true
+          type: object
+        payments_info:
+          additionalProperties: true
+          description: Additional payment information (when available). Structure
+            may vary.
+          nullable: true
+          type: object
       title: order_response
       type: object
     product_order_response:
@@ -10795,7 +10017,7 @@ components:
             key: value
           type: object
         name:
-          description: Reason for charge
+          description: Payment link name
           example: Payment Link Name 1594138857
           type: string
         needs_shipping_contact:
@@ -10809,7 +10031,7 @@ components:
           type: integer
         payments_limit_count:
           example: 5
-          format: int8
+          format: int32
           nullable: true
           type: integer
         recurrent:
@@ -10871,10 +10093,13 @@ components:
       - $ref: '#/components/schemas/shipping_request'
       - properties:
           id:
+            example: ship_lin_2sLxi45ZFs1GHJmzx
             type: string
           object:
+            example: shipping_line
             type: string
           parent_id:
+            example: ord_2sLxi3MqYFJ1QfTmP
             type: string
         type: object
       title: shipping_order_response
@@ -10895,12 +10120,14 @@ components:
         address:
           $ref: '#/components/schemas/customer_shipping_contacts_response_address'
         parent_id:
+          description: Customer ID that owns this shipping contact.
+          example: cus_1234567890
           type: string
         default:
           example: false
           type: boolean
         id:
-          example: adr_1234567890
+          example: ship_cont_1234567890
           type: string
         created_at:
           example: 1675715413
@@ -10915,8 +10142,10 @@ components:
           example: shipping_contact
           type: string
         deleted:
-          example: false
+          description: Present only when the shipping contact was deleted.
+          example: true
           type: boolean
+      title: customer_shipping_contacts_response
       type: object
     update_order_tax_response:
       allOf:
@@ -10936,67 +10165,107 @@ components:
       required:
       - id
     transaction_response:
-      description: "The Transaction object represents the actions or steps of an order.\
-        \ Statuses can be: unprocessed, pending, available, owen, paid_out, voided,\
-        \ capture, capture_reversal, liquidation, liquidation_reversal, payout, payout_reversal,\
-        \ refund, refund_reversal, chargeback, chargeback_reversal, rounding_adjustment,\
-        \ won_chargeback, transferred, and transferred."
+      description: Transaction object.
       properties:
+        id:
+          description: Unique identifier of the transaction.
+          example: 5ee7ec5b8dea41085erb7f9e
+          type: string
+        object:
+          description: "Object name, which is transaction."
+          example: transaction
+          type: string
         amount:
           description: The amount of the transaction.
           example: 1000
           format: int64
           type: integer
-        charge:
-          description: Randomly assigned unique order identifier associated with the
-            charge.
-          example: 5ee7ec58885a45585e6d9f8m
+        fee:
+          description: The amount to be deducted for taxes and commissions.
+          example: 560
+          format: int64
+          type: integer
+        net:
+          description: The net amount after deducting commissions and taxes.
+          example: 440
+          format: int64
+          type: integer
+        currency:
+          description: The currency of the transaction. It uses the 3-letter code
+            of ISO 4217.
+          example: MXN
+          maxLength: 3
+          type: string
+        status:
+          description: Code indicating transaction status.
+          enum:
+          - unprocessed
+          - pending
+          - available
+          - owing
+          - paid_out
+          - on_hold
+          - retained
+          - voided
+          example: pending
+          type: string
+        type:
+          description: Transaction type.
+          enum:
+          - capture
+          - capture_reversal
+          - liquidation
+          - liquidation_reversal
+          - payout
+          - payout_reversal
+          - refund
+          - refund_reversal
+          - rounding_adjustment
+          - transfer
+          - transferred
+          - retention
+          - temporary_retention
+          - cashout_retention
+          - cashout_confirmation
+          - cashout_cancelation
+          - autofund_capture
+          example: capture
           type: string
         created_at:
           description: Date and time of creation of the transaction in Unix format.
           example: 1553273553
           format: int64
           type: integer
-        currency:
-          description: "The currency of the transaction. It uses the 3-letter code\
-            \ of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)"
-          example: MXN
-          maxLength: 3
-          type: string
-        fee:
-          description: The amount to be deducted for taxes and commissions.
-          example: 560
-          format: int64
-          type: integer
-        id:
-          description: Unique identifier of the transaction.
-          example: 5ee7ec5b8dea41085erb7f9e
-          type: string
         livemode:
           description: Indicates whether the transaction was created in live mode
             or test mode.
           example: true
           type: boolean
-        net:
-          description: The net amount after deducting commissions and taxes.
-          example: 440
+        charge:
+          description: Charge ID associated with the transaction (present only if
+            the transaction belongs to a charge).
+          example: 5ee7ec58885a45585e6d9f8m
+          nullable: true
+          type: string
+        transfer:
+          description: Transfer ID associated with the transaction (present only if
+            the transaction belongs to a transfer).
+          example: trf_2tPAmKCEJqh8RE6nY
+          nullable: true
+          type: string
+        transferred_at:
+          description: "Date and time when the transaction was transferred, in Unix\
+            \ format."
+          example: 1553273999
           format: int64
+          nullable: true
           type: integer
-        object:
-          description: "Object name, which is transaction."
-          example: transaction
-          type: string
-        status:
-          description: Code indicating transaction status.
-          example: pending
-          type: string
-        type:
-          description: Transaction Type
-          example: capture
+        formula:
+          description: Transaction fee formula identifier (if available).
+          nullable: true
           type: string
       required:
       - amount
-      - charge
       - created_at
       - currency
       - fee
@@ -11010,7 +10279,8 @@ components:
       type: object
     transfers_response:
       description: "A transfer represents the action of sending an amount to a business\
-        \ bank account including the status, amount and method used to make the transfer."
+        \ bank account including the status, amount and destination used to make the\
+        \ transfer."
       properties:
         amount:
           description: Amount in cents of the transfer.
@@ -11107,7 +10377,7 @@ components:
       title: transfer_response
       type: object
     webhook-key_response:
-      description: webhook keys model
+      description: Represents a webhook signing key configuration for the company.
       properties:
         id:
           description: Unique identifier of the webhook key
@@ -11178,7 +10448,7 @@ components:
       title: webhook_key_create_response
       type: object
     webhook-key_delete_response:
-      description: webhook keys model
+      description: Represents a webhook signing key after it has been deleted.
       properties:
         active:
           description: Indicates if the webhook key is active
@@ -11209,7 +10479,7 @@ components:
       title: webhook_key_delete_response
       type: object
     webhook_response:
-      description: webhooks model
+      description: Represents a webhook endpoint configured to receive event notifications.
       properties:
         deleted:
           example: false
@@ -11259,10 +10529,14 @@ components:
     api_key_request:
       properties:
         description:
-          description: A name or brief explanation of what this api key is used for
+          description: A name or brief explanation of what this API key is used for.
           example: online store
           type: string
         role:
+          description: |
+            Defines the type of API key to create. Only "private" is supported for creation. A "public" API key already exists by default per company/environment.
+          enum:
+          - private
           example: private
           type: string
       required:
@@ -11270,7 +10544,7 @@ components:
       title: api_keys_request
       type: object
     charge_update_request:
-      description: requested field for update a charge
+      description: Request body to update a charge. Only `reference_id` can be updated.
       properties:
         reference_id:
           description: custom reference id
@@ -11288,135 +10562,111 @@ components:
           $ref: '#/components/schemas/charge_request_payment_method'
         reference_id:
           description: Custom reference to add to the charge
+          example: ref_2tN73UdUSNrYRPD9r
           type: string
       required:
       - payment_method
       title: charges
       type: object
     customer:
-      description: a customer
+      description: Customer create request.
       properties:
-        antifraud_info:
-          $ref: '#/components/schemas/customer_antifraud_info'
-        corporate:
-          default: false
-          description: It is a value that allows identifying if the email is corporate
-            or not.
-          example: false
-          type: boolean
-        custom_reference:
-          description: It is an undefined value.
+        name:
+          description: Customer's name.
+          example: miguel
           type: string
         email:
-          description: "An email address is a series of customizable characters followed\
-            \ by a universal Internet symbol, the at symbol (@), the name of a host\
-            \ server, and a web domain ending (.mx, .com, .org, . net, etc)."
+          description: Customer email address.
           example: miguel@gmail.com
           format: email
           type: string
-        default_payment_source_id:
-          description: "It is a parameter that allows to identify in the response,\
-            \ the Femsa ID of a payment method (payment_id)"
-          example: src_1a2b3c4d5e6f7g8h
+        phone:
+          description: Customer phone number.
+          example: "+5215555555555"
+          maxLength: 19
+          nullable: true
           type: string
-        default_shipping_contact_id:
-          description: "It is a parameter that allows to identify in the response,\
-            \ the Femsa ID of the shipping address (shipping_contact)"
-          example: ship_cont_1a2b3c4d5e6f7g8h
+        corporate:
+          default: false
+          description: Indicates whether the customer email is corporate.
+          example: false
+          type: boolean
+        custom_reference:
+          description: Merchant-defined reference used to identify the customer in
+            your system.
           type: string
-        fiscal_entities:
-          items:
-            $ref: '#/components/schemas/customer_fiscal_entities_request'
-          type: array
         metadata:
           additionalProperties: true
-          maxProperties: 100
+          description: Arbitrary metadata associated with the customer.
           type: object
-        name:
-          description: Client's name
-          example: miguel
-          type: string
         payment_sources:
-          description: Contains details of the payment methods that the customer has
-            active or has used in Femsa
+          description: Customer payment sources to be created with the customer (optional).
           items:
             $ref: '#/components/schemas/customer_payment_methods_request'
           type: array
-        phone:
-          description: Is the customer's phone number
-          example: "+5215555555555"
-          type: string
+        fiscal_entities:
+          description: Customer fiscal entities to be created with the customer (optional).
+          items:
+            $ref: '#/components/schemas/customer_fiscal_entities_request'
+          type: array
         shipping_contacts:
-          description: Contains the detail of the shipping addresses that the client
-            has active or has used in Femsa
+          description: Customer shipping contacts to be created with the customer
+            (optional).
           items:
             $ref: '#/components/schemas/customer_shipping_contacts'
           type: array
       required:
       - email
       - name
-      - phone
-      title: customer request
+      title: customer_request
       type: object
     update_customer:
-      description: update customer
+      description: Request body to update a customer.
       properties:
-        antifraud_info:
-          $ref: '#/components/schemas/update_customer_antifraud_info'
-        default_payment_source_id:
-          description: "It is a parameter that allows to identify in the response,\
-            \ the Femsa ID of a payment method (payment_id)"
-          example: src_1a2b3c4d5e6f7g8h
+        name:
+          description: Customer's name.
+          example: Miguel
           type: string
         email:
-          description: "An email address is a series of customizable characters followed\
-            \ by a universal Internet symbol, the at symbol (@), the name of a host\
-            \ server, and a web domain ending (.mx, .com, .org, . net, etc)."
+          description: Customer email address.
           example: miguel@gmail.com
-          type: string
-        name:
-          description: Client's name
-          example: miguel
+          format: email
           type: string
         phone:
-          description: Is the customer's phone number
-          example: "+5215555555555"
-          type: string
-        default_shipping_contact_id:
-          description: "It is a parameter that allows to identify in the response,\
-            \ the Femsa ID of the shipping address (shipping_contact)"
-          example: ship_cont_1a2b3c4d5e6f7g8h
+          description: Customer phone number.
+          example: "5215555555555"
           type: string
         corporate:
-          default: false
-          description: It is a value that allows identifying if the email is corporate
-            or not.
-          example: false
+          description: True if the customer represents a company.
           type: boolean
         custom_reference:
-          description: It is an undefined value.
+          description: Merchant-defined reference used to identify the customer in
+            your system.
+          example: customer_123
           type: string
-        fiscal_entities:
-          items:
-            $ref: '#/components/schemas/customer_fiscal_entities_request'
-          type: array
         metadata:
           additionalProperties: true
-          maxProperties: 100
+          description: Arbitrary metadata associated with the customer.
           type: object
         payment_sources:
-          description: Contains details of the payment methods that the customer has
-            active or has used in Femsa
+          description: Customer payment sources to create/attach (offline recurrent
+            references).
           items:
             $ref: '#/components/schemas/customer_payment_methods_request'
           type: array
-        shipping_contacts:
-          description: Contains the detail of the shipping addresses that the client
-            has active or has used in Femsa
-          items:
-            $ref: '#/components/schemas/customer_shipping_contacts'
-          type: array
-      title: update customer request
+        default_payment_source_id:
+          description: Sets the default payment source for the customer (must be an
+            existing payment source on the customer).
+          type: string
+        default_fiscal_entity_id:
+          description: Sets the default fiscal entity for the customer (must be an
+            existing fiscal entity on the customer).
+          type: string
+        default_shipping_contact_id:
+          description: Sets the default shipping contact for the customer (must be
+            an existing shipping contact on the customer).
+          type: string
+      title: customer_update_request
       type: object
     customer_update_fiscal_entities_request:
       properties:
@@ -11475,6 +10725,11 @@ components:
           example: "123"
           type: string
         type:
+          enum:
+          - loyalty
+          - campaign
+          - coupon
+          - sign
           example: loyalty
           type: string
       title: update_order_discount_lines_request
@@ -11482,64 +10737,66 @@ components:
     order_request:
       description: a order
       properties:
+        currency:
+          description: Currency with which the payment will be made.
+          example: MXN
+          maxLength: 3
+          type: string
+        customer_info:
+          $ref: '#/components/schemas/order_request_customer_info'
+        line_items:
+          description: "List of [products](https://developers.digitalfemsa.io/reference/orderscreateproduct)\
+            \ that are sold in the order. You must have at least one product."
+          items:
+            $ref: '#/components/schemas/product'
+          type: array
         charges:
-          description: "List of [charges](https://developers.femsa.com/v2.1.0/reference/orderscreatecharge)\
+          description: "List of [charges](https://developers.digitalfemsa.io/reference/orderscreatecharge)\
             \ that are applied to the order"
           items:
             $ref: '#/components/schemas/charge_request'
           type: array
         checkout:
           $ref: '#/components/schemas/checkout_request'
-        currency:
-          description: "Currency with which the payment will be made. It uses the\
-            \ 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)"
-          example: MXN
-          maxLength: 3
-          type: string
-        customer_info:
-          $ref: '#/components/schemas/order_request_customer_info'
         discount_lines:
-          description: "List of [discounts](https://developers.femsa.com/v2.1.0/reference/orderscreatediscountline)\
+          description: "List of [discounts](https://developers.digitalfemsa.io/reference/orderscreatediscountline)\
             \ that are applied to the order. You must have at least one discount."
           items:
             $ref: '#/components/schemas/order_discount_lines_request'
           type: array
-        fiscal_entity:
-          $ref: '#/components/schemas/order_fiscal_entity_request'
-        line_items:
-          description: "List of [products](https://developers.femsa.com/v2.1.0/reference/orderscreateproduct)\
-            \ that are sold in the order. You must have at least one product."
+        tax_lines:
+          description: "List of [taxes](https://developers.digitalfemsa.io/reference/orderscreatetaxes)\
+            \ that are applied to the order."
           items:
-            $ref: '#/components/schemas/product'
+            $ref: '#/components/schemas/order_tax_request'
           type: array
-        metadata:
-          additionalProperties: true
-          description: Metadata associated with the order
-          maxProperties: 100
-          type: object
         needs_shipping_contact:
           description: Allows you to fill out the shipping information at checkout
           example: false
           type: boolean
+        shipping_contact:
+          $ref: '#/components/schemas/customer_shipping_contacts'
+        shipping_lines:
+          description: "List of [shipping costs](https://developers.digitalfemsa.io/reference/orderscreateshipping).\
+            \ If the online store offers digital products."
+          items:
+            $ref: '#/components/schemas/shipping_request'
+          type: array
+        fiscal_entity:
+          $ref: '#/components/schemas/order_fiscal_entity_request'
         processing_mode:
           description: "Indicates the processing mode for the order, either ecommerce,\
             \ recurrent or validation."
           example: ecommerce
           type: string
-        shipping_contact:
-          $ref: '#/components/schemas/customer_shipping_contacts'
-        shipping_lines:
-          description: "List of [shipping costs](https://developers.femsa.com/v2.1.0/reference/orderscreateshipping).\
-            \ If the online store offers digital products."
-          items:
-            $ref: '#/components/schemas/shipping_request'
-          type: array
-        tax_lines:
-          description: "List of [taxes](https://developers.femsa.com/v2.1.0/reference/orderscreatetaxes)\
-            \ that are applied to the order."
-          items:
-            $ref: '#/components/schemas/order_tax_request'
-          type: array
+        metadata:
+          additionalProperties: true
+          description: "Arbitrary key-value data that you can attach to the order\
+            \ for your internal use (e.g. `customer_segment`, `sales_channel`, `internal_order_id`).\
+            \ It is not used for payment processing or fraud decisions. Keys should\
+            \ be strings; values can be any JSON value."
+          maxProperties: 100
+          type: object
       required:
       - currency
       - customer_info
@@ -11547,44 +10804,40 @@ components:
       title: a order
       type: object
     order_update_request:
-      description: a order
+      description: Order update payload. Only supported fields can be modified.
       properties:
-        charges:
-          items:
-            $ref: '#/components/schemas/charge_request'
-          type: array
-        checkout:
-          $ref: '#/components/schemas/checkout_request'
         currency:
-          description: "Currency with which the payment will be made. It uses the\
-            \ 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)"
+          description: Currency code in ISO 4217 (3-letter uppercase).
           example: MXN
           maxLength: 3
           type: string
         customer_info:
           $ref: '#/components/schemas/order_update_request_customer_info'
-        discount_lines:
-          description: "List of [discounts](https://developers.femsa.com/v2.1.0/reference/orderscreatediscountline)\
-            \ that are applied to the order. You must have at least one discount."
-          items:
-            $ref: '#/components/schemas/order_discount_lines_request'
-          type: array
-        fiscal_entity:
-          $ref: '#/components/schemas/order_update_fiscal_entity_request'
         line_items:
           description: "List of [products](https://developers.femsa.com/v2.1.0/reference/orderscreateproduct)\
             \ that are sold in the order. You must have at least one product."
           items:
             $ref: '#/components/schemas/product'
           type: array
-        metadata:
-          additionalProperties:
-            type: string
-          type: object
-        pre_authorize:
-          default: false
-          description: Indicates whether the order charges must be preauthorized
-          type: boolean
+        charges:
+          items:
+            $ref: '#/components/schemas/charge_request'
+          type: array
+        discount_lines:
+          description: "List of [discounts](https://developers.femsa.com/v2.1.0/reference/orderscreatediscountline)\
+            \ that are applied to the order. You must have at least one discount."
+          items:
+            $ref: '#/components/schemas/order_discount_lines_request'
+          type: array
+        tax_lines:
+          items:
+            $ref: '#/components/schemas/order_tax_request'
+          type: array
+        shipping_contact_id:
+          description: Existing shipping contact id from the customer to link to this
+            order.
+          nullable: true
+          type: string
         shipping_contact:
           $ref: '#/components/schemas/customer_shipping_contacts'
         shipping_lines:
@@ -11593,41 +10846,40 @@ components:
           items:
             $ref: '#/components/schemas/shipping_request'
           type: array
-        tax_lines:
-          items:
-            $ref: '#/components/schemas/order_tax_request'
-          type: array
+        fiscal_entity_id:
+          description: Existing fiscal entity id from the customer to link to this
+            order.
+          nullable: true
+          type: string
+        fiscal_entity:
+          $ref: '#/components/schemas/order_update_fiscal_entity_request'
+        return_url:
+          description: URL where the customer should be redirected after completing
+            a payment flow (if applicable).
+          type: string
+        metadata:
+          additionalProperties: true
+          description: |
+            Arbitrary key-value data that you can attach to the order for your internal use. It is not used for payment processing. Keys should be strings; values can be any JSON value.
+          maxProperties: 100
+          type: object
+        status:
+          description: Order status update (only allowed transitions will be accepted).
+          type: string
       title: order_update
       type: object
     product:
       properties:
-        antifraud_info:
-          additionalProperties: true
-          example:
-            key: value
-          type: object
-        brand:
-          description: The brand of the item.
-          example: Cohiba
-          type: string
-        description:
-          description: Short description of the item
-          example: Imported From Mex.
-          maxLength: 250
-          type: string
-        metadata:
-          additionalProperties:
-            type: string
-          description: It is a key/value hash that can hold custom fields. Maximum
-            100 elements and allows special characters.
-          example:
-            key: value
-          maxProperties: 100
-          type: object
         name:
           description: The name of the item. It will be displayed in the order.
-          example: Box of Cohiba S1s
+          example: Box of Cohiba
           type: string
+        unit_price:
+          description: The price of the item in cents.
+          example: 20000
+          format: int32
+          minimum: 0
+          type: integer
         quantity:
           description: The quantity of the item in the order.
           example: 1
@@ -11639,21 +10891,32 @@ components:
             the item in the order.
           example: XYZ12345
           type: string
+        brand:
+          description: The brand of the item.
+          example: Cohiba
+          type: string
+        description:
+          description: Short description of the item
+          example: Imported From Mex.
+          maxLength: 250
+          type: string
         tags:
           description: List of tags for the item. It is used to identify the item
             in the order.
-          example:
-          - food
-          - mexican food
           items:
+            maxLength: 249
+            minLength: 2
             type: string
+          minItems: 1
           type: array
-        unit_price:
-          description: The price of the item in cents.
-          example: 20000
-          format: int32
-          minimum: 0
-          type: integer
+        metadata:
+          additionalProperties: true
+          description: |
+            Arbitrary key-value data for your internal use. Keys should be strings; values can be any JSON value.
+          example:
+            key: value
+          maxProperties: 100
+          type: object
       required:
       - name
       - quantity
@@ -11662,15 +10925,6 @@ components:
       type: object
     update_product:
       properties:
-        antifraud_info:
-          additionalProperties:
-            type: object
-          type: object
-        description:
-          maxLength: 250
-          type: string
-        sku:
-          type: string
         name:
           example: Box of Cohiba S1s
           type: string
@@ -11684,71 +10938,82 @@ components:
           format: int32
           minimum: 1
           type: integer
-        tags:
-          items:
-            type: string
-          type: array
+        sku:
+          type: string
         brand:
           type: string
-        metadata:
-          additionalProperties:
+        description:
+          maxLength: 250
+          type: string
+        tags:
+          items:
+            maxLength: 249
+            minLength: 2
             type: string
+          minItems: 1
+          type: array
+        metadata:
+          additionalProperties: true
+          maxProperties: 100
           type: object
       title: update_product
       type: object
     checkout:
-      description: It is a sub-resource of the Order model that can be stipulated
-        in order to configure its corresponding checkout
+      description: |
+        Creates a Payment Link. This is a sub-resource related to an Order template: each time a customer pays using the link, the API will create an Order using `order_template`.
       properties:
+        name:
+          description: Payment link name.
+          example: Payment Link Name
+          type: string
+        type:
+          description: Checkout type.
+          example: PaymentLink
+          type: string
+        recurrent:
+          description: "false: single use. true: multiple payments"
+          example: false
+          type: boolean
+        payments_limit_count:
+          description: Required when `recurrent` is true. Maximum number of payments
+            allowed through the link.
+          format: int32
+          type: integer
         allowed_payment_methods:
-          description: Those are the payment methods that will be available for the
-            link
+          description: Payment methods available in the payment link.
           example:
           - cash
           items:
             type: string
           type: array
-        expires_at:
-          description: |
-            It is the time when the link will expire. It is expressed in seconds since the Unix epoch.
-            The valid range is from 2 to 365 days (the valid range will be taken from the next day of the creation date at 00:01 hrs)
-          example: 1680397724
-          format: int64
-          type: integer
-        name:
-          description: Reason for charge
-          example: Payment Link Name 1594138857
-          type: string
         needs_shipping_contact:
           description: This flag allows you to fill in the shipping information at
             checkout.
           example: false
           type: boolean
-        on_demand_enabled:
-          description: This flag allows you to specify if the link will be on demand.
-          example: true
-          nullable: true
+        starts_at:
+          description: Start time for the link. Unix timestamp in seconds.
+          example: 1680224924
+          format: int64
+          type: integer
+        expires_at:
+          description: |
+            Expiration time for the link (Unix timestamp in seconds).
+            Valid range is between 2 and 365 days (calculated from the next day of creation at 00:01).
+          example: 1680397724
+          format: int64
+          type: integer
+        can_not_expire:
+          description: "If true, the link does not expire."
+          example: false
           type: boolean
         order_template:
           $ref: '#/components/schemas/checkout_order_template'
-        payments_limit_count:
-          description: It is the number of payments that can be made through the link.
-          example: 5
-          format: int8
-          type: integer
-        recurrent:
-          description: "false: single use. true: multiple payments"
-          example: false
-          type: boolean
-        type:
-          description: It is the type of link that will be created. It must be a valid
-            type.
-          example: PaymentLink
-          type: string
       required:
       - allowed_payment_methods
       - expires_at
       - name
+      - needs_shipping_contact
       - order_template
       - recurrent
       - type
@@ -11759,6 +11024,7 @@ components:
       - $ref: '#/components/schemas/customer_payment_method_request'
       - properties:
           expires_at:
+            description: Expiration date as unix timestamp (seconds).
             example: 1553273553
             format: int64
             type: integer
@@ -11772,6 +11038,7 @@ components:
       title: update_payment_methods
       type: object
     shipping_request:
+      description: Shipping line request payload.
       properties:
         amount:
           description: Shipping amount in cents
@@ -11790,6 +11057,10 @@ components:
         method:
           description: Method of shipment
           example: Same day
+          type: string
+        description:
+          description: Shipping line description
+          example: Shipping line
           type: string
         metadata:
           additionalProperties: true
@@ -11893,7 +11164,7 @@ components:
       - description
       type: object
     update_order_tax_request:
-      description: create new taxes for an existing order
+      description: Create a new tax line for an existing order.
       properties:
         amount:
           description: The amount to be collected for tax in cents
@@ -11902,18 +11173,18 @@ components:
           minimum: 0
           type: integer
         description:
-          description: description or tax's name
-          example: testing
+          description: Description or tax name
+          example: VAT
           minLength: 2
           type: string
         metadata:
-          additionalProperties:
-            type: object
+          additionalProperties: true
           maxProperties: 100
           type: object
+      title: update_order_tax_request
       type: object
     webhook_request:
-      description: a webhook
+      description: Parameters used to create or update a webhook.
       properties:
         url:
           description: Here you must place the URL of your Webhook remember that you
@@ -11932,10 +11203,11 @@ components:
       required:
       - synchronous
       - url
-      title: a webhook
+      title: webhook_request
       type: object
     webhook_update_request:
-      description: an updated webhook
+      description: Parameters used to update a webhook. All fields are optional; send
+        only the fields you want to change.
       properties:
         url:
           description: Here you must place the URL of your Webhook remember that you
@@ -11958,7 +11230,7 @@ components:
           type: array
       required:
       - url
-      title: update_webhook
+      title: webhook_update_request
       type: object
     details:
       properties:
@@ -11987,9 +11259,9 @@ components:
       - description: use for cash responses
         properties:
           auth_code:
-            example: 542563
+            example: "542563"
             nullable: true
-            type: integer
+            type: string
           cashier_id:
             example: OINM01010
             nullable: true
@@ -11998,19 +11270,19 @@ components:
             example: "93000262276908"
             type: string
           barcode_url:
-            example: https://pt-common-s3-stg.s3.amazonaws.com/644ebf80f2243197aad6cd8810375b905b613dbe.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIA3UN6375MP4SLLCWV%2F20230203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230203T215750Z&X-Amz-Expires=604800&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEH4aCXVzLWVhc3QtMSJGMEQCICd79cu7DYu%2F4%2B3HnVVswydgU9yHcE9kmQIIk2TLoZJrAiBVZ0HxVSeboK5lhdQSqADjwQF62XX35jhC%2F2riB0M8uCqQBAj2%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAIaDDc5OTgwMTA4MTY4OCIMXWZds9ZI5hzUdbeGKuQDFreMyeWnWWPqDuGZ2%2BHk6usCr%2Fl096%2FNJh9xtf8htLu56K%2FhWUTx%2BjiqFWM2O%2FF5zTS%2BIV6TqkLDZ%2BQ5Jo1miQrRmR57YDz6uP2Yd1mNZ1ouq5ipnNjUuu5UWCCBAmqyZQsrVmeMQpSV2IB%2BTERCCcW2SukFEYU%2F20%2Fzy5orsoZ8DxOW460IymR3cWBk5u3Xh2cV6Y1RdPEwDEThhqYEF5w%2ByKbLENloMsI%2FUm6sG5PPrO3yQOAP9aK2muLJs9lXQRU%2FL%2FSsmS4FKSUFOqlN6YU%2Bi2Y%2FyGIKAJT2VDkngvz5Sl%2Fadj0j%2BPKftVRV5FcEhySB6Rl%2BSkPN7kVQMJp6pS8hMJ6JCyEA%2BA3eWYdIfKgQhWVXAR4oCBfJ62DH8FU3a7WfSjjpTwfVkiReWen3GGCYfUWETTVKp46MKnJ9PG0CD3KzxKV8VfmEGc5krK%2FI%2F%2BDV2wtSa%2F9qf1%2BK1YYJIK9qZGb25ljUiGhTB4T%2BMUOSQFjetiWUoOJc5Q3Jz%2FXJbiTAMTST39MhdbCgiMgfrc8OGKN5DOVbex33Z7dn0xf%2FOCkSqurhLaG08efKQBdhLNS0RlE9hbg9yZ2ywwtQIF39fI6A7eeH0T11a5HMlvm51u4rAffPHRuEJfwJoIuj%2F2s3QzDg7%2FWeBjqmAbnPOlGfysjrDdvHyG7HVnaX02kdG%2BI3Q4PFOO4Mjaa3ocpjcfPT70%2BZ5a%2FSv5vP0jDLGrLToeM9%2BAUlNepptICRu23a1tLGW4ri0twPA%2FZ4JDTtUUUgdblyG8bKpcUTNp4oOsdmLLBz3FVyr4c2xQbDZSu2zYOtoOxB18W0AC6kIbsMWVU55Bf0mBhPeBWxGrtM4Kw1SgHHlt%2F8vetQi2OwtUcg08c%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=d06dfa41550003359f2aabc8006063a80dfd806a13a54d244024946a76aa9abc
+            example: https://pt-common-s3-stg.s3.amazonaws.com/644ebf80f2243197aad6cd8810375b905b613dbe.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIA3UN6375MP4SLLCWV%2F20230203%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230203T215750Z&X-Amz-Expires=604800&X-Amz-Security-Token=...&X-Amz-SignedHeaders=host&X-Amz-Signature=...
             type: string
           expires_at:
-            example: 0
+            example: 1768802399
             format: int64
             type: integer
           service_name:
             example: OxxoPay
             type: string
           store:
-            example: 10MON50EDI
             nullable: true
             type: string
+            example: null
           store_name:
             example: OXXO
             type: string
@@ -12104,9 +11376,11 @@ components:
           example: true
           type: boolean
         external_number:
+          example: string
           type: string
       required:
       - city
+      - country
       - postal_code
       - street1
       type: object
@@ -12205,9 +11479,40 @@ components:
       - object
       - type
       type: object
+    customer_info:
+      properties:
+        customer_id:
+          example: cus_23874283647
+          type: string
+        name:
+          example: DevTest
+          type: string
+        email:
+          example: test@femsa.com
+          format: email
+          type: string
+        phone:
+          example: "5522997233"
+          type: string
+        corporate:
+          type: boolean
+      required:
+      - email
+      - name
+      title: customer_info
+      type: object
+    customer_info_just_customer_id:
+      properties:
+        customer_id:
+          example: cus_23874283647
+          type: string
+      required:
+      - customer_id
+      title: customer_info_customer_id
+      type: object
     checkout_request:
       description: |
-        [Checkout](https://developers.femsa.com/v2.1.0/reference/payment-link) details
+        [Checkout](https://developers.digitalfemsa.io/docs/checkout-redireccionado) details
       properties:
         allowed_payment_methods:
           description: Are the payment methods available for this link
@@ -12242,44 +11547,11 @@ components:
       - allowed_payment_methods
       title: order_checkout_request
       type: object
-    customer_info:
-      properties:
-        name:
-          example: DevTest
-          type: string
-        email:
-          example: test@femsa.com
-          format: email
-          type: string
-        phone:
-          example: "5522997233"
-          type: string
-        corporate:
-          type: boolean
-        object:
-          example: customer_info
-          type: string
-      required:
-      - email
-      - name
-      - phone
-      title: customer_info
-      type: object
-    customer_info_just_customer_id:
-      properties:
-        customer_id:
-          example: cus_23874283647
-          type: string
-      required:
-      - customer_id
-      title: customer_info_customer_id
-      type: object
     customer_payment_method_request:
-      description: Contains details of the payment methods that the customer has active
-        or has used in Femsa
+      description: Payment method data to attach to a customer.
       properties:
         type:
-          description: Type of payment method
+          description: Type of payment method.
           example: cash
           type: string
       required:
@@ -12353,9 +11625,8 @@ components:
       allOf:
       - properties:
           authentication_token:
-            description: "It is occupied as a user when authenticated with basic authentication,\
-              \ with a blank password. This value will only appear once, in the request\
-              \ to create a new key. Copy and save it in a safe place."
+            description: |
+              Used as the username for Basic Authentication, with a blank password. This value is shown only once (when the key is created). Copy and store it securely.
             example: key_rpHzxufNgjFCdprEEFZRTKi
             type: string
         type: object
@@ -12384,8 +11655,8 @@ components:
       title: delete_api_keys_response
     get_charges_response:
       allOf:
-      - $ref: '#/components/schemas/pagination'
       - $ref: '#/components/schemas/page'
+      - $ref: '#/components/schemas/pagination'
       - properties:
           data:
             items:
@@ -12406,15 +11677,16 @@ components:
       title: get_companies_response
     customers_response:
       allOf:
+      - $ref: '#/components/schemas/pagination'
+      - $ref: '#/components/schemas/page'
       - properties:
           data:
+            description: Customers
             items:
               $ref: '#/components/schemas/customer_response'
             title: customers_data_response
             type: array
         type: object
-      - $ref: '#/components/schemas/pagination'
-      - $ref: '#/components/schemas/page'
       title: customers_response
     create_customer_fiscal_entities_response:
       allOf:
@@ -12510,16 +11782,33 @@ components:
     orderRefund_request:
       properties:
         amount:
+          description: "Amount to refund. If not provided, the API refunds the refundable\
+            \ amount of the selected charge."
           example: 500
           type: integer
+        charge_id:
+          description: "Charge ID to refund. If not provided, the API selects a refundable\
+            \ charge from the order."
+          example: 6976b2e3c4418f00012943c5
+          nullable: true
+          type: string
+        reason:
+          description: "Refund reason. If not provided, the API uses a default reason."
+          enum:
+          - requested_by_client
+          - cannot_be_fulfilled
+          - duplicated_transaction
+          - suspected_fraud
+          - other
+          example: suspected_fraud
+          type: string
         expires_at:
+          description: Expiration timestamp for cash refunds (must be within the allowed
+            range configured by the API).
           example: 1553273553
           format: int64
           nullable: true
           type: integer
-        reason:
-          example: suspected_fraud
-          type: string
       required:
       - amount
       - reason
@@ -12543,14 +11832,6 @@ components:
           type: string
       required:
       - email
-      type: object
-    smsCheckout_request:
-      properties:
-        phonenumber:
-          example: "5566982090"
-          type: string
-      required:
-      - phonenumber
       type: object
     get_customer_payment_method_data_response:
       discriminator:
@@ -12601,7 +11882,7 @@ components:
       - $ref: '#/components/schemas/page'
       - properties:
           data:
-            description: Transactions
+            description: Transactions (ledger movements)
             items:
               $ref: '#/components/schemas/transaction_response'
             type: array
@@ -12636,6 +11917,7 @@ components:
           default: true
           description: Indicates if the webhook key is active
           example: true
+          nullable: true
           type: boolean
       title: webhook_key_request
       type: object
@@ -12665,13 +11947,13 @@ components:
           example: Checkout
           type: string
         checkout_request_id:
-          example: 6fca054a-8519-4c43-971e-cea35cc519bb
+          example: f3a5bfc1-ba1c-474f-9687-46d8b75ffc90
           type: string
         checkout_request_type:
-          example: HostedPayment
+          example: Integration
           type: string
         id:
-          example: channel_2tNDzhA4Akmzj11AU
+          example: channel_2zNxD65G8MBNkYksy
           type: string
       type: object
     charge_response_payment_method:
@@ -12710,6 +11992,13 @@ components:
           description: refund status
           example: pending
           type: string
+        payout_id:
+          example: 6fca054a-8519-4c43-971e-cea35cc519bb
+          type: string
+        reference:
+          description: payout reference for oxxo stores
+          example: "12002000778626"
+          type: string
       required:
       - amount
       - created_at
@@ -12731,6 +12020,21 @@ components:
       nullable: true
       title: charge_response_refunds
       type: object
+    charge_order_response_channel:
+      properties:
+        segment:
+          example: Checkout
+          type: string
+        checkout_request_id:
+          example: 6fca054a-8519-4c43-971e-cea35cc519bb
+          type: string
+        checkout_request_type:
+          example: HostedPayment
+          type: string
+        id:
+          example: channel_2tNDzhA4Akmzj11AU
+          type: string
+      type: object
     charge_order_response_payment_method:
       discriminator:
         mapping:
@@ -12739,18 +12043,28 @@ components:
       oneOf:
       - $ref: '#/components/schemas/payment_method_cash'
       title: charge_order_response_payment_method
-    customer_antifraud_info_response:
-      nullable: true
-      properties:
-        first_paid_at:
-          example: 1485151007
-          type: integer
-        account_created_at:
-          example: 1484040996
-          format: int64
-          type: integer
-      title: customer_antifraud_info_response
-      type: object
+    customer_payment_methods_data:
+      discriminator:
+        mapping:
+          cash: payment_method_cash_response
+          oxxo_recurrent: payment_method_cash_response
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/payment_method_cash_response'
+      title: customer_payment_methods_data
+    customer_payment_methods_response:
+      allOf:
+      - $ref: '#/components/schemas/pagination'
+      - $ref: '#/components/schemas/page'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/customer_payment_methods_data'
+            title: customer_payment_methods_data
+            type: array
+        title: customerPaymentMethods
+        type: object
+      title: customer_payment_methods_response
     customer_fiscal_entities_data_response:
       allOf:
       - $ref: '#/components/schemas/customer_fiscal_entities_request'
@@ -12786,28 +12100,6 @@ components:
             type: array
         type: object
       title: customer_fiscal_entities_response
-    customer_payment_methods_data:
-      discriminator:
-        mapping:
-          cash: payment_method_cash_response
-          oxxo_recurrent: payment_method_cash_response
-        propertyName: type
-      oneOf:
-      - $ref: '#/components/schemas/payment_method_cash_response'
-      title: customer_payment_methods_data
-    customer_payment_methods_response:
-      allOf:
-      - $ref: '#/components/schemas/pagination'
-      - $ref: '#/components/schemas/page'
-      - properties:
-          data:
-            items:
-              $ref: '#/components/schemas/customer_payment_methods_data'
-            title: customer_payment_methods_data
-            type: array
-        title: customerPaymentMethods
-        type: object
-      title: customer_payment_methods_response
     customer_shipping_contacts_data_response:
       allOf:
       - $ref: '#/components/schemas/customer_shipping_contacts'
@@ -12987,17 +12279,114 @@ components:
           type: string
       title: logs_response_data
       type: object
-    order_response_charges:
+    order_response_customer_info:
       allOf:
-      - $ref: '#/components/schemas/pagination'
       - properties:
-          data:
-            items:
-              $ref: '#/components/schemas/charges_data_response'
-            type: array
+          object:
+            example: customer_info
+            type: string
         type: object
-      description: The charges associated with the order
+      - $ref: '#/components/schemas/order_customer_info_response'
+      - $ref: '#/components/schemas/customer_info_just_customer_id_response'
+      description: Customer information associated with the order.
+    order_response_shipping_contact:
+      allOf:
+      - properties:
+          created_at:
+            format: int64
+            type: integer
+          id:
+            type: string
+          object:
+            type: string
+        type: object
+      - $ref: '#/components/schemas/customer_shipping_contacts_response'
+      description: Shipping contact associated with the order. It may be `null` when
+        not provided/required.
+      nullable: true
+    order_response_channel:
+      description: Channel information for the order (for example Checkout-related
+        metadata). It may be `null`.
+      nullable: true
+      properties:
+        segment:
+          example: Checkout
+          type: string
+        checkout_request_id:
+          example: 6fca054a-8519-4c43-971e-cea35cc519bb
+          type: string
+        checkout_request_type:
+          example: HostedPayment
+          type: string
+        id:
+          example: channel_2tNDzhA4Akmzj11AU
+          type: string
+      type: object
+    order_fiscal_entity_address_response:
+      allOf:
+      - $ref: '#/components/schemas/fiscal_entity_address'
+      - properties:
+          object:
+            example: fiscal_entity_address
+            type: string
+        type: object
+      description: Address of the fiscal entity
+      title: order_fiscal_entity_address_response
+    order_fiscal_entity_response:
+      description: Fiscal entity information associated with the order. This field
+        can be `null`.
+      nullable: true
+      properties:
+        address:
+          $ref: '#/components/schemas/order_fiscal_entity_address_response'
+        email:
+          description: Email of the fiscal entity
+          example: test@gmail.com
+          nullable: true
+          type: string
+        metadata:
+          additionalProperties: true
+          description: Metadata associated with the fiscal entity
+          maxProperties: 100
+          type: object
+        name:
+          description: Name of the fiscal entity
+          example: Femsa Inc
+          nullable: true
+          type: string
+        tax_id:
+          description: Tax ID of the fiscal entity
+          example: "324234234"
+          nullable: true
+          type: string
+        id:
+          description: ID of the fiscal entity
+          example: fis_ent_2tN85VYaSMyDvjB3M
+          type: string
+        created_at:
+          description: The time at which the object was created in seconds since the
+            Unix epoch
+          example: 1676328434
+          format: int64
+          type: integer
+        object:
+          example: fiscal_entity
+          type: string
+        phone:
+          description: Phone of the fiscal entity
+          example: "+525511223344"
+          nullable: true
+          type: string
+      required:
+      - address
+      - created_at
+      - id
+      - object
+      title: order_fiscal_entity_response
+      type: object
     order_response_checkout:
+      description: Checkout resource linked to the order. Present only when the order
+        is linked to a checkout (`channel.checkout_request_id`).
       properties:
         allowed_payment_methods:
           items:
@@ -13067,86 +12456,6 @@ components:
           example: https://pay.stg.femsa.io/checkout/6fca054a85194c43971ecea35cc519bb
           type: string
       type: object
-    order_response_customer_info:
-      allOf:
-      - properties:
-          object:
-            example: customer_info
-            type: string
-        type: object
-      - $ref: '#/components/schemas/order_customer_info_response'
-      - $ref: '#/components/schemas/customer_info_just_customer_id_response'
-    order_response_discount_lines:
-      allOf:
-      - $ref: '#/components/schemas/pagination'
-      - properties:
-          data:
-            items:
-              $ref: '#/components/schemas/discount_lines_data_response'
-            type: array
-        type: object
-    order_fiscal_entity_address_response:
-      allOf:
-      - $ref: '#/components/schemas/fiscal_entity_address'
-      - properties:
-          object:
-            example: fiscal_entity_address
-            type: string
-        type: object
-      description: Address of the fiscal entity
-      title: order_fiscal_entity_address_response
-    order_fiscal_entity_response:
-      description: "Fiscal entity of the order, Currently it is a purely informative\
-        \ field"
-      nullable: true
-      properties:
-        address:
-          $ref: '#/components/schemas/order_fiscal_entity_address_response'
-        email:
-          description: Email of the fiscal entity
-          example: test@gmail.com
-          nullable: true
-          type: string
-        metadata:
-          additionalProperties: true
-          description: Metadata associated with the fiscal entity
-          maxProperties: 100
-          type: object
-        name:
-          description: Name of the fiscal entity
-          example: Femsa Inc
-          nullable: true
-          type: string
-        tax_id:
-          description: Tax ID of the fiscal entity
-          example: "324234234"
-          nullable: true
-          type: string
-        id:
-          description: ID of the fiscal entity
-          example: fis_ent_2tN85VYaSMyDvjB3M
-          type: string
-        created_at:
-          description: The time at which the object was created in seconds since the
-            Unix epoch
-          example: 1676328434
-          format: int64
-          type: integer
-        object:
-          example: fiscal_entity
-          type: string
-        phone:
-          description: Phone of the fiscal entity
-          example: "+525511223344"
-          nullable: true
-          type: string
-      required:
-      - address
-      - created_at
-      - id
-      - object
-      title: order_fiscal_entity_response
-      type: object
     product_data_response:
       allOf:
       - $ref: '#/components/schemas/product'
@@ -13170,18 +12479,28 @@ components:
             type: array
         type: object
       title: order_response_products
-    order_response_shipping_contact:
+    order_response_discount_lines:
       allOf:
+      - $ref: '#/components/schemas/pagination'
       - properties:
-          created_at:
-            format: int64
-            type: integer
-          id:
-            type: string
-          object:
-            type: string
+          data:
+            items:
+              $ref: '#/components/schemas/discount_lines_data_response'
+            type: array
         type: object
-      - $ref: '#/components/schemas/customer_shipping_contacts_response'
+    order_response_charges:
+      allOf:
+      - $ref: '#/components/schemas/pagination'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/charges_data_response'
+            type: array
+        type: object
+      description: |
+        List preview of charges created for the order.
+        Charges are only created when included in the request or created later through payment flows.
+        This field can be `null` depending on the response context.
     customer_shipping_contacts_response_address:
       properties:
         object:
@@ -13288,49 +12607,29 @@ components:
       type: object
     charge_request_payment_method:
       description: |
-        Payment method used in the charge. Go to the [payment methods](https://developers.femsa.com/reference/m%C3%A9todos-de-pago) section for more details
+        Payment method used in the charge.
       properties:
         expires_at:
-          description: Method expiration date as unix timestamp
-          example: 1677196303
+          description: "Method expiration date as unix timestamp (applies to some\
+            \ payment methods, e.g. cash)."
+          example: 1789928542
           format: int64
           type: integer
         type:
           example: cash
           type: string
         payment_source_id:
+          description: Identifier of a saved payment source to be used for this charge
+            (if applicable).
           example: src_2tLkkyfMPh6v7pFry
           type: string
       required:
       - type
       type: object
-    customer_antifraud_info:
-      nullable: true
-      properties:
-        account_created_at:
-          example: 1484040996
-          format: int64
-          type: integer
-        first_paid_at:
-          example: 1485151007
-          format: int64
-          type: integer
-      type: object
     customer_payment_methods_request:
       oneOf:
       - $ref: '#/components/schemas/payment_method_cash_request'
       title: customer_payment_methods_request
-    update_customer_antifraud_info:
-      nullable: true
-      properties:
-        account_created_at:
-          example: 1484040996
-          format: int64
-          type: integer
-        first_paid_at:
-          example: 1485151007
-          type: integer
-      type: object
     order_request_customer_info:
       description: Customer information
       oneOf:
@@ -13344,7 +12643,6 @@ components:
           $ref: '#/components/schemas/fiscal_entity_address'
         email:
           description: Email of the fiscal entity
-          example: test@gmail.com
           type: string
         metadata:
           additionalProperties: true
@@ -13353,16 +12651,13 @@ components:
           type: object
         name:
           description: Name of the fiscal entity
-          example: Femsa Inc
           nullable: true
           type: string
         phone:
           description: Phone of the fiscal entity
-          example: "+525511223344"
           type: string
         tax_id:
           description: Tax ID of the fiscal entity
-          example: AAA010101AAA
           nullable: true
           type: string
       required:
@@ -13390,7 +12685,8 @@ components:
           type: string
         metadata:
           additionalProperties: true
-          description: Metadata associated with the fiscal entity
+          description: |
+            Arbitrary key-value data associated with the fiscal entity for your internal use. Keys should be strings; values can be any JSON value.
           maxProperties: 100
           type: object
         phone:
@@ -13407,35 +12703,30 @@ components:
       title: order_update_fiscal_entity_request
       type: object
     checkout_order_template_customer_info:
-      description: It is the information of the customer who will be created when
-        receiving a new payment.
+      description: Customer information used when creating the order.
       oneOf:
       - $ref: '#/components/schemas/customer_info'
       - $ref: '#/components/schemas/customer_info_just_customer_id'
     checkout_order_template:
-      description: It maintains the attributes with which the order will be created
-        when receiving a new payment.
+      description: Attributes used to create the order when a new payment is received.
       properties:
         currency:
-          description: It is the currency in which the order will be created. It must
-            be a valid ISO 4217 currency code.
+          description: ISO 4217 currency code for the order.
           example: MXN
           maxLength: 3
           type: string
         customer_info:
           $ref: '#/components/schemas/checkout_order_template_customer_info'
         line_items:
-          description: They are the products to buy. Each contains the "unit price"
-            and "quantity" parameters that are used to calculate the total amount
-            of the order.
+          description: Products to buy. Each contains unit price and quantity used
+            to calculate the order total.
           items:
             $ref: '#/components/schemas/product'
           type: array
         metadata:
           additionalProperties: true
-          description: It is a set of key-value pairs that you can attach to the order.
-            It can be used to store additional information about the order in a structured
-            format.
+          description: Arbitrary key-value data attached to the order for internal
+            use.
           example:
             key: value
           maxProperties: 100
@@ -13487,14 +12778,14 @@ components:
           type: string
       title: details_error
       type: object
-    charges_data_response:
-      allOf:
-      - $ref: '#/components/schemas/charge_response'
-      title: charges_data_response
     discount_lines_data_response:
       allOf:
       - $ref: '#/components/schemas/discount_lines_response'
       title: discount_lines_data_response
+    charges_data_response:
+      allOf:
+      - $ref: '#/components/schemas/charge_response'
+      title: charges_data_response
   securitySchemes:
     bearerAuth:
       scheme: bearer

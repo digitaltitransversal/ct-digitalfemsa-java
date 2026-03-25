@@ -4,8 +4,8 @@ All URIs are relative to *https://api.digitalfemsa.io*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getTransfer**](TransfersApi.md#getTransfer) | **GET** /transfers/{id} | Get Transfer |
-| [**getTransfers**](TransfersApi.md#getTransfers) | **GET** /transfers | Get a list of transfers |
+| [**getTransfer**](TransfersApi.md#getTransfer) | **GET** /transfers/{id} | Get transfer |
+| [**getTransfers**](TransfersApi.md#getTransfers) | **GET** /transfers | List transfers |
 
 
 
@@ -13,9 +13,9 @@ All URIs are relative to *https://api.digitalfemsa.io*
 
 > TransferResponse getTransfer(id, acceptLanguage, xChildCompanyId)
 
-Get Transfer
+Get transfer
 
-Get the details of a Transfer
+Retrieves the details of a transfer by its ID.
 
 ### Example
 
@@ -80,9 +80,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  |
+| **200** | successful operation |  -  |
 | **401** | authentication error |  -  |
-| **404** | authentication error |  -  |
 | **500** | internal server error |  -  |
 
 
@@ -90,9 +89,15 @@ public class Example {
 
 > GetTransfersResponse getTransfers(acceptLanguage, xChildCompanyId, limit, search, next, previous)
 
-Get a list of transfers
+List transfers
 
-Get transfers details in the form of a list
+Returns a paginated list of transfers (payouts/dispersions).
+
+A transfer represents a payout of funds to the merchant (where the money is sent and the payout status).
+Transfers typically aggregate multiple transactions.
+
+If you need movement-level details (amount/fee/net per operation) or to reconcile charges, use GET /transactions.
+
 
 ### Example
 
@@ -163,7 +168,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful |  * Date - The date and time that the response was sent <br>  * Content-Type - The format of the response body <br>  * Content-Length - The length of the response body in bytes <br>  * Connection - The type of connection used to transfer the response <br>  |
+| **200** | successful |  -  |
 | **401** | authentication error |  -  |
 | **500** | internal server error |  -  |
 

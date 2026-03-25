@@ -14,6 +14,8 @@
 |**id** | **String** |  |  |
 |**_object** | **String** |  |  |
 |**status** | **String** | refund status |  [optional] |
+|**payoutId** | **String** |  |  [optional] |
+|**reference** | **String** | payout reference for oxxo stores |  [optional] |
 
 
 

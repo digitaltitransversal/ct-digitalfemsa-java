@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**amount** | **Integer** |  |  [optional] |
-|**channel** | [**ChargeResponseChannel**](ChargeResponseChannel.md) |  |  [optional] |
+|**channel** | [**ChargeOrderResponseChannel**](ChargeOrderResponseChannel.md) |  |  [optional] |
 |**createdAt** | **Long** |  |  [optional] |
 |**currency** | **String** |  |  [optional] |
 |**customerId** | **String** |  |  [optional] |

@@ -2,15 +2,15 @@
 
 # ChargeRequestPaymentMethod
 
-Payment method used in the charge. Go to the [payment methods](https://developers.femsa.com/reference/m%C3%A9todos-de-pago) section for more details 
+Payment method used in the charge. 
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**expiresAt** | **Long** | Method expiration date as unix timestamp |  [optional] |
+|**expiresAt** | **Long** | Method expiration date as unix timestamp (applies to some payment methods, e.g. cash). |  [optional] |
 |**type** | **String** |  |  |
-|**paymentSourceId** | **String** |  |  [optional] |
+|**paymentSourceId** | **String** | Identifier of a saved payment source to be used for this charge (if applicable). |  [optional] |
 
 
 

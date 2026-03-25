@@ -13,126 +13,66 @@
 
 package io.digitalfemsa.model;
 
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.digitalfemsa.model.CheckoutOrderTemplate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.digitalfemsa.JSON;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 
 /**
- * It is a sub-resource of the Order model that can be stipulated in order to configure its corresponding checkout
+ * Creates a Payment Link. This is a sub-resource related to an Order template: each time a customer pays using the link, the API will create an Order using &#x60;order_template&#x60;. 
  */
 @JsonPropertyOrder({
-  Checkout.JSON_PROPERTY_ALLOWED_PAYMENT_METHODS,
-  Checkout.JSON_PROPERTY_EXPIRES_AT,
   Checkout.JSON_PROPERTY_NAME,
-  Checkout.JSON_PROPERTY_NEEDS_SHIPPING_CONTACT,
-  Checkout.JSON_PROPERTY_ON_DEMAND_ENABLED,
-  Checkout.JSON_PROPERTY_ORDER_TEMPLATE,
-  Checkout.JSON_PROPERTY_PAYMENTS_LIMIT_COUNT,
+  Checkout.JSON_PROPERTY_TYPE,
   Checkout.JSON_PROPERTY_RECURRENT,
-  Checkout.JSON_PROPERTY_TYPE
+  Checkout.JSON_PROPERTY_PAYMENTS_LIMIT_COUNT,
+  Checkout.JSON_PROPERTY_ALLOWED_PAYMENT_METHODS,
+  Checkout.JSON_PROPERTY_NEEDS_SHIPPING_CONTACT,
+  Checkout.JSON_PROPERTY_STARTS_AT,
+  Checkout.JSON_PROPERTY_EXPIRES_AT,
+  Checkout.JSON_PROPERTY_CAN_NOT_EXPIRE,
+  Checkout.JSON_PROPERTY_ORDER_TEMPLATE
 })
 @JsonTypeName("checkout")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class Checkout {
-  public static final String JSON_PROPERTY_ALLOWED_PAYMENT_METHODS = "allowed_payment_methods";
-  private List<String> allowedPaymentMethods = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_EXPIRES_AT = "expires_at";
-  private Long expiresAt;
-
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
-
-  public static final String JSON_PROPERTY_NEEDS_SHIPPING_CONTACT = "needs_shipping_contact";
-  private Boolean needsShippingContact;
-
-  public static final String JSON_PROPERTY_ON_DEMAND_ENABLED = "on_demand_enabled";
-  private Boolean onDemandEnabled;
-
-  public static final String JSON_PROPERTY_ORDER_TEMPLATE = "order_template";
-  private CheckoutOrderTemplate orderTemplate;
-
-  public static final String JSON_PROPERTY_PAYMENTS_LIMIT_COUNT = "payments_limit_count";
-  private Integer paymentsLimitCount;
-
-  public static final String JSON_PROPERTY_RECURRENT = "recurrent";
-  private Boolean recurrent;
 
   public static final String JSON_PROPERTY_TYPE = "type";
   private String type;
 
+  public static final String JSON_PROPERTY_RECURRENT = "recurrent";
+  private Boolean recurrent;
+
+  public static final String JSON_PROPERTY_PAYMENTS_LIMIT_COUNT = "payments_limit_count";
+  private Integer paymentsLimitCount;
+
+  public static final String JSON_PROPERTY_ALLOWED_PAYMENT_METHODS = "allowed_payment_methods";
+  private List<String> allowedPaymentMethods = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_NEEDS_SHIPPING_CONTACT = "needs_shipping_contact";
+  private Boolean needsShippingContact;
+
+  public static final String JSON_PROPERTY_STARTS_AT = "starts_at";
+  private Long startsAt;
+
+  public static final String JSON_PROPERTY_EXPIRES_AT = "expires_at";
+  private Long expiresAt;
+
+  public static final String JSON_PROPERTY_CAN_NOT_EXPIRE = "can_not_expire";
+  private Boolean canNotExpire;
+
+  public static final String JSON_PROPERTY_ORDER_TEMPLATE = "order_template";
+  private CheckoutOrderTemplate orderTemplate;
+
   public Checkout() { 
   }
-
-  public Checkout allowedPaymentMethods(List<String> allowedPaymentMethods) {
-    this.allowedPaymentMethods = allowedPaymentMethods;
-    return this;
-  }
-
-  public Checkout addAllowedPaymentMethodsItem(String allowedPaymentMethodsItem) {
-    if (this.allowedPaymentMethods == null) {
-      this.allowedPaymentMethods = new ArrayList<>();
-    }
-    this.allowedPaymentMethods.add(allowedPaymentMethodsItem);
-    return this;
-  }
-
-   /**
-   * Those are the payment methods that will be available for the link
-   * @return allowedPaymentMethods
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ALLOWED_PAYMENT_METHODS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public List<String> getAllowedPaymentMethods() {
-    return allowedPaymentMethods;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ALLOWED_PAYMENT_METHODS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAllowedPaymentMethods(List<String> allowedPaymentMethods) {
-    this.allowedPaymentMethods = allowedPaymentMethods;
-  }
-
-
-  public Checkout expiresAt(Long expiresAt) {
-    this.expiresAt = expiresAt;
-    return this;
-  }
-
-   /**
-   * It is the time when the link will expire. It is expressed in seconds since the Unix epoch. The valid range is from 2 to 365 days (the valid range will be taken from the next day of the creation date at 00:01 hrs) 
-   * @return expiresAt
-  **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Long getExpiresAt() {
-    return expiresAt;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setExpiresAt(Long expiresAt) {
-    this.expiresAt = expiresAt;
-  }
-
 
   public Checkout name(String name) {
     this.name = name;
@@ -140,7 +80,7 @@ public class Checkout {
   }
 
    /**
-   * Reason for charge
+   * Payment link name.
    * @return name
   **/
   @javax.annotation.Nonnull
@@ -159,103 +99,28 @@ public class Checkout {
   }
 
 
-  public Checkout needsShippingContact(Boolean needsShippingContact) {
-    this.needsShippingContact = needsShippingContact;
+  public Checkout type(String type) {
+    this.type = type;
     return this;
   }
 
    /**
-   * This flag allows you to fill in the shipping information at checkout.
-   * @return needsShippingContact
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NEEDS_SHIPPING_CONTACT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Boolean getNeedsShippingContact() {
-    return needsShippingContact;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NEEDS_SHIPPING_CONTACT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNeedsShippingContact(Boolean needsShippingContact) {
-    this.needsShippingContact = needsShippingContact;
-  }
-
-
-  public Checkout onDemandEnabled(Boolean onDemandEnabled) {
-    this.onDemandEnabled = onDemandEnabled;
-    return this;
-  }
-
-   /**
-   * This flag allows you to specify if the link will be on demand.
-   * @return onDemandEnabled
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ON_DEMAND_ENABLED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Boolean getOnDemandEnabled() {
-    return onDemandEnabled;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ON_DEMAND_ENABLED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOnDemandEnabled(Boolean onDemandEnabled) {
-    this.onDemandEnabled = onDemandEnabled;
-  }
-
-
-  public Checkout orderTemplate(CheckoutOrderTemplate orderTemplate) {
-    this.orderTemplate = orderTemplate;
-    return this;
-  }
-
-   /**
-   * Get orderTemplate
-   * @return orderTemplate
+   * Checkout type.
+   * @return type
   **/
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ORDER_TEMPLATE)
+  @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public CheckoutOrderTemplate getOrderTemplate() {
-    return orderTemplate;
+  public String getType() {
+    return type;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ORDER_TEMPLATE)
+  @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setOrderTemplate(CheckoutOrderTemplate orderTemplate) {
-    this.orderTemplate = orderTemplate;
-  }
-
-
-  public Checkout paymentsLimitCount(Integer paymentsLimitCount) {
-    this.paymentsLimitCount = paymentsLimitCount;
-    return this;
-  }
-
-   /**
-   * It is the number of payments that can be made through the link.
-   * @return paymentsLimitCount
-  **/
-  @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PAYMENTS_LIMIT_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getPaymentsLimitCount() {
-    return paymentsLimitCount;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PAYMENTS_LIMIT_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPaymentsLimitCount(Integer paymentsLimitCount) {
-    this.paymentsLimitCount = paymentsLimitCount;
+  public void setType(String type) {
+    this.type = type;
   }
 
 
@@ -284,28 +149,186 @@ public class Checkout {
   }
 
 
-  public Checkout type(String type) {
-    this.type = type;
+  public Checkout paymentsLimitCount(Integer paymentsLimitCount) {
+    this.paymentsLimitCount = paymentsLimitCount;
     return this;
   }
 
    /**
-   * It is the type of link that will be created. It must be a valid type.
-   * @return type
+   * Required when &#x60;recurrent&#x60; is true. Maximum number of payments allowed through the link.
+   * @return paymentsLimitCount
   **/
-  @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_PAYMENTS_LIMIT_COUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getType() {
-    return type;
+  public Integer getPaymentsLimitCount() {
+    return paymentsLimitCount;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(JSON_PROPERTY_PAYMENTS_LIMIT_COUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPaymentsLimitCount(Integer paymentsLimitCount) {
+    this.paymentsLimitCount = paymentsLimitCount;
+  }
+
+
+  public Checkout allowedPaymentMethods(List<String> allowedPaymentMethods) {
+    this.allowedPaymentMethods = allowedPaymentMethods;
+    return this;
+  }
+
+  public Checkout addAllowedPaymentMethodsItem(String allowedPaymentMethodsItem) {
+    if (this.allowedPaymentMethods == null) {
+      this.allowedPaymentMethods = new ArrayList<>();
+    }
+    this.allowedPaymentMethods.add(allowedPaymentMethodsItem);
+    return this;
+  }
+
+   /**
+   * Payment methods available in the payment link.
+   * @return allowedPaymentMethods
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_ALLOWED_PAYMENT_METHODS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setType(String type) {
-    this.type = type;
+
+  public List<String> getAllowedPaymentMethods() {
+    return allowedPaymentMethods;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ALLOWED_PAYMENT_METHODS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setAllowedPaymentMethods(List<String> allowedPaymentMethods) {
+    this.allowedPaymentMethods = allowedPaymentMethods;
+  }
+
+
+  public Checkout needsShippingContact(Boolean needsShippingContact) {
+    this.needsShippingContact = needsShippingContact;
+    return this;
+  }
+
+   /**
+   * This flag allows you to fill in the shipping information at checkout.
+   * @return needsShippingContact
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_NEEDS_SHIPPING_CONTACT)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Boolean getNeedsShippingContact() {
+    return needsShippingContact;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_NEEDS_SHIPPING_CONTACT)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setNeedsShippingContact(Boolean needsShippingContact) {
+    this.needsShippingContact = needsShippingContact;
+  }
+
+
+  public Checkout startsAt(Long startsAt) {
+    this.startsAt = startsAt;
+    return this;
+  }
+
+   /**
+   * Start time for the link. Unix timestamp in seconds.
+   * @return startsAt
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_STARTS_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Long getStartsAt() {
+    return startsAt;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_STARTS_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStartsAt(Long startsAt) {
+    this.startsAt = startsAt;
+  }
+
+
+  public Checkout expiresAt(Long expiresAt) {
+    this.expiresAt = expiresAt;
+    return this;
+  }
+
+   /**
+   * Expiration time for the link (Unix timestamp in seconds). Valid range is between 2 and 365 days (calculated from the next day of creation at 00:01). 
+   * @return expiresAt
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Long getExpiresAt() {
+    return expiresAt;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setExpiresAt(Long expiresAt) {
+    this.expiresAt = expiresAt;
+  }
+
+
+  public Checkout canNotExpire(Boolean canNotExpire) {
+    this.canNotExpire = canNotExpire;
+    return this;
+  }
+
+   /**
+   * If true, the link does not expire.
+   * @return canNotExpire
+  **/
+  @javax.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_CAN_NOT_EXPIRE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getCanNotExpire() {
+    return canNotExpire;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CAN_NOT_EXPIRE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCanNotExpire(Boolean canNotExpire) {
+    this.canNotExpire = canNotExpire;
+  }
+
+
+  public Checkout orderTemplate(CheckoutOrderTemplate orderTemplate) {
+    this.orderTemplate = orderTemplate;
+    return this;
+  }
+
+   /**
+   * Get orderTemplate
+   * @return orderTemplate
+  **/
+  @javax.annotation.Nonnull
+  @JsonProperty(JSON_PROPERTY_ORDER_TEMPLATE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public CheckoutOrderTemplate getOrderTemplate() {
+    return orderTemplate;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ORDER_TEMPLATE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setOrderTemplate(CheckoutOrderTemplate orderTemplate) {
+    this.orderTemplate = orderTemplate;
   }
 
 
@@ -321,35 +344,37 @@ public class Checkout {
       return false;
     }
     Checkout checkout = (Checkout) o;
-    return Objects.equals(this.allowedPaymentMethods, checkout.allowedPaymentMethods) &&
-        Objects.equals(this.expiresAt, checkout.expiresAt) &&
-        Objects.equals(this.name, checkout.name) &&
-        Objects.equals(this.needsShippingContact, checkout.needsShippingContact) &&
-        Objects.equals(this.onDemandEnabled, checkout.onDemandEnabled) &&
-        Objects.equals(this.orderTemplate, checkout.orderTemplate) &&
-        Objects.equals(this.paymentsLimitCount, checkout.paymentsLimitCount) &&
+    return Objects.equals(this.name, checkout.name) &&
+        Objects.equals(this.type, checkout.type) &&
         Objects.equals(this.recurrent, checkout.recurrent) &&
-        Objects.equals(this.type, checkout.type);
+        Objects.equals(this.paymentsLimitCount, checkout.paymentsLimitCount) &&
+        Objects.equals(this.allowedPaymentMethods, checkout.allowedPaymentMethods) &&
+        Objects.equals(this.needsShippingContact, checkout.needsShippingContact) &&
+        Objects.equals(this.startsAt, checkout.startsAt) &&
+        Objects.equals(this.expiresAt, checkout.expiresAt) &&
+        Objects.equals(this.canNotExpire, checkout.canNotExpire) &&
+        Objects.equals(this.orderTemplate, checkout.orderTemplate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(allowedPaymentMethods, expiresAt, name, needsShippingContact, onDemandEnabled, orderTemplate, paymentsLimitCount, recurrent, type);
+    return Objects.hash(name, type, recurrent, paymentsLimitCount, allowedPaymentMethods, needsShippingContact, startsAt, expiresAt, canNotExpire, orderTemplate);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Checkout {\n");
-    sb.append("    allowedPaymentMethods: ").append(toIndentedString(allowedPaymentMethods)).append("\n");
-    sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    needsShippingContact: ").append(toIndentedString(needsShippingContact)).append("\n");
-    sb.append("    onDemandEnabled: ").append(toIndentedString(onDemandEnabled)).append("\n");
-    sb.append("    orderTemplate: ").append(toIndentedString(orderTemplate)).append("\n");
-    sb.append("    paymentsLimitCount: ").append(toIndentedString(paymentsLimitCount)).append("\n");
-    sb.append("    recurrent: ").append(toIndentedString(recurrent)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    recurrent: ").append(toIndentedString(recurrent)).append("\n");
+    sb.append("    paymentsLimitCount: ").append(toIndentedString(paymentsLimitCount)).append("\n");
+    sb.append("    allowedPaymentMethods: ").append(toIndentedString(allowedPaymentMethods)).append("\n");
+    sb.append("    needsShippingContact: ").append(toIndentedString(needsShippingContact)).append("\n");
+    sb.append("    startsAt: ").append(toIndentedString(startsAt)).append("\n");
+    sb.append("    expiresAt: ").append(toIndentedString(expiresAt)).append("\n");
+    sb.append("    canNotExpire: ").append(toIndentedString(canNotExpire)).append("\n");
+    sb.append("    orderTemplate: ").append(toIndentedString(orderTemplate)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -366,4 +391,3 @@ public class Checkout {
   }
 
 }
-

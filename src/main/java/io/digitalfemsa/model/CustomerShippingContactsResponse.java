@@ -13,20 +13,14 @@
 
 package io.digitalfemsa.model;
 
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.digitalfemsa.model.CustomerShippingContactsResponseAddress;
-import java.util.Arrays;
+
 import java.util.HashMap;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.digitalfemsa.JSON;
+import java.util.Objects;
 
 
 /**
@@ -190,7 +184,7 @@ public class CustomerShippingContactsResponse {
   }
 
    /**
-   * Get parentId
+   * Customer ID that owns this shipping contact.
    * @return parentId
   **/
   @javax.annotation.Nullable
@@ -348,7 +342,7 @@ public class CustomerShippingContactsResponse {
   }
 
    /**
-   * Get deleted
+   * Present only when the shipping contact was deleted.
    * @return deleted
   **/
   @javax.annotation.Nullable
@@ -428,4 +422,3 @@ public class CustomerShippingContactsResponse {
   }
 
 }
-

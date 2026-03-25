@@ -13,17 +13,12 @@
 
 package io.digitalfemsa.model;
 
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.digitalfemsa.JSON;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+import java.util.Objects;
 
 
 /**
@@ -366,7 +361,7 @@ public class ApiKeyCreateResponse {
   }
 
    /**
-   * It is occupied as a user when authenticated with basic authentication, with a blank password. This value will only appear once, in the request to create a new key. Copy and save it in a safe place.
+   * Used as the username for Basic Authentication, with a blank password. This value is shown only once (when the key is created). Copy and store it securely. 
    * @return authenticationToken
   **/
   @javax.annotation.Nullable
@@ -448,4 +443,3 @@ public class ApiKeyCreateResponse {
   }
 
 }
-

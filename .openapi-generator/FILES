@@ -1,6 +1,5 @@
 CODE_OF_CONDUCT.md
 LICENSE
-README.md
 VERSION
 api/openapi.yaml
 docs/ApiKeyCreateResponse.md
@@ -13,6 +12,7 @@ docs/BalanceCommonField.md
 docs/BalanceResponse.md
 docs/BalancesApi.md
 docs/ChargeOrderResponse.md
+docs/ChargeOrderResponseChannel.md
 docs/ChargeOrderResponsePaymentMethod.md
 docs/ChargeRequest.md
 docs/ChargeRequestPaymentMethod.md
@@ -40,8 +40,6 @@ docs/CreateCustomerPaymentMethodsRequest.md
 docs/CreateCustomerPaymentMethodsResponse.md
 docs/Customer.md
 docs/CustomerAddress.md
-docs/CustomerAntifraudInfo.md
-docs/CustomerAntifraudInfoResponse.md
 docs/CustomerFiscalEntitiesDataResponse.md
 docs/CustomerFiscalEntitiesRequest.md
 docs/CustomerFiscalEntitiesResponse.md
@@ -101,6 +99,7 @@ docs/OrderRefundRequest.md
 docs/OrderRequest.md
 docs/OrderRequestCustomerInfo.md
 docs/OrderResponse.md
+docs/OrderResponseChannel.md
 docs/OrderResponseCharges.md
 docs/OrderResponseCheckout.md
 docs/OrderResponseCustomerInfo.md
@@ -130,7 +129,6 @@ docs/ShippingContactsApi.md
 docs/ShippingOrderResponse.md
 docs/ShippingRequest.md
 docs/ShippingsApi.md
-docs/SmsCheckoutRequest.md
 docs/TaxesApi.md
 docs/TransactionResponse.md
 docs/TransactionsApi.md
@@ -140,7 +138,6 @@ docs/TransferResponse.md
 docs/TransfersApi.md
 docs/TransfersResponse.md
 docs/UpdateCustomer.md
-docs/UpdateCustomerAntifraudInfo.md
 docs/UpdateCustomerFiscalEntitiesResponse.md
 docs/UpdateCustomerPaymentMethodsResponse.md
 docs/UpdateOrderDiscountLinesRequest.md
@@ -159,7 +156,6 @@ docs/WebhookRequest.md
 docs/WebhookResponse.md
 docs/WebhookUpdateRequest.md
 docs/WebhooksApi.md
-pom.xml
 src/main/java/io/digitalfemsa/ApiClient.java
 src/main/java/io/digitalfemsa/ApiException.java
 src/main/java/io/digitalfemsa/ApiKeysApi.java
@@ -203,6 +199,7 @@ src/main/java/io/digitalfemsa/model/ApiKeyUpdateRequest.java
 src/main/java/io/digitalfemsa/model/BalanceCommonField.java
 src/main/java/io/digitalfemsa/model/BalanceResponse.java
 src/main/java/io/digitalfemsa/model/ChargeOrderResponse.java
+src/main/java/io/digitalfemsa/model/ChargeOrderResponseChannel.java
 src/main/java/io/digitalfemsa/model/ChargeOrderResponsePaymentMethod.java
 src/main/java/io/digitalfemsa/model/ChargeRequest.java
 src/main/java/io/digitalfemsa/model/ChargeRequestPaymentMethod.java
@@ -228,8 +225,6 @@ src/main/java/io/digitalfemsa/model/CreateCustomerPaymentMethodsRequest.java
 src/main/java/io/digitalfemsa/model/CreateCustomerPaymentMethodsResponse.java
 src/main/java/io/digitalfemsa/model/Customer.java
 src/main/java/io/digitalfemsa/model/CustomerAddress.java
-src/main/java/io/digitalfemsa/model/CustomerAntifraudInfo.java
-src/main/java/io/digitalfemsa/model/CustomerAntifraudInfoResponse.java
 src/main/java/io/digitalfemsa/model/CustomerFiscalEntitiesDataResponse.java
 src/main/java/io/digitalfemsa/model/CustomerFiscalEntitiesRequest.java
 src/main/java/io/digitalfemsa/model/CustomerFiscalEntitiesResponse.java
@@ -285,6 +280,7 @@ src/main/java/io/digitalfemsa/model/OrderRefundRequest.java
 src/main/java/io/digitalfemsa/model/OrderRequest.java
 src/main/java/io/digitalfemsa/model/OrderRequestCustomerInfo.java
 src/main/java/io/digitalfemsa/model/OrderResponse.java
+src/main/java/io/digitalfemsa/model/OrderResponseChannel.java
 src/main/java/io/digitalfemsa/model/OrderResponseCharges.java
 src/main/java/io/digitalfemsa/model/OrderResponseCheckout.java
 src/main/java/io/digitalfemsa/model/OrderResponseCustomerInfo.java
@@ -308,14 +304,12 @@ src/main/java/io/digitalfemsa/model/ProductDataResponse.java
 src/main/java/io/digitalfemsa/model/ProductOrderResponse.java
 src/main/java/io/digitalfemsa/model/ShippingOrderResponse.java
 src/main/java/io/digitalfemsa/model/ShippingRequest.java
-src/main/java/io/digitalfemsa/model/SmsCheckoutRequest.java
 src/main/java/io/digitalfemsa/model/TransactionResponse.java
 src/main/java/io/digitalfemsa/model/TransferDestinationResponse.java
 src/main/java/io/digitalfemsa/model/TransferMethodResponse.java
 src/main/java/io/digitalfemsa/model/TransferResponse.java
 src/main/java/io/digitalfemsa/model/TransfersResponse.java
 src/main/java/io/digitalfemsa/model/UpdateCustomer.java
-src/main/java/io/digitalfemsa/model/UpdateCustomerAntifraudInfo.java
 src/main/java/io/digitalfemsa/model/UpdateCustomerFiscalEntitiesResponse.java
 src/main/java/io/digitalfemsa/model/UpdateCustomerPaymentMethodsResponse.java
 src/main/java/io/digitalfemsa/model/UpdateOrderDiscountLinesRequest.java
