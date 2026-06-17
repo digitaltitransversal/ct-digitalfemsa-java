@@ -14,9 +14,6 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.MultiPart;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -38,8 +35,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.cert.X509Certificate;
 import java.text.DateFormat;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -77,7 +72,7 @@ public class ApiClient extends JavaTimeFormatter {
     userAgentFields.put("lang", "java");
     userAgentFields.put("lang_version", System.getProperty("java.version"));
     userAgentFields.put("uname", "\"" + System.getProperty("os.name") + " " + System.getProperty("os.version") + "\"");
-    userAgentFields.put("sdk_version", "1.2.0");
+    userAgentFields.put("sdk_version", "1.3.0");
 
     return userAgentFields.entrySet().stream()
         .filter(e -> e.getValue() != null && !e.getValue().isEmpty())
@@ -130,7 +125,7 @@ public class ApiClient extends JavaTimeFormatter {
     this.dateFormat = new RFC3339DateFormat();
 
     // Set default User-Agent.
-    setUserAgent("App/v2 JavaBindings/1.2.0");
+    setUserAgent("App/v2 JavaBindings/1.3.0");
 
     // Setup authentications (key: authentication name, value: authentication).
     authentications = new HashMap<>();
@@ -1166,9 +1161,6 @@ public class ApiClient extends JavaTimeFormatter {
    *    server endpoints from web targets created by the client instance that is using this SSL context.
    * 4. Set the client-side trust store.
    *
-   * To completely disable certificate validation (at your own risk), you can
-   * override this method and invoke disableCertificateValidation(clientBuilder).
-   *
    * @param clientBuilder a {@link javax.ws.rs.client.ClientBuilder} object.
    */
   protected void customizeClientBuilder(ClientBuilder clientBuilder) {
@@ -1176,33 +1168,20 @@ public class ApiClient extends JavaTimeFormatter {
   }
 
   /**
-   * Disable X.509 certificate validation in TLS connections.
+   * Disabling X.509 certificate validation is not supported.
    *
-   * Please note that trusting all certificates is extremely risky.
-   * This may be useful in a development environment with self-signed certificates.
+   * Configure trust material (for example a trust store) in {@link #customizeClientBuilder(ClientBuilder)}
+   * for non-default TLS requirements.
    *
    * @param clientBuilder a {@link javax.ws.rs.client.ClientBuilder} object.
    * @throws java.security.KeyManagementException if any.
    * @throws java.security.NoSuchAlgorithmException if any.
    */
+  @Deprecated
   protected void disableCertificateValidation(ClientBuilder clientBuilder) throws KeyManagementException, NoSuchAlgorithmException {
-    TrustManager[] trustAllCerts = new X509TrustManager[] {
-      new X509TrustManager() {
-        @Override
-        public X509Certificate[] getAcceptedIssuers() {
-          return null;
-        }
-        @Override
-        public void checkClientTrusted(X509Certificate[] certs, String authType) {
-        }
-        @Override
-        public void checkServerTrusted(X509Certificate[] certs, String authType) {
-        }
-      }
-    };
-    SSLContext sslContext = SSLContext.getInstance("TLS");
-    sslContext.init(null, trustAllCerts, new SecureRandom());
-    clientBuilder.sslContext(sslContext);
+    throw new UnsupportedOperationException(
+        "Disabling certificate validation is not supported. Configure a trust store via customizeClientBuilder(ClientBuilder)."
+    );
   }
 
   /**
