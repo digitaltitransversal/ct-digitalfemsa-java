@@ -1,7 +1,7 @@
 services:
   mockserver:
     restart: always
-    image: mockoon/cli:2.4.0
+    image: mockoon/cli:2.4.0@sha256:1af8e586724c195cceb3e58751ec5508f4b6b117f6ba2c7f63322723750785ba
     ports:
       - 3000:3000
     command: "-d https://raw.githubusercontent.com/digitalfemsa/openapi/main/mocks/femsa.json -p 3000 --log-transaction"
