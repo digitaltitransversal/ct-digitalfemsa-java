@@ -1,14 +1,23 @@
 package io.digitalfemsa;
 
+import io.digitalfemsa.ApiException;
+import io.digitalfemsa.ApiClient;
+import io.digitalfemsa.ApiResponse;
+import io.digitalfemsa.Configuration;
+import io.digitalfemsa.Pair;
+
+import javax.ws.rs.core.GenericType;
+
 import io.digitalfemsa.model.ApiKeyCreateResponse;
 import io.digitalfemsa.model.ApiKeyRequest;
 import io.digitalfemsa.model.ApiKeyResponse;
 import io.digitalfemsa.model.ApiKeyUpdateRequest;
 import io.digitalfemsa.model.DeleteApiKeysResponse;
+import io.digitalfemsa.model.Error;
 import io.digitalfemsa.model.GetApiKeysResponse;
 
-import javax.ws.rs.core.GenericType;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;

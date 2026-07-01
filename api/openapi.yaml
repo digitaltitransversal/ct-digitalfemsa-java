@@ -9,7 +9,7 @@ info:
     name: MIT-LICENSE
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: Femsa API
-  version: 2.1.0
+  version: 2.2.0
 servers:
 - description: Femsa main server
   url: https://api.digitalfemsa.io
@@ -11543,6 +11543,11 @@ components:
           description: This field represents the type of checkout
           example: Integration
           type: string
+        redirection_time:
+          description: Number of seconds to wait before redirecting to the success
+            or failure url
+          example: 60
+          type: integer
       required:
       - allowed_payment_methods
       title: order_checkout_request
