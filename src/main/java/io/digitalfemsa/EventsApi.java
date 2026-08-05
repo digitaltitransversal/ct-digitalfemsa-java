@@ -1,11 +1,20 @@
 package io.digitalfemsa;
 
+import io.digitalfemsa.ApiException;
+import io.digitalfemsa.ApiClient;
+import io.digitalfemsa.ApiResponse;
+import io.digitalfemsa.Configuration;
+import io.digitalfemsa.Pair;
+
+import javax.ws.rs.core.GenericType;
+
+import io.digitalfemsa.model.Error;
 import io.digitalfemsa.model.EventResponse;
 import io.digitalfemsa.model.EventsResendResponse;
 import io.digitalfemsa.model.GetEventsResponse;
 
-import javax.ws.rs.core.GenericType;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;

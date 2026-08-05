@@ -197,7 +197,6 @@ src/main/java/io/digitalfemsa/model/ApiKeyResponse.java
 src/main/java/io/digitalfemsa/model/ApiKeyResponseOnDelete.java
 src/main/java/io/digitalfemsa/model/ApiKeyUpdateRequest.java
 src/main/java/io/digitalfemsa/model/BalanceCommonField.java
-src/main/java/io/digitalfemsa/model/BalanceResponse.java
 src/main/java/io/digitalfemsa/model/ChargeOrderResponse.java
 src/main/java/io/digitalfemsa/model/ChargeOrderResponseChannel.java
 src/main/java/io/digitalfemsa/model/ChargeOrderResponsePaymentMethod.java

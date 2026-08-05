@@ -1,13 +1,22 @@
 package io.digitalfemsa;
 
+import io.digitalfemsa.ApiException;
+import io.digitalfemsa.ApiClient;
+import io.digitalfemsa.ApiResponse;
+import io.digitalfemsa.Configuration;
+import io.digitalfemsa.Pair;
+
+import javax.ws.rs.core.GenericType;
+
 import io.digitalfemsa.model.ChargeOrderResponse;
 import io.digitalfemsa.model.ChargeRequest;
 import io.digitalfemsa.model.ChargeResponse;
 import io.digitalfemsa.model.ChargeUpdateRequest;
+import io.digitalfemsa.model.Error;
 import io.digitalfemsa.model.GetChargesResponse;
 
-import javax.ws.rs.core.GenericType;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
