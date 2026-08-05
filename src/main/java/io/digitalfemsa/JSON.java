@@ -8,14 +8,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import io.digitalfemsa.model.*;
 
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.ext.ContextResolver;
 import java.text.DateFormat;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.ext.ContextResolver;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class JSON implements ContextResolver<ObjectMapper> {

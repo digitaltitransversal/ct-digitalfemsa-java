@@ -1,12 +1,22 @@
 package io.digitalfemsa;
 
+import io.digitalfemsa.ApiException;
+import io.digitalfemsa.ApiClient;
+import io.digitalfemsa.ApiResponse;
+import io.digitalfemsa.Configuration;
+import io.digitalfemsa.Pair;
+
+import javax.ws.rs.core.GenericType;
+
+import io.digitalfemsa.model.Error;
 import io.digitalfemsa.model.OrderTaxRequest;
 import io.digitalfemsa.model.UpdateOrderTaxRequest;
 import io.digitalfemsa.model.UpdateOrderTaxResponse;
 
-import javax.ws.rs.core.GenericType;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")

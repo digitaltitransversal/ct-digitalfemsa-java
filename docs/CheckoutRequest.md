@@ -15,6 +15,7 @@
 |**onDemandEnabled** | **Boolean** |  |  [optional] |
 |**successUrl** | **String** | Redirection url back to the site in case of successful payment, applies only to HostedPayment |  [optional] |
 |**type** | **String** | This field represents the type of checkout |  [optional] |
+|**redirectionTime** | **Integer** | Number of seconds to wait before redirecting to the success or failure url |  [optional] |
 
 
 
